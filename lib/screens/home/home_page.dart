@@ -11,7 +11,9 @@ class HomePage extends StatelessWidget {
       create: (_) => HomeCubit(),
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
-          return Scaffold();
+          return Scaffold(
+            body: Center(child: Text("Hello, World!"),),
+          );
         },
       ),
     );
