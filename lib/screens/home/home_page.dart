@@ -21,9 +21,7 @@ class HomePage extends StatelessWidget {
               onTap: cubit.onPageChanged,
               currentIndex: cubit.currentIndex,
             ),
-            body: Center(
-              child: SvgPicture.asset(AppIcons.search),
-            ),
+            body: cubit.body,
           );
         },
       ),
