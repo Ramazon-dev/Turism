@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/widgets/my_sized_box.dart';
 
 class LetsGo extends StatelessWidget {
   final Color color;
@@ -20,12 +19,10 @@ class LetsGo extends StatelessWidget {
         MySizedBox(height: 50.0),
         Padding(
           padding: MyEdgeInsets.only(left: 30.0),
-          child: Text(
-            'ДАВАЙТЕ!',
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
+          child: TextWidget(
+            'ДАВАЙТЕ',
+            style: TextWidget.bold(
               color: AppColors.primary,
-              fontSize: getWidth(14.0),
             ),
           ),
         ),
@@ -39,11 +36,11 @@ class LetsGo extends StatelessWidget {
         ),
         Padding(
           padding: MyEdgeInsets.only(top: 25.0, left: 30.0, right: 30.0),
-          child: Text(
+          child: TextWidget(
             text,
-            style: TextStyle(
+            style: TextWidget.regular(
               color: color,
-              fontSize: getWidth(45.0),
+              size: 45.0,
             ),
           ),
         ),
