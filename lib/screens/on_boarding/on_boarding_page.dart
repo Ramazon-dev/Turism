@@ -1,18 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/components/my_decoration.dart';
-import 'package:mobileapp/core/constants/app_images.dart';
 import 'package:mobileapp/widgets/lets_go.dart';
-import 'package:mobileapp/widgets/my_sized_box.dart';
 
-class OnBoardingPage extends StatelessWidget {
+class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({Key? key}) : super(key: key);
+
+  @override
+  State<OnBoardingPage> createState() => _OnBoardingPageState();
+}
+
+class _OnBoardingPageState extends State<OnBoardingPage> {
+  double _indicatorValue = 0.0;
+  int _index = 0;
+
+  @override
+  initState() {
+    super.initState();
+    _setState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: MyDecoration.assetImage(assetImage: AppImages.first),
+      body: AnimatedContainer(
+        duration: const Duration(milliseconds: 100),
+        curve: Curves.easeInCubic,
+        decoration: MyDecoration.assetImage(
+          assetImage: _onBoardingInfo[_index]['image'],
+        ),
         child: Column(
           children: [
             const LetsGo(text: 'Выберите свой город', color: AppColors.white),
@@ -38,7 +53,7 @@ class OnBoardingPage extends StatelessWidget {
                   child: Column(
                     children: [
                       TextWidget(
-                        "Ташкент Сити",
+                        _onBoardingInfo[_index]['city'],
                         style: TextWidget.semiBold(
                           color: AppColors.primary,
                           size: 16.0,
@@ -48,9 +63,9 @@ class OnBoardingPage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _setIndicator(),
-                          _setIndicator(),
-                          _setIndicator(),
+                          _setIndicator(_indicatorValue),
+                          _setIndicator(_indicatorValue - 1.0),
+                          _setIndicator(_indicatorValue - 2.0),
                         ],
                       ),
                     ],
@@ -64,14 +79,14 @@ class OnBoardingPage extends StatelessWidget {
     );
   }
 
-  MySizedBox _setIndicator() => MySizedBox(
+  MySizedBox _setIndicator(double value) => MySizedBox(
         width: 55.0,
         height: 3.0,
         child: Padding(
           padding: MyEdgeInsets.symmetric(h: 5.0),
-          child: const LinearProgressIndicator(
+          child: LinearProgressIndicator(
             color: AppColors.primary,
-            value: 0.5,
+            value: value,
             backgroundColor: AppColors.disabled,
           ),
         ),
@@ -81,4 +96,31 @@ class OnBoardingPage extends StatelessWidget {
         color: AppColors.white,
         width: getWidth(size),
       );
+
+  Future _setState() async {
+    while (_indicatorValue <= 3.0) {
+      await Future.delayed(const Duration(milliseconds: 100), () {
+        setState(() {
+          _indicatorValue += 0.05;
+        });
+        if (_indicatorValue >= 1.0 && _indicatorValue <= 2.0) {
+          _index = 1;
+        } else if (_indicatorValue >= 2.0) {
+          _index = 2;
+        }
+      });
+    }
+    if (_indicatorValue >= 3.0) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const HomeScreen()),
+      );
+    }
+  }
+
+  final List _onBoardingInfo = [
+    {"image": AppImages.first, "city": "Ташкент Сити"},
+    {"image": AppImages.second, "city": "Ташкент Сити"},
+    {"image": AppImages.third, "city": "бУХАРА"},
+  ];
 }
