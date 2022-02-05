@@ -21,5 +21,5 @@ export 'package:mobileapp/core/constants/app_icons.dart';
 export 'package:bloc/bloc.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:flutter_svg/flutter_svg.dart';
-
+export 'package:easy_localization/easy_localization.dart';
 
