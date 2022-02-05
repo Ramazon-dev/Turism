@@ -12,6 +12,8 @@ export 'package:mobileapp/widgets/bottom_nav_bar.dart';
 
 // Components
 export 'package:mobileapp/core/components/size_config.dart';
+export 'package:mobileapp/core/components/my_edge_insets.dart';
+
 
 // Constants
 export 'package:mobileapp/core/constants/app_colors.dart';
