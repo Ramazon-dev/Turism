@@ -3,6 +3,7 @@ import 'package:mobileapp/screens/home/home_page.dart';
 
 void main() {
   runApp(const MyApp());
+
 }
 
 class MyApp extends StatelessWidget {
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Turism',
       theme: ThemeData(
         primarySwatch: Colors.blue,
