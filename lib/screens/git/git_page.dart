@@ -27,7 +27,7 @@ class GitPage extends StatelessWidget {
                       users: 24,
                       language: ['uzb', 'eng', 'rus']);
                 },
-                itemCount: 5,
+                itemCount: 4,
               ),
             ),
           );
