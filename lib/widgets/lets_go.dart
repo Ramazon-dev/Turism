@@ -17,7 +17,7 @@ class LetsGo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MySizedBox(height: 50.0),=,
+        MySizedBox(height: 50.0),
         Padding(
           padding: MyEdgeInsets.only(left: 30.0),
           child: Text(
@@ -38,7 +38,7 @@ class LetsGo extends StatelessWidget {
           ],
         ),
         Padding(
-          padding: MyEdgeInsets.only(top: 25.0, left: 30.0),
+          padding: MyEdgeInsets.only(top: 25.0, left: 30.0, right: 30.0),
           child: Text(
             text,
             style: TextStyle(
