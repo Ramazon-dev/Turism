@@ -9,6 +9,7 @@ export 'package:mobileapp/screens/search/search_page.dart';
 // Widgets
 export 'package:mobileapp/widgets/my_text_form_field.dart';
 export 'package:mobileapp/widgets/bottom_nav_bar.dart';
+export 'package:mobileapp/widgets/textWidget.dart';
 
 // Components
 export 'package:mobileapp/core/components/size_config.dart';

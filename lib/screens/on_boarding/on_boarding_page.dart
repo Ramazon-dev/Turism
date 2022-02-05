@@ -37,12 +37,11 @@ class OnBoardingPage extends StatelessWidget {
                   bottom: getHeight(18.0),
                   child: Column(
                     children: [
-                      Text(
+                      TextWidget(
                         "Ташкент Сити",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
+                        style: TextWidget.semiBold(
                           color: AppColors.primary,
-                          fontSize: getWidth(16.0),
+                          size: 16.0,
                         ),
                       ),
                       MySizedBox(height: 7.5),
