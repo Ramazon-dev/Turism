@@ -18,6 +18,7 @@ class TextFormFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return TextFormField(
       controller: controller,
       textInputAction: action,
@@ -30,23 +31,20 @@ class TextFormFieldWidget extends StatelessWidget {
 
   InputDecoration _buildInputDecoration() {
     return InputDecoration(
-      hintText: hint,
-      hintStyle: _textStyle(AppColors.grey),
-      border: _outlineInputBorder(),
-      enabledBorder: _outlineInputBorder(),
-      focusedBorder: _outlineInputBorder(),
-      contentPadding: EdgeInsets.all(getWidth(18.0))
-    );
+        hintText: hint,
+        hintStyle: _textStyle(AppColors.grey),
+        border: _outlineInputBorder(),
+        enabledBorder: _outlineInputBorder(),
+        focusedBorder: _outlineInputBorder(),
+        contentPadding: EdgeInsets.all(getWidth(18.0)));
   }
 
   TextStyle _textStyle(Color color) {
-    return TextStyle(
-      fontSize: getWidth(16.0),
-      color: color
-    );
+    return TextStyle(fontSize: getWidth(16.0), color: color);
   }
 
-  OutlineInputBorder _outlineInputBorder() => const OutlineInputBorder(
-    borderSide: BorderSide(color: AppColors.grey)
-  );
+  OutlineInputBorder _outlineInputBorder() => OutlineInputBorder(
+        borderSide: const BorderSide(color: AppColors.grey),
+        borderRadius: BorderRadius.circular(10),
+      );
 }
