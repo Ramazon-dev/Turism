@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/constants/app_icons.dart';
 
 class BottomNavBarWidget extends StatelessWidget {
   final ValueChanged<int> onTap;
@@ -32,10 +30,10 @@ class BottomNavBarWidget extends StatelessWidget {
 
   BottomNavigationBarItem _setItem(String assetIcon, int index) =>
       BottomNavigationBarItem(
+        label: '',
         icon: SvgPicture.asset(
           assetIcon,
           color: currentIndex == index ? AppColors.primary : AppColors.black,
         ),
-        label: '',
       );
 }
