@@ -20,18 +20,18 @@ class MyGitListWidjet extends StatelessWidget {
       : super(key: key);
   List<SvgPicture>? fullStar;
   List<Text>? lang;
-  List<Icon>? emptyStar;
+  List<SvgPicture>? emptyStar;
   @override
   Widget build(BuildContext context) {
     fullStar = List.generate(reyting, (index) {
       return SvgPicture.asset('assets/icons/fullStar.svg');
     });
     emptyStar = List.generate(5 - reyting, (index) {
-      return Icon(Icons.star_border);
+      return SvgPicture.asset('assets/icons/fullStar.svg');
     });
     lang = List.generate(language.length, (i) {
       return Text(
-        '${language[i]}',
+        '${language[i]}, ',
         style: TextStyle(color: AppColors.grey, fontSize: getWidth(12)),
       );
     });
