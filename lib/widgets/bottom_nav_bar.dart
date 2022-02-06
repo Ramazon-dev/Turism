@@ -11,6 +11,14 @@ class BottomNavBarWidget extends StatelessWidget {
     required this.currentIndex,
   }) : super(key: key);
 
+  Future<void> _makePhoneCall(String phoneNumber) async {
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: phoneNumber,
+    );
+    await launch(launchUri.toString());
+  }
+
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(

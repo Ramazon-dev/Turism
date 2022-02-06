@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:mobileapp/widgets/rating_widget.dart';
 
 class DescriptionWidget extends StatelessWidget {
@@ -62,7 +63,7 @@ class DescriptionWidget extends StatelessWidget {
         SizedBox(
           height: getHeight(10),
         ),
-        RatingWidget(rating: rating, users: users)
+        RatWidget(rating: rating, users: users)
       ],
     );
   }
