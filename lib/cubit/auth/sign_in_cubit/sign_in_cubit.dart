@@ -10,8 +10,15 @@ class SignInCubit extends Cubit<SignInState> {
   final TextEditingController _loginController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  bool _isTrue = false;
+
+  void onChanged(bool? v) {
+    _isTrue = v!;
+    emit(SignInInitial());
+  }
+
   void onPressed() {
-    if(_formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) {
       // Button bosilganida shu funksiya ishga tushadi
     }
   }
@@ -21,4 +28,5 @@ class SignInCubit extends Cubit<SignInState> {
   TextEditingController get loginController => _loginController;
 
   TextEditingController get passwordController => _passwordController;
+  bool get isTrue => _isTrue;
 }

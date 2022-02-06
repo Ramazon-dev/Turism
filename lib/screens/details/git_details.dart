@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/widgets/appbar_origin.dart';
 import 'package:mobileapp/widgets/appbar_widget.dart';
+<<<<<<< HEAD:lib/screens/details/git_details.dart
 import 'package:mobileapp/widgets/contact_widget.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
 import 'package:mobileapp/widgets/language_button.dart';
+=======
+import 'package:mobileapp/widgets/drawer_widget.dart';
+>>>>>>> main:lib/screens/git/git_desciription.dart
 
 class GitDescriptionPage extends StatelessWidget {
   String imageurl;
@@ -28,7 +33,10 @@ class GitDescriptionPage extends StatelessWidget {
     SizeConfig().init(context);
 
     return Scaffold(
-      appBar: AppBarWidget(text: 'Git'),
+      appBar: AppBarOrigin(
+        actions: SvgPicture.asset(AppIcons.language),
+        actions2: SvgPicture.asset(AppIcons.dollar),
+      ),
       body: Column(
         children: [
           Center(

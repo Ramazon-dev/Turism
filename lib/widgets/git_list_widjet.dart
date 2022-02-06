@@ -32,7 +32,7 @@ class MyGitListWidjet extends StatelessWidget {
       width: getWidth(345),
       height: getHeight(134),
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.black, width: getWidth(1)),
+        border: Border.all(color: AppColors.darkCyan, width: getWidth(1)),
         borderRadius: BorderRadius.all(
           Radius.circular(
             getWidth(7),

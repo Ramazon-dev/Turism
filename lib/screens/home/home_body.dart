@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/translations/locale_keys.g.dart';
+import 'package:mobileapp/widgets/appbar_origin.dart';
 import 'package:mobileapp/widgets/divider_widgets.dart';
 import 'package:mobileapp/widgets/text_widgets.dart';
 
@@ -12,7 +13,10 @@ class HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBarOrigin(
+        actions: SvgPicture.asset(AppIcons.language),
+        actions2: SvgPicture.asset(AppIcons.dollar),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -64,7 +68,7 @@ class HomeBody extends StatelessWidget {
                           Container(
                             height: getHeight(22.0),
                             width: getWidth(51.0),
-                            color: Colors.blue,
+                            color: Colors.yellow,
                           ),
                         ],
                       ),

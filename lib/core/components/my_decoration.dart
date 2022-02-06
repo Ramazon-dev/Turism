@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 
 import 'my_border_radius.dart';
+import 'package:mobileapp/core/components/my_border_radius.dart';
 
 class MyDecoration {
   static BoxDecoration assetImage({
