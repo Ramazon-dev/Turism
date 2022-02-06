@@ -48,9 +48,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // onPressed calls using this URL are not gated on a 'canLaunch' check
-    // because the assumption is that every device can launch a web URL.
-    const String toLaunch = 'https://www.cylog.org/headers/';
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -76,10 +73,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: _hasCallSupport
                     ? const Text('Make phone call')
                     : const Text('Calling not supported'),
-              ),
-              const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text(toLaunch),
               ),
             ],
           ),
