@@ -16,6 +16,8 @@ class ProfilePage extends StatelessWidget {
         builder: (context, state) {
           ProfileCubit cubit = context.watch();
           return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell(
                 onTap: () => Navigator.push(context,
