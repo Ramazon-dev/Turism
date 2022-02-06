@@ -6,10 +6,6 @@ import 'package:url_launcher/url_launcher.dart';
 class ContactWidget extends StatelessWidget {
   const ContactWidget({Key? key}) : super(key: key);
   Future<void> _makePhoneCall(String phoneNumber) async {
-    // Use `Uri` to ensure that `phoneNumber` is properly URL-encoded.
-    // Just using 'tel:$phoneNumber' would create invalid URLs in some cases,
-    // such as spaces in the input, which would cause `launch` to fail on some
-    // platforms.
     final Uri launchUri = Uri(
       scheme: 'tel',
       path: phoneNumber,
@@ -26,7 +22,9 @@ class ContactWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              _makePhoneCall('+998946581098');
+            },
             child: Container(
               padding: EdgeInsets.all(getWidth(13)),
               height: getWidth(50),
