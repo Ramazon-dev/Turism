@@ -53,14 +53,29 @@ class SignInPage extends StatelessWidget {
                     ),
                   ),
                   Container(
+                    // color: Colors.yellow,
                     margin: EdgeInsets.only(
-                      top: getHeight(16),
-                      left: getWidth(30),
+                      top: getHeight(10),
+                      left: getWidth(7),
                     ),
                     child: CheckboxListTile(
+                      title: const Text("Remember me"),
+                      controlAffinity: ListTileControlAffinity.leading,
                       value: cubit.isTrue,
                       onChanged: cubit.onChanged,
-                      title: Text('data'),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                      top: getHeight(104),
+                      left: getWidth(76),
+                      // right: getHeight(30),
+                    ),
+                    child: TextButton(
+                      child: const Text(
+                        "Забыл пароль? ",
+                      ),
+                      onPressed: () {},
                     ),
                   ),
                 ],

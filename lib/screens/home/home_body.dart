@@ -13,10 +13,6 @@ class HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      appBar: AppBarOrigin(
-        actions: SvgPicture.asset(AppIcons.language),
-        actions2: SvgPicture.asset(AppIcons.dollar),
-      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
