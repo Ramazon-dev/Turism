@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 
 class AppColors {
   static const Color linear = Color(0xffFDA55E);
@@ -15,4 +15,8 @@ class AppColors {
   static const Color disabled = Color(0xFFD8D8D8);
   static const Color greyPrice = Color(0xFF72978F);
   static const Color darkBorder = Color(0xFFBCBCBC);
+
+  static const LinearGradient linearGradient = LinearGradient(
+    colors: [primary, linear],
+  );
 }

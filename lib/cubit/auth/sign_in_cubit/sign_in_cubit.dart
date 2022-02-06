@@ -9,6 +9,7 @@ class SignInCubit extends Cubit<SignInState> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _loginController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
   bool _isTrue = false;
 
   void onChanged(bool? v) {

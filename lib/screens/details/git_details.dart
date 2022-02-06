@@ -2,46 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/widgets/appbar_origin.dart';
 import 'package:mobileapp/widgets/appbar_widget.dart';
+<<<<<<< HEAD:lib/screens/details/git_details.dart
+import 'package:mobileapp/widgets/contact_widget.dart';
+import 'package:mobileapp/widgets/description_widjet.dart';
+import 'package:mobileapp/widgets/language_button.dart';
+=======
 import 'package:mobileapp/widgets/drawer_widget.dart';
+>>>>>>> main:lib/screens/git/git_desciription.dart
 
 class GitDescriptionPage extends StatelessWidget {
   String imageurl;
   String name;
   int price;
-  int reyting;
+  double rating;
   int users;
   List language;
-
-  List<SvgPicture>? fullStar;
-
-  List<SvgPicture>? emptyStar;
-
-  List<Text>? lang;
 
   GitDescriptionPage(
       {Key? key,
       required this.imageurl,
       required this.name,
       required this.price,
-      required this.reyting,
+      required this.rating,
       required this.users,
       required this.language})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    fullStar = List.generate(reyting, (index) {
-      return SvgPicture.asset('assets/icons/fullStar.svg');
-    });
-    emptyStar = List.generate(5 - reyting, (index) {
-      return SvgPicture.asset('assets/icons/fullStar.svg');
-    });
-    lang = List.generate(language.length, (i) {
-      return Text(
-        '${language[i]}, ',
-        style: TextStyle(color: AppColors.grey, fontSize: getWidth(12)),
-      );
-    });
     SizeConfig().init(context);
 
     return Scaffold(
@@ -88,62 +76,17 @@ class GitDescriptionPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding:
-                              EdgeInsets.symmetric(vertical: getHeight(10)),
-                          child: Text(
-                            name,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'Roboto',
-                            ),
-                          ),
-                        ),
-                        RichText(
-                            text: TextSpan(children: [
-                          TextSpan(
-                            text: '$price\$',
-                            style: const TextStyle(
-                              color: AppColors.greyPrice,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'Roboto',
-                            ),
-                          ),
-                          const TextSpan(
-                            text: '/1 kunga',
-                            style: TextStyle(
-                              color: AppColors.black,
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'Roboto',
-                            ),
-                          )
-                        ])),
-                        Padding(
-                          padding:
-                              EdgeInsets.symmetric(vertical: getHeight(10)),
-                          child: Row(
-                            children: [
-                              Row(
-                                children: fullStar!,
-                              ),
-                              Row(
-                                children: emptyStar!,
-                              ),
-                              Text(
-                                reyting == 0 ? '' : '$reyting ($users)',
-                                style: const TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ],
-                          ),
-                        ),
                         Row(
-                          children: lang!,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            DescriptionWidget(
+                                name: name,
+                                price: price,
+                                rating: rating,
+                                users: users),
+                            LanguageWidget(language: language),
+                          ],
                         ),
                         SizedBox(
                           height: getHeight(28),
@@ -155,7 +98,8 @@ class GitDescriptionPage extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                             fontFamily: 'Roboto',
                           ),
-                        )
+                        ),
+                        ContactWidget(),
                       ],
                     ),
                   )
