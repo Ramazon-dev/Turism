@@ -43,7 +43,7 @@ class MyGitListWidjet extends StatelessWidget {
       width: getWidth(345),
       height: getHeight(134),
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.darkBorder, width: getWidth(1)),
+        border: Border.all(color: AppColors.darkCyan, width: getWidth(1)),
         borderRadius: BorderRadius.all(
           Radius.circular(
             getWidth(7),
@@ -85,7 +85,7 @@ class MyGitListWidjet extends StatelessWidget {
                 TextSpan(
                   text: '$price\$',
                   style: const TextStyle(
-                    color: AppColors.greyPrice,
+                    color: AppColors.grey,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                     fontFamily: 'Roboto',
