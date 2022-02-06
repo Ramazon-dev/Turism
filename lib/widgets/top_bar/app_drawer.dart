@@ -8,7 +8,7 @@ class DrawerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(gradient: AppColors.linearGradient),
+        decoration: const BoxDecoration(color: AppColors.primary),
         child: Column(
           children: [
             _setCategory(AppIcons.dollar, 'Wallet'),
