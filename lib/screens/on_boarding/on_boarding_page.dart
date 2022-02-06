@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/screens/home/drawer_home.dart';
 import 'package:mobileapp/widgets/lets_go.dart';
 
 class OnBoardingPage extends StatefulWidget {
@@ -122,6 +121,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   final List _onBoardingInfo = [
     {"image": AppImages.first, "city": "Ташкент Сити"},
     {"image": AppImages.second, "city": "Ташкент Сити"},
-    {"image": AppImages.third, "city": "бУХАРА".toUpperCase()},
+    {"image": AppImages.third, "city": "бУХАРА"},
   ];
 }

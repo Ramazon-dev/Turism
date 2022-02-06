@@ -28,7 +28,6 @@ class MyGitListWidjet extends StatelessWidget {
     });
     emptyStar = List.generate(5 - reyting, (index) {
       return SvgPicture.asset('assets/icons/fullStar.svg');
-
     });
     lang = List.generate(language.length, (i) {
       return Text(
@@ -44,9 +43,7 @@ class MyGitListWidjet extends StatelessWidget {
       width: getWidth(345),
       height: getHeight(134),
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.black, width: getWidth(1)),
-
-     
+        border: Border.all(color: AppColors.darkCyan, width: getWidth(1)),
         borderRadius: BorderRadius.all(
           Radius.circular(
             getWidth(7),
@@ -114,7 +111,10 @@ class MyGitListWidjet extends StatelessWidget {
                   ),
                   Text(
                     reyting == 0 ? '' : '$reyting ($users)',
-                    style:  TextWidget.medium(size: 12.0),
+                    style: const TextStyle(
+                        fontSize: 12,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w500),
                   ),
                 ],
               ),
