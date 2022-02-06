@@ -64,7 +64,7 @@ class HomeBody extends StatelessWidget {
                           Container(
                             height: getHeight(22.0),
                             width: getWidth(51.0),
-                            color: Colors.blue,
+                            color: Colors.yellow,
                           ),
                         ],
                       ),

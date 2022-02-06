@@ -29,14 +29,7 @@ class MyDecoration {
     borderRadius: BorderRadius.circular(border)
   );
 
-  }) =>
-      BoxDecoration(
-          color: color,
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage(assetImage),
-          ));
-
+  
   static BoxDecoration circular(
           {double radius = 5.0, Color color = AppColors.darkCyan}) =>
       BoxDecoration(
