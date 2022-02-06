@@ -19,32 +19,35 @@ class ElevatedButtonWidget extends StatelessWidget {
       height: height,
       width: wigth,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          gradient: const LinearGradient(
-            colors: [
-              AppColors.linear,
-              AppColors.linearend,
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          )),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          primary: Colors.transparent,
-          elevation: 0,
-          fixedSize: Size(
-            getWidth(wigth),
-            getHeight(height),
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
+        borderRadius: BorderRadius.circular(10),
+        gradient: const LinearGradient(
+          colors: [
+            AppColors.linear,
+            AppColors.linearend,
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
-        onPressed: () {
-          print('pressed');
-        },
-        child: Text(text),
       ),
+      alignment: Alignment.center,
+      child: Text(text),
+      // child: ElevatedButton(
+      //   style: ElevatedButton.styleFrom(
+      //     primary: Colors.transparent,
+      //     elevation: 0,
+      //     fixedSize: Size(
+      //       getWidth(wigth),
+      //       getHeight(height),
+      //     ),
+      //     shape: RoundedRectangleBorder(
+      //       borderRadius: BorderRadius.circular(10),
+      //     ),
+      //   ),
+      //   onPressed: () {
+      //     print('pressed');
+      //   },
+      //   child: Text(text),
+      // ),
     );
   }
 }

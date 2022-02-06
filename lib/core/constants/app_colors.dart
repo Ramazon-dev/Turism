@@ -2,6 +2,7 @@ import 'dart:ui';
 
 class AppColors {
   static const Color linear = Color(0xffFDA55E);
+  static const Color linkColor = Color(0xffA4A4A4);
   static const Color linearend = Color(0xffF68539);
   static const Color primary = Color(0xFFF37E31);
   static const Color grey = Color(0xFF91959B);
