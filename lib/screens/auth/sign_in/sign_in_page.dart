@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/auth/sign_in_cubit/sign_in_cubit.dart';
-import 'package:mobileapp/cubit/home_cubit/cubit/home_cubit.dart';
 import 'package:mobileapp/screens/auth/sing_up/sign_up_page.dart';
-import 'package:mobileapp/screens/auth/widget/text_widget.dart';
-import 'package:mobileapp/screens/details/res_hotel_details.dart';
+import 'package:mobileapp/screens/auth/widgets/text_widget.dart';
 import 'package:mobileapp/widgets/elevated_button_widget.dart';
 
 class SignInPage extends StatelessWidget {
@@ -110,7 +108,7 @@ class SignInPage extends StatelessWidget {
                     onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const HomeScreen(),
+                        builder: (context) => SignUpPage(),
                       ),
                     ),
                     child: ElevatedButtonWidget(
