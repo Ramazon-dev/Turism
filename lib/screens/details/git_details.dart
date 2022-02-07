@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/widgets/appbar_origin.dart';
+
 import 'package:mobileapp/widgets/contact_widget.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
 import 'package:mobileapp/widgets/language_button.dart';
 
-class GitDescriptionPage extends StatelessWidget {
+class GitDetailsPage extends StatelessWidget {
   String imageurl;
   String name;
   int price;
@@ -13,7 +14,7 @@ class GitDescriptionPage extends StatelessWidget {
   int users;
   List language;
 
-  GitDescriptionPage(
+  GitDetailsPage(
       {Key? key,
       required this.imageurl,
       required this.name,

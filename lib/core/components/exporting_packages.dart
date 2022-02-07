@@ -24,7 +24,8 @@ export 'package:mobileapp/core/constants/app_icons.dart';
 export 'package:mobileapp/core/constants/app_images.dart';
 
 // Installed packages
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+export 'package:url_launcher/url_launcher.dart';
+export 'package:flutter_rating_bar/flutter_rating_bar.dart';
 export 'package:bloc/bloc.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:flutter_svg/flutter_svg.dart';

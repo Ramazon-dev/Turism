@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 
-class RatingWidget extends StatelessWidget {
+class RatWidget extends StatelessWidget {
   double rating;
   int users;
-  RatingWidget({Key? key, required this.rating, required this.users})
+  RatWidget({Key? key, required this.rating, required this.users})
       : super(key: key);
 
   @override
