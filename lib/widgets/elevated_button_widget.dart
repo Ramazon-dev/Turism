@@ -30,24 +30,13 @@ class ElevatedButtonWidget extends StatelessWidget {
         ),
       ),
       alignment: Alignment.center,
-      child: Text(text),
-      // child: ElevatedButton(
-      //   style: ElevatedButton.styleFrom(
-      //     primary: Colors.transparent,
-      //     elevation: 0,
-      //     fixedSize: Size(
-      //       getWidth(wigth),
-      //       getHeight(height),
-      //     ),
-      //     shape: RoundedRectangleBorder(
-      //       borderRadius: BorderRadius.circular(10),
-      //     ),
-      //   ),
-      //   onPressed: () {
-      //     print('pressed');
-      //   },
-      //   child: Text(text),
-      // ),
+      child: Text(
+        text,
+        style: TextStyle(
+            fontWeight: FontWeight.w400,
+            color: AppColors.white,
+            fontSize: getHeight(18)),
+      ),
     );
   }
 }
