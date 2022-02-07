@@ -16,13 +16,7 @@ class CarInfoCard extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (_) => TransportDetailPage(
-                      imageurl: 'https://source.unsplash.com/random/2',
-                      name: 'Captiva',
-                      price: 45,
-                      rating: 4.5,
-                      users: 5,
-                      language: [''])));
+                  builder: (_) => TransportDetailPage(car: CarModel(),)));
         },
         child: Card(
           shape: RoundedRectangleBorder(

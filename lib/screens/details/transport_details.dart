@@ -6,21 +6,9 @@ import 'package:mobileapp/widgets/description_widjet.dart';
 import 'package:mobileapp/widgets/language_button.dart';
 
 class TransportDetailPage extends StatelessWidget {
-  String imageurl;
-  String name;
-  int price;
-  double rating;
-  int users;
-  List language;
-
-  TransportDetailPage(
-      {Key? key,
-      required this.imageurl,
-      required this.name,
-      required this.price,
-      required this.rating,
-      required this.users,
-      required this.language})
+ final CarModel car;
+ const TransportDetailPage(
+      {Key? key, required this.car})
       : super(key: key);
 
   @override
@@ -63,7 +51,7 @@ class TransportDetailPage extends StatelessWidget {
                           ),
                         ),
                         image: DecorationImage(
-                            image: NetworkImage(imageurl), fit: BoxFit.cover)),
+                            image: NetworkImage(car.img), fit: BoxFit.cover)),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
@@ -76,11 +64,11 @@ class TransportDetailPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             DescriptionWidget(
-                                name: name,
-                                price: price,
-                                rating: rating,
-                                users: users),
-                            LanguageWidget(language: language),
+                                name: car.model,
+                                price: car.price,
+                                rating: car.rating,
+                                users: 5),
+                            LanguageWidget(language: []),
                           ],
                         ),
                         Container(
