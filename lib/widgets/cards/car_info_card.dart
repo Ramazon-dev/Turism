@@ -12,8 +12,7 @@ class CarInfoCard extends StatelessWidget {
       width: getWidth(110.0),
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: MyBorderRadius.circular(radius: 12.0)
-        ),
+            borderRadius: MyBorderRadius.circular(radius: 12.0)),
         margin: EdgeInsets.zero,
         child: Column(
           children: [
