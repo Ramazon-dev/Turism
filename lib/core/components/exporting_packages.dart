@@ -34,3 +34,6 @@ export 'package:easy_localization/easy_localization.dart';
 // Models
 export 'package:mobileapp/models/car_model.dart';
 
+export 'package:mobileapp/core/functions/mock_data.dart';
+
+

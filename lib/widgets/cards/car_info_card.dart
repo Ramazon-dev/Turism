@@ -4,7 +4,9 @@ import 'package:mobileapp/core/components/my_border_radius.dart';
 import 'package:mobileapp/screens/details/transport_details.dart';
 
 class CarInfoCard extends StatelessWidget {
-  const CarInfoCard({Key? key}) : super(key: key);
+  final CarModel car;
+
+  const CarInfoCard({Key? key, required this.car}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,9 @@ class CarInfoCard extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (_) => TransportDetailPage(car: CarModel(),)));
+                  builder: (_) => TransportDetailPage(
+                        car: car,
+                      )));
         },
         child: Card(
           shape: RoundedRectangleBorder(
@@ -28,14 +32,14 @@ class CarInfoCard extends StatelessWidget {
                 borderRadius:
                     MyBorderRadius.only(topLeft: 12.0, topRight: 12.0),
                 child: Image.network(
-                  'https://source.unsplash.com/random/45',
+                  car.img,
                   width: MediaQuery.of(context).size.width,
                   height: getHeight(160.0),
                   fit: BoxFit.cover,
                 ),
               ),
               MySizedBox(height: 5.0),
-              Text('Captive', style: TextWidget.medium(size: 18.0)),
+              Text(car.model, style: TextWidget.medium(size: 18.0)),
               MySizedBox(height: 7.0),
               Container(
                 alignment: Alignment.center,
@@ -44,7 +48,7 @@ class CarInfoCard extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 padding: MyEdgeInsets.symmetric(v: 5.0, h: 40.0),
                 child: Text(
-                  '150\$',
+                  '${car.price}\$',
                   style: TextWidget.medium(size: 8.0, color: AppColors.white),
                 ),
               ),
