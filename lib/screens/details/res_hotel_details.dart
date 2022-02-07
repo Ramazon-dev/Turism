@@ -1,63 +1,148 @@
-// Copyright 2013 The Flutter Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-// ignore_for_file: public_member_api_docs
-
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:url_launcher/link.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/components/size_config.dart';
+import 'package:mobileapp/core/constants/app_icons.dart';
+import 'package:mobileapp/widgets/appbar_origin.dart';
+import 'package:mobileapp/widgets/contact_widget.dart';
+import 'package:mobileapp/widgets/rating_widget.dart';
+import 'package:mobileapp/widgets/url_icon_widget.dart';
+import 'package:mobileapp/widgets/url_text_widgte.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  // bool _hasCallSupport = false;
-  // String _phone = '';
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   // // Check for phone call support.
-  //   // canLaunch('tel:123').then((bool result) {
-  //   //   setState(() {
-  //   //     _hasCallSupport = result;
-  //     });
-  //   });
-  // }
-
-  Future<void> _makePhoneCall(String phoneNumber) async {
-    final Uri launchUri = Uri(
-      scheme: 'tel',
-      path: phoneNumber,
-    );
-    await launch(launchUri.toString());
-  }
+class ResHotelDetailsPage extends StatelessWidget {
+  String imageurl;
+  String name;
+  int price;
+  double rating;
+  int users;
+  String karta;
+  String site;
+  ResHotelDetailsPage(
+      {Key? key,
+      required this.imageurl,
+      required this.name,
+      required this.price,
+      required this.rating,
+      required this.users,
+      required this.karta,
+      required this.site})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
+      appBar: AppBarOrigin(
+        actions: SvgPicture.asset(AppIcons.language),
+        actions2: SvgPicture.asset(AppIcons.dollar),
       ),
-      body: ListView(
-        children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              ElevatedButton(
-                  onPressed: () {
-                    _makePhoneCall('+998946581098');
-                  },
-                  child: const Text('Make phone call')),
-            ],
+      body: Column(
+        children: [
+          Center(
+            child: Container(
+              margin: EdgeInsets.only(top: getHeight(20)),
+              height: getHeight(592),
+              width: getWidth(345),
+              decoration: BoxDecoration(
+                border:
+                    Border.all(color: AppColors.darkBorder, width: getWidth(1)),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(
+                    getWidth(7),
+                  ),
+                ),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(getWidth(11)),
+                    width: getWidth(323),
+                    height: getHeight(255),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(
+                            getWidth(5),
+                          ),
+                        ),
+                        image: DecorationImage(
+                            image: NetworkImage(imageurl), fit: BoxFit.cover)),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: getWidth(178),
+                          child: Text(
+                            name,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: getWidth(14),
+                              fontWeight: FontWeight.w500,
+                              fontFamily: 'Roboto',
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: getHeight(10),
+                        ),
+                        RatWidget(
+                          rating: 3,
+                          users: 0,
+                        ),
+                        SizedBox(
+                          height: getHeight(10),
+                        ),
+                        Row(
+                          children: [
+                            SvgPicture.asset(AppIcons.location),
+                            SizedBox(
+                              width: getWidth(4),
+                            ),
+                            UrlTextWidget(
+                              url: karta,
+                              text: 'Расположение на карте',
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: getHeight(4),
+                        ),
+                        Row(
+                          children: [
+                            SvgPicture.asset(AppIcons.link),
+                            SizedBox(
+                              width: getWidth(4),
+                            ),
+                            UrlTextWidget(
+                              url: site,
+                              text: '$site',
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: getHeight(28),
+                        ),
+                        const Text(
+                          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at ",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Roboto',
+                          ),
+                        ),
+                        ContactWidget(),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
         ],
       ),
