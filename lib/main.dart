@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/screens/auth/sign_in/sign_in_page.dart';
-import 'package:mobileapp/screens/on_boarding/initial_page.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
@@ -40,7 +38,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Roboto",
         primarySwatch: Colors.blue,
       ),
-      home:  SignInPage(),
+      home: const HomeScreen(),
     );
   }
 }

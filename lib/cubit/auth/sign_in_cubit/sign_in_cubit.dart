@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:mobileapp/services/auth_services.dart';
 
 part 'sign_in_state.dart';
 
@@ -20,6 +21,15 @@ class SignInCubit extends Cubit<SignInState> {
   void onPressed() {
     if (_formKey.currentState!.validate()) {
       // Button bosilganida shu funksiya ishga tushadi
+      String email = _loginController.text.trim();
+      String password = _passwordController.text.trim();
+      AuthServices.signIn(email, password).then((value) {
+        if(value) {
+          print('');
+        } else {
+          print(value);
+        }
+      });
     }
   }
 
