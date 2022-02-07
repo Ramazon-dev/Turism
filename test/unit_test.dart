@@ -5,7 +5,7 @@ import 'package:mobileapp/services/auth_services.dart';
 void main() async {
   test(
     "User singIn test",
-    () async {
+        () async {
       var signIn = await AuthServices.signIn("umida@gmail.com", "Umida7\$");
       expect(signIn, true);
     },
@@ -13,9 +13,9 @@ void main() async {
 
   test(
     "User singUp test",
-    () async {
+        () async {
       var signUp =
-          await AuthServices.signUpWithHttp('fullfsdfsName', 'emafssfil@fmsdf.ur', 'Pass2fdsfs421fas');
+      await AuthServices.signUpWithHttp('fullfsdfsName', 'emafssfil@fmsdf.ur', 'Pass2fdsfs421fas');
       expect(signUp, true);
     },
   );

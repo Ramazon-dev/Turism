@@ -16,7 +16,7 @@ class HomeDrawer extends StatelessWidget {
           HomeCubit cubit = ctx.watch();
           return const ZoomDrawer(
             // controller: cubit.drawerController,
-            menuScreen: const DrawerPage(),
+            menuScreen: const Scaffold(),
             mainScreen: const HomeScreen(),
           );
         },

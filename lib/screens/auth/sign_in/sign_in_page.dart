@@ -7,9 +7,6 @@ import 'package:mobileapp/widgets/elevated_button_widget.dart';
 
 class SignInPage extends StatelessWidget {
   SignInPage({Key? key}) : super(key: key);
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  var formKey = GlobalKey<FormState>();
   bool check = false;
   @override
   Widget build(BuildContext context) {
@@ -21,7 +18,7 @@ class SignInPage extends StatelessWidget {
         return Scaffold(
           body: SingleChildScrollView(
             child: Form(
-              key: formKey,
+              key: cubit.formKey,
               child: Column(
                 children: [
                   Container(
@@ -39,7 +36,7 @@ class SignInPage extends StatelessWidget {
                       right: getHeight(30),
                     ),
                     child: TextFormFieldWidget(
-                      controller: emailController,
+                      controller: cubit.loginController,
                       hint: 'Login',
                     ),
                   ),
@@ -50,7 +47,7 @@ class SignInPage extends StatelessWidget {
                       right: getHeight(30),
                     ),
                     child: TextFormFieldWidget(
-                      controller: passwordController,
+                      controller: cubit.passwordController,
                       hint: 'Password',
                     ),
                   ),
@@ -105,12 +102,7 @@ class SignInPage extends StatelessWidget {
                   ),
                   SizedBox(height: getHeight(60)),
                   InkWell(
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SignUpPage(),
-                      ),
-                    ),
+                    onTap: cubit.onPressed,
                     child: ElevatedButtonWidget(
                       text: 'Войти',
                     ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/screens/auth/sign_in/sign_in_page.dart';
 import 'package:mobileapp/screens/on_boarding/initial_page.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -36,9 +37,10 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       theme: ThemeData(
+        fontFamily: "Roboto",
         primarySwatch: Colors.blue,
       ),
-      home: const InitialPage(),
+      home:  SignInPage(),
     );
   }
 }

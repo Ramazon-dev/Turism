@@ -28,5 +28,6 @@ class SignInCubit extends Cubit<SignInState> {
   TextEditingController get loginController => _loginController;
 
   TextEditingController get passwordController => _passwordController;
+
   bool get isTrue => _isTrue;
 }
