@@ -24,7 +24,7 @@ class CarPage extends StatelessWidget {
                 mainAxisSpacing: getHeight(20.0),
               ),
               itemBuilder: (ctx, i) {
-                return CarInfoCard();
+                return CarInfoCard(car: MockData.carModel);
               });
         },
       ),

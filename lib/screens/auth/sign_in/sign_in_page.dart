@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/functions/text_form_field_validator.dart';
 import 'package:mobileapp/cubit/auth/sign_in_cubit/sign_in_cubit.dart';
-import 'package:mobileapp/screens/auth/sing_up/sign_up_page.dart';
 import 'package:mobileapp/screens/auth/widgets/text_widget.dart';
 import 'package:mobileapp/widgets/elevated_button_widget.dart';
 
 class SignInPage extends StatelessWidget {
-  SignInPage({Key? key}) : super(key: key);
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  var formKey = GlobalKey<FormState>();
-  bool check = false;
+  const SignInPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -20,52 +17,32 @@ class SignInPage extends StatelessWidget {
         SignInCubit cubit = context.watch();
         return Scaffold(
           body: SingleChildScrollView(
+            padding: MyEdgeInsets.symmetric(h: 30.0, v: 84.0),
             child: Form(
-              key: formKey,
+              key: cubit.formKey,
               child: Column(
                 children: [
-                  Container(
-                    margin: EdgeInsets.only(
-                      top: getHeight(84),
-                      left: getWidth(30),
-                      right: getWidth(94),
-                    ),
-                    child: AuthTextWidget(),
+                  AuthTextWidget(),
+                  MySizedBox(height: 81.0),
+                  TextFormFieldWidget(
+                    controller: cubit.loginController,
+                    hint: 'Email',
+                    inputType: TextInputType.emailAddress,
+                    validator: FormValidator.email,
                   ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      top: getHeight(81),
-                      left: getWidth(30),
-                      right: getHeight(30),
-                    ),
-                    child: TextFormFieldWidget(
-                      controller: emailController,
-                      hint: 'Login',
-                    ),
+                  MySizedBox(height: 25.0),
+                  TextFormFieldWidget(
+                    controller: cubit.passwordController,
+                    hint: 'Password',
+                    obscureText: true,
+                    validator: FormValidator.password,
                   ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      top: getHeight(25),
-                      left: getWidth(30),
-                      right: getHeight(30),
-                    ),
-                    child: TextFormFieldWidget(
-                      controller: passwordController,
-                      hint: 'Password',
-                    ),
-                  ),
-                  Container(
-                    // color: Colors.yellow,
-                    margin: EdgeInsets.only(
-                      top: getHeight(10),
-                      left: getWidth(7),
-                    ),
-                    child: CheckboxListTile(
-                      title: const Text("Remember me"),
-                      controlAffinity: ListTileControlAffinity.leading,
-                      value: cubit.isTrue,
-                      onChanged: cubit.onChanged,
-                    ),
+                  CheckboxListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: const Text("Remember me"),
+                    controlAffinity: ListTileControlAffinity.leading,
+                    value: cubit.isTrue,
+                    onChanged: cubit.onChanged,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -105,12 +82,7 @@ class SignInPage extends StatelessWidget {
                   ),
                   SizedBox(height: getHeight(60)),
                   InkWell(
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SignUpPage(),
-                      ),
-                    ),
+                    onTap: cubit.onPressed,
                     child: ElevatedButtonWidget(
                       text: 'Войти',
                     ),

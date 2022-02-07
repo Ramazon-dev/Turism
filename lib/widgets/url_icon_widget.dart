@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/components/size_config.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UrlIconWidget extends StatelessWidget {
