@@ -44,7 +44,7 @@ class MyDecoration {
             color: color,
             spreadRadius: 1,
             blurRadius: 1,
-            offset: const Offset(0, 1), // changes position of shadow
+            offset: const Offset(0, 1) // changes position of shadow
           ),
         ],
       );
