@@ -25,6 +25,7 @@ class CarPage extends StatelessWidget {
               ),
               itemBuilder: (ctx, i) {
                 return CarInfoCard(car: MockData.carModel);
+
               });
         },
       ),
