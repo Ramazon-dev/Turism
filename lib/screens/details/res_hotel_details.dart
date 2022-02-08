@@ -1,49 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/widgets/appbar_widget.dart';
+import 'package:mobileapp/core/components/size_config.dart';
+import 'package:mobileapp/core/constants/app_icons.dart';
+import 'package:mobileapp/widgets/appbar_origin.dart';
+import 'package:mobileapp/widgets/contact_widget.dart';
+import 'package:mobileapp/widgets/rating_widget.dart';
+import 'package:mobileapp/widgets/url_icon_widget.dart';
+import 'package:mobileapp/widgets/url_text_widgte.dart';
 
-class GitDescriptionPage extends StatelessWidget {
+class ResHotelDetailsPage extends StatelessWidget {
   String imageurl;
   String name;
   int price;
-  int reyting;
+  double rating;
   int users;
-  List language;
-
-  List<SvgPicture>? fullStar;
-
-  List<SvgPicture>? emptyStar;
-
-  List<Text>? lang;
-
-  GitDescriptionPage(
+  String karta;
+  String site;
+  ResHotelDetailsPage(
       {Key? key,
       required this.imageurl,
       required this.name,
       required this.price,
-      required this.reyting,
+      required this.rating,
       required this.users,
-      required this.language})
+      required this.karta,
+      required this.site})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    fullStar = List.generate(reyting, (index) {
-      return SvgPicture.asset('assets/icons/fullStar.svg');
-    });
-    emptyStar = List.generate(5 - reyting, (index) {
-      return SvgPicture.asset('assets/icons/fullStar.svg');
-    });
-    lang = List.generate(language.length, (i) {
-      return Text(
-        '${language[i]}, ',
-        style: TextStyle(color: AppColors.grey, fontSize: getWidth(12)),
-      );
-    });
     SizeConfig().init(context);
 
     return Scaffold(
-      appBar: AppBarWidget(text: 'Git'),
+      appBar: AppBarOrigin(
+        actions: SvgPicture.asset(AppIcons.language),
+        actions2: SvgPicture.asset(AppIcons.dollar),
+      ),
       body: Column(
         children: [
           Center(
@@ -83,62 +75,55 @@ class GitDescriptionPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding:
-                              EdgeInsets.symmetric(vertical: getHeight(10)),
+                        Container(
+                          width: getWidth(178),
                           child: Text(
                             name,
-                            style: const TextStyle(
-                              fontSize: 16,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: getWidth(14),
                               fontWeight: FontWeight.w500,
                               fontFamily: 'Roboto',
                             ),
                           ),
                         ),
-                        RichText(
-                            text: TextSpan(children: [
-                          TextSpan(
-                            text: '$price\$',
-                            style: const TextStyle(
-                              color: AppColors.greyPrice,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'Roboto',
-                            ),
-                          ),
-                          const TextSpan(
-                            text: '/1 kunga',
-                            style: TextStyle(
-                              color: AppColors.black,
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'Roboto',
-                            ),
-                          )
-                        ])),
-                        Padding(
-                          padding:
-                              EdgeInsets.symmetric(vertical: getHeight(10)),
-                          child: Row(
-                            children: [
-                              Row(
-                                children: fullStar!,
-                              ),
-                              Row(
-                                children: emptyStar!,
-                              ),
-                              Text(
-                                reyting == 0 ? '' : '$reyting ($users)',
-                                style: const TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ],
-                          ),
+                        SizedBox(
+                          height: getHeight(10),
+                        ),
+                        RatWidget(
+                          rating: 3,
+                          users: 0,
+                        ),
+                        SizedBox(
+                          height: getHeight(10),
                         ),
                         Row(
-                          children: lang!,
+                          children: [
+                            SvgPicture.asset(AppIcons.location),
+                            SizedBox(
+                              width: getWidth(4),
+                            ),
+                            UrlTextWidget(
+                              url: karta,
+                              text: 'Расположение на карте',
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: getHeight(4),
+                        ),
+                        Row(
+                          children: [
+                            SvgPicture.asset(AppIcons.link),
+                            SizedBox(
+                              width: getWidth(4),
+                            ),
+                            UrlTextWidget(
+                              url: site,
+                              text: '$site',
+                            )
+                          ],
                         ),
                         SizedBox(
                           height: getHeight(28),
@@ -150,7 +135,8 @@ class GitDescriptionPage extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                             fontFamily: 'Roboto',
                           ),
-                        )
+                        ),
+                        ContactWidget(),
                       ],
                     ),
                   )

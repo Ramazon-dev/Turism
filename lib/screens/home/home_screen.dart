@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/home_cubit/cubit/home_cubit.dart';
+import 'package:mobileapp/widgets/appbar_origin.dart';
+import 'package:mobileapp/widgets/drawer_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,6 +16,12 @@ class HomeScreen extends StatelessWidget {
         builder: (context, state) {
           HomeCubit cubit = context.watch();
           return Scaffold(
+            appBar: AppBarOrigin(
+              actions: SvgPicture.asset(AppIcons.language),
+              actions2: SvgPicture.asset(AppIcons.dollar),
+              
+            ),
+            drawer: DrawerDiwget(),
             body: _pages()[cubit.currentIndex],
             bottomNavigationBar: BottomNavBarWidget(
               onTap: cubit.onPageChanged,

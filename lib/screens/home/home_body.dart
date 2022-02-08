@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+
+import 'package:mobileapp/translations/locale_keys.g.dart';
+import 'package:mobileapp/widgets/appbar_origin.dart';
+
 import 'package:mobileapp/widgets/divider_widgets.dart';
 
 class HomeBody extends StatelessWidget {
@@ -9,7 +13,6 @@ class HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      appBar: AppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -31,7 +34,7 @@ class HomeBody extends StatelessWidget {
                 );
               },
             ),
-          ),
+
           const dividerWidget(),
           SizedBox(
             width: MediaQuery.of(context).size.width,
@@ -72,6 +75,35 @@ class HomeBody extends StatelessWidget {
                             
                           ],
                         ),
+
+          TextWidgetTwo(
+            "Ближайшие туры.",
+            style: TextWidgetTwo.medium(size: 18.0),
+          ),
+          Container(
+            height: 200.0,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: getHeight(200.0),
+                      width: 330.0,
+                      decoration: MyDecoration.netImage(
+                          netImage: "https://source.unsplash.com/random/1",
+                          border: 5.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Container(
+                            height: getHeight(22.0),
+                            width: getWidth(51.0),
+                            color: Colors.yellow,
+                          ),
+                        ],
+
                       ),
                      
                     ],

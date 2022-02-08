@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/widgets/description_widjet.dart';
+import 'package:mobileapp/widgets/language_button.dart';
 
 class MyGitListWidjet extends StatelessWidget {
   String imageUrl;
   String name;
   int price;
-  int reyting;
+  double rating;
   int users;
   List language;
 
@@ -14,28 +16,14 @@ class MyGitListWidjet extends StatelessWidget {
       required this.imageUrl,
       required this.name,
       required this.price,
-      required this.reyting,
+      required this.rating,
       required this.users,
       required this.language})
       : super(key: key);
   List<SvgPicture>? fullStar;
-  List<Text>? lang;
   List<SvgPicture>? emptyStar;
   @override
   Widget build(BuildContext context) {
-    fullStar = List.generate(reyting, (index) {
-      return SvgPicture.asset('assets/icons/fullStar.svg');
-    });
-    emptyStar = List.generate(5 - reyting, (index) {
-      return SvgPicture.asset('assets/icons/fullStar.svg');
-
-    });
-    lang = List.generate(language.length, (i) {
-      return Text(
-        '${language[i]}, ',
-        style: TextStyle(color: AppColors.grey, fontSize: getWidth(12)),
-      );
-    });
     SizeConfig().init(context);
     return Container(
       margin: EdgeInsets.only(
@@ -44,9 +32,7 @@ class MyGitListWidjet extends StatelessWidget {
       width: getWidth(345),
       height: getHeight(134),
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.black, width: getWidth(1)),
-
-     
+        border: Border.all(color: AppColors.darkCyan, width: getWidth(1)),
         borderRadius: BorderRadius.all(
           Radius.circular(
             getWidth(7),
@@ -70,57 +56,15 @@ class MyGitListWidjet extends StatelessWidget {
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Container(
-                width: getWidth(178),
-                child: Text(
-                  name,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'Roboto',
-                  ),
-                ),
+              DescriptionWidget(
+                name: name,
+                price: price,
+                rating: rating,
+                users: users,
               ),
-              RichText(
-                  text: TextSpan(children: [
-                TextSpan(
-                  text: '$price\$',
-                  style: const TextStyle(
-                    color: AppColors.grey,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'Roboto',
-                  ),
-                ),
-                const TextSpan(
-                  text: '/1 kunga',
-                  style: TextStyle(
-                    color: AppColors.black,
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: 'Roboto',
-                  ),
-                )
-              ])),
-              Row(
-                children: [
-                  Row(
-                    children: fullStar!,
-                  ),
-                  Row(
-                    children: emptyStar!,
-                  ),
-                  Text(
-                    reyting == 0 ? '' : '$reyting ($users)',
-                    style:  TextWidget.medium(size: 12.0),
-                  ),
-                ],
-              ),
-              Row(
-                children: lang!,
-              )
+              LanguageWidget(language: language)
             ],
           ),
         ],

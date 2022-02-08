@@ -15,17 +15,17 @@ class CarPage extends StatelessWidget {
         builder: (context, state) {
           CarCubit cubit = context.watch();
           return GridView.builder(
-            padding: MyEdgeInsets.symmetric(h: 16.0, v: 25.0),
+              padding: MyEdgeInsets.symmetric(h: 16.0, v: 25.0),
               itemCount: 45,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 0.77,
+                childAspectRatio: 0.75,
                 crossAxisSpacing: getWidth(8.0),
                 mainAxisSpacing: getHeight(20.0),
               ),
-
               itemBuilder: (ctx, i) {
-                return const CarInfoCard();
+                return CarInfoCard(car: MockData.carModel);
+
               });
         },
       ),
