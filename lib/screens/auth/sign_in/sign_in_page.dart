@@ -75,7 +75,9 @@ class SignInPage extends StatelessWidget {
                             "Регистрация",
                             style: TextStyle(color: AppColors.blue),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            
+                          },
                         ),
                       ),
                     ],

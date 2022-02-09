@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/profile_cubit/profile_cubit.dart';
+import 'package:mobileapp/screens/auth/sign_in/sign_in_page.dart';
 import 'package:mobileapp/widgets/elevated_button_widget.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -19,7 +20,14 @@ class ProfilePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButtonWidget(
-                onPressed: (){},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SignInPage(),
+                    ),
+                  );
+                },
                 label: "Sign In Page",
               )
             ],
