@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/widgets/appbar_origin.dart';
-import 'package:mobileapp/widgets/appbar_widget.dart';
+
 import 'package:mobileapp/widgets/contact_widget.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
 import 'package:mobileapp/widgets/language_button.dart';

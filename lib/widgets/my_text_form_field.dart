@@ -7,6 +7,9 @@ class TextFormFieldWidget extends StatelessWidget {
   TextInputAction action;
   TextInputType inputType;
   bool obscureText;
+  FormFieldValidator<String>? validator;
+  TextCapitalization capitalization;
+
   TextFormFieldWidget({
     Key? key,
     this.controller,
@@ -14,6 +17,8 @@ class TextFormFieldWidget extends StatelessWidget {
     this.action = TextInputAction.next,
     this.inputType = TextInputType.text,
     this.obscureText = false,
+    this.validator,
+    this.capitalization = TextCapitalization.none,
   }) : super(key: key);
 
   @override
@@ -24,6 +29,8 @@ class TextFormFieldWidget extends StatelessWidget {
       textInputAction: action,
       keyboardType: inputType,
       obscureText: obscureText,
+      validator: validator,
+      textCapitalization: capitalization,
       style: _textStyle(AppColors.black),
       decoration: _buildInputDecoration(),
     );

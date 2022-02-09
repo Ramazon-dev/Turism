@@ -15,6 +15,8 @@ class MyBorderRadius {
         topLeft: Radius.circular(getWidth(topLeft)),
         topRight: Radius.circular(getWidth(topRight)),
         bottomRight: Radius.circular(getWidth(bottomRight)),
-        bottomLeft: Radius.circular(getWidth(bottomLeft)),
+        bottomLeft: Radius.circular(
+          getWidth(bottomLeft),
+        ),
       );
 }

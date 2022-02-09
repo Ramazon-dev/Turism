@@ -9,8 +9,8 @@ void main() async {
       expect(signIn, true);
     },
   );
-
-  test(
+  
+test(
     "User register test",
     () async {
       var result = await AuthServices.register(

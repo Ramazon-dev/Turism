@@ -1,68 +1,90 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/functions/text_form_field_validator.dart';
 import 'package:mobileapp/cubit/auth/sign_in_cubit/sign_in_cubit.dart';
-import 'package:mobileapp/screens/auth/widget/text_widget.dart';
+import 'package:mobileapp/screens/auth/widgets/text_widget.dart';
+import 'package:mobileapp/widgets/elevated_button_widget.dart';
 
 class SignInPage extends StatelessWidget {
-  SignInPage({Key? key}) : super(key: key);
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  var formKey = GlobalKey<FormState>();
-  bool check = false;
+  const SignInPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return BlocProvider(
       create: (_) => SignInCubit(),
-      child: BlocBuilder<SignInCubit, SignInState>(builder: (context, state) {
-        SignInCubit cubit = context.watch();
+      child: BlocBuilder<SignInCubit, SignInState>(builder: (ctx, state) {
+        SignInCubit cubit = ctx.watch();
         return Scaffold(
           body: SingleChildScrollView(
+            padding: MyEdgeInsets.symmetric(h: 30.0, v: 84.0),
             child: Form(
-              key: formKey,
+              key: cubit.formKey,
               child: Column(
                 children: [
-                  Container(
-                    margin: EdgeInsets.only(
-                      top: getHeight(84),
-                      left: getWidth(30),
-                      right: getWidth(94),
-                    ),
-                    child: const AuthTextWidget(),
+                  AuthTextWidget(),
+                  MySizedBox(height: 81.0),
+                  TextFormFieldWidget(
+                    controller: cubit.loginController,
+                    hint: 'Email',
+                    inputType: TextInputType.emailAddress,
+                    validator: FormValidator.email,
                   ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      top: getHeight(81),
-                      left: getWidth(30),
-                      right: getHeight(30),
-                    ),
-                    child: TextFormFieldWidget(
-                      controller: emailController,
-                      hint: 'Login',
-                    ),
+                  MySizedBox(height: 25.0),
+                  TextFormFieldWidget(
+                    controller: cubit.passwordController,
+                    hint: 'Password',
+                    obscureText: true,
+                    validator: FormValidator.password,
                   ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      top: getHeight(25),
-                      left: getWidth(30),
-                      right: getHeight(30),
-                    ),
-                    child: TextFormFieldWidget(
-                      controller: passwordController,
-                      hint: 'Password',
-                    ),
+                  CheckboxListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: const Text("Remember me"),
+                    controlAffinity: ListTileControlAffinity.leading,
+                    value: cubit.isTrue,
+                    onChanged: cubit.onChanged,
                   ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      top: getHeight(16),
-                      left: getWidth(30),
-                    ),
-                    child: CheckboxListTile(
-                      value: cubit.isTrue,
-                      onChanged: cubit.onChanged,
-                      title: Text('data'),
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                          top: getHeight(104),
+                          left: getWidth(20),
+                        ),
+                        child: TextButton(
+                          child: const Text(
+                            "Забыл пароль? ",
+                            style: TextStyle(color: AppColors.blue),
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                          top: getHeight(104),
+                        ),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColors.blue,
+                          ),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: TextButton(
+                          child: const Text(
+                            "Регистрация",
+                            style: TextStyle(color: AppColors.blue),
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ],
                   ),
+                  SizedBox(height: getHeight(60)),
+                  ElevatedButtonWidget(
+                    onPressed: cubit.onPressed,
+                    label: 'Войти',
+                  )
                 ],
               ),
             ),

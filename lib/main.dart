@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/screens/on_boarding/initial_page.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:mobileapp/screens/auth/sing_up/sign_up_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,14 +31,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Turism',
+      title: 'Tourism',
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       theme: ThemeData(
+        fontFamily: "Roboto",
         primarySwatch: Colors.blue,
       ),
-      home: const InitialPage(),
+      home:  SignUpPage(),
     );
   }
 }
