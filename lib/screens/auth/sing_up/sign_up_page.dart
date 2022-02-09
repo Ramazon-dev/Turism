@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/functions/text_form_field_validator.dart';
 import 'package:mobileapp/cubit/auth/sign_up_cubit/sign_up_cubit.dart';
 import 'package:mobileapp/screens/auth/widgets/text_widget.dart';
 import 'package:mobileapp/widgets/elevated_button_widget.dart';
@@ -40,35 +41,31 @@ class SignUpPage extends StatelessWidget {
                       AuthTextWidget(
                         text: 'Регистрация',
                       ),
-                      Container(
-                        margin: EdgeInsets.only(
-                          top: getHeight(50),
-                        ),
-                        child: TextFormFieldWidget(
-                          controller: cubit.nameController,
-                          hint: 'Full name',
-                        ),
+                      MySizedBox(height: 41.0),
+                      TextFormFieldWidget(
+                        controller: cubit.nameController,
+                        inputType: TextInputType.name,
+                        capitalization: TextCapitalization.words,
+                        hint: 'Full name',
+                        validator: FormValidator.general,
                       ),
-                      Container(
-                        margin: EdgeInsets.only(
-                          top: getHeight(25),
-                        ),
-                        child: TextFormFieldWidget(
-                          controller: cubit.emailController,
-                          hint: 'Email',
-                        ),
+                      MySizedBox(height: 25.0),
+                      TextFormFieldWidget(
+                        controller: cubit.emailController,
+                        hint: 'Email',
+                        inputType: TextInputType.emailAddress,
+                        validator: FormValidator.email,
                       ),
-                      Container(
-                        margin: EdgeInsets.only(
-                          top: getHeight(25),
-                        ),
-                        child: TextFormFieldWidget(
-                          controller: cubit.passwordController,
-                          hint: 'Password',
-                        ),
+                      MySizedBox(height: 25.0),
+                      TextFormFieldWidget(
+                        controller: cubit.passwordController,
+                        hint: 'Password',
+                        obscureText: true,
+                        validator: FormValidator.password,
                       ),
-                      SizedBox(height: getHeight(10)),
+                      MySizedBox(height: 10.0),
                       CheckboxListTile(
+                        contentPadding: EdgeInsets.zero,
                         value: cubit.isAgree,
                         onChanged: cubit.onCheckBoxPressed,
                         title: const Text(
@@ -79,11 +76,9 @@ class SignUpPage extends StatelessWidget {
                         // onChanged: cubit.onChanged,
                       ),
                       SizedBox(height: getHeight(60)),
-                      InkWell(
-                        onTap: cubit.onPressed,
-                        child: ElevatedButtonWidget(
-                          text: 'Регистрация',
-                        ),
+                      ElevatedButtonWidget(
+                        onPressed: cubit.onPressed,
+                        label: 'Регистрация',
                       ),
                       Container(
                         margin: EdgeInsets.only(top: getHeight(30)),

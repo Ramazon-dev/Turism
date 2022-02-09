@@ -35,11 +35,11 @@ class Git extends UserModel {
     _salary = json['salary'];
   }
 
-  String get about => _about;
+  String get about => _about!;
 
-  double get rating => _rating;
+  double get rating => _rating!;
 
-  List<String> get lang => _lang;
+  List<String> get lang => _lang!;
 
-  int get salary => _salary;
+  int get salary => _salary!;
 }

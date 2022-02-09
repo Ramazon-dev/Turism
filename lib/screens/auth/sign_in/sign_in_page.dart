@@ -81,11 +81,9 @@ class SignInPage extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: getHeight(60)),
-                  InkWell(
-                    onTap: cubit.onPressed,
-                    child: ElevatedButtonWidget(
-                      text: 'Войти',
-                    ),
+                  ElevatedButtonWidget(
+                    onPressed: cubit.onPressed,
+                    label: 'Войти',
                   )
                 ],
               ),
