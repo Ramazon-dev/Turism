@@ -1,5 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:mobileapp/core/components/custom_navigator.dart';
+import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/services/auth_services.dart';
 
 part 'sign_up_state.dart';
@@ -15,18 +17,22 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   void onPressed() {
     if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
       // Button bosilganida shu funksiya ishga tushadi
-      print('SignUpCubit.onPressed');
       String fullName = _nameController.text.trim();
       String email = _emailController.text.trim().toLowerCase();
       String password = _passwordController.text.trim();
-      AuthServices.signUp(fullName, email, password).then((value) {
+      AuthServices.register(
+        fullName: fullName,
+        email: email,
+        password: password,
+      ).then((value) {
         if (value) {
-          print(value);
+          CustomNavigator().pushReplacement(const HomeScreen());
         } else {
-          print(value);
+          Fluttertoast.showToast(msg: 'Error');
         }
-      } );
+      });
     }
   }
 
