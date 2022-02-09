@@ -18,14 +18,14 @@ class SignUpCubit extends Cubit<SignUpState> {
     }
   }
 
-  void onCheckBoxPressed(bool value) {
-    _isAgree = value;
+  void onCheckBoxPressed(bool? value) {
+    _isAgree = value!;
     emit(SignUpInitial());
   }
 
   GlobalKey<FormState> get formKey => _formKey;
 
-  TextEditingController get loginController => _loginController;
+  TextEditingController get emailController => _loginController;
 
   TextEditingController get passwordController => _passwordController;
 

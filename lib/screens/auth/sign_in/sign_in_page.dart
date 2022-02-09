@@ -13,8 +13,8 @@ class SignInPage extends StatelessWidget {
     SizeConfig().init(context);
     return BlocProvider(
       create: (_) => SignInCubit(),
-      child: BlocBuilder<SignInCubit, SignInState>(builder: (context, state) {
-        SignInCubit cubit = context.watch();
+      child: BlocBuilder<SignInCubit, SignInState>(builder: (ctx, state) {
+        SignInCubit cubit = ctx.watch();
         return Scaffold(
           body: SingleChildScrollView(
             padding: MyEdgeInsets.symmetric(h: 30.0, v: 84.0),
