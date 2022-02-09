@@ -31,11 +31,11 @@ class AuthServices {
     return false;
   }
 
-  static Future<bool> register(
-   {required String fullName,
+  static Future<bool> register({
+    required String fullName,
     required String email,
-    required String password,}
-  ) async {
+    required String password,
+  }) async {
     String baseUrlTest = 'https://ucharteam-tourism.herokuapp.com/v1';
     // String baseUrl = dotenv.env['BASE_URL'].toString();
 
