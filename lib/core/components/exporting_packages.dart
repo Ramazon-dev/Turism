@@ -12,11 +12,15 @@ export 'package:mobileapp/widgets/bottom_nav_bar.dart';
 export 'package:mobileapp/widgets/textWidget.dart';
 export 'package:mobileapp/widgets/my_sized_box.dart';
 export 'package:mobileapp/widgets/app_drawer.dart';
+export 'package:mobileapp/widgets/top_bar/simple_app_bar.dart';
+
 
 // Components
 export 'package:mobileapp/core/components/size_config.dart';
 export 'package:mobileapp/core/components/my_edge_insets.dart';
 export 'package:mobileapp/core/components/my_decoration.dart';
+export 'package:mobileapp/core/components/custom_navigator.dart';
+
 
 // Constants
 export 'package:mobileapp/core/constants/app_colors.dart';
