@@ -16,34 +16,41 @@ class GitPage extends StatelessWidget {
       child: BlocBuilder<GitCubit, GitState>(
         builder: (context, state) {
           GitCubit cubit = context.watch();
-          return ListView.builder(
-            // padding: EdgeInsets.all(0),
-            itemBuilder: (context, index) {
-              return InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (__) => GitDetailsPage(
-                              imageurl:
-                                  'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-                              name: 'Nargiza Ahmadjonova',
-                              price: 150,
-                              rating: 4,
-                              users: 24,
-                              language: ['uzb', 'eng', 'rus'])));
-                },
-                child: MyGitListWidjet(
-                    imageUrl:
-                        'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-                    name: 'Nargiza Ahmadjonova aaaaaaaaaaaaa',
-                    price: 150,
-                    rating: 4,
-                    users: 24,
-                    language: ['uzb', 'eng', 'rus']),
-              );
-            },
-            itemCount: 4,
+          return Column(
+            children: [
+              Container(
+                height: getHeight(632),
+                child: ListView.builder(
+                  padding: EdgeInsets.all(0),
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (__) => GitDetailsPage(
+                                    imageurl:
+                                        'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
+                                    name: 'Nargiza Ahmadjonova',
+                                    price: 150,
+                                    rating: 4,
+                                    users: 24,
+                                    language: ['uzb', 'eng', 'rus'])));
+                      },
+                      child: MyGitListWidjet(
+                          imageUrl:
+                              'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
+                          name: 'Nargiza Ahmadjonova aaaaaaaaaaaaa',
+                          price: 150,
+                          rating: 4,
+                          users: 24,
+                          language: ['uzb', 'eng', 'rus']),
+                    );
+                  },
+                  itemCount: 4,
+                ),
+              ),
+            ],
           );
         },
       ),
