@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/git_cubit/git_cubit.dart';
 import 'package:mobileapp/screens/details/git_details.dart';
-import 'package:mobileapp/widgets/appbar_widget.dart';
+import 'package:mobileapp/widgets/top_bar/appbar_widget.dart';
 import 'package:mobileapp/widgets/git_list_widjet.dart';
 
 class GitPage extends StatelessWidget {

@@ -25,20 +25,7 @@ class MyDecoration {
             fit: BoxFit.cover,
             image: NetworkImage(netImage),
           ),
-          borderRadius: BorderRadius.circular(border));
-
-  // static BoxDecoration netImage({
-  //   required String netImage,
-  //   required double border,
-  //   Color? color,
-  // }) =>
-  //     BoxDecoration(
-  //         color: color,
-  //         image: DecorationImage(
-  //           fit: BoxFit.cover,
-  //           image: NetworkImage(netImage),
-  //         ),
-  //         borderRadius: BorderRadius.circular(border));
+          borderRadius: BorderRadius.circular(getWidth(border)));
 
   static BoxDecoration circular({
     double radius = 5.0,

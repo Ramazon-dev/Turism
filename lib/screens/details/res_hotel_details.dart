@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/components/size_config.dart';
 import 'package:mobileapp/core/constants/app_icons.dart';
-import 'package:mobileapp/widgets/appbar_origin.dart';
+import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:mobileapp/widgets/contact_widget.dart';
 import 'package:mobileapp/widgets/rating_widget.dart';
 import 'package:mobileapp/widgets/url_icon_widget.dart';

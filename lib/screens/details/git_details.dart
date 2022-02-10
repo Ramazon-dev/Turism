@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/widgets/appbar_origin.dart';
+import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 
 import 'package:mobileapp/widgets/contact_widget.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
