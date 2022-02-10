@@ -18,9 +18,6 @@ class GitPage extends StatelessWidget {
           GitCubit cubit = context.watch();
           return Column(
             children: [
-              AppBarWidget(
-                text: "Git",
-              ),
               Container(
                 height: getHeight(632),
                 child: ListView.builder(
