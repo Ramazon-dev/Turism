@@ -27,19 +27,6 @@ class MyDecoration {
           ),
           borderRadius: BorderRadius.circular(border));
 
-  // static BoxDecoration netImage({
-  //   required String netImage,
-  //   required double border,
-  //   Color? color,
-  // }) =>
-  //     BoxDecoration(
-  //         color: color,
-  //         image: DecorationImage(
-  //           fit: BoxFit.cover,
-  //           image: NetworkImage(netImage),
-  //         ),
-  //         borderRadius: BorderRadius.circular(border));
-
   static BoxDecoration circular({
     double radius = 5.0,
     Color color = AppColors.darkCyan,
