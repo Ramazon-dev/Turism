@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/translations/locale_keys.g.dart';
-import 'package:mobileapp/widgets/appbar_origin.dart';
+import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
+import 'package:mobileapp/widgets/category_list.dart';
 
 import 'package:mobileapp/widgets/divider_widgets.dart';
 import 'package:mobileapp/widgets/text_widgets.dart';
 
 class HomeBody extends StatelessWidget {
-  const HomeBody({Key? key}) : super(key: key);
+  final HomeCubit cubit;
+
+  const HomeBody({Key? key, required this.cubit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          _buildTop(),
-          _buildTextWidgetTwo(),
-          _showNearby(),
-          const dividerWidget(),
-          _showTur(context),
-        ]),
-      ),
+    return SingleChildScrollView(
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        CategoryList(list: MockData.categoryList, cubit: cubit),
+        _buildTextWidgetTwo(),
+        _showNearby(),
+        const dividerWidget(),
+        _showTur(context),
+      ]),
     );
   }
 
   GridView _showTur(BuildContext context) {
     return GridView.builder(
-      physics: const NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: 9,
         padding: MyEdgeInsets.symmetric(h: 16.0, v: 25.0),
@@ -124,6 +124,5 @@ class HomeBody extends StatelessWidget {
         },
       ),
     );
-
   }
 }

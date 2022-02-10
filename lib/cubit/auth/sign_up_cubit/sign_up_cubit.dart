@@ -16,7 +16,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   bool _isAgree = false;
 
   void onPressed() {
-    if (_formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate() && _isAgree) {
       _formKey.currentState!.save();
       // Button bosilganida shu funksiya ishga tushadi
       String fullName = _nameController.text.trim();

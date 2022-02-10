@@ -13,14 +13,24 @@ class HomeCubit extends Cubit<HomeState> {
   //   drawerController.toggle!.call();
   // }
 
+  int _categoryIndex = 0;
+
   int _currentIndex = 2;
 
   void onPageChanged(int index) {
-    _currentIndex = index;
+    _categoryIndex = index;
+    emit(HomeInitial());
+  }
+
+
+  void onCategoryChanged(int index) {
+    _categoryIndex = index;
     emit(HomeInitial());
   }
 
   int get currentIndex => _currentIndex;
+
+  int get categoryIndex => _categoryIndex;
 
 // ZoomDrawerController get drawerController => _drawerController;
 }

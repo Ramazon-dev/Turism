@@ -6,13 +6,13 @@ class AuthServices {
   static Future<bool> signIn(String email, String password) async {
     String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1';
 
-    print(baseUrl + '/auth/login');
+    // print(baseUrl + '/auth/login');
     // print(await dotenv.env['BASE_URL'].toString() + '/v1/auth/login');
     try {
       Response res =
           await Dio().post(baseUrl.toString() + '/auth/login', data: {
-        "email": 'umida@gmail.com',
-        "password": "Umida7\$",
+        "email": email,
+        "password": password,
       });
       if (res.statusCode == 200) {
         print("TOKEN: ${res.data['data']['token']}");
