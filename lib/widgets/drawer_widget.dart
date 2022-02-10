@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/screens/details/transport_details.dart';
+import 'package:mobileapp/screens/hotel/hotel_page.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class DrawerWidget extends StatelessWidget {
           _setCategory(
             'Currency',
             AppIcons.dollar,
-            TransportDetailPage(car: MockData.carModel),
+            const HotelListPage(),
           ),
         ],
       ),

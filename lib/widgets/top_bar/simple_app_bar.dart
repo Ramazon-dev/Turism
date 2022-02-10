@@ -9,10 +9,11 @@ class SimpleAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) => AppBar(
         title: Text(title),
+        centerTitle: true,
         backgroundColor: AppColors.primary,
       );
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => Size(double.infinity, getHeight(52.0));
+  Size get preferredSize => Size(double.infinity, getHeight(56.0));
 }
