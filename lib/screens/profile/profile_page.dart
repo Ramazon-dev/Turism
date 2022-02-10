@@ -19,12 +19,16 @@ class ProfilePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              InkWell(
-                onTap: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SignInPage())),
-                child: ElevatedButtonWidget(
-                  text: "Sign In Page",
-                ),
+              ElevatedButtonWidget(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SignInPage(),
+                    ),
+                  );
+                },
+                label: "Sign In Page",
               )
             ],
           );

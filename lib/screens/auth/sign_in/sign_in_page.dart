@@ -13,8 +13,8 @@ class SignInPage extends StatelessWidget {
     SizeConfig().init(context);
     return BlocProvider(
       create: (_) => SignInCubit(),
-      child: BlocBuilder<SignInCubit, SignInState>(builder: (context, state) {
-        SignInCubit cubit = context.watch();
+      child: BlocBuilder<SignInCubit, SignInState>(builder: (ctx, state) {
+        SignInCubit cubit = ctx.watch();
         return Scaffold(
           body: SingleChildScrollView(
             padding: MyEdgeInsets.symmetric(h: 30.0, v: 84.0),
@@ -75,17 +75,17 @@ class SignInPage extends StatelessWidget {
                             "Регистрация",
                             style: TextStyle(color: AppColors.blue),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            
+                          },
                         ),
                       ),
                     ],
                   ),
                   SizedBox(height: getHeight(60)),
-                  InkWell(
-                    onTap: cubit.onPressed,
-                    child: ElevatedButtonWidget(
-                      text: 'Войти',
-                    ),
+                  ElevatedButtonWidget(
+                    onPressed: cubit.onPressed,
+                    label: 'Войти',
                   )
                 ],
               ),
