@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Roboto",
         primarySwatch: Colors.blue,
       ),
-      home:  SignUpPage(),
+      home: HomeScreen(),
     );
   }
 }

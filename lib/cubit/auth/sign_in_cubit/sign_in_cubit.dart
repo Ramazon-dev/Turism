@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:mobileapp/core/components/custom_navigator.dart';
+import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/services/auth_services.dart';
 
 part 'sign_in_state.dart';
@@ -20,12 +22,13 @@ class SignInCubit extends Cubit<SignInState> {
 
   void onPressed() {
     if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
       // Button bosilganida shu funksiya ishga tushadi
       String email = _loginController.text.trim();
       String password = _passwordController.text.trim();
       AuthServices.signIn(email, password).then((value) {
         if(value) {
-          print('');
+          CustomNavigator().pushReplacement(const HomeScreen());
         } else {
           print(value);
         }

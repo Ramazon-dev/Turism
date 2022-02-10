@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/cubit/home_cubit/cubit/home_cubit.dart';
+import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/widgets/appbar_origin.dart';
 import 'package:mobileapp/widgets/drawer_widget.dart';
 
@@ -19,10 +19,9 @@ class HomeScreen extends StatelessWidget {
             appBar: AppBarOrigin(
               actions: SvgPicture.asset(AppIcons.language),
               actions2: SvgPicture.asset(AppIcons.dollar),
-              
             ),
-            drawer: DrawerDiwget(),
-            body: _pages()[cubit.currentIndex],
+            drawer: const DrawerDiwget(),
+            body: _pages(cubit)[cubit.currentIndex],
             bottomNavigationBar: BottomNavBarWidget(
               onTap: cubit.onPageChanged,
               currentIndex: cubit.currentIndex,
@@ -33,10 +32,10 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  List<Widget> _pages() => [
+  List<Widget> _pages(HomeCubit cubit) => [
         const GitPage(),
         const SearchPage(),
-        const HomeBody(),
+        HomeBody(cubit: cubit),
         const CarPage(),
         const ProfilePage(),
       ];

@@ -9,4 +9,12 @@ class MockData {
       rating: 4.8,
       description:
           'A new, exclusive scented candle by Culti Milano for Automobili Lamborghini seals the collaboration between the two brands and marks a special Valentine’s Day indeed.');
+
+  static List<String> categoryList = [
+    'Tashkent',
+    'Samarkand',
+    'Bukhara',
+    'Andijan',
+    'Ferghana',
+  ];
 }
