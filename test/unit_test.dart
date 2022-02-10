@@ -9,13 +9,13 @@ void main() async {
       expect(signIn, true);
     },
   );
-  
-test(
+
+  test(
     "User register test",
     () async {
       var result = await AuthServices.register(
         fullName: 'fullfsdfsName',
-        email: 'emafscxdfscdssfil@fmsdf.ur',
+        email: 'emafscgfxdfscdssfil@fmsdf.ur',
         password: 'Pass2fdsfs421fas',
       );
       expect(result, true);

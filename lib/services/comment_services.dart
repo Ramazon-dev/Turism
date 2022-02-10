@@ -1,12 +1,10 @@
 import 'dart:convert';
-
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 class CommentService {
-
-   var request = http.Request('POST',
-          Uri.parse('https://ucharteam-tourism.herokuapp.com/v1/api/comment'));
+  var request = http.Request('POST',
+      Uri.parse('https://ucharteam-tourism.herokuapp.com/v1/api/comment'));
 
   Future<bool> addObjectComment({
     required String commentText,
@@ -15,8 +13,8 @@ class CommentService {
     String token = //await GetStorage().read('token');
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjMzk5ZjdjNi04NDViLTQ3ZjItYTZkNS1lMWJjZDY0OTNjYTUiLCJpYXQiOjE2NDQzODE1NTgsImV4cCI6MTY2MTY2MTU1OH0.mRAiavg0cMQ05VHZH_5MR42q2m-cI1fHszCq-QUpdvo';
     try {
-     
-      request.headers.addAll({'token': token, 'Content-Type': 'application/json'});
+      request.headers
+          .addAll({'token': token, 'Content-Type': 'application/json'});
       request.body = json.encode({"name": commentText, "objectId": objectId});
 
       http.StreamedResponse response = await request.send();
@@ -43,7 +41,8 @@ class CommentService {
     String token = //await GetStorage().read('token');
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjMzk5ZjdjNi04NDViLTQ3ZjItYTZkNS1lMWJjZDY0OTNjYTUiLCJpYXQiOjE2NDQzODE1NTgsImV4cCI6MTY2MTY2MTU1OH0.mRAiavg0cMQ05VHZH_5MR42q2m-cI1fHszCq-QUpdvo';
     try {
-      request.headers.addAll({'token': token, 'Content-Type': 'application/json'});
+      request.headers
+          .addAll({'token': token, 'Content-Type': 'application/json'});
       request.body = json.encode({"name": commentText, "gitId": gitId});
 
       http.StreamedResponse response = await request.send();
