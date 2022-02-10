@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mobileapp/core/components/custom_navigator.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/functions/text_form_field_validator.dart';
 import 'package:mobileapp/cubit/auth/sign_in_cubit/sign_in_cubit.dart';
+import 'package:mobileapp/screens/auth/forgot_password/forgot_password/forgot_password.dart';
+import 'package:mobileapp/screens/auth/sing_up/sign_up_page.dart';
 import 'package:mobileapp/screens/auth/widgets/text_widget.dart';
 import 'package:mobileapp/widgets/elevated_button_widget.dart';
 
@@ -57,7 +60,14 @@ class SignInPage extends StatelessWidget {
                             "Забыл пароль? ",
                             style: TextStyle(color: AppColors.blue),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ForgotPassword(),
+                              ),
+                            );
+                          },
                         ),
                       ),
                       Container(
@@ -76,7 +86,12 @@ class SignInPage extends StatelessWidget {
                             style: TextStyle(color: AppColors.blue),
                           ),
                           onPressed: () {
-                            
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SignUpPage(),
+                              ),
+                            );
                           },
                         ),
                       ),
