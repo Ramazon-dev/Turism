@@ -11,6 +11,7 @@ class PlacesDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: _commentButton(),
       body: Column(
         children: [
           Container(
@@ -31,52 +32,21 @@ class PlacesDetailsPage extends StatelessWidget {
                   maxLines: 2,
                   style: TextWidget.medium(size: 18.0),
                 ),
-                SizedBox(
-                  height: getHeight(17),
-                ),
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      AppIcons.call,
-                      color: AppColors.black,
-                    ),
-                    MySizedBox(height: 15.0),
-                    Text(
-                      place.phone,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      style: TextWidget.medium(),
-                    ),
-                  ],
-                ),
+                MySizedBox(height: 17.0),
+                _buildLink(AppIcons.call, place.phone,
+                    'tel:${place.phone.replaceAll('-', '')}',
+                    labelColor: AppColors.black),
                 MySizedBox(height: 5.0),
-                Row(
-                  children: [
-                    SvgPicture.asset(AppIcons.location),
-                    SizedBox(
-                      width: getWidth(15),
-                    ),
-                    UrlTextWidget(
-                      url: place.map,
-                      text: 'Расположение на карте',
-                    )
-                  ],
+                _buildLink(
+                  AppIcons.location,
+                  'Расположение на карте',
+                  place.map,
+                  iconColor: AppColors.red,
                 ),
                 SizedBox(
                   height: getHeight(4),
                 ),
-                Row(
-                  children: [
-                    SvgPicture.asset(AppIcons.link),
-                    SizedBox(
-                      width: getWidth(15),
-                    ),
-                    UrlTextWidget(
-                      url: place.site,
-                      text: place.site,
-                    )
-                  ],
-                ),
+                _buildLink(AppIcons.link, place.site, place.site),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: getHeight(9.5)),
                   child: Divider(
@@ -85,7 +55,7 @@ class PlacesDetailsPage extends StatelessWidget {
                 ),
                 Text(
                   place.description,
-                  style: TextWidget.regular(),
+                  style: TextWidget.regular(height: 2.1),
                 ),
               ],
             ),
@@ -94,4 +64,26 @@ class PlacesDetailsPage extends StatelessWidget {
       ),
     );
   }
+
+  Row _buildLink(
+    String assetIcon,
+    String label,
+    String link, {
+    Color iconColor = AppColors.black,
+    Color labelColor = AppColors.linkColor,
+  }) {
+    return Row(
+      children: [
+        SvgPicture.asset(assetIcon, height: getHeight(15.0), color: iconColor),
+        MySizedBox(width: 15.0),
+        UrlTextWidget(text: label, url: link, color: labelColor)
+      ],
+    );
+  }
+
+  FloatingActionButton _commentButton() => FloatingActionButton(
+    onPressed: (){},
+    backgroundColor: AppColors.black,
+    child: SvgPicture.asset(AppIcons.comment),
+  );
 }
