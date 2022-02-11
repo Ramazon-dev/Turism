@@ -49,17 +49,13 @@ class ResHotelDetailsPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          width: getWidth(178),
+                        MySizedBox(
+                          width: 178.0,
                           child: Text(
                             hotel.nameUz,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
-                            style: TextStyle(
-                              fontSize: getWidth(14),
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'Roboto',
-                            ),
+                            style: TextWidget.medium(),
                           ),
                         ),
                         MySizedBox(height: 10.0),
