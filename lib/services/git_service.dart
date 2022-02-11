@@ -1,14 +1,12 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
+import '../core/constants/variables.dart';
 
-class HotelService {
-  String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
-
-  Future fetchHotelsByCity(String cityName) async {
+class GitService {
+  Future fetchGitsByCity(String cityName) async {
     try {
       var response = await http
-          .get(Uri.parse("$baseUrl/hotel"), headers: {"city": cityName});
+          .get(Uri.parse("$baseUrl/git"), headers: {"city": cityName});
       if (response.statusCode == 200) {
         return jsonDecode(response.body)['message'];
       } else {
@@ -19,45 +17,16 @@ class HotelService {
     }
   }
 
-  Future fetchHotelsByCategory(String categryId) async {
-    try {
-      var response = await http.get(Uri.parse("$baseUrl/hotel"),
-          headers: {"category_id": categryId});
-      if (response.statusCode == 200) {
-        return jsonDecode(response.body)['message'];
-      } else {
-        return jsonDecode(response.body)['message'];
-      }
-    } catch (e) {
-      return e;
-    }
-  }
-
-  Future fetchCategoriesOfHotel() async {
-    try {
-      var response = await http.get(
-        Uri.parse("$baseUrl/hotels/categories"),
-      );
-      if (response.statusCode == 200) {
-        return jsonDecode(response.body)['message'];
-      } else {
-        return jsonDecode(response.body)['message'];
-      }
-    } catch (e) {
-      return e;
-    }
-  }
-
-  Future<bool> addHotelComment({
+  Future<bool> addCommentToGit({
     required String commentText,
-    required String hotelId,
+    required String gitId,
   }) async {
     String token = //await GetStorage().read('token');
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjMzk5ZjdjNi04NDViLTQ3ZjItYTZkNS1lMWJjZDY0OTNjYTUiLCJpYXQiOjE2NDQzODE1NTgsImV4cCI6MTY2MTY2MTU1OH0.mRAiavg0cMQ05VHZH_5MR42q2m-cI1fHszCq-QUpdvo';
     try {
       var res = await http.post(Uri.parse("$baseUrl/comment"),
           headers: {'token': token, 'Content-Type': 'application/json'},
-          body: jsonEncode({"name": commentText, "hotelId": hotelId}));
+          body: jsonEncode({"name": commentText, "gitId": gitId}));
 
       if (res.statusCode == 201) {
         Map data = json.decode(res.body)['data'];
@@ -73,16 +42,16 @@ class HotelService {
     return false;
   }
 
-  Future<bool> addHotelRating({
+  Future<bool> addRatingToGit({
     required int value,
-    required String hotelId,
+    required String gitId,
   }) async {
     String token = //await GetStorage().read('token');
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjMzk5ZjdjNi04NDViLTQ3ZjItYTZkNS1lMWJjZDY0OTNjYTUiLCJpYXQiOjE2NDQzODE1NTgsImV4cCI6MTY2MTY2MTU1OH0.mRAiavg0cMQ05VHZH_5MR42q2m-cI1fHszCq-QUpdvo';
     try {
       var res = await http.post(Uri.parse("$baseUrl/reyting"),
           headers: {'token': token, 'Content-Type': 'application/json'},
-          body: jsonEncode({"value": value, "hotelId": hotelId}));
+          body: jsonEncode({"value": value, "gitId": gitId}));
 
       if (res.statusCode == 201) {
         Map data = json.decode(res.body)['data'];
@@ -98,10 +67,10 @@ class HotelService {
     return false;
   }
 
-  Future fetchCommentsOfHotel(String hotelId) async {
+  Future fetchCommentsOfGit(String gitId) async {
     try {
       var response = await http
-          .get(Uri.parse("$baseUrl/comment"), headers: {"hotel_id": hotelId});
+          .get(Uri.parse("$baseUrl/comment"), headers: {"git_id": gitId});
       if (response.statusCode == 200) {
         return jsonDecode(response.body)['message'];
       } else {
@@ -112,13 +81,13 @@ class HotelService {
     }
   }
 
-  Future deleteHotel(String hotelId) async {
+  Future deleteGit(String gitId) async {
     String token = //await GetStorage().read('token');
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjMzk5ZjdjNi04NDViLTQ3ZjItYTZkNS1lMWJjZDY0OTNjYTUiLCJpYXQiOjE2NDQzODE1NTgsImV4cCI6MTY2MTY2MTU1OH0.mRAiavg0cMQ05VHZH_5MR42q2m-cI1fHszCq-QUpdvo';
     try {
-      var response = await http.delete(Uri.parse("$baseUrl/hotel/$hotelId"),
-          headers: {"token": token});
-      //(Uri.parse("$baseUrl/comment"), headers: {"hotel_id": hotelId});
+      var response = await http
+          .delete(Uri.parse("$baseUrl/git/$gitId"), headers: {"token": token});
+      //(Uri.parse("$baseUrl/comment"), headers: {"hotel_id": gitId});
       if (response.statusCode == 200) {
         return jsonDecode(response.body)['message'];
       } else {

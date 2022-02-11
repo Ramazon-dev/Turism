@@ -20,4 +20,35 @@ void main() async {
 
     expect(result, 'Saccesful !');
   });
+
+  test('add comment of hotel test', () async {
+    var result = await HotelService().addHotelComment(
+      commentText: "hotel comment",
+      hotelId: "4d45cacb-5a4b-47dc-8cd8-51fe4cfd2c25",
+    );
+
+    expect(result, true);
+  });
+
+  test('add rating of hotel test', () async {
+    var result = await HotelService().addHotelRating(
+      value: 5,
+      hotelId: "4d45cacb-5a4b-47dc-8cd8-51fe4cfd2c25",
+    );
+    expect(result, true);
+  });
+
+  test('fetch hotel comments test', () async {
+    var result = await HotelService()
+        .fetchCommentsOfHotel("4d45cacb-5a4b-47dc-8cd8-51fe4cfd2c25");
+
+    expect(result, 'OK');
+  });
+
+  test('delete hotel by id test', () async {
+    var result = await HotelService()
+        .deleteHotel("4d45cacb-5a4b-47dc-8cd8-51fe4cfd2c25");
+
+    expect(result, 'NOT_DELETED!');
+  });
 }
