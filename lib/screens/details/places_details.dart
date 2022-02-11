@@ -3,24 +3,10 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/widgets/rating_widget.dart';
 import 'package:mobileapp/widgets/url_text_widgte.dart';
 
-class PlacesDedailsPage extends StatelessWidget {
-  String imageurl;
-  String name;
-  int price;
-  double rating;
-  int users;
-  String karta;
-  String site;
-  PlacesDedailsPage(
-      {Key? key,
-      required this.imageurl,
-      required this.name,
-      required this.price,
-      required this.rating,
-      required this.users,
-      required this.karta,
-      required this.site})
-      : super(key: key);
+class PlacesDetailsPage extends StatelessWidget {
+  final PlaceModel place;
+
+  const PlacesDetailsPage({Key? key, required this.place}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,30 +16,20 @@ class PlacesDedailsPage extends StatelessWidget {
           Container(
             height: getHeight(410),
             width: getWidth(375),
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage(
-                        'https://media.istockphoto.com/photos/parashute-over-daytona-picture-id92158996?b=1&k=20&m=92158996&s=170667a&w=0&h=vyP4G01j5Kloq9-hNTe9_hIg-DyoriL00fDlwR0jsfs='),
-                    fit: BoxFit.cover)),
+            decoration: MyDecoration.netImage(netImage: place.media[0]),
           ),
           Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: MyEdgeInsets.all(15.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RatWidget(rating: rating, users: users),
-                SizedBox(
-                  height: getHeight(4),
-                ),
+                RatWidget(rating: place.rating, users: 5),
+                MySizedBox(height: 4.0),
                 Text(
-                  name,
+                  place.name,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
-                  style: TextStyle(
-                    fontSize: getWidth(18),
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'Roboto',
-                  ),
+                  style: TextWidget.medium(size: 18.0),
                 ),
                 SizedBox(
                   height: getHeight(17),
@@ -64,24 +40,16 @@ class PlacesDedailsPage extends StatelessWidget {
                       AppIcons.call,
                       color: AppColors.black,
                     ),
-                    SizedBox(
-                      width: getWidth(15),
-                    ),
+                    MySizedBox(height: 15.0),
                     Text(
-                      '+998971881799',
+                      place.phone,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
-                      style: TextStyle(
-                        fontSize: getWidth(14),
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'Roboto',
-                      ),
+                      style: TextWidget.medium(),
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: getHeight(5),
-                ),
+                MySizedBox(height: 5.0),
                 Row(
                   children: [
                     SvgPicture.asset(AppIcons.location),
@@ -89,7 +57,7 @@ class PlacesDedailsPage extends StatelessWidget {
                       width: getWidth(15),
                     ),
                     UrlTextWidget(
-                      url: karta,
+                      url: place.map,
                       text: 'Расположение на карте',
                     )
                   ],
@@ -104,8 +72,8 @@ class PlacesDedailsPage extends StatelessWidget {
                       width: getWidth(15),
                     ),
                     UrlTextWidget(
-                      url: site,
-                      text: '$site',
+                      url: place.site,
+                      text: place.site,
                     )
                   ],
                 ),
@@ -115,13 +83,9 @@ class PlacesDedailsPage extends StatelessWidget {
                     thickness: getWidth(1),
                   ),
                 ),
-                const Text(
-                  "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at ",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: 'Roboto',
-                  ),
+                Text(
+                  place.description,
+                  style: TextWidget.regular(),
                 ),
               ],
             ),

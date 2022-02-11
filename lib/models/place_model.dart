@@ -6,15 +6,18 @@ class PlaceModel {
   String? _phone;
   String? _description;
   List<String>? _media;
+  int? _price;
 
-  PlaceModel(
-      {String? name,
-        double? rating,
-        String? site,
-        String? map,
-        String? phone,
-        String? description,
-        List<String>? media}) {
+  PlaceModel({
+    String? name,
+    double? rating,
+    String? site,
+    String? map,
+    String? phone,
+    String? description,
+    List<String>? media,
+    int? price,
+  }) {
     if (name != null) {
       _name = name;
     }
@@ -36,15 +39,26 @@ class PlaceModel {
     if (media != null) {
       _media = media;
     }
+    if (price != null) {
+      _price = price;
+    }
   }
 
   String get name => _name!;
+
   double get rating => _rating!;
+
   String get site => _site!;
+
   String get map => _map!;
+
   String get phone => _phone!;
+
   String get description => _description!;
+
   List<String> get media => _media!;
+
+  int get price => _price!;
 
   PlaceModel.fromJson(Map<String, dynamic> json) {
     _name = json['name'];
@@ -54,10 +68,11 @@ class PlaceModel {
     _phone = json['phone'];
     _description = json['description'];
     _media = json['media'];
+    _price = json['price'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data ={};
+    final Map<String, dynamic> data = {};
     data['name'] = _name;
     data['rating'] = _rating;
     data['site'] = _site;

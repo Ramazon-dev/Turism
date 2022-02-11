@@ -16,7 +16,7 @@ class MyDecoration {
 
   static BoxDecoration netImage({
     required String netImage,
-    required double border,
+    double border = 7.0,
     Color? color,
   }) =>
       BoxDecoration(

@@ -38,6 +38,8 @@ export 'package:glassmorphism_ui/glassmorphism_ui.dart';
 // Models
 export 'package:mobileapp/models/car_model.dart';
 export 'package:mobileapp/models/hotel_model.dart';
+export 'package:mobileapp/models/place_model.dart';
+
 
 
 export 'package:mobileapp/core/functions/mock_data.dart';
