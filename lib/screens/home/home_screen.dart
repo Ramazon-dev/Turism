@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mobileapp/core/components/custom_navigator.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
