@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/screens/details/places_details.dart';
-import 'package:mobileapp/screens/details/res_hotel_details.dart';
+import 'package:mobileapp/screens/details/hotel_details_page.dart';
 import 'package:mobileapp/screens/details/transport_details.dart';
 import 'package:url_launcher/url_launcher.dart';
 

@@ -18,7 +18,7 @@ class HomeCubit extends Cubit<HomeState> {
   int _currentIndex = 2;
 
   void onPageChanged(int index) {
-    _categoryIndex = index;
+    _currentIndex = index;
     emit(HomeInitial());
   }
 

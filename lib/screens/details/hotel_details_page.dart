@@ -1,41 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/components/size_config.dart';
-import 'package:mobileapp/core/constants/app_icons.dart';
-import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:mobileapp/widgets/contact_widget.dart';
 import 'package:mobileapp/widgets/rating_widget.dart';
-import 'package:mobileapp/widgets/url_icon_widget.dart';
 import 'package:mobileapp/widgets/url_text_widgte.dart';
 
 class ResHotelDetailsPage extends StatelessWidget {
-  String imageurl;
-  String name;
-  int price;
-  double rating;
-  int users;
-  String karta;
-  String site;
-  ResHotelDetailsPage(
-      {Key? key,
-      required this.imageurl,
-      required this.name,
-      required this.price,
-      required this.rating,
-      required this.users,
-      required this.karta,
-      required this.site})
-      : super(key: key);
+  final Hotel hotel;
+
+  const ResHotelDetailsPage({Key? key, required this.hotel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
     return Scaffold(
-      appBar: AppBarOrigin(
-        actions: SvgPicture.asset(AppIcons.language),
-        actions2: SvgPicture.asset(AppIcons.dollar),
-      ),
+      appBar: SimpleAppBar(title: hotel.nameUz),
       body: Column(
         children: [
           Center(
@@ -60,44 +39,28 @@ class ResHotelDetailsPage extends StatelessWidget {
                     margin: EdgeInsets.all(getWidth(11)),
                     width: getWidth(323),
                     height: getHeight(255),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(
-                            getWidth(5),
-                          ),
-                        ),
-                        image: DecorationImage(
-                            image: NetworkImage(imageurl), fit: BoxFit.cover)),
+                    decoration: MyDecoration.netImage(
+                        netImage: hotel.media[0].replaceAll('k__image__', ''),
+                        border: 7.0),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: MyEdgeInsets.symmetric(h: 20.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          width: getWidth(178),
+                        MySizedBox(
+                          width: 178.0,
                           child: Text(
-                            name,
+                            hotel.nameUz,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
-                            style: TextStyle(
-                              fontSize: getWidth(14),
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'Roboto',
-                            ),
+                            style: TextWidget.medium(),
                           ),
                         ),
-                        SizedBox(
-                          height: getHeight(10),
-                        ),
-                        RatWidget(
-                          rating: 3,
-                          users: 0,
-                        ),
-                        SizedBox(
-                          height: getHeight(10),
-                        ),
+                        MySizedBox(height: 10.0),
+                        RatWidget(rating: 3, users: 0),
+                        MySizedBox(height: 10.0),
                         Row(
                           children: [
                             SvgPicture.asset(AppIcons.location),
@@ -105,7 +68,7 @@ class ResHotelDetailsPage extends StatelessWidget {
                               width: getWidth(4),
                             ),
                             UrlTextWidget(
-                              url: karta,
+                              url: hotel.karta,
                               text: 'Расположение на карте',
                             )
                           ],
@@ -120,23 +83,19 @@ class ResHotelDetailsPage extends StatelessWidget {
                               width: getWidth(4),
                             ),
                             UrlTextWidget(
-                              url: site,
-                              text: '$site',
+                              url: hotel.site,
+                              text: hotel.site,
                             )
                           ],
                         ),
                         SizedBox(
                           height: getHeight(28),
                         ),
-                        const Text(
+                        Text(
                           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at ",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'Roboto',
-                          ),
+                          style: TextWidget.regular(),
                         ),
-                        ContactWidget(),
+                        const ContactWidget(),
                       ],
                     ),
                   )

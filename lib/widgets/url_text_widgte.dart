@@ -3,12 +3,15 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UrlTextWidget extends StatelessWidget {
-  String? url;
-  String? text;
+  final String? url;
+  final String? text;
+  Color color;
+
   UrlTextWidget({
     Key? key,
-    this.url,
-    this.text,
+    required this.url,
+    required this.text,
+    this.color = AppColors.linkColor,
   }) : super(key: key);
   // final UrlLaunch _launcher = UrlLaunch();
   @override
@@ -17,7 +20,7 @@ class UrlTextWidget extends StatelessWidget {
       onTap: urlLaunch,
       child: Text(
         text!,
-        style: const TextStyle(color: AppColors.linkColor),
+        style: TextStyle(color: color),
       ),
     );
   }

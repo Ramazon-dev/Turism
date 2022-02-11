@@ -83,37 +83,37 @@ class Hotel {
     }
   }
 
-  String? get id => _id;
+  String get id => _id!;
 
-  String? get nameUz => _nameUz;
+  String get nameUz => _nameUz!;
 
-  String? get nameEn => _nameEn;
+  String get nameEn => _nameEn!;
 
-  String? get nameRu => _nameRu;
+  String get nameRu => _nameRu!;
 
-  List<String>? get media => _media;
+  List<String> get media => _media!;
 
-  String? get informUz => _informUz;
+  String get informUz => _informUz!;
 
-  String? get informEn => _informEn;
+  String get informEn => _informEn!;
 
-  String? get informRu => _informRu;
+  String get informRu => _informRu!;
 
-  String? get karta => _karta;
+  String get karta => _karta!;
 
-  String? get city => _city;
+  String get city => _city!;
 
-  String? get site => _site;
+  String get site => _site!;
 
-  List<String>? get tell => _tell;
+  List<String> get tell => _tell!;
 
-  String? get date => _date;
+  String get date => _date!;
 
-  String? get categoryId => _categoryId;
+  String get categoryId => _categoryId!;
 
-  int? get reyting => _reyting;
+  int get reyting => _reyting!;
 
-  int? get users => _users;
+  int get users => _users!;
 
   Hotel.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
