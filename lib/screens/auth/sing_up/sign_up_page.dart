@@ -3,6 +3,7 @@ import 'package:mobileapp/core/components/custom_navigator.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/functions/text_form_field_validator.dart';
 import 'package:mobileapp/cubit/auth/sign_up_cubit/sign_up_cubit.dart';
+import 'package:mobileapp/screens/auth/sign_in/sign_in_page.dart';
 import 'package:mobileapp/screens/auth/widgets/text_widget.dart';
 import 'package:mobileapp/widgets/elevated_button_widget.dart';
 
@@ -20,7 +21,7 @@ class SignUpPage extends StatelessWidget {
           SignUpCubit cubit = ctx.watch();
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: AppColors.white,
+              backgroundColor: Colors.transparent,
               title: const Text(
                 'Назад',
                 style: TextStyle(
@@ -64,6 +65,7 @@ class SignUpPage extends StatelessWidget {
                         hint: 'Password',
                         obscureText: true,
                         validator: FormValidator.password,
+                        action: TextInputAction.done,
                       ),
                       MySizedBox(height: 10.0),
                       CheckboxListTile(
@@ -104,7 +106,9 @@ class SignUpPage extends StatelessWidget {
                                   "Войти",
                                   style: TextStyle(color: AppColors.blue),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  CustomNavigator().push(SignInPage());
+                                },
                               ),
                             ),
                           ],

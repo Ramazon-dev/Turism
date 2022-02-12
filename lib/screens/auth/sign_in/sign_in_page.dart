@@ -19,8 +19,20 @@ class SignInPage extends StatelessWidget {
       child: BlocBuilder<SignInCubit, SignInState>(builder: (ctx, state) {
         SignInCubit cubit = ctx.watch();
         return Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            title: const Text(
+              'Назад',
+              style: TextStyle(
+                color: AppColors.black,
+              ),
+            ),
+            elevation: 0,
+            toolbarHeight: 70,
+            iconTheme: const IconThemeData(color: AppColors.black),
+          ),
           body: SingleChildScrollView(
-            padding: MyEdgeInsets.symmetric(h: 30.0, v: 84.0),
+            padding: MyEdgeInsets.symmetric(h: 30.0, v: 20.0),
             child: Form(
               key: cubit.formKey,
               child: Column(
@@ -39,6 +51,7 @@ class SignInPage extends StatelessWidget {
                     hint: 'Password',
                     obscureText: true,
                     validator: FormValidator.password,
+                    action: TextInputAction.done,
                   ),
                   CheckboxListTile(
                     contentPadding: EdgeInsets.zero,

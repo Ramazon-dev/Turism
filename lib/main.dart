@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:mobileapp/screens/on_boarding/initial_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Roboto",
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: InitialPage(),
     );
   }
 }

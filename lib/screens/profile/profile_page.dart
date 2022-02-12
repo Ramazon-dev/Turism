@@ -18,7 +18,7 @@ class ProfilePage extends StatelessWidget {
           ProfileCubit cubit = context.watch();
           return Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               ElevatedButtonWidget(
                 onPressed: () {
@@ -30,6 +30,17 @@ class ProfilePage extends StatelessWidget {
                   );
                 },
                 label: "Sign In Page",
+              ),
+              ElevatedButtonWidget(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SignInPage(),
+                    ),
+                  );
+                },
+                label: "My Sign In Page",
               )
             ],
           );
