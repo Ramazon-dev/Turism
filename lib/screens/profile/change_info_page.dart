@@ -24,7 +24,7 @@ class ChangingProfilePage extends StatelessWidget {
                   MySizedBox(height: 12.0),
                   UnderlinedInputField(hint: 'Email', suffix: _suffix()),
                   const Spacer(),
-                  ElevatedButtonWidget(onPressed: (){}, label: 'label'),
+                  ElevatedButtonWidget(onPressed: (){}, label: 'Сохранить'),
                 ],
               ),
             ),
