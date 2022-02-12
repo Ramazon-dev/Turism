@@ -11,6 +11,20 @@ class PlacesDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(
+              AppIcons.link,
+              color: AppColors.white,
+            ),
+          ),
+        ],
+      ),
       floatingActionButton: _commentButton(),
       body: Column(
         children: [
@@ -82,8 +96,8 @@ class PlacesDetailsPage extends StatelessWidget {
   }
 
   FloatingActionButton _commentButton() => FloatingActionButton(
-    onPressed: (){},
-    backgroundColor: AppColors.black,
-    child: SvgPicture.asset(AppIcons.comment),
-  );
+        onPressed: () {},
+        backgroundColor: AppColors.black,
+        child: SvgPicture.asset(AppIcons.comment),
+      );
 }

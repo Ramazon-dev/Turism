@@ -33,5 +33,5 @@ class ChangingProfilePage extends StatelessWidget {
       ),
     );
   }
-  SvgPicture _suffix() => SvgPicture.asset(AppIcons.location, fit: BoxFit.none);
+  SvgPicture _suffix() => SvgPicture.asset(AppIcons.edit, fit: BoxFit.none);
 }
