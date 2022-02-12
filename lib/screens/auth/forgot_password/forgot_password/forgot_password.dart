@@ -49,10 +49,10 @@ class ForgotPassword extends StatelessWidget {
                         height: 30.0,
                       ),
                       TextFormFieldWidget(
-                        controller: cubit.emailController,
+                        controller: emailController,
                         hint: 'Адрес электронной почты',
-                        inputType: TextInputType.emailAddress,
-                        validator: FormValidator.email,
+                        // inputType: TextInputType.emailAddress,
+                        // validator: FormValidator.email,
                         action: TextInputAction.done,
                         // obscureText: true,
                       ),
@@ -61,14 +61,15 @@ class ForgotPassword extends StatelessWidget {
                       ),
                       ElevatedButtonWidget(
                         onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => PasswordSms(),
-                              ),
-                            );
-                          }
+                          CustomNavigator().push(PasswordSms());
+                          // if (formKey.currentState!.validate()) {
+                          //   Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //       builder: (context) => PasswordSms(),
+                          //     ),
+                          //   );
+                          // }
                         },
                         label: 'Проверять',
                       ),

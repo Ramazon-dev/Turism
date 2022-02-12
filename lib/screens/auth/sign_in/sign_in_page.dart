@@ -49,7 +49,6 @@ class SignInPage extends StatelessWidget {
                   TextFormFieldWidget(
                     controller: cubit.passwordController,
                     hint: 'Password',
-                    obscureText: true,
                     validator: FormValidator.password,
                     action: TextInputAction.done,
                   ),

@@ -56,6 +56,7 @@ class CreateNewPassword extends StatelessWidget {
                   hint: 'Подтвердите пароль',
                   // obscureText: true,
                   validator: FormValidator.password,
+                  action: TextInputAction.done,
                 ),
                 SizedBox(
                   height: getHeight(110),
@@ -64,12 +65,9 @@ class CreateNewPassword extends StatelessWidget {
                   onPressed: () {
                     if (passwordController.text ==
                         confirmPasswordController.text) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HomeScreen(),
-                        ),
-                      );
+                      CustomNavigator().push(HomeScreen());
+                    } else {
+                      debugPrint('passwordlar birxil emas!!!');
                     }
                   },
                   label: 'Сохранить',
