@@ -3,7 +3,11 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/components/size_config.dart';
 
 class CircularIcon extends StatelessWidget {
-  const CircularIcon({Key? key}) : super(key: key);
+  final String svgicon;
+  const CircularIcon({
+    Key? key,
+    this.svgicon = 'assets/icons/lock.svg',
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,7 @@ class CircularIcon extends StatelessWidget {
         color: const Color(0xffFFF3EC),
       ),
       child: SvgPicture.asset(
-        'assets/images/icons.svg',
+        svgicon,
         // color: Colors.yellow,
         height: getHeight(120),
       ),

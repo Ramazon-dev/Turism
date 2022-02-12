@@ -16,13 +16,14 @@ class HomeCubit extends Cubit<HomeState> {
   int _categoryIndex = 0;
 
   int _currentIndex = 2;
-
+// bu page ozgarishi uchun 
   void onPageChanged(int index) {
     _currentIndex = index;
     emit(HomeInitial());
   }
 
 
+// bu category list uchun
   void onCategoryChanged(int index) {
     _categoryIndex = index;
     emit(HomeInitial());

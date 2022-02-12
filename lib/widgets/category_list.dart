@@ -23,18 +23,21 @@ class CategoryList extends StatelessWidget {
           itemBuilder: (ctx, i) {
             String text = list[i];
             return InkWell(
-              onTap: (){
-                cubit.onPageChanged(i);
+              onTap: () {
+                cubit.onCategoryChanged(i);
               },
               child: Chip(
-                backgroundColor:
-                    i == cubit.categoryIndex ? AppColors.greyPrice : Colors.transparent,
+                backgroundColor: i == cubit.categoryIndex
+                    ? AppColors.greyPrice
+                    : Colors.transparent,
                 padding: MyEdgeInsets.symmetric(h: 20.0, v: 10.0),
                 label: Text(
                   text,
                   style: TextWidget.medium(
                     size: 16.0,
-                    color: i == cubit.categoryIndex ? AppColors.white : AppColors.greyPrice,
+                    color: i == cubit.categoryIndex
+                        ? AppColors.white
+                        : AppColors.greyPrice,
                   ),
                 ),
               ),
