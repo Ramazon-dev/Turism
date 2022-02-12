@@ -20,14 +20,16 @@ class ProfileAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             icon: SvgPicture.asset(AppIcons.arrowBackWhite),
           ),
           MySizedBox(width: 110.0),
           Text(
             'Profile',
             style: TextWidget.medium(color: AppColors.white, size: 18.0),
-          )
+          ),
         ],
       ),
     );
