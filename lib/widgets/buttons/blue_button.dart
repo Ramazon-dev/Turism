@@ -14,19 +14,21 @@ class BlueButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {},
-      child: Text(
-        label,
-        style: TextWidget.regular(size: 12.0, color: AppColors.white),
-      ),
-      style: ElevatedButton.styleFrom(
-        padding: MyEdgeInsets.symmetric(h: 10.0, v: 5.0),
-        primary: AppColors.blue,
-        elevation: 0.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: MyBorderRadius.circular(radius: 32.0),
-        )
+    return InkWell(
+      onTap: onPressed,
+      splashColor: AppColors.grey,
+      borderRadius: MyBorderRadius.circular(radius: 32.0),
+      child: Material(
+        color: AppColors.blue,
+        borderRadius: MyBorderRadius.circular(radius: 32.0),
+        child: Container(
+          padding: MyEdgeInsets.symmetric(h: 10.0, v: 5.0),
+          // decoration: MyDecoration.circular(color: AppColors.blue, radius: 32.0),
+          child: Text(
+            label,
+            style: TextWidget.regular(size: 12.0, color: AppColors.white),
+          ),
+        ),
       ),
     );
   }

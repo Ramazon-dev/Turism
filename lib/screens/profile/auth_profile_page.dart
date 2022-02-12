@@ -18,8 +18,10 @@ class ProfileAuthPage extends StatelessWidget {
           ),
           Transform.translate(
             offset: Offset(getWidth(100.0), getHeight(-140.0)),
-            child:
-                TextButtonWidget(onPressed: () {}, label: 'Изменить пароль?'),
+            child: TextButtonWidget(
+              onPressed: () {},
+              label: 'Изменить пароль?',
+            ),
           )
         ],
       ),

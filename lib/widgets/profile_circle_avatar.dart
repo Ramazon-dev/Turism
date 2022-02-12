@@ -20,15 +20,16 @@ class ProfileCircleAvatar extends StatelessWidget {
           width: getHeight(height),
           height: getHeight(height),
           decoration: MyDecoration.circular(
-            width: 2.0,
+            border: Border.all(color: AppColors.primary, width: getWidth(2)),
             color: Colors.transparent,
             radius: 100.0,
           ),
           child: ClipRRect(
-              borderRadius: MyBorderRadius.circular(radius: 100.0),
-              child: imageUrl == 'default'
-                  ? SvgPicture.asset(AppIcons.personal)
-                  : Image.network(imageUrl, fit: BoxFit.cover)),
+            borderRadius: MyBorderRadius.circular(radius: 100.0),
+            child: imageUrl == 'default'
+                ? SvgPicture.asset(AppIcons.personal)
+                : Image.network(imageUrl, fit: BoxFit.cover),
+          ),
         ),
         Positioned(
           bottom: 0.0,
