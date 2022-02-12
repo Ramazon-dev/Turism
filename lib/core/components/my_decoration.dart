@@ -6,9 +6,13 @@ class MyDecoration {
   static BoxDecoration assetImage({
     required String assetImage,
     Color? color,
+    double radius = 7.0,
+    BoxBorder? border,
   }) =>
       BoxDecoration(
           color: color,
+          borderRadius: MyBorderRadius.circular(radius: radius),
+          border: border,
           image: DecorationImage(
             fit: BoxFit.cover,
             image: AssetImage(assetImage),
@@ -16,24 +20,28 @@ class MyDecoration {
 
   static BoxDecoration netImage({
     required String netImage,
-    double border = 7.0,
+    double radius = 7.0,
     Color? color,
+    BoxBorder? border,
   }) =>
       BoxDecoration(
           color: color,
+          border: border,
           image: DecorationImage(
             fit: BoxFit.cover,
             image: NetworkImage(netImage),
           ),
-          borderRadius: BorderRadius.circular(getWidth(border)));
+          borderRadius: BorderRadius.circular(getWidth(radius)));
 
   static BoxDecoration circular({
     double radius = 5.0,
     Color color = AppColors.darkCyan,
+    BoxBorder? border,
   }) =>
       BoxDecoration(
         color: color,
         borderRadius: MyBorderRadius.circular(radius: radius),
+        border: border,
       );
 
   static BoxDecoration shadow({Color color = AppColors.darkCyan}) =>

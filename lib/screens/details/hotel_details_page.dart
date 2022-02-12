@@ -41,7 +41,7 @@ class ResHotelDetailsPage extends StatelessWidget {
                     height: getHeight(255),
                     decoration: MyDecoration.netImage(
                         netImage: hotel.media[0].replaceAll('k__image__', ''),
-                        border: 7.0),
+                        radius: 7.0),
                   ),
                   Padding(
                     padding: MyEdgeInsets.symmetric(h: 20.0),
