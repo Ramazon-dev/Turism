@@ -1,30 +1,89 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/widgets/cards/profile_info_card.dart';
+import 'package:mobileapp/widgets/elevated_button_widget.dart';
 
-class ProfileAuthPage extends StatelessWidget {
+class ProfileAuthPage extends StatefulWidget {
   const ProfileAuthPage({Key? key}) : super(key: key);
+
+  @override
+  State<ProfileAuthPage> createState() => _ProfileAuthPageState();
+}
+
+// TODO Vaqtincha StatefulWidget'da qilindi. Cubitga ulash kerak.
+class _ProfileAuthPageState extends State<ProfileAuthPage> {
+  bool _isShow = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: const SimpleAppBar(title: 'Profile'),
-      body: Column(
-        children: [
-          ProfileAppBar(height: 274.0),
-          Transform.translate(
-            offset: Offset(0.0, getHeight(-140.0)),
-            child: const ProfileInfoCard(),
-          ),
-          Transform.translate(
-            offset: Offset(getWidth(100.0), getHeight(-140.0)),
-            child: TextButtonWidget(
-              onPressed: () {},
-              label: 'Изменить пароль?',
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ProfileAppBar(height: 274.0),
+            _setTransform(child: const ProfileInfoCard()),
+            _setTransform(
+              x: 100.0,
+              child: _buildTextButtonWidget(),
             ),
-          )
-        ],
+            _setTransform(child: _showChangingPasswordFields(), y: -90.0),
+          ],
+        ),
       ),
     );
+  }
+
+  Visibility _buildTextButtonWidget() {
+    return Visibility(
+      visible: !_isShow,
+      child: TextButtonWidget(
+        onPressed: _onPressed,
+        label: 'Изменить пароль?',
+      ),
+    );
+  }
+
+  Transform _setTransform(
+          {double x = 0.0, double y = -140.0, required Widget child}) =>
+      Transform.translate(
+        offset: Offset(getWidth(x), getHeight(y)),
+        child: child,
+      );
+
+  Visibility _showChangingPasswordFields() => Visibility(
+        visible: _isShow,
+        child: Padding(
+          padding: MyEdgeInsets.symmetric(h: 30.0),
+          child: MySizedBox(
+            height: 322.0,
+            child: Form(
+              child: Column(
+                children: [
+                  TextFormFieldWidget(
+                    hint: 'Первый пароль',
+                  ),
+                  MySizedBox(height: 20.0),
+                  TextFormFieldWidget(
+                    hint: 'Новый пароль',
+                  ),
+                  MySizedBox(height: 20.0),
+                  TextFormFieldWidget(
+                    hint: 'Повторите пароль',
+                  ),
+                  const Spacer(),
+                  ElevatedButtonWidget(
+                      onPressed: _onPressed, label: 'Сохранить')
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+
+  void _onPressed() {
+    setState(() {
+      _isShow = !_isShow;
+    });
   }
 }
