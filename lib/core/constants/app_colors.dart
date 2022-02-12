@@ -17,6 +17,6 @@ class AppColors {
   static const Color darkBorder = Color(0xFFBCBCBC);
 
   static const LinearGradient linearGradient = LinearGradient(
-    colors: [primary, linear],
+    colors: [linear, primary],
   );
 }

@@ -48,7 +48,7 @@ class HomeBody extends StatelessWidget {
                 width: getWidth(165.0),
                 decoration: MyDecoration.netImage(
                     netImage: "https://source.unsplash.com/random/index1",
-                    border: 5.0),
+                    radius: 5.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -87,7 +87,7 @@ class HomeBody extends StatelessWidget {
                 width: 330.0,
                 decoration: MyDecoration.netImage(
                     netImage: "https://source.unsplash.com/random/1",
-                    border: 5.0),
+                    radius: 5.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
