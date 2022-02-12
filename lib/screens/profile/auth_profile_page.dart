@@ -12,7 +12,15 @@ class ProfileAuthPage extends StatelessWidget {
       body: Column(
         children: [
           ProfileAppBar(height: 274.0),
-          ProfileInfoCard(),
+          Transform.translate(
+            offset: Offset(0.0, getHeight(-140.0)),
+            child: const ProfileInfoCard(),
+          ),
+          Transform.translate(
+            offset: Offset(getWidth(100.0), getHeight(-140.0)),
+            child:
+                TextButtonWidget(onPressed: () {}, label: 'Изменить пароль?'),
+          )
         ],
       ),
     );

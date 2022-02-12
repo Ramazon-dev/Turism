@@ -7,6 +7,7 @@ class ProfileInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 6.0,
       child: Padding(
         padding: MyEdgeInsets.all(24.0),
         child: Column(
