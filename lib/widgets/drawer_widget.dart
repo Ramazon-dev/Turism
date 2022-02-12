@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/screens/hotel/hotel_page.dart';
+import 'package:mobileapp/screens/place/place_page.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({Key? key}) : super(key: key);
@@ -12,11 +13,8 @@ class DrawerWidget extends StatelessWidget {
       backgroundColor: AppColors.primary,
       child: ListView(
         children: [
-          _setCategory(
-            'Currency',
-            AppIcons.dollar,
-            const HotelListPage(),
-          ),
+          _setCategory('Currency', AppIcons.dollar, const HotelListPage()),
+          _setCategory('Places', AppIcons.location, const PlacePage()),
         ],
       ),
     );

@@ -19,12 +19,14 @@ class TextWidget extends StatelessWidget {
     double size = 14.0,
     Color color = AppColors.black,
     String fontFamily = 'Regular',
+    double? height,
   }) =>
       TextStyle(
         fontSize: getWidth(size),
         color: color,
         fontWeight: FontWeight.w400,
         fontFamily: fontFamily,
+        height: height,
       );
 
   static TextStyle medium({
