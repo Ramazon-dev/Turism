@@ -13,6 +13,9 @@ export 'package:mobileapp/widgets/textWidget.dart';
 export 'package:mobileapp/widgets/my_sized_box.dart';
 export 'package:mobileapp/widgets/app_drawer.dart';
 export 'package:mobileapp/widgets/top_bar/simple_app_bar.dart';
+export 'package:mobileapp/widgets/cards/place_info_card.dart';
+export 'package:mobileapp/widgets/profile_circle_avatar.dart';
+export 'package:mobileapp/widgets/top_bar/profile_app_bar.dart';
 
 
 // Components

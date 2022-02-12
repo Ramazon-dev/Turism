@@ -36,13 +36,13 @@ class HotelListPage extends StatelessWidget {
 
   InkWell _buildHotelLayout(String img, Hotel hotel) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         CustomNavigator().push(ResHotelDetailsPage(hotel: hotel));
       },
       borderRadius: MyBorderRadius.circular(radius: 7.0),
       child: Container(
         alignment: Alignment.bottomCenter,
-        decoration: MyDecoration.netImage(netImage: img, border: 7.0),
+        decoration: MyDecoration.netImage(netImage: img, radius: 7.0),
         child: GlassContainer(
           width: getWidth(375.0),
           height: getHeight(64.0),
