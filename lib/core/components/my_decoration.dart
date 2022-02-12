@@ -36,10 +36,12 @@ class MyDecoration {
   static BoxDecoration circular({
     double radius = 5.0,
     Color color = AppColors.darkCyan,
+    double width = 0.0,
   }) =>
       BoxDecoration(
         color: color,
         borderRadius: MyBorderRadius.circular(radius: radius),
+        border: Border.all(color: AppColors.primary, width: getWidth(width))
       );
 
   static BoxDecoration shadow({Color color = AppColors.darkCyan}) =>

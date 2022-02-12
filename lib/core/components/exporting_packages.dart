@@ -16,6 +16,7 @@ export 'package:mobileapp/widgets/top_bar/simple_app_bar.dart';
 export 'package:mobileapp/widgets/cards/place_info_card.dart';
 export 'package:mobileapp/widgets/profile_circle_avatar.dart';
 export 'package:mobileapp/widgets/top_bar/profile_app_bar.dart';
+export 'package:mobileapp/widgets/buttons/blue_button.dart';
 
 
 // Components

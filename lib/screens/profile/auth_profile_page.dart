@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/widgets/cards/profile_info_card.dart';
 
 class ProfileAuthPage extends StatelessWidget {
   const ProfileAuthPage({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class ProfileAuthPage extends StatelessWidget {
       body: Column(
         children: [
           ProfileAppBar(height: 274.0),
-
+          ProfileInfoCard(),
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/components/my_border_radius.dart';
 
 class ProfileCircleAvatar extends StatelessWidget {
   final String imageUrl;
@@ -16,19 +17,28 @@ class ProfileCircleAvatar extends StatelessWidget {
     return Stack(
       children: [
         Container(
+          width: getHeight(height),
           height: getHeight(height),
-          decoration: imageUrl == 'default'
-              ? MyDecoration.assetImage(
-                  assetImage: AppIcons.personal,
-                  radius: 100.0,
-                  border: _setBorder(),
-                )
-              : MyDecoration.netImage(
-                  netImage: imageUrl,
-                  radius: 100.0,
-                  border: _setBorder(),
-                ),
+          decoration: MyDecoration.circular(
+            width: 2.0,
+            color: Colors.transparent,
+            radius: 100.0,
+          ),
+          child: ClipRRect(
+              borderRadius: MyBorderRadius.circular(radius: 100.0),
+              child: imageUrl == 'default'
+                  ? SvgPicture.asset(AppIcons.personal)
+                  : Image.network(imageUrl, fit: BoxFit.cover)),
         ),
+        Positioned(
+          bottom: 0.0,
+          right: 0.0,
+          child: CircleAvatar(
+            backgroundColor: AppColors.primary,
+            radius: getWidth(21.43),
+            child: SvgPicture.asset(AppIcons.image),
+          ),
+        )
       ],
     );
   }
