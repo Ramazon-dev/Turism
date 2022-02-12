@@ -28,9 +28,9 @@ class ForgotPassword extends StatelessWidget {
             ),
             body: SingleChildScrollView(
               child: Form(
-                key: formKey,
+                key: cubit.formKey,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: MyEdgeInsets.symmetric(h: 20.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -38,25 +38,26 @@ class ForgotPassword extends StatelessWidget {
                         height: getHeight(40),
                       ),
                       const CircularIcon(),
-                      SizedBox(
-                        height: getHeight(30),
+                      MySizedBox(
+                        height: 30.0,
                       ),
                       TextWidgetPassword(
                         text:
                             "Введите свой адрес электронной почты, чтобы получить код подтверждения.",
                       ),
-                      SizedBox(
-                        height: getHeight(30),
+                      MySizedBox(
+                        height: 30.0,
                       ),
                       TextFormFieldWidget(
                         controller: cubit.emailController,
                         hint: 'Адрес электронной почты',
                         inputType: TextInputType.emailAddress,
                         validator: FormValidator.email,
+                        action: TextInputAction.done,
                         // obscureText: true,
                       ),
-                      SizedBox(
-                        height: getHeight(190),
+                      MySizedBox(
+                        height: 190.0,
                       ),
                       ElevatedButtonWidget(
                         onPressed: () {
