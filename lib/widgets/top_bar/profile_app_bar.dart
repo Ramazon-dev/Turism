@@ -50,9 +50,17 @@ class ProfileAppBar extends StatelessWidget {
       ),
       child: PopupMenuButton(
         onSelected: (v) {
-          switch(v) {
-            case 'git' : CustomNavigator().push(const GitInfoPage());
-            break;
+          switch (v) {
+            case 'git':
+              CustomNavigator().push(const GitInfoPage());
+              break;
+
+            case 'hotel':
+              CustomNavigator().push(const GitInfoPage());
+              break;
+            case 'restaurant':
+              CustomNavigator().push(const GitInfoPage());
+              break;
           }
         },
         offset: Offset(0.0, getHeight(53.0)),
