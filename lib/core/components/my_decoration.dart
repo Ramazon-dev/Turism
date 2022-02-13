@@ -35,7 +35,7 @@ class MyDecoration {
 
   static BoxDecoration circular({
     double radius = 5.0,
-    Color color = AppColors.darkCyan,
+    Color color = AppColors.disabled,
     BoxBorder? border,
   }) =>
       BoxDecoration(
