@@ -8,20 +8,27 @@ class AuthServices {
   static Future<bool> signIn(String email, String password) async {
     String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1';
     try {
-      Response res =
-          await Dio().post(baseUrl.toString() + '/auth/login', data: {
+      Uri url = Uri.parse('$baseUrl/auth/login');
+      var headers = {'Content-Type': 'application/json'};
+      var request = http.Request('POST', url);
+      request.body = json.encode({
         "email": email,
         "password": password,
       });
-      if (res.statusCode == 200) {
-        var data = res.data;
+      request.headers.addAll(headers);
+      http.StreamedResponse response = await request.send();
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        // var data = await response.stream.bytesToString();
+        var data = jsonDecode(await response.stream.bytesToString());
         UserModel user = UserModel.fromJson(data['data']['user']);
         await GetStorage().write('token', data['token']);
         await GetStorage().write('user', user.toMap());
         return true;
       } else {
+        print(await response.stream.bytesToString());
         return false;
       }
+
     } catch (e) {
       print("SERVICE AUTH SIGN IN ERROR: $e");
     }
