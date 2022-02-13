@@ -10,7 +10,7 @@ class TextFormFieldWidget extends StatelessWidget {
   bool obscureText;
   FormFieldValidator<String>? validator;
   TextCapitalization capitalization;
-  int? lines;
+  int lines;
 
   TextFormFieldWidget({
     Key? key,
@@ -22,7 +22,7 @@ class TextFormFieldWidget extends StatelessWidget {
     this.obscureText = false,
     this.validator,
     this.capitalization = TextCapitalization.none,
-    this.lines,
+    this.lines = 1,
   }) : super(key: key);
 
   @override

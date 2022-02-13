@@ -26,55 +26,55 @@ class PlacesDetailsPage extends StatelessWidget {
         ],
       ),
       floatingActionButton: _commentButton(),
-      body: Column(
-        children: [
-          Container(
-            height: getHeight(410),
-            width: getWidth(375),
-            decoration: MyDecoration.netImage(netImage: place.media[0]),
-          ),
-          Padding(
-            padding: MyEdgeInsets.all(15.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                RatWidget(rating: place.rating, users: 5),
-                MySizedBox(height: 4.0),
-                Text(
-                  place.name,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                  style: TextWidget.medium(size: 18.0),
-                ),
-                MySizedBox(height: 17.0),
-                _buildLink(AppIcons.call, place.phone,
-                    'tel:${place.phone.replaceAll('-', '')}',
-                    labelColor: AppColors.black),
-                MySizedBox(height: 5.0),
-                _buildLink(
-                  AppIcons.location,
-                  'Расположение на карте',
-                  place.map,
-                  iconColor: AppColors.red,
-                ),
-                SizedBox(
-                  height: getHeight(4),
-                ),
-                _buildLink(AppIcons.link, place.site, place.site),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: getHeight(9.5)),
-                  child: Divider(
-                    thickness: getWidth(1),
-                  ),
-                ),
-                Text(
-                  place.description,
-                  style: TextWidget.regular(height: 2.1),
-                ),
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: getHeight(410),
+              width: getWidth(375),
+              decoration: MyDecoration.netImage(netImage: place.media[0]),
             ),
-          ),
-        ],
+            Padding(
+              padding: MyEdgeInsets.all(15.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  RatWidget(rating: place.rating, users: 5),
+                  MySizedBox(height: 4.0),
+                  Text(
+                    place.name,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: TextWidget.medium(size: 18.0),
+                  ),
+                  MySizedBox(height: 17.0),
+                  _buildLink(AppIcons.call, place.phone,
+                      'tel:${place.phone.replaceAll('-', '')}',
+                      labelColor: AppColors.black),
+                  MySizedBox(height: 10.0),
+                  _buildLink(
+                    AppIcons.location,
+                    'Расположение на карте',
+                    place.map,
+                    iconColor: AppColors.red,
+                  ),
+                  MySizedBox(height: 10.0),
+                  _buildLink(AppIcons.link, place.site, place.site),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: getHeight(9.5)),
+                    child: Divider(
+                      thickness: getWidth(1),
+                    ),
+                  ),
+                  Text(
+                    place.description,
+                    style: TextWidget.regular(height: 2.1),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

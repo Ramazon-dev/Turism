@@ -21,7 +21,7 @@ class GitPage extends StatelessWidget {
               Container(
                 height: getHeight(632),
                 child: ListView.builder(
-                  padding: EdgeInsets.all(0),
+                  padding: const EdgeInsets.all(0),
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
@@ -35,7 +35,7 @@ class GitPage extends StatelessWidget {
                                     price: 150,
                                     rating: 4,
                                     users: 24,
-                                    language: ['uzb', 'eng', 'rus'])));
+                                    language: const ['Uzb', 'Eng', 'Rus'])));
                       },
                       child: MyGitListWidjet(
                           imageUrl:
@@ -44,7 +44,7 @@ class GitPage extends StatelessWidget {
                           price: 150,
                           rating: 4,
                           users: 24,
-                          language: ['uzb', 'eng', 'rus']),
+                          language: const ['Uzb', 'Eng', 'Rus']),
                     );
                   },
                   itemCount: 4,

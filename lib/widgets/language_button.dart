@@ -4,26 +4,42 @@ import 'package:mobileapp/core/constants/app_colors.dart';
 
 class LanguageWidget extends StatelessWidget {
   List language;
+
   LanguageWidget({Key? key, required this.language}) : super(key: key);
-  List<Text>? lang;
+  List<Widget>? lang;
   @override
   Widget build(BuildContext context) {
-    lang = List.generate(language.length, (i) {
-      return Text(
-        '${language[i]}, ',
-        style: TextStyle(color: AppColors.white, fontSize: getWidth(12)),
-      );
-    });
+    lang = List.generate(
+      language.length,
+      (i) {
+        return Row(
+          children: [
+            const CircleAvatar(
+              backgroundColor: AppColors.greyPrice,
+              radius: 3,
+            ),
+            const SizedBox(width: 3),
+            Text(
+              '${language[i]} ',
+              style: TextStyle(
+                color: AppColors.black,
+                fontWeight: FontWeight.w900,
+                fontSize: getWidth(12),
+              ),
+            ),
+            const SizedBox(width: 7),
+          ],
+        );
+      },
+    );
+
     SizeConfig().init(context);
     return Container(
       padding: EdgeInsets.all(getWidth(6)),
-      decoration: BoxDecoration(
-          color: AppColors.greyPrice,
-          borderRadius:
-              BorderRadius.all(Radius.circular(getWidth(getWidth(6))))),
-      child: Row(
-        children: lang!,
-      ),
+      decoration: const BoxDecoration(
+          // color: AppColors.greyPrice,
+          ),
+      child: Row(children: lang!),
     );
   }
 }
