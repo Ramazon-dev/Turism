@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
 
   List<Widget> _pages(HomeCubit cubit) => [
         const GitPage(),
-        const SearchPage(),
+        SearchPage(),
         HomeBody(cubit: cubit),
         const CarPage(),
         const ProfilePage(),
