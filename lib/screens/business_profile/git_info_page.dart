@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/functions/city_list.dart';
+import 'package:mobileapp/cubit/business/git_cubit/git_cubit.dart';
 import 'package:mobileapp/widgets/elevated_button_widget.dart';
 
 class GitInfoPage extends StatelessWidget {
@@ -7,6 +9,18 @@ class GitInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => GitCubit(),
+      child: BlocBuilder<GitCubit, GitState>(
+        builder: (ctx, state) {
+          GitCubit cubit = ctx.watch();
+          return _buildScaffold(cubit);
+        },
+      ),
+    );
+  }
+
+  Scaffold _buildScaffold(GitCubit cubit) {
     return Scaffold(
       appBar: const SimpleAppBar(title: 'Гит.'),
       body: SingleChildScrollView(
@@ -21,8 +35,10 @@ class GitInfoPage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Зиёда Собирова',
-                          style: TextWidget.medium(size: 20.0)),
+                      Text(
+                        'Зиёда Собирова',
+                        style: TextWidget.medium(size: 20.0),
+                      ),
                       MySizedBox(height: 10.0),
                       BlueButton(onPressed: () {}, label: 'Изменить'),
                     ],
@@ -30,30 +46,9 @@ class GitInfoPage extends StatelessWidget {
                 ],
               ),
               MySizedBox(height: 52.82),
-              TextFormFieldWidget(hint: 'Введите номер телефона'),
+              _showForms(cubit),
               MySizedBox(height: 20.0),
-              TextFormFieldWidget(hint: 'Введите номер телефона'),
-              MySizedBox(height: 20.0),
-              TextFormFieldWidget(hint: 'Введите номер телефона'),
-              MySizedBox(height: 20.0),
-              TextFormFieldWidget(hint: 'Информация о себе', lines: 5),
-              MySizedBox(height: 20.0),
-              TextFormFieldWidget(hint: 'Personal information', lines: 5),
-              MySizedBox(height: 20.0),
-              TextFormFieldWidget(hint: 'Shaxsiy ma\'lumot', lines: 5),
-              MySizedBox(height: 20.0),
-              Row(
-                children: [
-                  _setCheckBox('Uzb'),
-                  _setCheckBox('Eng'),
-                ],
-              ),
-              Row(
-                children: [
-                  _setCheckBox('Rus'),
-                  _setCheckBox('Kaz'),
-                ],
-              ),
+              _showLanguages(cubit),
               MySizedBox(height: 30.0),
               ElevatedButtonWidget(
                 onPressed: () {},
@@ -66,13 +61,126 @@ class GitInfoPage extends StatelessWidget {
     );
   }
 
-  Expanded _setCheckBox(String title) => Expanded(
+  Form _showForms(GitCubit cubit) => Form(
+        key: cubit.formKey,
+        child: Column(
+          children: [
+            TextFormFieldWidget(
+              controller: cubit.phoneController,
+              inputType: TextInputType.phone,
+              hint: 'Введите номер телефона',
+            ),
+            MySizedBox(height: 20.0),
+            _dropDownButton(cubit),
+            MySizedBox(height: 20.0),
+            TextFormFieldWidget(
+              inputType: TextInputType.number,
+              controller: cubit.priceController,
+              hint: 'Введите стоимость услуги',
+            ),
+            MySizedBox(height: 20.0),
+            TextFormFieldWidget(
+              controller: cubit.aboutUzController,
+              hint: 'Shaxsiy ma\'lumot',
+              action: TextInputAction.newline,
+              capitalization: TextCapitalization.sentences,
+              inputType: TextInputType.multiline,
+              lines: 5,
+            ),
+            MySizedBox(height: 20.0),
+            TextFormFieldWidget(
+              controller: cubit.aboutEnController,
+              capitalization: TextCapitalization.sentences,
+              hint: 'Personal information',
+              action: TextInputAction.newline,
+              inputType: TextInputType.multiline,
+              lines: 5,
+            ),
+            MySizedBox(height: 20.0),
+            TextFormFieldWidget(
+              controller: cubit.aboutRuController,
+              inputType: TextInputType.multiline,
+              capitalization: TextCapitalization.sentences,
+              action: TextInputAction.newline,
+              hint: 'Shaxsiy ma\'lumot',
+              lines: 5,
+            ),
+          ],
+        ),
+      );
+
+  Column _showLanguages(GitCubit cubit) => Column(
+        children: [
+          Row(
+            children: [
+              _setCheckBox(
+                title: 'Uzb',
+                value: cubit.hasUzb,
+                onChanged: cubit.onUzbPressed,
+              ),
+              _setCheckBox(
+                title: 'Kaz',
+                value: cubit.hasKaz,
+                onChanged: cubit.onKazPressed,
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              _setCheckBox(
+                title: 'Eng',
+                value: cubit.hasEng,
+                onChanged: cubit.onEngPressed,
+              ),
+              _setCheckBox(
+                title: 'Rus',
+                value: cubit.hasRus,
+                onChanged: cubit.onRusPressed,
+              ),
+            ],
+          ),
+        ],
+      );
+
+  Expanded _setCheckBox({
+    required String title,
+    required bool value,
+    required ValueChanged<bool?>? onChanged,
+  }) =>
+      Expanded(
         child: CheckboxListTile(
-          value: false,
+          value: value,
           contentPadding: EdgeInsets.zero,
           controlAffinity: ListTileControlAffinity.leading,
           title: Text(title),
-          onChanged: (v) {},
+          onChanged: onChanged,
         ),
+      );
+
+  Container _dropDownButton(GitCubit cubit) => Container(
+        width: getWidth(375.0),
+        height: getHeight(54.0),
+        padding: MyEdgeInsets.symmetric(h: 18.0),
+        decoration: MyDecoration.circular(
+          radius: 7.0,
+          border: Border.all(color: AppColors.grey),
+          color: Colors.transparent,
+        ),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton<dynamic>(
+            hint: Text(
+              'Выберите город',
+              style: TextWidget.regular(color: AppColors.grey),
+            ),
+            items: CityList.list.map((e) => _setItem(e, cubit)).toList(),
+            value: cubit.city,
+            onChanged: cubit.cityChanged,
+          ),
+        ),
+      );
+
+  DropdownMenuItem _setItem(String item, GitCubit cubit) => DropdownMenuItem(
+        child: Text(item, style: TextWidget.regular(color: AppColors.grey)),
+        value: item,
       );
 }
