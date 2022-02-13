@@ -26,6 +26,9 @@ export 'package:mobileapp/core/components/size_config.dart';
 export 'package:mobileapp/core/components/my_edge_insets.dart';
 export 'package:mobileapp/core/components/my_decoration.dart';
 export 'package:mobileapp/core/components/custom_navigator.dart';
+export 'package:mobileapp/core/components/my_shape.dart';
+export 'package:mobileapp/core/components/my_border_radius.dart';
+
 
 
 // Constants

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/screens/profile/change_info_page.dart';
 import 'package:mobileapp/widgets/cards/profile_info_card.dart';
-import 'package:mobileapp/widgets/drawer_widget.dart';
 import 'package:mobileapp/widgets/elevated_button_widget.dart';
 
 class ProfileAuthPage extends StatefulWidget {
@@ -15,6 +13,7 @@ class ProfileAuthPage extends StatefulWidget {
 // TODO Vaqtincha StatefulWidget'da qilindi. Cubitga ulash kerak.
 // todo bosin aka gazini men sizga iwonaman
 // todo topinchi man kimman
+
 class _ProfileAuthPageState extends State<ProfileAuthPage> {
   bool _isShow = false;
 
