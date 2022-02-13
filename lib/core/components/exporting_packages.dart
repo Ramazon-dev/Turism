@@ -41,6 +41,9 @@ export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:flutter_svg/flutter_svg.dart';
 export 'package:easy_localization/easy_localization.dart';
 export 'package:glassmorphism_ui/glassmorphism_ui.dart';
+export 'package:get_storage/get_storage.dart';
+export 'package:flutter_dotenv/flutter_dotenv.dart';
+
 // Models
 export 'package:mobileapp/models/car_model.dart';
 export 'package:mobileapp/models/hotel_model.dart';

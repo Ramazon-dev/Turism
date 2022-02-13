@@ -4,6 +4,7 @@ class UserModel {
   String? _email;
   String? _password;
   String? _phone;
+  String? _image;
 
   UserModel(String fullName, String email, String password, String phone) {
     _fullName = fullName;
@@ -16,7 +17,8 @@ class UserModel {
     _id = json['id'];
     _fullName = json['fullname'];
     _email = json['email'];
-    _email = json['phone'];
+    _image = json['image'];
+    // _email = json['phone'];
   }
 
   Map<String, dynamic> toMap() => {
@@ -24,6 +26,7 @@ class UserModel {
     'email' : _email,
     'password' : _password,
     'phone' : _phone,
+    'image' : _image,
   };
 
   String get id => _id!;
@@ -33,4 +36,6 @@ class UserModel {
   String get password => _password!;
 
   String get email => _email!;
+
+  String get image => _image!;
 }
