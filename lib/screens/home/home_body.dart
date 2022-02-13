@@ -4,6 +4,8 @@ import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/widgets/category_list.dart';
 
 import 'package:mobileapp/widgets/divider_widgets.dart';
+import 'package:mobileapp/widgets/row_text.dart';
+import 'package:mobileapp/widgets/star_bar.dart';
 import 'package:mobileapp/widgets/text_widgets.dart';
 
 class HomeBody extends StatelessWidget {
@@ -19,51 +21,33 @@ class HomeBody extends StatelessWidget {
         CategoryList(list: MockData.categoryList, cubit: cubit),
         _buildTextWidgetTwo(),
         _showNearby(),
-        const dividerWidget(),
-        _showTur(context),
+        RowTextWidgets(
+            ontab: () {
+              print("bosildi");
+            },
+            text: "Популярные пакеты.",
+            bottomText: "Все"),
+        Container(
+          height: getHeight(155.0),
+          child: ListView.builder(
+              itemCount: 10,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: MyEdgeInsets.all(10.0),
+                  child: Column(children: [Container(
+                    height: getHeight(115.0),
+                    width: getWidth(205.0),
+                    decoration: MyDecoration.netImage(netImage: "https://source.unsplash.com/random/1"),
+                    alignment: Alignment.topRight,
+                    child: StartBar(son: 5.0),
+                  ),Container(height: getHeight(50.0),color: Colors.blue,)],)
+                  
+                );
+              }),
+        )
       ]),
     );
-  }
-
-  GridView _showTur(BuildContext context) {
-    return GridView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: 9,
-        padding: MyEdgeInsets.symmetric(h: 16.0, v: 25.0),
-        gridDelegate: (SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 0.77,
-          crossAxisSpacing: getWidth(8.0),
-          mainAxisSpacing: getHeight(20.0),
-        )),
-        itemBuilder: (context, index) {
-          return Container(
-            decoration: MyDecoration.shadow(color: Colors.black12),
-            height: getHeight(273.0),
-            width: getWidth(165.0),
-            child: Column(children: [
-              Container(
-                height: getHeight(200.0),
-                width: getWidth(165.0),
-                decoration: MyDecoration.netImage(
-                    netImage: "https://source.unsplash.com/random/index1",
-                    radius: 5.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: SvgPicture.asset(
-                        AppIcons.favourite,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ]),
-          );
-        });
   }
 
   TextWidgetTwo _buildTextWidgetTwo() {
@@ -91,11 +75,17 @@ class HomeBody extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Container(
-                      height: getHeight(22.0),
-                      width: getWidth(51.0),
-                      color: Colors.yellow,
+                    StartBar(
+                      son: 5.0,
                     ),
+                    Padding(
+                      padding: MyEdgeInsets.only(top: 90, left: 20),
+                      child: Text(
+                        "Вас ждет путешествие по реке Амирсой!",
+                        style: TextStyle(
+                            fontSize: getWidth(20.0), color: AppColors.white),
+                      ),
+                    )
                   ],
                 ),
               ));
