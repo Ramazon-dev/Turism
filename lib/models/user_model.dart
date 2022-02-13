@@ -24,7 +24,7 @@ class UserModel {
   Map<String, dynamic> toMap() => {
     'fullName' : _fullName,
     'email' : _email,
-    'password' : _password,
+    // 'password' : _password,
     'phone' : _phone,
     'image' : _image,
   };

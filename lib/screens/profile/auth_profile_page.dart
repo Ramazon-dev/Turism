@@ -17,22 +17,20 @@ class ProfileAuthPage extends StatefulWidget {
 // todo topinchi man kimman
 class _ProfileAuthPageState extends State<ProfileAuthPage> {
   bool _isShow = false;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: const SimpleAppBar(title: 'Profile'),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            ProfileAppBar(height: 274.0),
-            _setTransform(child: const ProfileInfoCard()),
-            _setTransform(
-              x: 100.0,
-              child: _buildTextButtonWidget(),
-            ),
-            _setTransform(child: _showChangingPasswordFields(), y: -90.0),
-          ],
-        ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ProfileAppBar(height: 274.0),
+          _setTransform(child: const ProfileInfoCard()),
+          _setTransform(
+            x: 100.0,
+            child: _buildTextButtonWidget(),
+          ),
+          _setTransform(child: _showChangingPasswordFields(), y: -90.0),
+        ],
       ),
     );
   }

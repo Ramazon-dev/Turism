@@ -6,8 +6,8 @@ import 'package:mobileapp/screens/profile/auth_profile_page.dart';
 import 'package:mobileapp/widgets/elevated_button_widget.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
-
+  ProfilePage({Key? key}) : super(key: key);
+  final String token = GetStorage().read('token') ?? '';
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -16,36 +16,42 @@ class ProfilePage extends StatelessWidget {
       child: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
           ProfileCubit cubit = context.watch();
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ElevatedButtonWidget(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProfileAuthPage(),
-                    ),
-                  );
-                },
-                label: "Sign In Page",
-              ),
-              ElevatedButtonWidget(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SignInPage(),
-                    ),
-                  );
-                },
-                label: "My Sign In Page",
-              )
-            ],
-          );
+          return token.isNotEmpty ? const ProfileAuthPage(): _unAuthBody(context);
         },
       ),
     );
+  }
+
+
+
+  Column _unAuthBody(BuildContext context) {
+    return Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            ElevatedButtonWidget(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProfileAuthPage(),
+                  ),
+                );
+              },
+              label: "Sign In Page",
+            ),
+            ElevatedButtonWidget(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SignInPage(),
+                  ),
+                );
+              },
+              label: "My Sign In Page",
+            )
+          ],
+        );
   }
 }
