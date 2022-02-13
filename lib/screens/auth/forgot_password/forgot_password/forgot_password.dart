@@ -11,8 +11,9 @@ import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 class ForgotPassword extends StatelessWidget {
   ForgotPassword({Key? key}) : super(key: key);
 
-  TextEditingController emailController = TextEditingController();
-  var formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
