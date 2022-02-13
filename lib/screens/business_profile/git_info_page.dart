@@ -71,7 +71,7 @@ class GitInfoPage extends StatelessWidget {
               hint: 'Введите номер телефона',
             ),
             MySizedBox(height: 20.0),
-            _dropDownButton(cubit),
+            DropDownWidget(onChanged: cubit.cityChanged, value: cubit.city),
             MySizedBox(height: 20.0),
             TextFormFieldWidget(
               inputType: TextInputType.number,
@@ -155,32 +155,5 @@ class GitInfoPage extends StatelessWidget {
           title: Text(title),
           onChanged: onChanged,
         ),
-      );
-
-  Container _dropDownButton(GitCubit cubit) => Container(
-        width: getWidth(375.0),
-        height: getHeight(54.0),
-        padding: MyEdgeInsets.symmetric(h: 18.0),
-        decoration: MyDecoration.circular(
-          radius: 7.0,
-          border: Border.all(color: AppColors.grey),
-          color: Colors.transparent,
-        ),
-        child: DropdownButtonHideUnderline(
-          child: DropdownButton<dynamic>(
-            hint: Text(
-              'Выберите город',
-              style: TextWidget.regular(color: AppColors.grey),
-            ),
-            items: CityList.list.map((e) => _setItem(e, cubit)).toList(),
-            value: cubit.city,
-            onChanged: cubit.cityChanged,
-          ),
-        ),
-      );
-
-  DropdownMenuItem _setItem(String item, GitCubit cubit) => DropdownMenuItem(
-        child: Text(item, style: TextWidget.regular(color: AppColors.grey)),
-        value: item,
       );
 }

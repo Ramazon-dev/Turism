@@ -7,6 +7,7 @@ class LanguageWidget extends StatelessWidget {
 
   LanguageWidget({Key? key, required this.language}) : super(key: key);
   List<Widget>? lang;
+
   @override
   Widget build(BuildContext context) {
     lang = List.generate(
