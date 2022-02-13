@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/screens/home/drawer_home.dart';
 import 'package:mobileapp/widgets/lets_go.dart';
 
 class OnBoardingPage extends StatefulWidget {
@@ -112,6 +111,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       });
     }
     if (_indicatorValue >= 3.0) {
+      await GetStorage().write('hasComeIn', true);
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => const HomeScreen()),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/screens/business_profile/git_info_page.dart';
 import 'package:mobileapp/screens/hotel/hotel_page.dart';
+import 'package:mobileapp/screens/other/other_page.dart';
 import 'package:mobileapp/screens/place/place_page.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -17,6 +18,7 @@ class DrawerWidget extends StatelessWidget {
           _setCategory('Currency', AppIcons.dollar, const HotelListPage()),
           _setCategory('Places', AppIcons.location, const PlacePage()),
           _setCategory('Git', AppIcons.location, const GitInfoPage()),
+          _setCategory('Other', AppIcons.arrowBack, const OtherPage()),
         ],
       ),
     );
