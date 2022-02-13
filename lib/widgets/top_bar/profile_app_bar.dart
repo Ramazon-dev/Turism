@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/components/my_border_radius.dart';
+import 'package:mobileapp/screens/business_profile/git_info_page.dart';
 
 class ProfileAppBar extends StatelessWidget {
   double height;
@@ -30,8 +31,40 @@ class ProfileAppBar extends StatelessWidget {
             'Profile',
             style: TextWidget.medium(color: AppColors.white, size: 18.0),
           ),
+          const Spacer(),
+          _popUpButton(),
         ],
       ),
     );
   }
+
+  Container _popUpButton() {
+    return Container(
+      margin: MyEdgeInsets.symmetric(h: 20.0),
+      alignment: Alignment.center,
+      height: getHeight(38.0),
+      width: getWidth(68.0),
+      decoration: MyDecoration.circular(
+        color: AppColors.white,
+        radius: 32.0,
+      ),
+      child: PopupMenuButton(
+        onSelected: (v) {
+          switch(v) {
+            case 'git' : CustomNavigator().push(const GitInfoPage());
+            break;
+          }
+        },
+        offset: Offset(0.0, getHeight(53.0)),
+        child: const Text('Бизнес аккаунт', textAlign: TextAlign.center),
+        itemBuilder: (v) => _list,
+      ),
+    );
+  }
+
+  final List<PopupMenuItem> _list = [
+    const PopupMenuItem(value: 'git', child: Text("Гит.")),
+    const PopupMenuItem(value: 'hotel', child: Text("Отель.")),
+    const PopupMenuItem(value: 'restaurant', child: Text("Ресторан.")),
+  ];
 }
