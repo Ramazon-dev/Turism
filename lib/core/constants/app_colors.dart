@@ -15,6 +15,7 @@ class AppColors {
   static const Color disabled = Color(0xFFD8D8D8);
   static const Color greyPrice = Color(0xFF72978F);
   static const Color darkBorder = Color(0xFFBCBCBC);
+  static const Color starAreaColor = Color(0xffFFFFFF);
 
   static const LinearGradient linearGradient = LinearGradient(
     colors: [linear, primary],
