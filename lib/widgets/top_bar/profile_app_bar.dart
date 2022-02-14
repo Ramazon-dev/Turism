@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/components/my_border_radius.dart';
 import 'package:mobileapp/screens/business_profile/git_info_page.dart';
 
 class ProfileAppBar extends StatelessWidget {
@@ -50,9 +49,17 @@ class ProfileAppBar extends StatelessWidget {
       ),
       child: PopupMenuButton(
         onSelected: (v) {
-          switch(v) {
-            case 'git' : CustomNavigator().push(const GitInfoPage());
-            break;
+          switch (v) {
+            case 'git':
+              CustomNavigator().push(const GitInfoPage());
+              break;
+
+            case 'hotel':
+              CustomNavigator().push(const GitInfoPage());
+              break;
+            case 'restaurant':
+              CustomNavigator().push(const GitInfoPage());
+              break;
           }
         },
         offset: Offset(0.0, getHeight(53.0)),

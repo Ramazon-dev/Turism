@@ -1,8 +1,6 @@
 class Hotel {
   String? _id;
-  String? _nameUz;
-  String? _nameEn;
-  String? _nameRu;
+  String? _name;
   List<String>? _media;
   String? _informUz;
   String? _informEn;
@@ -18,9 +16,7 @@ class Hotel {
 
   Hotel(
       {String? id,
-      String? nameUz,
-      String? nameEn,
-      String? nameRu,
+      String? name,
       List<String>? media,
       String? informUz,
       String? informEn,
@@ -36,14 +32,8 @@ class Hotel {
     if (id != null) {
       _id = id;
     }
-    if (nameUz != null) {
-      _nameUz = nameUz;
-    }
-    if (nameEn != null) {
-      _nameEn = nameEn;
-    }
-    if (nameRu != null) {
-      _nameRu = nameRu;
+    if (name != null) {
+      _name = name;
     }
     if (media != null) {
       _media = media;
@@ -85,11 +75,7 @@ class Hotel {
 
   String get id => _id!;
 
-  String get nameUz => _nameUz!;
-
-  String get nameEn => _nameEn!;
-
-  String get nameRu => _nameRu!;
+  String get name => _name!;
 
   List<String> get media => _media!;
 
@@ -117,9 +103,7 @@ class Hotel {
 
   Hotel.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
-    _nameUz = json['name_uz'];
-    _nameEn = json['name_en'];
-    _nameRu = json['name_ru'];
+    _name = json['name'];
     _media = json['media'].cast<String>();
     _informUz = json['inform_uz'];
     _informEn = json['inform_en'];
@@ -135,11 +119,9 @@ class Hotel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = {};
     data['id'] = _id;
-    data['name_uz'] = _nameUz;
-    data['name_en'] = _nameEn;
-    data['name_ru'] = _nameRu;
+    data['name'] = _name;
     data['media'] = _media;
     data['inform_uz'] = _informUz;
     data['inform_en'] = _informEn;
