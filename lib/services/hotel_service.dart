@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:mobileapp/models/hotel_model.dart';
 import 'package:mobileapp/services/image_pick_service.dart';
 
@@ -76,7 +77,36 @@ class HotelService {
     return false;
   }
 
-  Future createHotel(HotelModel hotel) async {
+  // upload(XFile imageFile) async {
+  //     // open a bytestream
+  //     var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+  //     // get file length
+  //     var length = await imageFile.length();
+
+  //     // string to uri
+  //     var uri = Uri.parse("http://ip:8082/composer/predict");
+
+  //     // create multipart request
+  //     var request =  http.MultipartRequest("POST", uri);
+
+  //     // multipart that takes file
+  //     var multipartFile =  http.MultipartFile('file', stream, length,
+  //         filename: basename(imageFile.path));
+
+  //     // add file to multipart
+  //     request.files.add(multipartFile);
+
+  //     // send
+  //     var response = await request.send();
+  //     print(response.statusCode);
+
+  //     // listen for response
+  //     response.stream.transform(utf8.decoder).listen((value) {
+  //       print(value);
+  //     });
+  //   }
+
+  Future<bool> createHotel(HotelModel hotel) async {
     String token = //await GetStorage().read('token');
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjMzk5ZjdjNi04NDViLTQ3ZjItYTZkNS1lMWJjZDY0OTNjYTUiLCJpYXQiOjE2NDQzODE1NTgsImV4cCI6MTY2MTY2MTU1OH0.mRAiavg0cMQ05VHZH_5MR42q2m-cI1fHszCq-QUpdvo';
 
@@ -95,12 +125,12 @@ class HotelService {
         'category': 'd11367cb-1e62-419d-b2a1-6a81732f457b',
         'tell': '5555'
       });
-      if (imageList.isNotEmpty) {
-        for (var item in imageList) {
-          request.files.add(
-              await http.MultipartFile.fromPath('media', item.path.toString()));
-        }
-      }
+      // if (imageList.isNotEmpty) {
+      //   for (var item in imageList) {
+      //     request.files.add(
+      //         await http.MultipartFile.fromPath('media', item.path.toString()));
+      //   }
+      // }
 
       request.files.add(await http.MultipartFile.fromPath('media',
           '/C:/Users/Zuhriddnin/Desktop/fc25d145eb2193df6950b34a8a9e9733.jpg'));
@@ -108,26 +138,6 @@ class HotelService {
 
       http.StreamedResponse response = await request.send();
 
-//       var headers = {'token': token};
-//       var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/hotel'));
-//       request.fields.addAll({
-//         'name': hotel.name.toString(),
-//         'inform_uz': hotel.informUz.toString(),
-//         'inform_en': hotel.informEn.toString(),
-//         'inform_ru': hotel.informRu.toString(),
-//         'karta': hotel.karta.toString(),
-//         'site': hotel.site.toString(),
-//         'tell': hotel.tell,
-//         'category_id': hotel.categoryId.toString()
-//       });
-// //'media', e.toString();
-//       hotel.media.map((e) async =>  request.files.add(await http.MultipartFile.fromPath('media', e.toString())));
-//       request.files.add(await http.MultipartFile.fromPath('media',
-//           '/C:/Users/Zuhriddnin/Desktop/fc25d145eb2193df6950b34a8a9e9733.jpg'));
-//       request.files.add(await http.MultipartFile.fromPath('media',
-//           '/C:/Users/Zuhriddnin/Desktop/Home-Alone-house-floor-plan-upstairs1.jpg'));
-//       request.headers.addAll(headers);
-//       http.StreamedResponse response = await request.send();
 //*************************************************
       // var formData = FormData.fromMap({
       //   'name': hotel.name.toString(),
