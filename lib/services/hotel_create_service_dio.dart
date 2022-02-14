@@ -15,8 +15,9 @@ class HotelDioService {
       'informRu': hotel.name.toString(),
       'karta': hotel.name.toString(),
       'city': hotel.name.toString(),
-      'site': hotel.name.toString(),
+      // 'site': hotel.name.toString(),
       'tell': hotel.name.toString(),
+      //fsdfsdf
       'category': 'd11367cb-1e62-419d-b2a1-6a81732f457b',
       // 'tell': '5555'
       // 'file':
