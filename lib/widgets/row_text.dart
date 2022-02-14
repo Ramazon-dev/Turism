@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 
 class RowTextWidgets extends StatelessWidget {
-  final VoidCallback ontab;
+  final VoidCallback ontap;
   String text;
   String bottomText;
    RowTextWidgets({
-     required this.ontab,
+     required this.ontap,
     required this.text,
     required this.bottomText,
     Key? key,
@@ -27,7 +27,7 @@ class RowTextWidgets extends StatelessWidget {
         Padding(
           padding: MyEdgeInsets.only(right: 15.0),
           child: InkWell(
-            onTap: ontab,
+            onTap: ontap,
             child: Text(
               bottomText,
               style: TextStyle(fontSize: getWidth(18.0,),color: AppColors.linear),
