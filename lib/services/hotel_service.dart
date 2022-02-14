@@ -1,6 +1,9 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
+import 'package:mobileapp/models/hotel_model.dart';
+import 'package:mobileapp/services/image_pick_service.dart';
 
 class HotelService {
   String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
@@ -71,6 +74,95 @@ class HotelService {
       print("GitComment Error: $e");
     }
     return false;
+  }
+
+  Future createHotel(HotelModel hotel) async {
+    String token = //await GetStorage().read('token');
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjMzk5ZjdjNi04NDViLTQ3ZjItYTZkNS1lMWJjZDY0OTNjYTUiLCJpYXQiOjE2NDQzODE1NTgsImV4cCI6MTY2MTY2MTU1OH0.mRAiavg0cMQ05VHZH_5MR42q2m-cI1fHszCq-QUpdvo';
+
+    try {
+      var headers = {'token': token};
+      var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/hotel'));
+      request.fields.addAll({
+        'name': hotel.name.toString(),
+        'informUz': hotel.name.toString(),
+        'informEn': hotel.name.toString(),
+        'informRu': hotel.name.toString(),
+        'karta': hotel.name.toString(),
+        'city': hotel.name.toString(),
+        'site': hotel.name.toString(),
+        'tell': hotel.name.toString(),
+        'category': 'd11367cb-1e62-419d-b2a1-6a81732f457b',
+        'tell': '5555'
+      });
+      if (imageList.isNotEmpty) {
+        for (var item in imageList) {
+          request.files.add(
+              await http.MultipartFile.fromPath('media', item.path.toString()));
+        }
+      }
+
+      request.files.add(await http.MultipartFile.fromPath('media',
+          '/C:/Users/Zuhriddnin/Desktop/fc25d145eb2193df6950b34a8a9e9733.jpg'));
+      request.headers.addAll(headers);
+
+      http.StreamedResponse response = await request.send();
+
+//       var headers = {'token': token};
+//       var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/hotel'));
+//       request.fields.addAll({
+//         'name': hotel.name.toString(),
+//         'inform_uz': hotel.informUz.toString(),
+//         'inform_en': hotel.informEn.toString(),
+//         'inform_ru': hotel.informRu.toString(),
+//         'karta': hotel.karta.toString(),
+//         'site': hotel.site.toString(),
+//         'tell': hotel.tell,
+//         'category_id': hotel.categoryId.toString()
+//       });
+// //'media', e.toString();
+//       hotel.media.map((e) async =>  request.files.add(await http.MultipartFile.fromPath('media', e.toString())));
+//       request.files.add(await http.MultipartFile.fromPath('media',
+//           '/C:/Users/Zuhriddnin/Desktop/fc25d145eb2193df6950b34a8a9e9733.jpg'));
+//       request.files.add(await http.MultipartFile.fromPath('media',
+//           '/C:/Users/Zuhriddnin/Desktop/Home-Alone-house-floor-plan-upstairs1.jpg'));
+//       request.headers.addAll(headers);
+//       http.StreamedResponse response = await request.send();
+//*************************************************
+      // var formData = FormData.fromMap({
+      //   'name': hotel.name.toString(),
+      //   'inform_uz': hotel.informUz.toString(),
+      //   'inform_en': hotel.informEn.toString(),
+      //   'inform_ru': hotel.informRu.toString(),
+      //   'karta': hotel.karta.toString(),
+      //   'site': hotel.site.toString(),
+      //   'tell': hotel.tell,
+      //   'category_id': hotel.categoryId.toString(),
+      //   'files': [
+      //     // rasmlani folderdan yozvoladigan funksiya bo'lish kerak avval
+      //     await MultipartFile.fromFile('media', filename: 'text1.txt'),
+      //     await MultipartFile.fromFile('./text2.txt', filename: 'text2.txt'),
+      //   ]
+      // });
+      // var response = await Dio().post("$baseUrl/hotel", data: formData);
+
+      // .then((response) {
+      //   var jsonResponse = jsonDecode(response.data['message']);
+
+      //  var averageGrindSize = jsonResponse['average_particle_size'];
+      // }).catchError((error) => print(error));
+
+      if (response.statusCode == 200) {
+        print(await response.stream.bytesToString());
+        return true;
+      } else {
+        print(response.reasonPhrase);
+        return false;
+      }
+    } catch (e) {
+      print(e);
+      return false;
+    }
   }
 
   Future<bool> addHotelRating({
