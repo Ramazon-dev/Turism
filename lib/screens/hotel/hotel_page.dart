@@ -54,7 +54,7 @@ class HotelListPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  hotel.nameUz,
+                  hotel.name,
                   style: TextWidget.medium(color: AppColors.white),
                 ),
                 Text(

@@ -14,7 +14,7 @@ class ResHotelDetailsPage extends StatelessWidget {
     SizeConfig().init(context);
 
     return Scaffold(
-      appBar: SimpleAppBar(title: hotel.nameUz),
+      appBar: SimpleAppBar(title: hotel.name),
       body: Column(
         children: [
           Center(
@@ -52,7 +52,7 @@ class ResHotelDetailsPage extends StatelessWidget {
                         MySizedBox(
                           width: 178.0,
                           child: Text(
-                            hotel.nameUz,
+                            hotel.name,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: TextWidget.medium(),
