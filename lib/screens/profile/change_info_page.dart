@@ -14,7 +14,8 @@ class ChangingProfilePage extends StatelessWidget {
           ProfileAppBar(),
           Expanded(
             child: Padding(
-              padding: MyEdgeInsets.symmetric(h: 37.0,v: 54.0),
+              // padding: MyEdgeInsets.symmetric(h: 37.0,v: 54.0),
+              padding: EdgeInsets.symmetric(horizontal: 37.0.w, vertical: 54.0.h),
               child: Column(
                 children: [
                   ProfileCircleAvatar(imageUrl: 'default', height: 144.55),

@@ -19,6 +19,8 @@ export 'package:mobileapp/widgets/top_bar/profile_app_bar.dart';
 export 'package:mobileapp/widgets/buttons/blue_button.dart';
 export 'package:mobileapp/widgets/buttons/text_button_widget.dart';
 export 'package:mobileapp/widgets/drop_down_widget.dart';
+export 'package:mobileapp/widgets/elevated_button_widget.dart';
+
 
 
 // Components
