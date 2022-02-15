@@ -29,6 +29,8 @@ export 'package:mobileapp/core/components/custom_navigator.dart';
 export 'package:mobileapp/core/components/my_shape.dart';
 export 'package:mobileapp/core/components/my_border_radius.dart';
 
+// Extensions
+export 'package:mobileapp/core/extension/size_extension.dart';
 
 
 // Constants
