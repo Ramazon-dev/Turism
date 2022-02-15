@@ -8,7 +8,8 @@ class HotelCubit extends Cubit<HotelState> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _phoneController = TextEditingController();
-  // final TextEditingController _cityController = TextEditingController();
+  final TextEditingController _websiteController = TextEditingController();
+  final TextEditingController _mapLinkController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _aboutUzController = TextEditingController();
   final TextEditingController _aboutEnController = TextEditingController();
@@ -16,31 +17,6 @@ class HotelCubit extends Cubit<HotelState> {
 
   String _city = 'Tashkent';
 
-
-  bool _hasEng = false;
-  bool _hasUzb = false;
-  bool _hasRus = false;
-  bool _hasKaz = false;
-
-  void onEngPressed(bool? value) {
-    _hasEng = value!;
-    emit(HotelInitial());
-  }
-
-  void onRusPressed(bool? value) {
-    _hasRus = value!;
-    emit(HotelInitial());
-  }
-
-  void onUzbPressed(bool? value) {
-    _hasUzb = value!;
-    emit(HotelInitial());
-  }
-
-  void onKazPressed(bool? value) {
-    _hasKaz = value!;
-    emit(HotelInitial());
-  }
 
   void cityChanged(dynamic value) {
     _city = value;
@@ -51,11 +27,17 @@ class HotelCubit extends Cubit<HotelState> {
 
   }
 
-  void onSavePressed() {}
+  void onSavePressed() {
+    // Agar validate bo'lgan bo'lsa
+    if(_formKey.currentState!.validate()) {
+
+    }
+  }
 
   TextEditingController get phoneController => _phoneController;
 
-  // TextEditingController get cityController => _cityController;
+
+  TextEditingController get websiteController => _websiteController;
 
   TextEditingController get priceController => _priceController;
 
@@ -67,13 +49,7 @@ class HotelCubit extends Cubit<HotelState> {
 
   GlobalKey<FormState> get formKey => _formKey;
 
-  bool get hasEng => _hasEng;
-
-  bool get hasUzb => _hasUzb;
-
-  bool get hasRus => _hasRus;
-
-  bool get hasKaz => _hasKaz;
-
   String get city => _city;
+
+  TextEditingController get mapLinkController => _mapLinkController;
 }
