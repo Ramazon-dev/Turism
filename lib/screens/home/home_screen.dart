@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/cubit/home_cubit/cubit/home_cubit.dart';
-import 'package:mobileapp/widgets/appbar_origin.dart';
+import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
+import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:mobileapp/widgets/drawer_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,19 +10,16 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    CustomNavigator().init(context);
     return BlocProvider(
       create: (_) => HomeCubit(),
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           HomeCubit cubit = context.watch();
           return Scaffold(
-            appBar: AppBarOrigin(
-              actions: SvgPicture.asset(AppIcons.language),
-              actions2: SvgPicture.asset(AppIcons.dollar),
-              
-            ),
-            drawer: DrawerDiwget(),
-            body: _pages()[cubit.currentIndex],
+            appBar: _appBarList()[cubit.currentIndex],
+            drawer: const DrawerWidget(),
+            body: _pages(cubit)[cubit.currentIndex],
             bottomNavigationBar: BottomNavBarWidget(
               onTap: cubit.onPageChanged,
               currentIndex: cubit.currentIndex,
@@ -33,11 +30,31 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  List<Widget> _pages() => [
+  List<Widget> _pages(HomeCubit cubit) => [
         const GitPage(),
-        const SearchPage(),
-        const HomeBody(),
+        SearchPage(),
+        HomeBody(cubit: cubit),
         const CarPage(),
-        const ProfilePage(),
+        ProfilePage(),
+      ];
+
+  List<PreferredSizeWidget?> _appBarList() => [
+        AppBarOrigin(
+          actions: SvgPicture.asset(AppIcons.language),
+          actions2: SvgPicture.asset(AppIcons.dollar),
+        ),
+        AppBarOrigin(
+          actions: SvgPicture.asset(AppIcons.language),
+          actions2: SvgPicture.asset(AppIcons.dollar),
+        ),
+        AppBarOrigin(
+          actions: SvgPicture.asset(AppIcons.language),
+          actions2: SvgPicture.asset(AppIcons.dollar),
+        ),
+        AppBarOrigin(
+          actions: SvgPicture.asset(AppIcons.language),
+          actions2: SvgPicture.asset(AppIcons.dollar),
+        ),
+        null,
       ];
 }

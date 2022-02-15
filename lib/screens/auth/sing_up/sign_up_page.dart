@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mobileapp/core/components/custom_navigator.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/functions/text_form_field_validator.dart';
 import 'package:mobileapp/cubit/auth/sign_up_cubit/sign_up_cubit.dart';
@@ -8,7 +7,7 @@ import 'package:mobileapp/screens/auth/widgets/text_widget.dart';
 import 'package:mobileapp/widgets/elevated_button_widget.dart';
 
 class SignUpPage extends StatelessWidget {
-  SignUpPage({Key? key}) : super(key: key);
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class SignUpPage extends StatelessWidget {
           SignUpCubit cubit = ctx.watch();
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: AppColors.white,
+              backgroundColor: Colors.transparent,
               title: const Text(
                 'Назад',
                 style: TextStyle(
@@ -65,6 +64,7 @@ class SignUpPage extends StatelessWidget {
                         hint: 'Password',
                         obscureText: true,
                         validator: FormValidator.password,
+                        action: TextInputAction.done,
                       ),
                       MySizedBox(height: 10.0),
                       CheckboxListTile(
@@ -106,12 +106,16 @@ class SignUpPage extends StatelessWidget {
                                   style: TextStyle(color: AppColors.blue),
                                 ),
                                 onPressed: () {
+<<<<<<< HEAD
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => SignInPage(),
                                     ),
                                   );
+=======
+                                  CustomNavigator().push(SignInPage());
+>>>>>>> 4902097d0ae3e20b500a086c11fe3145f772ed26
                                 },
                               ),
                             ),

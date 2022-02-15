@@ -22,8 +22,6 @@ class AppBarOrigin extends StatelessWidget with PreferredSizeWidget {
       actions: [
         actions,
         const SizedBox(width: 10),
-        actions2,
-        const SizedBox(width: 10),
       ],
       title: Text(text),
       backgroundColor: color,

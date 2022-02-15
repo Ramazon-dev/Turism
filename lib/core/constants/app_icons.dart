@@ -16,4 +16,7 @@ class AppIcons {
   static const String favourite = 'assets/icons/favourite.svg';
   static const String link = 'assets/icons/link.svg';
   static const String location = 'assets/icons/location.svg';
+  static const String image = 'assets/icons/image.svg';
+  static const String edit = 'assets/icons/edit.svg';
+  static const String star = 'assets/icons/star.svg';
 }

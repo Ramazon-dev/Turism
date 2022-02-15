@@ -14,5 +14,6 @@ void choose() async {
   if (file != null) {
     haveImg = true;
     imageList.add(file);
+    print(imageList);
   }
 }

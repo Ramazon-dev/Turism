@@ -1,5 +1,9 @@
 class HotelModel {
   String? _name;
+class Hotel {
+  String? _id;
+  String? _name;
+  List<String>? _media;
   String? _informUz;
   String? _informEn;
   String? _informRu;
@@ -12,6 +16,15 @@ class HotelModel {
 
   HotelModel(
       {String? name,
+  String? _date;
+  String? _categoryId;
+  int? _reyting;
+  int? _users;
+
+  Hotel(
+      {String? id,
+      String? name,
+      List<String>? media,
       String? informUz,
       String? informEn,
       String? informRu,
@@ -23,6 +36,19 @@ class HotelModel {
       List<String>? media}) {
     if (name != null) {
       _name = name;
+    }
+      String? date,
+      String? categoryId,
+      int? reyting,
+      int? users}) {
+    if (id != null) {
+      _id = id;
+    }
+    if (name != null) {
+      _name = name;
+    }
+    if (media != null) {
+      _media = media;
     }
     if (informUz != null) {
       _informUz = informUz;
@@ -45,30 +71,70 @@ class HotelModel {
     if (tell != null) {
       _tell = tell;
     }
+    if (date != null) {
+      _date = date;
+    }
     if (categoryId != null) {
       _categoryId = categoryId;
     }
-    if (media != null) {
-      _media = media;
+    if (reyting != null) {
+      _reyting = reyting;
+    }
+    if (users != null) {
+      _users = users;
     }
   }
 
-  HotelModel.fromJson(Map<String, dynamic> json) {
+  String get id => _id!;
+
+  String get name => _name!;
+
+  List<String> get media => _media!;
+
+  String get informUz => _informUz!;
+
+  String get informEn => _informEn!;
+
+  String get informRu => _informRu!;
+
+  String get karta => _karta!;
+
+  String get city => _city!;
+
+  String get site => _site!;
+
+  List<String> get tell => _tell!;
+
+  String get date => _date!;
+
+  String get categoryId => _categoryId!;
+
+  int get reyting => _reyting!;
+
+  int get users => _users!;
+
+  Hotel.fromJson(Map<String, dynamic> json) {
+    _id = json['id'];
     _name = json['name'];
+    _media = json['media'].cast<String>();
     _informUz = json['inform_uz'];
     _informEn = json['inform_en'];
     _informRu = json['inform_ru'];
     _karta = json['karta'];
     _city = json['city'];
     _site = json['site'];
-    _tell = json['tell'];
+    _tell = json['tell'].cast<String>();
+    _date = json['date'];
     _categoryId = json['category_id'];
-    _media = json['media'].cast<String>();
+    _reyting = json['reyting'];
+    _users = json['users'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = {};
+    data['id'] = _id;
     data['name'] = _name;
+    data['media'] = _media;
     data['inform_uz'] = _informUz;
     data['inform_en'] = _informEn;
     data['inform_ru'] = _informRu;
@@ -76,19 +142,10 @@ class HotelModel {
     data['city'] = _city;
     data['site'] = _site;
     data['tell'] = _tell;
+    data['date'] = _date;
     data['category_id'] = _categoryId;
-    data['media'] = _media;
+    data['reyting'] = _reyting;
+    data['users'] = _users;
     return data;
   }
-
-  String? get name => _name;
-  String? get informUz => _informUz;
-  String? get informEn => _informEn;
-  String? get informRu => _informRu;
-  String? get karta => _karta;
-  String? get city => _city;
-  String? get site => _site;
-  List<String>? get tell => _tell;
-  String? get categoryId => _categoryId;
-  List<String>? get media => _media;
 }

@@ -2,24 +2,26 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
-import 'package:image_picker/image_picker.dart';
-import 'package:mobileapp/models/hotel_model.dart';
-import 'package:mobileapp/services/image_pick_service.dart';
+import 'package:mobileapp/core/components/exporting_packages.dart';
 
 class HotelService {
   String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
 
-  Future fetchHotelsByCity(String cityName) async {
+  Future<List<Hotel>> fetchHotelsByCity(String cityName) async {
     try {
       var response = await http
           .get(Uri.parse("$baseUrl/hotel"), headers: {"city": cityName});
       if (response.statusCode == 200) {
-        return jsonDecode(response.body)['message'];
+        List<Hotel> hotelList = (jsonDecode(response.body)['data'] as List)
+            .map((e) => Hotel.fromJson(e))
+            .toList();
+        return hotelList;
       } else {
         return jsonDecode(response.body)['message'];
       }
     } catch (e) {
-      return e;
+      List<Hotel> h = [];
+      return h;
     }
   }
 

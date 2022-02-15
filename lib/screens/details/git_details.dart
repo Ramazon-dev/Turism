@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/widgets/appbar_origin.dart';
+import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 
 import 'package:mobileapp/widgets/contact_widget.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
@@ -67,23 +67,18 @@ class GitDetailsPage extends StatelessWidget {
                             image: NetworkImage(imageurl), fit: BoxFit.cover)),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            DescriptionWidget(
-                                name: name,
-                                price: price,
-                                rating: rating,
-                                users: users),
-                            LanguageWidget(language: language),
-                          ],
+                        DescriptionWidget(
+                          name: name,
+                          price: price,
+                          rating: rating,
+                          users: users,
                         ),
+                        LanguageWidget(language: language),
                         SizedBox(
                           height: getHeight(28),
                         ),
@@ -95,7 +90,7 @@ class GitDetailsPage extends StatelessWidget {
                             fontFamily: 'Roboto',
                           ),
                         ),
-                        ContactWidget(),
+                        const ContactWidget(),
                       ],
                     ),
                   )
