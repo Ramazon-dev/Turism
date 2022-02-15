@@ -19,6 +19,9 @@ export 'package:mobileapp/widgets/top_bar/profile_app_bar.dart';
 export 'package:mobileapp/widgets/buttons/blue_button.dart';
 export 'package:mobileapp/widgets/buttons/text_button_widget.dart';
 export 'package:mobileapp/widgets/drop_down_widget.dart';
+export 'package:mobileapp/widgets/elevated_button_widget.dart';
+export 'package:mobileapp/widgets/image_setter.dart';
+
 
 
 // Components
@@ -29,6 +32,8 @@ export 'package:mobileapp/core/components/custom_navigator.dart';
 export 'package:mobileapp/core/components/my_shape.dart';
 export 'package:mobileapp/core/components/my_border_radius.dart';
 
+// Extensions
+export 'package:mobileapp/core/extension/size_extension.dart';
 
 
 // Constants
