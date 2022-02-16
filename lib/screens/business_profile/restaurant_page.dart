@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/business/restourant_cubit/restarant_cubit.dart';
 
-class InputHotelPage extends StatelessWidget {
-  const InputHotelPage({Key? key}) : super(key: key);
+class RestaurantPage extends StatelessWidget {
+  const RestaurantPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class InputHotelPage extends StatelessWidget {
         TextFormFieldWidget(
           controller: cubit.phoneController,
           inputType: TextInputType.text,
-          hint: 'Название отеля',
+          hint: 'Название ресторан',
           capitalization: TextCapitalization.sentences,
         ),
         MySizedBox(height: 20.0),
@@ -58,6 +58,8 @@ class InputHotelPage extends StatelessWidget {
           hint: 'Введите номер телефона',
         ),
         MySizedBox(height: 20.0),
+        DropDownWidget(onChanged: cubit.cityChanged, value: cubit.city),
+        SizedBox(height: 20.0.h),
         DropDownWidget(onChanged: cubit.cityChanged, value: cubit.city),
         MySizedBox(height: 20.0),
         TextFormFieldWidget(

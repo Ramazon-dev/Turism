@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/screens/business_profile/git_info_page.dart';
 import 'package:mobileapp/screens/business_profile/input_hotel_page.dart';
+import 'package:mobileapp/screens/business_profile/restaurant_page.dart';
 
 class ProfileAppBar extends StatelessWidget {
   double height;
@@ -59,7 +60,7 @@ class ProfileAppBar extends StatelessWidget {
               CustomNavigator().push(const InputHotelPage());
               break;
             case 'restaurant':
-              CustomNavigator().push(const GitInfoPage());
+              CustomNavigator().push(const RestaurantPage());
               break;
           }
         },
