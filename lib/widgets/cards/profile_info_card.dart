@@ -23,7 +23,7 @@ class ProfileInfoCard extends StatelessWidget {
             Text('sobirovaziyoda@gmail.com',
                 style: TextWidget.medium(color: AppColors.grey)),
             MySizedBox(height: 15.0),
-            BlueButton(onPressed: _onPressed, label: 'Изменить'),
+            BlueButton(onPressed: _onPressed, label: LocaleKeys.edit.tr()),
           ],
         ),
       ),

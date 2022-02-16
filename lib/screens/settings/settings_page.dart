@@ -15,7 +15,7 @@ class _SettingsPageState extends State<SettingsPage> {
     Locale currentLocale = context.locale;
     print(currentLocale);
     return Scaffold(
-      appBar: const SimpleAppBar(title: 'settings'),
+      appBar: SimpleAppBar(title: LocaleKeys.settings.tr()),
       body: Padding(
         padding: MyEdgeInsets.all(30.0),
         child: Column(
@@ -42,7 +42,6 @@ class _SettingsPageState extends State<SettingsPage> {
                             : AppColors.lightGrey,
                         child: SizedBox(
                           height: 60.0.h,
-
                           child: Center(
                             child: Text(
                               locale['title'],
@@ -67,24 +66,24 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Container _buildContainer(Locale currentLocale, Map<String, dynamic> locale) {
     return Container(
-                    height: 60.0.h,
-                    width: 375.0.w,
-                    alignment: Alignment.center,
-                    decoration: MyDecoration.circular(
-                      color: currentLocale == locale['locale']
-                          ? AppColors.primary
-                          : AppColors.lightGrey,
-                    ),
-                    child: Text(
-                      locale['title'],
-                      style: TextWidget.medium(
-                        size: 20.0,
-                        color: locale['locale'] == currentLocale
-                            ? AppColors.white
-                            : AppColors.grey,
-                      ),
-                    ),
-                  );
+      height: 60.0.h,
+      width: 375.0.w,
+      alignment: Alignment.center,
+      decoration: MyDecoration.circular(
+        color: currentLocale == locale['locale']
+            ? AppColors.primary
+            : AppColors.lightGrey,
+      ),
+      child: Text(
+        locale['title'],
+        style: TextWidget.medium(
+          size: 20.0,
+          color: locale['locale'] == currentLocale
+              ? AppColors.white
+              : AppColors.grey,
+        ),
+      ),
+    );
   }
 
   List<Map<String, dynamic>> _locales() => [

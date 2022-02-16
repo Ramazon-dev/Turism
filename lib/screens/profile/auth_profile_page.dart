@@ -1,13 +1,7 @@
-import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:http_parser/http_parser.dart';
-import 'package:mime/mime.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/services/image_pick_service.dart';
 import 'package:mobileapp/widgets/cards/profile_info_card.dart';
-import 'package:http/http.dart' as http;
 
 class ProfileAuthPage extends StatefulWidget {
   const ProfileAuthPage({Key? key}) : super(key: key);
@@ -67,20 +61,20 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
               child: Column(
                 children: [
                   TextFormFieldWidget(
-                    hint: 'Первый пароль',
+                    hint: LocaleKeys.lastPassword.tr(),
                   ),
                   MySizedBox(height: 20.0),
                   TextFormFieldWidget(
-                    hint: 'Новый пароль',
+                    hint: LocaleKeys.newPassword.tr(),
                   ),
                   MySizedBox(height: 20.0),
                   TextFormFieldWidget(
-                    hint: 'Повторите пароль',
+                    hint: LocaleKeys.confirmPassword.tr(),
                   ),
                   const Spacer(),
                   ElevatedButtonWidget(
                     onPressed: _onPressed,
-                    label: 'Сохранить',
+                    label: LocaleKeys.save.tr(),
                   )
                 ],
               ),
