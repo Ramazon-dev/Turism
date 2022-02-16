@@ -20,8 +20,8 @@ class CodegenLoader extends AssetLoader{
 static const Map<String,dynamic> ru_RU = {
   "start": "Начать"
 };
-static const Map<String,dynamic> en_US = {
+static const Map<String,dynamic> en_GB = {
   "start": "Start"
 };
-static const Map<String, Map<String,dynamic>> mapLocales = {"uz_UZ": uz_UZ, "ru_RU": ru_RU, "en_US": en_US};
+static const Map<String, Map<String,dynamic>> mapLocales = {"uz_UZ": uz_UZ, "ru_RU": ru_RU, "en_GB": en_GB};
 }

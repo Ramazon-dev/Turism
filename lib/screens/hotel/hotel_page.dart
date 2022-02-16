@@ -58,7 +58,7 @@ class HotelListPage extends StatelessWidget {
                   style: TextWidget.medium(color: AppColors.white),
                 ),
                 Text(
-                  hotel.site,
+                  hotel.site.toString(),
                   maxLines: 1,
                   style: TextWidget.medium(color: AppColors.grey),
                 ),

@@ -89,7 +89,7 @@ class Hotel {
 
   String get city => _city!;
 
-  String get site => _site!;
+  String? get site => _site;
 
   List<String> get tell => _tell!;
 

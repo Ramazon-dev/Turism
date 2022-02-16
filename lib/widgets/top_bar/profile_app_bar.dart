@@ -29,7 +29,7 @@ class ProfileAppBar extends StatelessWidget {
           ),
           MySizedBox(width: 110.0),
           Text(
-            'Profile',
+            LocaleKeys.profile.tr(),
             style: TextWidget.medium(color: AppColors.white, size: 18.0),
           ),
           const Spacer(),

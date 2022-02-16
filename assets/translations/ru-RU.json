@@ -1,3 +1,27 @@
 {
-  "start" : "Начать"
+  "start": "Начать",
+  "settings": "Настройки",
+  "welcome": "Добро пожаловать!",
+  "select_your_city": "Выберите свой город",
+  "lets_go": "ДАВАЙТЕ!",
+  "sign_in_your_account": "Войдите в свой аккаунт",
+  "login": "Login",
+  "signIn": "Войти",
+  "forgotPassword": "Забыл пароль? ",
+  "signUp": "Регистрация",
+  "profile": "Профиль",
+  "lastPassword": "Первый пароль",
+  "newPassword": "Новый пароль",
+  "confirmPassword": "Повторите пароль",
+  "edit": "Изменить",
+  "inputYourNumber": "Введите номер телефона",
+  "select_city": "Выберите город",
+  "enterPrice": "Введите стоимость услуги",
+  "personalInfo": "Информация о себе",
+  "git": "Гит.",
+  "hotel": "Отель.",
+  "restaurant": "Ресторан.",
+  "linkOfSite": "Ссылка на сайт",
+  "mapLink": "Расположение на карте (ссылка)",
+  "save": "Сохранить"
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/widgets/elevated_button_widget.dart';
 import 'package:mobileapp/widgets/inputs/underlined_field.dart';
 
 class ChangingProfilePage extends StatelessWidget {

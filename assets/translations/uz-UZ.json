@@ -1,3 +1,27 @@
 {
-  "start" : "Boshlash"
+  "start": "Boshlash",
+  "settings": "Sozlamalar",
+  "welcome": "Hush Kelibsiz!",
+  "select_your_city": "O'z shahringizni tanlang",
+  "lets_go": "Boshladik",
+  "sign_in_your_account": "O'z akkountingizga kiring",
+  "login": "Login",
+  "signIn": "Kirish",
+  "forgotPassword": "Parolni unutdingizmi?",
+  "signUp": "Ro`yxatdan o`tish",
+  "profile": "Profil",
+  "lastPassword": "Eski parol",
+  "newPassword": "Yangi parol",
+  "confirmPassword": "Parolnni takrorlang",
+  "edit": "O`zgartirish",
+  "inputYourNumber": "Telefon raqamningizni kiriting",
+  "select_city": "Shaharni tanlang",
+  "enterPrice": "Xizmat narxini kiriting",
+  "personalInfo": "Shaxsiy ma'lumot",
+  "git": "Git",
+  "hotel": "Mehmonxona",
+  "restaurant": "Restoran.",
+  "linkOfSite": "Sayt havolasi",
+  "mapLink": "Xaritada joylashuvi (havola)",
+  "save": "Saqlash"
 }

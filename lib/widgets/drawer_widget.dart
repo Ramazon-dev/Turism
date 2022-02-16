@@ -4,6 +4,7 @@ import 'package:mobileapp/screens/business_profile/git_info_page.dart';
 import 'package:mobileapp/screens/hotel/hotel_page.dart';
 import 'package:mobileapp/screens/other/other_page.dart';
 import 'package:mobileapp/screens/place/place_page.dart';
+import 'package:mobileapp/screens/settings/settings_page.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({Key? key}) : super(key: key);
@@ -19,6 +20,7 @@ class DrawerWidget extends StatelessWidget {
           _setCategory('Places', AppIcons.location, const PlacePage()),
           _setCategory('Git', AppIcons.location, const GitInfoPage()),
           _setCategory('Other', AppIcons.arrowBack, const OtherPage()),
+          _setCategory('Настройки', AppIcons.arrowBack, const SettingsPage()),
         ],
       ),
     );
