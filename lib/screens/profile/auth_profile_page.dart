@@ -54,7 +54,8 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
             width: 300,
             height: 100,
             child: Image.file(File(imageList[0].path)),
-          )
+          ),
+        ElevatedButtonWidget(onPressed: onPress, label: 'Send')
       ],
     );
   }
@@ -112,6 +113,20 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
     setState(() {
       _isShow = !_isShow;
     });
+  }
+
+  void onPress() async {
+    Hotel hotel = Hotel(
+        name: 'hotel test',
+        city: 'tashkent',
+        informEn: 'inform en',
+        informUz: 'inform uz',
+        informRu: 'inform ru',
+        karta: 'http://dsafa',
+        media: ['www'],
+        tell: ['9999'],
+        categoryId: '1991edea-7d4a-49fb-b627-79b777cf54ae');
+    uploadImage(hotel);
   }
 
   Future<bool> uploadImage(Hotel hotel) async {
