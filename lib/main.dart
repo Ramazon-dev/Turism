@@ -12,7 +12,7 @@ void main() async {
   runApp(
     EasyLocalization(
       supportedLocales: const [
-        Locale('en', 'US'),
+        Locale('en', 'GB'),
         Locale('uz', 'UZ'),
         Locale('ru', 'RU'),
       ],

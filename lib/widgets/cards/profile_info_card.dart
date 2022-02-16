@@ -30,7 +30,5 @@ class ProfileInfoCard extends StatelessWidget {
     );
   }
 
-  void _onPressed() {
-    CustomNavigator().push(const ChangingProfilePage());
-  }
+  void _onPressed() => CustomNavigator().push(const ChangingProfilePage());
 }

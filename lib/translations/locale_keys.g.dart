@@ -2,4 +2,5 @@
 
 abstract class  LocaleKeys {
   static const start = 'start';
+
 }
