@@ -4,7 +4,6 @@ import 'package:mobileapp/core/functions/text_form_field_validator.dart';
 import 'package:mobileapp/cubit/auth/sign_up_cubit/sign_up_cubit.dart';
 import 'package:mobileapp/screens/auth/sign_in/sign_in_page.dart';
 import 'package:mobileapp/screens/auth/widgets/text_widget.dart';
-import 'package:mobileapp/widgets/elevated_button_widget.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -63,7 +62,7 @@ class SignUpPage extends StatelessWidget {
                         controller: cubit.passwordController,
                         hint: 'Password',
                         obscureText: true,
-                        validator: FormValidator.password,
+                        validator: FormValidator.general,
                         action: TextInputAction.done,
                       ),
                       MySizedBox(height: 10.0),
