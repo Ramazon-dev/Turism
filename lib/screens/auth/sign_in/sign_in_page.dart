@@ -49,7 +49,7 @@ class SignInPage extends StatelessWidget {
                   TextFormFieldWidget(
                     controller: cubit.passwordController,
                     hint: 'Password',
-                    validator: FormValidator.password,
+                    validator: FormValidator.general,
                     action: TextInputAction.done,
                   ),
                   CheckboxListTile(

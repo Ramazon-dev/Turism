@@ -11,6 +11,7 @@ class ProfilePage extends StatelessWidget {
   final String token = GetStorage().read('token') ?? '';
   @override
   Widget build(BuildContext context) {
+    print('Token: $token');
     SizeConfig().init(context);
     return BlocProvider(
       create: (_) => ProfileCubit(),

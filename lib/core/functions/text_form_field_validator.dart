@@ -18,8 +18,8 @@ class FormValidator {
   static String? general(value) {
     if (value.isEmpty) {
       return "Please, Fill the field";
-    } else if (value.length < 6) {
-      return "Minimum 6 characters";
+    } else if (value.length < 8) {
+      return "Minimum 8 characters";
     }
   }
 
@@ -31,5 +31,5 @@ class FormValidator {
       r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$";
 
   static const String _passwordPattern =
-      r"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9][a-zA-Z0-9!@#$%^&*.,]{7,17}$/";
+      r"/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9][a-zA-Z0-9!@#$%^&*.,]{7,17}$/";
 }
