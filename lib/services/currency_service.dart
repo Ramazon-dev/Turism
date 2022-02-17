@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/models/currency_model.dart';
 
 class CurrencyService {
@@ -12,6 +13,7 @@ class CurrencyService {
     List body = jsonDecode(response.body) as List;
     List<CurrencyModel> currencyList =
         body.map((e) => CurrencyModel.fromJson(e)).toList();
+    await GetStorage().write('currencies', body.toString());
     return currencyList;
   }
 }
