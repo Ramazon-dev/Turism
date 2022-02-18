@@ -8,9 +8,10 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 class HotelService {
   static String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
 
-  static Future createNewHotel(String filePath, Hotel hotel) async {
-    print('create new hotel metodi ishga tushdi');
-    print(filePath);
+
+  static Future createNewHotel(
+      String filePath, Hotel hotel) async {
+    print("FilePath: $filePath");
 
     final mimeTypeData =
         lookupMimeType(filePath, headerBytes: [0xFF, 0xD8])?.split('/');
