@@ -54,7 +54,7 @@ class HotelCubit extends Cubit<HotelState> {
         date: DateTime.now().toString(),
       );
 
-      HotelService.createNewHotel('filePath', hotel).then((value) {
+      HotelService.createNewHotel( hotel).then((value) {
 
       });
     }
