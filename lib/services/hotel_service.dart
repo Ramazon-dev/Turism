@@ -8,12 +8,9 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 class HotelService {
   static String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
 
-  static Future createNewHotel(String filePath, Hotel hotel) async {
+  static Future createNewHotel(Hotel hotel) async {
     print('create new hotel metodi ishga tushdi');
-    print(filePath);
 
-    final mimeTypeData =
-        lookupMimeType(filePath, headerBytes: [0xFF, 0xD8])?.split('/');
     try {
       var headers = {
         'token': //await GetStorage().read('token');
@@ -31,13 +28,11 @@ class HotelService {
         'categoryId': '1991edea-7d4a-49fb-b627-79b777cf54ae'
       });
 
-      // BIR NECHTA RASMLARNI JO'NATISH
-
+      // BIR NECHTA RASMLARNI JO'NATISH 
       for (var photoPath in hotel.media){
 
         final mimeTypeData =
         lookupMimeType(photoPath, headerBytes: [0xFF, 0xD8])?.split('/');
-        print(photoPath);
         //------------------
         request.files.add(
           await http.MultipartFile.fromPath(
@@ -47,11 +42,11 @@ class HotelService {
           contentType: MediaType(mimeTypeData![0], mimeTypeData[1]),
         )
         );
-      print(photoPath);
       }
 
       //  BITTA RASMNI JO'NATISH
-
+      //  final mimeTypeData =
+      //   lookupMimeType(filePath, headerBytes: [0xFF, 0xD8])?.split('/');
       // request.files.add(
       //   await http.MultipartFile.fromPath(
       //     'media',

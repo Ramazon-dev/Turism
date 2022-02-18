@@ -20,7 +20,6 @@ class OtherPage extends StatelessWidget {
                 print('send button bosildi');
                 if (ImageChooser.imageList.isNotEmpty) {
                   HotelService.createNewHotel(
-                    ImageChooser.imageList[0],
                     Hotel(
                         name: 'Hotel test',
                         city: 'tashkent',

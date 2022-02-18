@@ -34,7 +34,6 @@ void main() async {
 
   test('create hotel test', () async {
     var result = await HotelService.createNewHotel(
-      ImageChooser.imageList[0],
       Hotel(
           name: 'hotel test',
           city: 'tashkent',
@@ -42,7 +41,7 @@ void main() async {
           informUz: 'inform uz',
           informRu: 'inform ru',
           karta: 'http://dsafa',
-          media: ['www'],
+          media: ImageChooser.imageList,
           tell: ['9999'],
           categoryId: '1991edea-7d4a-49fb-b627-79b777cf54ae'),
     );
