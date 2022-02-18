@@ -1,19 +1,21 @@
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
-ImagePicker imagePicker = ImagePicker();
-List<XFile> imageList = [];
+class ImageChooser {
+  static ImagePicker imagePicker = ImagePicker();
+  static List<String> imageList = [];
 
-void choose() async {
-  bool haveImg = false;
-  XFile file;
-  var futureImg;
-  file = (await imagePicker.pickImage(
-    source: ImageSource.gallery,
-  ))!;
-  if (file != null) {
-    haveImg = true;
-    imageList.add(file);
-    print(imageList);
+  static void chooseImage() async {
+    XFile file;
+    file = (await imagePicker.pickImage(
+      source: ImageSource.gallery,
+    ))!;
+
+    imageList.add(file.path);
+    imageList.forEach((element) => print(element));
+  }
+
+  static void clearImageList() {
+    imageList.clear();
   }
 }

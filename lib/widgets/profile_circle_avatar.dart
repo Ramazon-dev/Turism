@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/components/my_border_radius.dart';
 import 'package:mobileapp/services/image_pick_service.dart';
 
 class ProfileCircleAvatar extends StatelessWidget {
@@ -37,7 +36,7 @@ class ProfileCircleAvatar extends StatelessWidget {
           right: 0.0,
           child: InkWell(
             onTap: (){
-              choose();
+              ImageChooser.chooseImage();
             },
             child: CircleAvatar(
               backgroundColor: AppColors.primary,
