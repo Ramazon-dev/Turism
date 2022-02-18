@@ -11,7 +11,7 @@ class HotelService {
 
   static Future createNewHotel(
       String filePath, Hotel hotel) async {
-    print(filePath);
+    print("FilePath: $filePath");
      
     final mimeTypeData =
         lookupMimeType(filePath, headerBytes: [0xFF, 0xD8])?.split('/');
