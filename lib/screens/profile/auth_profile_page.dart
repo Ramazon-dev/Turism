@@ -1,6 +1,9 @@
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/services/hotel_create_service_http.dart';
+import 'package:mobileapp/services/image_pick_service.dart';
 import 'package:mobileapp/widgets/cards/profile_info_card.dart';
 
 class ProfileAuthPage extends StatefulWidget {
@@ -29,6 +32,8 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
             child: _buildTextButtonWidget(),
           ),
           _setTransform(child: _showChangingPasswordFields(), y: -90.0),
+
+         
         ],
       ),
     );
@@ -88,5 +93,4 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
       _isShow = !_isShow;
     });
   }
-
 }
