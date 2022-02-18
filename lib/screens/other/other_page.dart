@@ -17,6 +17,7 @@ class OtherPage extends StatelessWidget {
             _imageShow(context),
             TextButton(
               onPressed: () {
+                print('send button bosildi');
                 if (ImageChooser.imageList.isNotEmpty) {
                   HotelService.createNewHotel(
                     ImageChooser.imageList[0],
@@ -32,6 +33,8 @@ class OtherPage extends StatelessWidget {
                         categoryId: '1991edea-7d4a-49fb-b627-79b777cf54ae',
                         media: ImageChooser.imageList),
                   );
+                }else {
+                  print(ImageChooser.imageList.toString());
                 }
               },
               child: const Text('send'),
