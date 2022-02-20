@@ -23,6 +23,31 @@ class FormValidator {
     }
   }
 
+  static String? phone(value) {
+    if (value.isEmpty) {
+      return "Please, Fill the field";
+    } else if (value.length < 9) {
+      return "required 9 numbers";
+    }
+  }
+  static String? multiLine(value) {
+    if (value.isEmpty) {
+      return "Please, Fill the field";
+    } else if (value.length < 80) {
+      return "Minimum 80 characters";
+    }
+  }
+
+   static String? isNotEmpty(value) {
+    if (value.isEmpty) {
+      return "Please, Fill the field";
+    } else if (value.length < 8) {
+      return "Minimum 8 characters";
+    }
+  }
+
+
+
   static bool _validPattern(String value, String pattern) {
     return RegExp(pattern).hasMatch(value);
   }

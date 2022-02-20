@@ -5,6 +5,8 @@ export 'package:mobileapp/screens/git/git_page.dart';
 export 'package:mobileapp/screens/home/home_body.dart';
 export 'package:mobileapp/screens/profile/profile_page.dart';
 export 'package:mobileapp/screens/search/search_page.dart';
+export 'package:mobileapp/screens/auth/sign_in/sign_in_page.dart';
+
 
 // Widgets
 export 'package:mobileapp/widgets/my_text_form_field.dart';
@@ -57,6 +59,8 @@ export 'package:easy_localization/easy_localization.dart';
 export 'package:mobileapp/models/car_model.dart';
 export 'package:mobileapp/models/hotel_model.dart';
 export 'package:mobileapp/models/place_model.dart';
+export 'package:mobileapp/core/data/user_data.dart';
+export 'package:mobileapp/models/user_model.dart';
 
 // translations
 export 'package:mobileapp/translations/locale_keys.g.dart';

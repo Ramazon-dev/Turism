@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/services/image_pick_service.dart';
 
-class ProfileCircleAvatar extends StatelessWidget {
+class  ProfileCircleAvatar extends StatelessWidget {
   final String imageUrl;
   double height;
 

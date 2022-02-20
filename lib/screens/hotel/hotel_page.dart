@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/components/my_border_radius.dart';
 import 'package:mobileapp/screens/details/hotel_details_page.dart';
 import 'package:mobileapp/services/hotel_service.dart';
 
@@ -13,7 +12,7 @@ class HotelListPage extends StatelessWidget {
     return Scaffold(
       appBar: const SimpleAppBar(title: 'Hotel'),
       body: FutureBuilder(
-          future: HotelService().fetchHotelsByCity('toshkent'),
+          future: HotelService().fetchHotelsByCity('Tashkent'),
           builder: (context, AsyncSnapshot<List<Hotel>> snap) {
             if (snap.hasError) {
               return const Text('Error');

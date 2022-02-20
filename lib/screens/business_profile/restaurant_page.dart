@@ -32,7 +32,7 @@ class RestaurantPage extends StatelessWidget {
               MySizedBox(height: 20.0),
               ElevatedButtonWidget(
                 onPressed: () {},
-                label: 'Сохранить',
+                label: LocaleKeys.save.tr(),
               ),
             ],
           ),
@@ -41,6 +41,7 @@ class RestaurantPage extends StatelessWidget {
     );
   }
 
+  // Form fields
   Form _showForms(RestaurantCubit cubit) => Form(
     key: cubit.formKey,
     child: Column(
