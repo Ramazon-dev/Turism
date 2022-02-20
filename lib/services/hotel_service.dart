@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:html';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:mime/mime.dart';
@@ -168,10 +167,10 @@ class HotelService {
       var response = await http.post(
         Uri.parse('$baseUrl/comment'),
         body: jsonEncode({"name": commentText, "hotelId": hotelId}),
-        headers: {'token': token},
+        headers: {'token': token, 'Content-Type': 'application/json'},
       );
 
-      if (response.statusCode == 201) {
+      if (response.statusCode == 201 || response.statusCode == 200) {
         print(jsonDecode(response.body));
         return jsonDecode(response.body);
       } else {
@@ -184,11 +183,25 @@ class HotelService {
     }
   }
 
+  Future deleteHotel({required String hotelId}) async {
+    String token = //await GetStorage().read('token');
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
-  Future deleteHotel({required String hotelId})async{
     try {
-      var response = http.delete(Uri.parse("$baseUrl/"));
+      var response = await http.delete(
+        Uri.parse("$baseUrl/hotel/$hotelId"),
+        headers: {'token': token},
+      );
+
+      if (response.statusCode == 201) {
+        print(jsonDecode(response.body));
+        return jsonDecode(response.body);
+      } else {
+        print(response.body);
+        return jsonDecode(response.body);
+      }
     } catch (e) {
+      return e;
     }
   }
 }

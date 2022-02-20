@@ -23,15 +23,6 @@ void main() async {
     expect(result, 'Saccesful !');
   });
 
-  // test('add comment of hotel test', () async {
-  //   var result = await HotelService().addHotelComment(
-  //     commentText: "hotel comment",
-  //     hotelId: "2a2ffc5e-112b-4a4a-909a-066202621acc",
-  //   );
-  //
-  //   expect(result, true);
-  // });
-
   test('fetch hotel commnets test', () async {
     var result = await HotelService()
         .fetchHotelComments(hotelId: "2a2ffc5e-112b-4a4a-909a-066202621acc");
@@ -73,9 +64,8 @@ void main() async {
   });
 
   test('delete hotel by id test', () async {
-    var result = await HotelService();
-    // .deleteHotel("2a2ffc5e-112b-4a4a-909a-066202621acc");
-
-    expect(result, 'NOT_DELETED!');
+    var result = await HotelService().deleteHotel(hotelId: '9d2226a2-78c8-46eb-9f52-e0beceaa0897');
+    
+    expect(result, "DELETED");
   });
 }
