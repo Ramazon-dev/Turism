@@ -117,4 +117,19 @@ class HotelService {
       return e;
     }
   }
+
+  Future fetchHotelComments({required String hotelId}) async {
+    try {
+      var response = await http
+          .get(Uri.parse("$baseUrl/comment"), headers: {"hotel_id": hotelId});
+
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body);
+      } else {
+        return jsonDecode(response.body);
+      }
+    } catch (e) {
+      return e;
+    }
+  }
 }

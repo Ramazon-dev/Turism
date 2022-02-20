@@ -17,7 +17,7 @@ void main() async {
     expect(result, 'OK');
   });
 
-  test('fecht categories od hotel test', () async {
+  test('fecht categories of hotel test', () async {
     var result = await HotelService().fetchCategoriesOfHotel();
 
     expect(result, 'Saccesful !');
@@ -31,6 +31,13 @@ void main() async {
   //
   //   expect(result, true);
   // });
+
+  test('fetch hotel commnets test', () async {
+    var result = await HotelService()
+        .fetchHotelComments(hotelId: "4d45cacb-5a4b-47dc-8cd8-51fe4cfd2c25");
+
+        expect(result['message'], 'OK');
+  });
 
   test('create hotel test', () async {
     var result = await HotelService.createNewHotel(
