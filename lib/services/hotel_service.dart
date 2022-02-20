@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:html';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:mime/mime.dart';
@@ -130,6 +131,64 @@ class HotelService {
       }
     } catch (e) {
       return e;
+    }
+  }
+
+  Future addRatingToHotel(
+      {required String hotelId, required String rate}) async {
+    String token = //await GetStorage().read('token');
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+
+    try {
+      var response = await http.post(
+        Uri.parse('$baseUrl/reyting'),
+        body: jsonEncode({"value": rate, "hotelId": hotelId}),
+        headers: {'token': token},
+      );
+
+      if (response.statusCode == 201) {
+        print(jsonDecode(response.body));
+        return jsonDecode(response.body);
+      } else {
+        print(response.statusCode);
+        return jsonDecode(response.statusCode.toString());
+      }
+    } catch (e) {
+      print(e);
+      return e;
+    }
+  }
+
+  Future addCommentToHotel(
+      {required String hotelId, required String commentText}) async {
+    String token = //await GetStorage().read('token');
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+
+    try {
+      var response = await http.post(
+        Uri.parse('$baseUrl/comment'),
+        body: jsonEncode({"name": commentText, "hotelId": hotelId}),
+        headers: {'token': token},
+      );
+
+      if (response.statusCode == 201) {
+        print(jsonDecode(response.body));
+        return jsonDecode(response.body);
+      } else {
+        print(response.body);
+        return jsonDecode(response.body);
+      }
+    } catch (e) {
+      print(e);
+      return e;
+    }
+  }
+
+
+  Future deleteHotel({required String hotelId})async{
+    try {
+      var response = http.delete(Uri.parse("$baseUrl/"));
+    } catch (e) {
     }
   }
 }

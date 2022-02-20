@@ -26,7 +26,7 @@ void main() async {
   // test('add comment of hotel test', () async {
   //   var result = await HotelService().addHotelComment(
   //     commentText: "hotel comment",
-  //     hotelId: "4d45cacb-5a4b-47dc-8cd8-51fe4cfd2c25",
+  //     hotelId: "2a2ffc5e-112b-4a4a-909a-066202621acc",
   //   );
   //
   //   expect(result, true);
@@ -34,7 +34,7 @@ void main() async {
 
   test('fetch hotel commnets test', () async {
     var result = await HotelService()
-        .fetchHotelComments(hotelId: "4d45cacb-5a4b-47dc-8cd8-51fe4cfd2c25");
+        .fetchHotelComments(hotelId: "2a2ffc5e-112b-4a4a-909a-066202621acc");
 
         expect(result['message'], 'OK');
   });
@@ -56,24 +56,25 @@ void main() async {
     expect(result, true);
   });
 
-  // test('add rating of hotel test', () async {
-  //   var result = await HotelService().addHotelRating(
-  //     value: 5,
-  //     hotelId: "4d45cacb-5a4b-47dc-8cd8-51fe4cfd2c25",
-  //   );
-  //   expect(result, true);
-  // });
+  test('add rating to hotel test', () async {
+    var result = await HotelService().addRatingToHotel(
+      rate:'5',
+      hotelId: "2a2ffc5e-112b-4a4a-909a-066202621acc",
+    );
+    expect(result, "SIZ_REYTING_BELGILABO'GANSIZ!");
+  });
 
-  // test('fetch hotel comments test', () async {
-  //   var result = await HotelService()
-  //       .fetchCommentsOfHotel("4d45cacb-5a4b-47dc-8cd8-51fe4cfd2c25");
-  //
-  //   expect(result, 'OK');
-  // });
+  test('add comment to hotel test', () async {
+    var result = await HotelService().addCommentToHotel(
+      commentText:'comment text test',
+      hotelId: "2a2ffc5e-112b-4a4a-909a-066202621acc",
+    );
+    expect(result, "CREATED");
+  });
 
   test('delete hotel by id test', () async {
     var result = await HotelService();
-    // .deleteHotel("4d45cacb-5a4b-47dc-8cd8-51fe4cfd2c25");
+    // .deleteHotel("2a2ffc5e-112b-4a4a-909a-066202621acc");
 
     expect(result, 'NOT_DELETED!');
   });
