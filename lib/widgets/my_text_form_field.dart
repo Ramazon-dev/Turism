@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 
 class TextFormFieldWidget extends StatelessWidget {
@@ -11,6 +12,7 @@ class TextFormFieldWidget extends StatelessWidget {
   FormFieldValidator<String>? validator;
   TextCapitalization capitalization;
   int lines;
+  int? maxLength;
 
   TextFormFieldWidget({
     Key? key,
@@ -21,6 +23,7 @@ class TextFormFieldWidget extends StatelessWidget {
     this.inputType = TextInputType.text,
     this.obscureText = false,
     this.validator,
+    this.maxLength,
     this.capitalization = TextCapitalization.none,
     this.lines = 1,
   }) : super(key: key);
@@ -36,6 +39,7 @@ class TextFormFieldWidget extends StatelessWidget {
       obscureText: obscureText,
       validator: validator,
       maxLines: lines,
+      maxLength: maxLength,
       textCapitalization: capitalization,
       style: _textStyle(AppColors.black),
       decoration: _buildInputDecoration(),
@@ -45,6 +49,8 @@ class TextFormFieldWidget extends StatelessWidget {
   InputDecoration _buildInputDecoration() {
     return InputDecoration(
         hintText: hint,
+        counterStyle:const TextStyle(height: double.minPositive),
+        counterText: '',
         hintStyle: _textStyle(AppColors.grey),
         border: _outlineInputBorder(),
         enabledBorder: _outlineInputBorder(),

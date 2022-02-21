@@ -1,9 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/services/hotel_create_service_http.dart';
-import 'package:mobileapp/services/image_pick_service.dart';
 import 'package:mobileapp/widgets/cards/profile_info_card.dart';
 
 class ProfileAuthPage extends StatefulWidget {
@@ -14,11 +10,15 @@ class ProfileAuthPage extends StatefulWidget {
 }
 
 // TODO Vaqtincha StatefulWidget'da qilindi. Cubitga ulash kerak.
-// todo bosin aka gazini men sizga iwonaman
-// todo topinchi man kimman
 
 class _ProfileAuthPageState extends State<ProfileAuthPage> {
   bool _isShow = false;
+  late UserModel _user;
+  @override
+  initState() {
+    super.initState();
+    _user = UserModel.fromJson(GetStorage().read('user'));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,29 +26,30 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
       child: Column(
         children: [
           ProfileAppBar(height: 274.0),
-          _setTransform(child: const ProfileInfoCard()),
+          _setTransform(child: ProfileInfoCard(user: _user)),
           _setTransform(
             x: 100.0,
             child: _buildTextButtonWidget(),
           ),
           _setTransform(child: _showChangingPasswordFields(), y: -90.0),
 
-         
         ],
       ),
     );
   }
 
+  // TextButton
   Visibility _buildTextButtonWidget() {
     return Visibility(
       visible: !_isShow,
       child: TextButtonWidget(
         onPressed: _onPressed,
-        label: 'Изменить пароль?',
+        label: LocaleKeys.edit.tr(),
       ),
     );
   }
 
+  // Transform
   Transform _setTransform(
           {double x = 0.0, double y = -140.0, required Widget child}) =>
       Transform.translate(
@@ -56,6 +57,7 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
         child: child,
       );
 
+  // Password fields
   Visibility _showChangingPasswordFields() => Visibility(
         visible: _isShow,
         child: Padding(

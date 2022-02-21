@@ -22,7 +22,7 @@ class UserModel {
   }
 
   Map<String, dynamic> toMap() => {
-    'fullName' : _fullName,
+    'fullname' : _fullName,
     'email' : _email,
     // 'password' : _password,
     'phone' : _phone,
@@ -37,5 +37,5 @@ class UserModel {
 
   String get email => _email!;
 
-  String get image => _image!;
+  String? get image => _image;
 }

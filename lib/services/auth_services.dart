@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/models/user_model.dart';
 
 class AuthServices {
   static Future<bool> signIn(String email, String password) async {
@@ -24,6 +22,7 @@ class AuthServices {
         UserModel user = UserModel.fromJson(data['data']['user']);
         await GetStorage().write('token', token);
         await GetStorage().write('user', user.toMap());
+        UserData.setCurrentUser = user;
         return true;
       } else {
         print(await response.stream.bytesToString());
@@ -64,6 +63,7 @@ class AuthServices {
         UserModel user = UserModel.fromJson(data['data']['user']);
         await GetStorage().write('token', data['token']);
         await GetStorage().write('user', user.toMap());
+        UserData.setCurrentUser = user;
         return true;
       } else {
         print(await response.stream.bytesToString());

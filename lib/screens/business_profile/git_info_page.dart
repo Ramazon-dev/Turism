@@ -1,8 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/functions/city_list.dart';
 import 'package:mobileapp/cubit/business/git_cubit/git_cubit.dart';
-import 'package:mobileapp/widgets/elevated_button_widget.dart';
+import 'package:mobileapp/models/user_model.dart';
 
 class GitInfoPage extends StatelessWidget {
   const GitInfoPage({Key? key}) : super(key: key);
@@ -20,9 +21,11 @@ class GitInfoPage extends StatelessWidget {
     );
   }
 
+  // Build Scaffold
   Scaffold _buildScaffold(GitCubit cubit) {
-    return Scaffold(
-      appBar: const SimpleAppBar(title: 'Гит.'),
+    print(GetStorage().read('user'));
+  return Scaffold(
+      appBar: SimpleAppBar(title: LocaleKeys.git.tr()),
       body: SingleChildScrollView(
         child: Padding(
           padding: MyEdgeInsets.symmetric(h: 30.0, v: 25.0),
@@ -30,17 +33,21 @@ class GitInfoPage extends StatelessWidget {
             children: [
               Row(
                 children: [
+
+                  // Profile Circle Avatar
                   ProfileCircleAvatar(imageUrl: 'default'),
                   MySizedBox(width: 26.0),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+
+                      // Full name
                       Text(
-                        'Зиёда Собирова',
+                        'Bahromjon',
                         style: TextWidget.medium(size: 20.0),
                       ),
                       MySizedBox(height: 10.0),
-                      BlueButton(onPressed: () {}, label: 'Изменить'),
+                      BlueButton(onPressed: () {}, label: LocaleKeys.edit.tr()),
                     ],
                   ),
                 ],
@@ -52,7 +59,7 @@ class GitInfoPage extends StatelessWidget {
               MySizedBox(height: 30.0),
               ElevatedButtonWidget(
                 onPressed: () {},
-                label: 'Сохранить',
+                label: LocaleKeys.save.tr(),
               ),
             ],
           ),
@@ -68,7 +75,7 @@ class GitInfoPage extends StatelessWidget {
             TextFormFieldWidget(
               controller: cubit.phoneController,
               inputType: TextInputType.phone,
-              hint: 'Введите номер телефона',
+              hint: LocaleKeys.inputYourNumber.tr(),
             ),
             MySizedBox(height: 20.0),
             DropDownWidget(onChanged: cubit.cityChanged, value: cubit.city),
@@ -76,7 +83,7 @@ class GitInfoPage extends StatelessWidget {
             TextFormFieldWidget(
               inputType: TextInputType.number,
               controller: cubit.priceController,
-              hint: 'Введите стоимость услуги',
+              hint: LocaleKeys.enterPrice.tr(),
             ),
             MySizedBox(height: 20.0),
             TextFormFieldWidget(

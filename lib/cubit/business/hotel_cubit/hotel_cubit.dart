@@ -20,19 +20,16 @@ class HotelCubit extends Cubit<HotelState> {
 
   String _city = 'Tashkent';
 
-
   void cityChanged(dynamic value) {
     _city = value;
     emit(HotelInitial());
   }
 
-  void onDropdownMenuItemPressed() {
-
-  }
+  void onDropdownMenuItemPressed() {}
 
   void onSavePressed() {
     // Agar validate bo'lgan bo'lsa
-    if(_formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) {
       String name = _nameController.text.trim();
       String phone = _phoneController.text.trim();
       String link = _websiteController.text.trim();
@@ -44,7 +41,7 @@ class HotelCubit extends Cubit<HotelState> {
       Hotel hotel = Hotel(
         name: name,
         categoryId: '',
-        city: _city,
+        city: _city.toLowerCase(),
         informEn: aboutEn,
         informUz: aboutUz,
         informRu: aboutRu,
@@ -53,10 +50,10 @@ class HotelCubit extends Cubit<HotelState> {
         tell: [phone],
         date: DateTime.now().toString(),
       );
-
       HotelService.createNewHotel( hotel).then((value) {
 
       });
+      HotelService.createNewHotel('filePath', hotel).then((value) {});
     }
   }
 
@@ -64,10 +61,9 @@ class HotelCubit extends Cubit<HotelState> {
 
   TextEditingController get phoneController => _phoneController;
 
-
   TextEditingController get websiteController => _websiteController;
 
-  TextEditingController get priceController => _priceController;
+  TextEditingController get linkController => _priceController;
 
   TextEditingController get aboutUzController => _aboutUzController;
 
