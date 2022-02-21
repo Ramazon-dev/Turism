@@ -9,8 +9,7 @@ class HotelService {
 
   static Future createNewHotel(Hotel hotel) async {
 
-    final mimeTypeData =
-        lookupMimeType(filePath, headerBytes: [0xFF, 0xD8])?.split('/');
+   
     try {
       String token = await GetStorage().read('token');
 

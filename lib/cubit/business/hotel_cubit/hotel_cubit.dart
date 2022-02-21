@@ -53,7 +53,7 @@ class HotelCubit extends Cubit<HotelState> {
       HotelService.createNewHotel( hotel).then((value) {
 
       });
-      HotelService.createNewHotel('filePath', hotel).then((value) {});
+      HotelService.createNewHotel( hotel).then((value) {});
     }
   }
 
