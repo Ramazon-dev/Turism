@@ -184,6 +184,80 @@ class HotelService {
     }
   }
 
+  Future updateHotelData(Hotel hotel) async {
+    String token = //await GetStorage().read('token');
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+
+    try {
+      var response = await http.put(
+        Uri.parse('$baseUrl/hotel'),
+        body: json.encode(
+          {
+            "name": hotel.name,
+            "informUz": hotel.informUz,
+            "informEn": hotel.informEn,
+            "informRu": hotel.informRu,
+            "site": hotel.site,
+            "tell": hotel.tell,
+            "city": hotel.city,
+            "karta": hotel.categoryId,
+            "categoryId": hotel.categoryId,
+            "hotelId": hotel.id
+          },
+        ),
+        headers: {'token': token, 'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body);
+      } else {
+        return jsonDecode(response.statusCode.toString());
+      }
+    } catch (e) {
+      return e;
+    }
+  }
+
+static Future updateHotelMedia({required String hotelId, required List hotelMedia}) async {
+    try {
+      String token = //await GetStorage().read('token');
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+
+      var headers = {'token': token};
+      var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/hotel/$hotelId'));
+      
+
+      // FIXME: BIR NECHTA RASMLARNI JO'NATISH
+      for (var photoPath in hotelMedia) {
+        final mimeTypeData =
+            lookupMimeType(photoPath, headerBytes: [0xFF, 0xD8])?.split('/');
+
+        //------------------
+        request.files.add(await http.MultipartFile.fromPath(
+          'media',
+          photoPath,
+          filename: photoPath.split('/').last,
+          contentType: MediaType(mimeTypeData![0], mimeTypeData[1]),
+        ));
+      }
+
+      request.headers.addAll(headers);
+
+      http.StreamedResponse response = await request.send();
+
+      if (response.statusCode == 200) {
+        print(await response.stream.bytesToString());
+        return response.stream.bytesToString();
+      } else {
+        print('else error: ' + response.reasonPhrase.toString());
+        return response.reasonPhrase;
+      }
+    } catch (e) {
+      print('catch error: ' + e.toString());
+      return null;
+    }
+  }
+
   Future deleteHotel({required String hotelId}) async {
     String token = //await GetStorage().read('token');
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
