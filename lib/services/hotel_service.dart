@@ -8,6 +8,7 @@ class HotelService {
   static String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
 
   static Future createNewHotel(Hotel hotel) async {
+
     try {
       String token = await GetStorage().read('token');
 

@@ -34,23 +34,15 @@ class  ProfileCircleAvatar extends StatelessWidget {
         Positioned(
           bottom: 0.0,
           right: 0.0,
-          child: InkWell(
-            onTap: (){
-              ImageChooser.chooseImage();
-            },
-            child: CircleAvatar(
-              backgroundColor: AppColors.primary,
-              radius: getWidth(21.43),
-              child: SvgPicture.asset(AppIcons.image),
-            ),
-          ),
+          child: CircleAvatar(
+            backgroundColor: AppColors.primary,
+            radius: getWidth(21.43),
+            child: SvgPicture.asset(AppIcons.image),
+          ).onTap(() {
+            ImageChooser.chooseImage();
+          }),
         )
       ],
     );
   }
-
-  Border _setBorder() => Border.all(
-        color: AppColors.primary,
-        width: getWidth(2.0),
-      );
 }
