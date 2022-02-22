@@ -9,7 +9,6 @@ class ProfileInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(user.toMap());
     return Card(
       shape: MyShape.simple(radius: 10.0),
       elevation: 6.0,

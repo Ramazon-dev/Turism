@@ -11,37 +11,41 @@ class OtherPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _imageShow(context),
-            TextButton(
-              onPressed: () {
-                print('send button bosildi');
-                if (ImageChooser.imageList.isNotEmpty) {
-                  HotelService.createNewHotel(
-                    Hotel(
-                        name: 'Hotel test',
-                        city: 'tashkent',
-                        tell: ['+9989777777'],
-                        informUz: 'inform uz',
-                        informEn: 'inform en',
-                        informRu: 'inform ru',
-                        karta: 'http://google.maps/tashkent',
-                        site: 'http://site.uz',
-                        categoryId: '1991edea-7d4a-49fb-b627-79b777cf54ae',
-                        media: ImageChooser.imageList),
-                  );
-                }else {
-                  print(ImageChooser.imageList.toString());
-                }
-              },
-              child: const Text('send'),
-            ),
-          ],
-        ),
+        child: _buildColumn(context),
       ),
     );
+  }
+
+  Column _buildColumn(BuildContext context) {
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _imageShow(context),
+          TextButton(
+            onPressed: () {
+              print('send button bosildi');
+              if (ImageChooser.imageList.isNotEmpty) {
+                HotelService.createNewHotel(
+                  Hotel(
+                      name: 'Hotel test',
+                      city: 'tashkent',
+                      tell: ['+9989777777'],
+                      informUz: 'inform uz',
+                      informEn: 'inform en',
+                      informRu: 'inform ru',
+                      karta: 'http://google.maps/tashkent',
+                      site: 'http://site.uz',
+                      categoryId: '1991edea-7d4a-49fb-b627-79b777cf54ae',
+                      media: ImageChooser.imageList),
+                );
+              }else {
+                print(ImageChooser.imageList.toString());
+              }
+            },
+            child: const Text('send'),
+          ),
+        ],
+      );
   }
 
   Column _imageShow(BuildContext context) {
@@ -61,6 +65,7 @@ class OtherPage extends StatelessWidget {
               itemCount:ImageChooser.imageList.length,
               itemBuilder: (context, index) {
                 var image = ImageChooser.imageList[index];
+                print(image);
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
