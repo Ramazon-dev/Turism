@@ -12,7 +12,7 @@ class HotelListPage extends StatelessWidget {
     return Scaffold(
       appBar: const SimpleAppBar(title: 'Hotel'),
       body: FutureBuilder(
-          future: HotelService().fetchHotelsByCity('Tashkent'),
+          future: HotelService().fetchHotelsByCity('tashkent'),
           builder: (context, AsyncSnapshot<List<Hotel>> snap) {
             if (snap.hasError) {
               return const Text('Error');

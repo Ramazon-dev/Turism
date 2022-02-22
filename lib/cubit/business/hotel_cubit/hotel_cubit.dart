@@ -50,8 +50,10 @@ class HotelCubit extends Cubit<HotelState> {
         tell: [phone],
         date: DateTime.now().toString(),
       );
+      HotelService.createNewHotel( hotel).then((value) {
 
-      HotelService.createNewHotel('filePath', hotel).then((value) {});
+      });
+      HotelService.createNewHotel( hotel).then((value) {});
     }
   }
 

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:mime/mime.dart';
@@ -8,11 +7,9 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 class HotelService {
   static String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
 
-  static Future createNewHotel(String filePath, Hotel hotel) async {
-    print("FilePath: $filePath");
+  static Future createNewHotel(Hotel hotel) async {
 
-    final mimeTypeData =
-        lookupMimeType(filePath, headerBytes: [0xFF, 0xD8])?.split('/');
+   
     try {
       String token = await GetStorage().read('token');
 
@@ -29,12 +26,11 @@ class HotelService {
         'categoryId': '1991edea-7d4a-49fb-b627-79b777cf54ae'
       });
 
-      // BIR NECHTA RASMLARNI JO'NATISH
-
+      // FIXME: BIR NECHTA RASMLARNI JO'NATISH
       for (var photoPath in hotel.media) {
         final mimeTypeData =
             lookupMimeType(photoPath, headerBytes: [0xFF, 0xD8])?.split('/');
-        print(photoPath);
+
         //------------------
         request.files.add(await http.MultipartFile.fromPath(
           'media',
@@ -42,11 +38,11 @@ class HotelService {
           filename: photoPath.split('/').last,
           contentType: MediaType(mimeTypeData![0], mimeTypeData[1]),
         ));
-        print(photoPath);
       }
 
-      //  BITTA RASMNI JO'NATISH
-
+      //  FIXME:  BITTA RASMNI JO'NATISH
+      //  final mimeTypeData =
+      //   lookupMimeType(filePath, headerBytes: [0xFF, 0xD8])?.split('/');
       // request.files.add(
       //   await http.MultipartFile.fromPath(
       //     'media',
@@ -118,6 +114,93 @@ class HotelService {
         return jsonDecode(response.body)['message'];
       } else {
         return jsonDecode(response.body)['message'];
+      }
+    } catch (e) {
+      return e;
+    }
+  }
+
+  Future fetchHotelComments({required String hotelId}) async {
+    try {
+      var response = await http
+          .get(Uri.parse("$baseUrl/comment"), headers: {"hotel_id": hotelId});
+
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body);
+      } else {
+        return jsonDecode(response.body);
+      }
+    } catch (e) {
+      return e;
+    }
+  }
+
+  Future addRatingToHotel(
+      {required String hotelId, required String rate}) async {
+    String token = //await GetStorage().read('token');
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+
+    try {
+      var response = await http.post(
+        Uri.parse('$baseUrl/reyting'),
+        body: jsonEncode({"value": rate, "hotelId": hotelId}),
+        headers: {'token': token},
+      );
+
+      if (response.statusCode == 201) {
+        print(jsonDecode(response.body));
+        return jsonDecode(response.body);
+      } else {
+        print(response.statusCode);
+        return jsonDecode(response.statusCode.toString());
+      }
+    } catch (e) {
+      print(e);
+      return e;
+    }
+  }
+
+  Future addCommentToHotel(
+      {required String hotelId, required String commentText}) async {
+    String token = //await GetStorage().read('token');
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+
+    try {
+      var response = await http.post(
+        Uri.parse('$baseUrl/comment'),
+        body: jsonEncode({"name": commentText, "hotelId": hotelId}),
+        headers: {'token': token, 'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 201 || response.statusCode == 200) {
+        print(jsonDecode(response.body));
+        return jsonDecode(response.body);
+      } else {
+        print(response.body);
+        return jsonDecode(response.body);
+      }
+    } catch (e) {
+      print(e);
+      return e;
+    }
+  }
+
+  Future deleteHotel({required String hotelId}) async {
+    String token = //await GetStorage().read('token');
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+
+    try {
+      var response = await http.delete(
+        Uri.parse("$baseUrl/hotel/$hotelId"),
+        headers: {'token': token},
+      );
+
+      if (response.statusCode == 201) {
+        print(jsonDecode(response.body));
+        return jsonDecode(response.body);
+      } else {
+        print(response.body);
+        return jsonDecode(response.body);
       }
     } catch (e) {
       return e;

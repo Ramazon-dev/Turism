@@ -17,24 +17,21 @@ void main() async {
     expect(result, 'OK');
   });
 
-  test('fecht categories od hotel test', () async {
+  test('fecht categories of hotel test', () async {
     var result = await HotelService().fetchCategoriesOfHotel();
 
     expect(result, 'Saccesful !');
   });
 
-  // test('add comment of hotel test', () async {
-  //   var result = await HotelService().addHotelComment(
-  //     commentText: "hotel comment",
-  //     hotelId: "4d45cacb-5a4b-47dc-8cd8-51fe4cfd2c25",
-  //   );
-  //
-  //   expect(result, true);
-  // });
+  test('fetch hotel commnets test', () async {
+    var result = await HotelService()
+        .fetchHotelComments(hotelId: "2a2ffc5e-112b-4a4a-909a-066202621acc");
+
+        expect(result['message'], 'OK');
+  });
 
   test('create hotel test', () async {
     var result = await HotelService.createNewHotel(
-      ImageChooser.imageList[0],
       Hotel(
           name: 'hotel test',
           city: 'tashkent',
@@ -42,7 +39,7 @@ void main() async {
           informUz: 'inform uz',
           informRu: 'inform ru',
           karta: 'http://dsafa',
-          media: ['www'],
+          media: ImageChooser.imageList,
           tell: ['9999'],
           categoryId: '1991edea-7d4a-49fb-b627-79b777cf54ae'),
     );
@@ -50,25 +47,25 @@ void main() async {
     expect(result, true);
   });
 
-  // test('add rating of hotel test', () async {
-  //   var result = await HotelService().addHotelRating(
-  //     value: 5,
-  //     hotelId: "4d45cacb-5a4b-47dc-8cd8-51fe4cfd2c25",
-  //   );
-  //   expect(result, true);
-  // });
+  test('add rating to hotel test', () async {
+    var result = await HotelService().addRatingToHotel(
+      rate:'5',
+      hotelId: "2a2ffc5e-112b-4a4a-909a-066202621acc",
+    );
+    expect(result, "SIZ_REYTING_BELGILABO'GANSIZ!");
+  });
 
-  // test('fetch hotel comments test', () async {
-  //   var result = await HotelService()
-  //       .fetchCommentsOfHotel("4d45cacb-5a4b-47dc-8cd8-51fe4cfd2c25");
-  //
-  //   expect(result, 'OK');
-  // });
+  test('add comment to hotel test', () async {
+    var result = await HotelService().addCommentToHotel(
+      commentText:'comment text test',
+      hotelId: "2a2ffc5e-112b-4a4a-909a-066202621acc",
+    );
+    expect(result, "CREATED");
+  });
 
   test('delete hotel by id test', () async {
-    var result = await HotelService();
-    // .deleteHotel("4d45cacb-5a4b-47dc-8cd8-51fe4cfd2c25");
-
-    expect(result, 'NOT_DELETED!');
+    var result = await HotelService().deleteHotel(hotelId: '9d2226a2-78c8-46eb-9f52-e0beceaa0897');
+    
+    expect(result, "DELETED");
   });
 }
