@@ -1,7 +1,7 @@
 import 'package:mobileapp/core/components/exporting_packages.dart';
 
-extension SizeExtension on double {
-  get w => getWidth(this);
+extension SizeExtension on num {
+  double get w => getWidth(this * 1.0);
 
-  get h => getHeight(this);
+  double get h => getHeight(this * 1.0);
 }

@@ -9,7 +9,6 @@ class HotelService {
 
   static Future createNewHotel(Hotel hotel) async {
 
-   
     try {
       String token = await GetStorage().read('token');
 

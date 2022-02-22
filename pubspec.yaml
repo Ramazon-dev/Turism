@@ -36,6 +36,7 @@ dependencies:
   http_parser: ^4.0.0
   dotted_border: ^2.0.0+2
   sn_progress_dialog: ^1.0.3
+  on_click: ^0.0.1
 
 
 
