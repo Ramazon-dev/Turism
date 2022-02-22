@@ -27,7 +27,7 @@ void main() async {
     var result = await HotelService()
         .fetchHotelComments(hotelId: "2a2ffc5e-112b-4a4a-909a-066202621acc");
 
-        expect(result['message'], 'OK');
+    expect(result['message'], 'OK');
   });
 
   test('create hotel test', () async {
@@ -47,9 +47,18 @@ void main() async {
     expect(result, true);
   });
 
+  test('create hotel test', () async {
+    var result = await HotelService.updateHotelMedia(
+     hotelId: '05c5a595-1a39-4b7e-8ffe-5299e1d2a25e',
+     hotelMedia:  ImageChooser.imageList,
+    );
+
+    expect(result, true);
+  });
+
   test('add rating to hotel test', () async {
     var result = await HotelService().addRatingToHotel(
-      rate:'5',
+      rate: '5',
       hotelId: "2a2ffc5e-112b-4a4a-909a-066202621acc",
     );
     expect(result, "SIZ_REYTING_BELGILABO'GANSIZ!");
@@ -57,15 +66,32 @@ void main() async {
 
   test('add comment to hotel test', () async {
     var result = await HotelService().addCommentToHotel(
-      commentText:'comment text test',
+      commentText: 'comment text test',
       hotelId: "2a2ffc5e-112b-4a4a-909a-066202621acc",
     );
     expect(result, "CREATED");
   });
 
   test('delete hotel by id test', () async {
-    var result = await HotelService().deleteHotel(hotelId: '9d2226a2-78c8-46eb-9f52-e0beceaa0897');
-    
+    var result = await HotelService()
+        .deleteHotel(hotelId: '9d2226a2-78c8-46eb-9f52-e0beceaa0897');
+
     expect(result, "DELETED");
+  });
+
+  test('update hotel data test', () async {
+    var result = await HotelService().updateHotelData(Hotel(
+        name: 'edited name',
+        informUz: 'edited inform',
+        informRu: 'edited inform',
+        informEn: 'edited inform',
+        site: 'edited site',
+        city: 'andijan',
+        karta: 'map google',
+        tell: ['98567153'],
+        id: "05c5a595-1a39-4b7e-8ffe-5299e1d2a25e",
+        categoryId: "1991edea-7d4a-49fb-b627-79b777cf54ae"));
+
+    expect(result, 'UPDATED');
   });
 }
