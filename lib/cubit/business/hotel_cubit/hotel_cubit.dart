@@ -28,9 +28,11 @@ class HotelCubit extends Cubit<HotelState> {
   }
 
   void setImage() {
-    ImageChooser.chooseImage();
-    _imageList = ImageChooser.imageList;
-    emit(HotelInitial());
+    ImageChooser chooser = ImageChooser();
+    chooser.notStatic().then((value) {
+      _imageList = ImageChooser.imageList;
+      emit(HotelInitial());
+    });
   }
 
   void onDropdownMenuItemPressed() {}

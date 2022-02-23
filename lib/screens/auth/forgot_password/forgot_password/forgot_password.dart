@@ -62,7 +62,7 @@ class ForgotPassword extends StatelessWidget {
                       ),
                       ElevatedButtonWidget(
                         onPressed: () {
-                          CustomNavigator().push(PasswordSms());
+                          CustomNavigator.push(PasswordSms());
                           // if (formKey.currentState!.validate()) {
                           //   Navigator.push(
                           //     context,

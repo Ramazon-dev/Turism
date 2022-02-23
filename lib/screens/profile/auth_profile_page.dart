@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/widgets/cards/profile_info_card.dart';
 
 class ProfileAuthPage extends StatefulWidget {
@@ -22,20 +23,29 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          ProfileAppBar(height: 274.0),
-          _setTransform(child: ProfileInfoCard(user: _user)),
-          _setTransform(
-            x: 100.0,
-            child: _buildTextButtonWidget(),
-          ),
-          _setTransform(child: _showChangingPasswordFields(), y: -90.0),
-
-        ],
-      ),
+    return BlocProvider(create: (_)=> HomeCubit(),
+    child: BlocBuilder<HomeCubit, HomeState>(
+      builder: (ctx, state) {
+        HomeCubit cubit = ctx.watch();
+        return _buildBody(cubit);
+      },
+    ),
     );
+  }
+
+  SingleChildScrollView _buildBody(HomeCubit cubit) {
+    return SingleChildScrollView(
+    child: Column(
+      children: [
+        _setTransform(
+          x: 100.0,
+          child: _buildTextButtonWidget(),
+        ),
+        _setTransform(child: _showChangingPasswordFields(), y: -90.0),
+
+      ],
+    ),
+  );
   }
 
   // TextButton
