@@ -8,6 +8,13 @@ export 'package:mobileapp/screens/search/search_page.dart';
 export 'package:mobileapp/screens/auth/sign_in/sign_in_page.dart';
 
 
+export 'package:mobileapp/screens/business_profile/git_info_page.dart';
+export 'package:mobileapp/screens/currency_page.dart';
+export 'package:mobileapp/screens/hotel/hotel_page.dart';
+export 'package:mobileapp/screens/other/other_page.dart';
+export 'package:mobileapp/screens/place/place_page.dart';
+export 'package:mobileapp/screens/settings/settings_page.dart';
+
 // Widgets
 export 'package:mobileapp/widgets/my_text_form_field.dart';
 export 'package:mobileapp/widgets/bottom_nav_bar.dart';

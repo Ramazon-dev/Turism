@@ -17,7 +17,8 @@ class HomeScreen extends StatelessWidget {
         builder: (context, state) {
           HomeCubit cubit = context.watch();
           return Scaffold(
-            appBar: _appBarList()[cubit.currentIndex],
+            key: cubit.scaffoldKey,
+            appBar: _appBarList(cubit)[cubit.currentIndex],
             drawer: const DrawerWidget(),
             body: _pages(cubit)[cubit.currentIndex],
             bottomNavigationBar: BottomNavBarWidget(
@@ -38,7 +39,7 @@ class HomeScreen extends StatelessWidget {
         ProfilePage(),
       ];
 
-  List<PreferredSizeWidget?> _appBarList() => [
+  List<PreferredSizeWidget?> _appBarList(HomeCubit cubit) => [
         AppBarOrigin(
           actions: SvgPicture.asset(AppIcons.language),
           actions2: SvgPicture.asset(AppIcons.dollar),
@@ -55,6 +56,6 @@ class HomeScreen extends StatelessWidget {
           actions: SvgPicture.asset(AppIcons.language),
           actions2: SvgPicture.asset(AppIcons.dollar),
         ),
-        null,
+        ProfileAppBar(cubit: cubit)
       ];
 }

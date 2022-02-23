@@ -21,6 +21,7 @@ class ImageSetter extends StatelessWidget {
   }
 
   Container _buildContainer(HotelCubit cubit) {
+    ImageChooser chooser = ImageChooser();
     return Container(
       height: 302.0.h,
       width: 315.0.w,
@@ -41,7 +42,7 @@ class ImageSetter extends StatelessWidget {
                     color: AppColors.grey,
                     height: 61.0.h,
                     fit: BoxFit.contain,
-                  ).onTap(ImageChooser.chooseImage),
+                  ).onTap(cubit.setImage),
           ),
           SizedBox(height: 12.0.h),
           _showImages(),

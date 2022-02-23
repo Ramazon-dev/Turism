@@ -7,7 +7,7 @@ class CustomNavigator {
     _context = context;
   }
 
-  void push(Widget page) {
+  static void push(Widget page) {
     Navigator.push(
       _context,
       MaterialPageRoute(builder: (_) => page),

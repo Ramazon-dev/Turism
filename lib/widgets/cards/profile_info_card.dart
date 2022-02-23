@@ -9,28 +9,32 @@ class ProfileInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: MyShape.simple(radius: 10.0),
-      elevation: 6.0,
-      child: Padding(
-        padding: MyEdgeInsets.all(24.0),
-        child: Column(
-          children: [
-            ProfileCircleAvatar(imageUrl: user.image ?? 'default'),
-            MySizedBox(height: 15.0),
-            Text(user.name, style: TextWidget.medium(size: 18.0)),
-            MySizedBox(height: 9.0),
-            Text(
-              user.email,
-              style: TextWidget.medium(color: AppColors.grey),
-            ),
-            MySizedBox(height: 15.0),
-            BlueButton(onPressed: _onPressed, label: LocaleKeys.edit.tr()),
-          ],
+    return SizedBox(
+      width: 231.w,
+      height: 240.h,
+      child: Card(
+        shape: MyShape.simple(radius: 10.0),
+        elevation: 6.0,
+        child: Padding(
+          padding: EdgeInsets.only(top: 23.h),
+          child: Column(
+            children: [
+              ProfileCircleAvatar(imageUrl: user.image ?? 'default').onTap(_onPressed),
+              MySizedBox(height: 15.0),
+              Text(user.name, style: TextWidget.medium(size: 18.0)),
+              MySizedBox(height: 9.0),
+              Text(
+                user.email,
+                style: TextWidget.medium(color: AppColors.grey),
+              ),
+              MySizedBox(height: 15.0),
+              BlueButton(onPressed: _onPressed, label: LocaleKeys.edit.tr()),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  void _onPressed() => CustomNavigator().push(const ChangingProfilePage());
+  void _onPressed() => CustomNavigator.push(const ChangingProfilePage());
 }

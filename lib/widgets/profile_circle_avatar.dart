@@ -19,14 +19,15 @@ class  ProfileCircleAvatar extends StatelessWidget {
         Container(
           width: getHeight(height),
           height: getHeight(height),
+          padding: _isDefault() ? EdgeInsets.all(24.w) : EdgeInsets.zero,
           decoration: MyDecoration.circular(
             border: Border.all(color: AppColors.primary, width: getWidth(2)),
             color: Colors.transparent,
             radius: 100.0,
           ),
           child: ClipRRect(
-            borderRadius: MyBorderRadius.circular(radius: 100.0),
-            child: imageUrl == 'default'
+            borderRadius: MyBorderRadius.circular(radius: _isDefault() ? 0.0 : 100.0),
+            child:_isDefault()
                 ? SvgPicture.asset(AppIcons.personal)
                 : Image.network(imageUrl, fit: BoxFit.cover),
           ),
@@ -45,4 +46,5 @@ class  ProfileCircleAvatar extends StatelessWidget {
       ],
     );
   }
+  bool _isDefault() => imageUrl=='default';
 }
