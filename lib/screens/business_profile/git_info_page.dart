@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/business/git_cubit/git_cubit.dart';
-import 'package:mobileapp/models/user_model.dart';
 
 class GitInfoPage extends StatelessWidget {
   const GitInfoPage({Key? key}) : super(key: key);
@@ -23,7 +20,6 @@ class GitInfoPage extends StatelessWidget {
 
   // Build Scaffold
   Scaffold _buildScaffold(GitCubit cubit) {
-    print(GetStorage().read('user'));
   return Scaffold(
       appBar: SimpleAppBar(title: LocaleKeys.git.tr()),
       body: SingleChildScrollView(
@@ -33,7 +29,6 @@ class GitInfoPage extends StatelessWidget {
             children: [
               Row(
                 children: [
-
                   // Profile Circle Avatar
                   ProfileCircleAvatar(imageUrl: 'default'),
                   MySizedBox(width: 26.0),

@@ -44,7 +44,7 @@ class CarInfoCard extends StatelessWidget {
               Container(
                 alignment: Alignment.center,
                 margin: MyEdgeInsets.symmetric(h: 12.0),
-                decoration: MyDecoration.circular(),
+                decoration: MyDecoration.circular(color: AppColors.primary),
                 width: MediaQuery.of(context).size.width,
                 padding: MyEdgeInsets.symmetric(v: 5.0, h: 40.0),
                 child: Text(

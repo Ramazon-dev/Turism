@@ -67,6 +67,8 @@ export 'package:get_storage/get_storage.dart';
 export 'package:flutter_dotenv/flutter_dotenv.dart';
 export 'package:easy_localization/easy_localization.dart';
 export 'package:on_click/on_click.dart';
+export 'package:http_parser/http_parser.dart';
+export 'package:mime/mime.dart';
 
 // Models
 export 'package:mobileapp/models/car_model.dart';
@@ -74,6 +76,8 @@ export 'package:mobileapp/models/hotel_model.dart';
 export 'package:mobileapp/models/place_model.dart';
 export 'package:mobileapp/core/data/user_data.dart';
 export 'package:mobileapp/models/user_model.dart';
+export 'package:mobileapp/models/git_model.dart';
+
 
 // translations
 export 'package:mobileapp/translations/locale_keys.g.dart';
@@ -81,5 +85,8 @@ export 'package:mobileapp/translations/codegen_loader.g.dart';
 
 
 export 'package:mobileapp/core/functions/mock_data.dart';
+
+export 'package:flutter/services.dart';
+
 
 
