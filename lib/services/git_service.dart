@@ -6,8 +6,6 @@ class GitService {
   static String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
 
   static Future createNewGit(Git git) async {
-    List tell = ['9999', '22222'];
-    List lang = ['en', 'ru'];
     try {
       String token = // await GetStorage().read('token');
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
@@ -19,64 +17,33 @@ class GitService {
         'informUz': git.informUz.toString(),
         'informRu': git.informRu.toString(),
         'informEn': git.informEn.toString(),
-        'price': git.price,
-        'lenguages' : git.lenguages.toString(),
+        'price': git.price.toString(),
+        'lenguages' : git.languages.toString(),
         'tell' : git.tell.toString(),
 
       });
 
-      for (var i in tell) {
+      // TELL LISTNI JO'NATISH
+      for (var i in git.tell) {
         request.files.add(http.MultipartFile.fromString('tell', i));
       }
 
-      for (var i in lang) {
+      // LANGUAGE LISTNI JO'NATISH
+      for (var i in git.languages) {
         request.files.add(http.MultipartFile.fromString('languages', i));
-        // request.fields.addAll({'languages[$i]': i});
       }
 
-      // git.tell.forEach((e) {
-      //   //request.fields.putIfAbsent('tell', () => e);
-      //   request.fields.addAll({'tell': e});
-      //  // request.fields.addEntries(git.tell);
-      //  // request.fields['tell']= e;
-      // });
-
-      // git.lenguages.forEach((e) {
-      //   //request.fields.putIfAbsent('languages', () => e);
-      //  // request.fields['languages']= e;
-      //   request.fields.addAll({'languages': e});
-      // });
-
-      // FIXME: BIR NECHTA RASMLARNI JO'NATISH
-      // for (var photoPath in git.image) {
-      //   final mimeTypeData =
-      //       lookupMimeType(photoPath, headerBytes: [0xFF, 0xD8])?.split('/');
-      //   //------------------
-      //   request.files.add(await http.MultipartFile.fromPath(
-      //     'media',
-      //     photoPath,
-      //     filename: photoPath.split('/').last,
-      //     contentType: MediaType(mimeTypeData![0], mimeTypeData[1]),
-      //   ));
-      // }
-
-      //  FIXME:  BITTA RASMNI JO'NATISH
+      //  RASMNI JO'NATISH
       final mimeTypeData =
           lookupMimeType(git.image, headerBytes: [0xFF, 0xD8])?.split('/');
-      request.files.add(http.MultipartFile.fromBytes(
-        'image',
-        (await rootBundle.load(git.image)).buffer.asUint8List(),
-        contentType: MediaType(mimeTypeData![0], mimeTypeData[1]),
-        filename: git.image.split('/').last,
-      )
-
-          // await http.MultipartFile.fromPath(
-          //   'image',
-          //   git.image,
-          //   contentType: MediaType(mimeTypeData![0], mimeTypeData[1]),
-          //   filename: git.image.split('/').last,
-          // )
-          );
+      request.files.add(
+        await http.MultipartFile.fromPath(
+          'image',
+          git.image,
+          contentType: MediaType(mimeTypeData![0], mimeTypeData[1]),
+          filename: git.image.split('/').last,
+        ),
+      );
 
       request.headers.addAll(headers);
 
@@ -90,25 +57,27 @@ class GitService {
         return response.reasonPhrase;
       }
     } catch (e) {
-      print('catch error: ' + e.toString());
+      print('catch errorda: ' + e.toString());
       return e;
     }
   }
 
-  Future<List<Hotel>> fetchHotelsByCity(String cityName) async {
+  Future<List<Git>> fetchGitsByCity(String cityName) async {
     try {
       var response = await http
-          .get(Uri.parse("$baseUrl/hotel"), headers: {"city": cityName});
+          .get(Uri.parse("$baseUrl/git"), headers: {"city": cityName});
       if (response.statusCode == 200) {
-        List<Hotel> hotelList = (jsonDecode(response.body)['data'] as List)
-            .map((e) => Hotel.fromJson(e))
+        List<Git> gitList = (jsonDecode(response.body)['data'] as List)
+            .map((e) => Git.fromJson(e))
             .toList();
-        return hotelList;
+            print(gitList);
+        return gitList;
       } else {
         return jsonDecode(response.body)['message'];
       }
     } catch (e) {
-      List<Hotel> h = [];
+      List<Git> h = [];
+      print('fetch git exception: $e');
       return h;
     }
   }

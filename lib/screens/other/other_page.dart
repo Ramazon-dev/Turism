@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/models/git_model.dart';
+import 'package:mobileapp/services/git_service.dart';
 import 'package:mobileapp/services/hotel_service.dart';
 import 'package:mobileapp/services/image_pick_service.dart';
 
@@ -18,34 +20,39 @@ class OtherPage extends StatelessWidget {
 
   Column _buildColumn(BuildContext context) {
     return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _imageShow(context),
-          TextButton(
-            onPressed: () {
-              print('send button bosildi');
-              if (ImageChooser.imageList.isNotEmpty) {
-                HotelService.createNewHotel(
-                  Hotel(
-                      name: 'Hotel test',
-                      city: 'tashkent',
-                      tell: ['+9989777777'],
-                      informUz: 'inform uz',
-                      informEn: 'inform en',
-                      informRu: 'inform ru',
-                      karta: 'http://google.maps/tashkent',
-                      site: 'http://site.uz',
-                      categoryId: '1991edea-7d4a-49fb-b627-79b777cf54ae',
-                      media: ImageChooser.imageList),
-                );
-              }else {
-                print(ImageChooser.imageList.toString());
-              }
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _imageShow(context),
+        TextButton(
+          child: const Text('hotel register'),
+          onPressed: () {
+            print('hotel register bosildi');
+            if (ImageChooser.imageList.isNotEmpty) {
+              HotelService.createNewHotel(
+                Hotel(
+                    name: 'Hotel test',
+                    city: 'tashkent',
+                    tell: ['+9989777777'],
+                    informUz: 'inform uz',
+                    informEn: 'inform en',
+                    informRu: 'inform ru',
+                    karta: 'http://google.maps/tashkent',
+                    site: 'http://site.uz',
+                    categoryId: '1991edea-7d4a-49fb-b627-79b777cf54ae',
+                    media: ImageChooser.imageList),
+              );
+            } else {
+              print(ImageChooser.imageList.toString());
+            }
+          },
+        ),
+        TextButton(
+            onPressed: () async {
+              await GitService().fetchGitsByCity('tashkent');
             },
-            child: const Text('send'),
-          ),
-        ],
-      );
+            child: Text('fetch gits by city')),
+      ],
+    );
   }
 
   Column _imageShow(BuildContext context) {
@@ -62,7 +69,7 @@ class OtherPage extends StatelessWidget {
             height: 500,
             color: Colors.grey.shade200,
             child: ListView.builder(
-              itemCount:ImageChooser.imageList.length,
+              itemCount: ImageChooser.imageList.length,
               itemBuilder: (context, index) {
                 var image = ImageChooser.imageList[index];
                 print(image);
@@ -71,8 +78,7 @@ class OtherPage extends StatelessWidget {
                   child: SizedBox(
                     width: 300,
                     height: 100,
-                    child: Image.file(File(image),
-                        fit: BoxFit.cover),
+                    child: Image.file(File(image), fit: BoxFit.cover),
                   ),
                 );
               },

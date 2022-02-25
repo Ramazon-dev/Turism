@@ -1,53 +1,66 @@
-import 'dart:convert';
 
 class Git {
-    String? id;
-    List<String> tell;
-    String image;
-    List<String> lenguages;
-    String informUz;
-    String informEn;
-    String informRu;
-    String price;
-    String city;
-    String? git;
-    
-    Git({
-         this.id,
-        required this.tell,
-        required this.image,
-        required this.lenguages,
-        required this.informUz,
-        required this.informEn,
-        required this.informRu,
-        required this.price,
-        required this.city,
-         this.git,
-    });
+  late String image;
+  late List<String> languages;
+  late List<String> tell;
+  String? id;
+  String? username;
+  String? informUz;
+  String? informEn;
+  String? informRu;
+  String? city;
+  String? price;
+  String? date;
+  int? reyting;
+  int? users;
 
-    factory Git.fromJson(Map<String, dynamic> json) => Git(
-        id: json["id"],
-        tell: jsonDecode(json['tell']),
-        image: json["image"],
-        lenguages: jsonDecode(json['lenguages']),
-        informUz: json["inform_uz"],
-        informEn: json["inform_en"],
-        informRu: json["inform_ru"],
-        price: json["price"],
-        city: json["city"],
-        git: json["git"],
-    );
+  Git(
+      {this.id,
+      this.username,
+      required this.image,
+      required this.languages,
+      this.informUz,
+      this.informEn,
+      this.informRu,
+      this.city,
+      required this.tell,
+      this.price,
+      this.date,
+      this.reyting,
+      this.users});
 
-    // Map<String, dynamic> toJson() => {
-    //     "id": id,
-    //     "tell": List<dynamic>.from(tell!.map((x) => x)),
-    //     "image": image,
-    //     "lenguages": List<dynamic>.from(lenguages!.map((x) => x)),
-    //     "inform_uz": informUz,
-    //     "inform_en": informEn,
-    //     "inform_ru": informRu,
-    //     "price": price,
-    //     "city": city,
-    //     "git": git,
-    // };
+  Git.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    username = json['username'];
+    image = json['image'];
+    languages = json['languages'].cast<String>();
+    informUz = json['inform_uz'];
+    informEn = json['inform_en'];
+    informRu = json['inform_ru'];
+    city = json['city'];
+    tell = json['tell'].cast<String>();
+    price = json['price'];
+    date = json['date'];
+    reyting = json['reyting'];
+    users = json['users'];
+  }
+
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['username'] = username;
+    data['image'] = image;
+    data['languages'] = languages;
+    data['inform_uz'] = informUz;
+    data['inform_en'] = informEn;
+    data['inform_ru'] = informRu;
+    data['city'] = city;
+    data['tell'] = tell;
+    data['price'] = price;
+    data['date'] = date;
+    data['reyting'] = reyting;
+    data['users'] = users;
+    return data;
+  }
 }

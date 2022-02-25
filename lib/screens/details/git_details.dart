@@ -53,12 +53,12 @@ class GitDetailsPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         DescriptionWidget(
-                          name: git.git.toString(),
-                          price: int.parse(git.price),
-                          rating: double.parse(git.price),
+                          name: git.username.toString(),
+                          price: int.parse(git.price.toString()),
+                          rating: double.parse(git.price.toString()),
                           users: 5,
                         ),
-                        LanguageWidget(language: git.lenguages),
+                        LanguageWidget(language: git.languages),
                         SizedBox(
                           height: getHeight(28),
                         ),
