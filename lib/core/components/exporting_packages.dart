@@ -8,6 +8,13 @@ export 'package:mobileapp/screens/search/search_page.dart';
 export 'package:mobileapp/screens/auth/sign_in/sign_in_page.dart';
 
 
+export 'package:mobileapp/screens/business_profile/git_info_page.dart';
+export 'package:mobileapp/screens/currency_page.dart';
+export 'package:mobileapp/screens/hotel/hotel_page.dart';
+export 'package:mobileapp/screens/other/other_page.dart';
+export 'package:mobileapp/screens/place/place_page.dart';
+export 'package:mobileapp/screens/settings/settings_page.dart';
+
 // Widgets
 export 'package:mobileapp/widgets/my_text_form_field.dart';
 export 'package:mobileapp/widgets/bottom_nav_bar.dart';
@@ -23,8 +30,16 @@ export 'package:mobileapp/widgets/buttons/text_button_widget.dart';
 export 'package:mobileapp/widgets/drop_down_widget.dart';
 export 'package:mobileapp/widgets/elevated_button_widget.dart';
 export 'package:mobileapp/widgets/image_setter.dart';
+export 'package:mobileapp/widgets/contact_widget.dart';
+export 'package:mobileapp/widgets/rating_widget.dart';
+export 'package:mobileapp/widgets/url_text_widgte.dart';
 
-
+// Services
+export 'package:mobileapp/services/auth_services.dart';
+export 'package:mobileapp/services/comment_services.dart';
+export 'package:mobileapp/services/currency_service.dart';
+export 'package:mobileapp/services/hotel_service.dart';
+export 'package:mobileapp/services/image_pick_service.dart';
 
 // Components
 export 'package:mobileapp/core/components/size_config.dart';
@@ -54,6 +69,10 @@ export 'package:glassmorphism_ui/glassmorphism_ui.dart';
 export 'package:get_storage/get_storage.dart';
 export 'package:flutter_dotenv/flutter_dotenv.dart';
 export 'package:easy_localization/easy_localization.dart';
+export 'package:on_click/on_click.dart';
+export 'package:http_parser/http_parser.dart';
+export 'package:mime/mime.dart';
+export 'package:cached_network_image/cached_network_image.dart';
 
 // Models
 export 'package:mobileapp/models/car_model.dart';
@@ -61,6 +80,8 @@ export 'package:mobileapp/models/hotel_model.dart';
 export 'package:mobileapp/models/place_model.dart';
 export 'package:mobileapp/core/data/user_data.dart';
 export 'package:mobileapp/models/user_model.dart';
+export 'package:mobileapp/models/git_model.dart';
+
 
 // translations
 export 'package:mobileapp/translations/locale_keys.g.dart';
@@ -68,5 +89,8 @@ export 'package:mobileapp/translations/codegen_loader.g.dart';
 
 
 export 'package:mobileapp/core/functions/mock_data.dart';
+
+export 'package:flutter/services.dart';
+
 
 

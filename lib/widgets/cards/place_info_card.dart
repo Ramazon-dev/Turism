@@ -11,8 +11,8 @@ class PlaceInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        CustomNavigator().push(PlacesDetailsPage(place: place));
+      onTap: () {
+        CustomNavigator.push(PlacesDetailsPage(place: place));
       },
       child: Card(
         margin: EdgeInsets.zero,
@@ -21,8 +21,8 @@ class PlaceInfoCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: MyBorderRadius.only(topRight: 7.0, topLeft: 7.0),
-              child: Image.network(
-                place.media.first,
+              child: CachedNetworkImage(
+                imageUrl: place.media.first,
                 height: getHeight(200.0),
                 width: getWidth(375.0),
                 fit: BoxFit.cover,

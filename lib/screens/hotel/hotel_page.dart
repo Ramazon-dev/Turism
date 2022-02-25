@@ -36,7 +36,7 @@ class HotelListPage extends StatelessWidget {
   InkWell _buildHotelLayout(String img, Hotel hotel) {
     return InkWell(
       onTap: () {
-        CustomNavigator().push(ResHotelDetailsPage(hotel: hotel));
+        CustomNavigator.push(ResHotelDetailsPage(hotel: hotel));
       },
       borderRadius: MyBorderRadius.circular(radius: 7.0),
       child: Container(

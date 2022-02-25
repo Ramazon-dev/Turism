@@ -7,22 +7,9 @@ import 'package:mobileapp/widgets/description_widjet.dart';
 import 'package:mobileapp/widgets/language_button.dart';
 
 class GitDetailsPage extends StatelessWidget {
-  String imageurl;
-  String name;
-  int price;
-  double rating;
-  int users;
-  List language;
+  final Git git;
 
-  GitDetailsPage(
-      {Key? key,
-      required this.imageurl,
-      required this.name,
-      required this.price,
-      required this.rating,
-      required this.users,
-      required this.language})
-      : super(key: key);
+  GitDetailsPage({Key? key, required this.git}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,14 +44,7 @@ class GitDetailsPage extends StatelessWidget {
                     margin: EdgeInsets.all(getWidth(11)),
                     width: getWidth(323),
                     height: getHeight(255),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(
-                            getWidth(5),
-                          ),
-                        ),
-                        image: DecorationImage(
-                            image: NetworkImage(imageurl), fit: BoxFit.cover)),
+                    decoration: MyDecoration.netImage(netImage: git.image),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -73,12 +53,12 @@ class GitDetailsPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         DescriptionWidget(
-                          name: name,
-                          price: price,
-                          rating: rating,
-                          users: users,
+                          name: git.git.toString(),
+                          price: int.parse(git.price),
+                          rating: double.parse(git.price),
+                          users: 5,
                         ),
-                        LanguageWidget(language: language),
+                        LanguageWidget(language: git.lenguages),
                         SizedBox(
                           height: getHeight(28),
                         ),

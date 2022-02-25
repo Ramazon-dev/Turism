@@ -1,11 +1,6 @@
 import 'dart:convert';
-import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import 'package:http_parser/http_parser.dart';
-import 'package:mime/mime.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-
-import '../models/git_model.dart';
 
 class GitService {
   static String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
@@ -24,7 +19,10 @@ class GitService {
         'informUz': git.informUz.toString(),
         'informRu': git.informRu.toString(),
         'informEn': git.informEn.toString(),
-        'price': "500"
+        'price': git.price,
+        'lenguages' : git.lenguages.toString(),
+        'tell' : git.tell.toString(),
+
       });
 
       for (var i in tell) {

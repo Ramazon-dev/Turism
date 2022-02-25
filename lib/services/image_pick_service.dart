@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
 class ImageChooser {
@@ -20,5 +19,15 @@ class ImageChooser {
 
   static void clearImageList() {
     imageList.clear();
+  }
+
+  Future notStatic() async {
+    XFile file;
+    file = (await imagePicker.pickImage(
+      source: ImageSource.gallery,
+    ))!;
+
+    imageList.add(file.path);
+    imageList.forEach((element) => print(element));
   }
 }

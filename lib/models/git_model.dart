@@ -1,4 +1,4 @@
-
+import 'dart:convert';
 
 class Git {
     String? id;
@@ -27,9 +27,9 @@ class Git {
 
     factory Git.fromJson(Map<String, dynamic> json) => Git(
         id: json["id"],
-        tell: List<String>.from(json["tell"].map((x) => x)),
+        tell: jsonDecode(json['tell']),
         image: json["image"],
-        lenguages: List<String>.from(json["lenguages"].map((x) => x)),
+        lenguages: jsonDecode(json['lenguages']),
         informUz: json["inform_uz"],
         informEn: json["inform_en"],
         informRu: json["inform_ru"],

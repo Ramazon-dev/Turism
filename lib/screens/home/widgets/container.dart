@@ -20,42 +20,42 @@ class ShowNerarby extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200.0,
+      height: 240.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: itemCount,
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
         itemBuilder: (context, index) {
-          return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                onTap: ontap,
-                child: Container(
-                  height: getHeight(200.0),
-                  width: 330.0,
-                  decoration: MyDecoration.netImage(
-                      netImage: image,
-                      radius: 5.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: MyEdgeInsets.only(left: 260,top: 10),
-                        child: StartBar(
-                          son: starNumber,
-                        ),
-                      ),
-                      Padding(
-                        padding: MyEdgeInsets.only(top: 90, left: 20,),
-                        child: Text(
-                          text,
-                          style: TextStyle(
-                              fontSize: getWidth(20.0), color: AppColors.white),
-                        ),
-                      ),
-                    ],
+          return InkWell(
+            onTap: ontap,
+            child: Container(
+              height: 200.h,
+              width: 330.w,
+              margin: EdgeInsets.symmetric(horizontal: 5.w),
+              decoration: MyDecoration.netImage(
+                  netImage: image,
+                  radius: 5.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: MyEdgeInsets.only(left: 260,top: 10),
+                    child: StartBar(
+                      son: starNumber,
+                    ),
                   ),
-                ),
-              ));
+                  Padding(
+                    padding: MyEdgeInsets.only(top: 90, left: 20,),
+                    child: Text(
+                      text,
+                      style: TextStyle(
+                          fontSize: getWidth(20.0), color: AppColors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
         },
       ),
     );
