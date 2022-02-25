@@ -47,12 +47,12 @@ class MyGitListWidjet extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               DescriptionWidget(
-                name: git.informEn,
-                price: int.parse(git.price),
+                name: git.informEn.toString(),
+                price: int.parse(git.price.toString()),
                 rating: 4.6,
                 users: 8,
               ),
-              LanguageWidget(language: git.lenguages)
+              LanguageWidget(language: git.languages)
             ],
           ),
         ],

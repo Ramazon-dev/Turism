@@ -17,8 +17,8 @@ class GitService {
         'informUz': git.informUz.toString(),
         'informRu': git.informRu.toString(),
         'informEn': git.informEn.toString(),
-        'price': git.price,
-        'lenguages' : git.lenguages.toString(),
+        'price': git.price.toString(),
+        'lenguages' : git.languages.toString(),
         'tell' : git.tell.toString(),
 
       });

@@ -99,7 +99,7 @@ class GitCubit extends Cubit<GitState> {
         informRu: aboutRu,
         tell: [phone],
         price: price,
-        lenguages: _languages,
+        languages: _languages,
         image: _image,
       );
       GitService.createNewGit(git).then((value) {
