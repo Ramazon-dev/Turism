@@ -62,7 +62,7 @@ class GitService {
     }
   }
 
-  Future<List<Git>> fetchGitsByCity(String cityName) async {
+ static Future<List<Git>> fetchGitsByCity(String cityName) async {
     try {
       var response = await http
           .get(Uri.parse("$baseUrl/git"), headers: {"city": cityName});
@@ -82,7 +82,7 @@ class GitService {
     }
   }
 
-  Future fetchHotelsByCategory(String categryId) async {
+ static Future fetchHotelsByCategory(String categryId) async {
     try {
       var response = await http.get(Uri.parse("$baseUrl/hotel"),
           headers: {"category_id": categryId});
