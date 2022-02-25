@@ -20,60 +20,39 @@ class OtherPage extends StatelessWidget {
 
   Column _buildColumn(BuildContext context) {
     return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _imageShow(context),
-
-          TextButton(
-                child: const Text('hotel register'),
-              onPressed: () {
-                print('hotel register bosildi');
-                if (ImageChooser.imageList.isNotEmpty) {
-                  HotelService.createNewHotel(
-                    Hotel(
-                        name: 'Hotel test',
-                        city: 'tashkent',
-                        tell: ['+9989777777'],
-                        informUz: 'inform uz',
-                        informEn: 'inform en',
-                        informRu: 'inform ru',
-                        karta: 'http://google.maps/tashkent',
-                        site: 'http://site.uz',
-                        categoryId: '1991edea-7d4a-49fb-b627-79b777cf54ae',
-                        media: ImageChooser.imageList),
-                  );
-                }else {
-                  print(ImageChooser.imageList.toString());
-                }
-              },
-            
-            ),
-            TextButton(onPressed: ()async{
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _imageShow(context),
+        TextButton(
+          child: const Text('hotel register'),
+          onPressed: () {
+            print('hotel register bosildi');
+            if (ImageChooser.imageList.isNotEmpty) {
+              HotelService.createNewHotel(
+                Hotel(
+                    name: 'Hotel test',
+                    city: 'tashkent',
+                    tell: ['+9989777777'],
+                    informUz: 'inform uz',
+                    informEn: 'inform en',
+                    informRu: 'inform ru',
+                    karta: 'http://google.maps/tashkent',
+                    site: 'http://site.uz',
+                    categoryId: '1991edea-7d4a-49fb-b627-79b777cf54ae',
+                    media: ImageChooser.imageList),
+              );
+            } else {
+              print(ImageChooser.imageList.toString());
+            }
+          },
+        ),
+        TextButton(
+            onPressed: () async {
               await GitService().fetchGitsByCity('tashkent');
-            }, child: Text('fetch gits by city')),
-
-             TextButton(
-                child: const Text('git register'),
-              onPressed: () async {
-                print('git register button bosildi');
-                if (ImageChooser.imageList.isNotEmpty) {
-                  await GitService.createNewGit(Git(
-        city: 'tashkent',
-        informEn: 'inform en',
-        informUz: 'inform uz',
-        informRu: 'inform ru',
-        image: ImageChooser.imageList[0],
-        tell: ['9999', '22222'],
-        languages: ['kz', 'ty'],
-        price: '500'),);
-                }else {
-                  print(ImageChooser.imageList.toString());
-                }
-              },
-            
-            ),
-        ],
-      );
+            },
+            child: Text('fetch gits by city')),
+      ],
+    );
   }
 
   Column _imageShow(BuildContext context) {
@@ -90,7 +69,7 @@ class OtherPage extends StatelessWidget {
             height: 500,
             color: Colors.grey.shade200,
             child: ListView.builder(
-              itemCount:ImageChooser.imageList.length,
+              itemCount: ImageChooser.imageList.length,
               itemBuilder: (context, index) {
                 var image = ImageChooser.imageList[index];
                 print(image);
@@ -99,8 +78,7 @@ class OtherPage extends StatelessWidget {
                   child: SizedBox(
                     width: 300,
                     height: 100,
-                    child: Image.file(File(image),
-                        fit: BoxFit.cover),
+                    child: Image.file(File(image), fit: BoxFit.cover),
                   ),
                 );
               },

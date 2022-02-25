@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/widgets/contact_widget.dart';
-import 'package:mobileapp/widgets/rating_widget.dart';
-import 'package:mobileapp/widgets/url_text_widgte.dart';
 
 class ResHotelDetailsPage extends StatelessWidget {
   final Hotel hotel;

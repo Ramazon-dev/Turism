@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/services/hotel_service.dart';
+import 'package:mobileapp/services/image_pick_service.dart';
 
 part 'hotel_state.dart';
 
@@ -17,6 +18,7 @@ class HotelCubit extends Cubit<HotelState> {
   final TextEditingController _aboutUzController = TextEditingController();
   final TextEditingController _aboutEnController = TextEditingController();
   final TextEditingController _aboutRuController = TextEditingController();
+  List<String> _imageList = [];
 
   String _city = 'Tashkent';
 
@@ -25,10 +27,17 @@ class HotelCubit extends Cubit<HotelState> {
     emit(HotelInitial());
   }
 
+  void setImage() {
+    ImageChooser chooser = ImageChooser();
+    chooser.notStatic().then((value) {
+      _imageList = ImageChooser.imageList;
+      emit(HotelInitial());
+    });
+  }
+
   void onDropdownMenuItemPressed() {}
 
   void onSavePressed() {
-    // Agar validate bo'lgan bo'lsa
     if (_formKey.currentState!.validate()) {
       String name = _nameController.text.trim();
       String phone = _phoneController.text.trim();
@@ -48,12 +57,13 @@ class HotelCubit extends Cubit<HotelState> {
         karta: map,
         site: link,
         tell: [phone],
+        media: ImageChooser.imageList,
         date: DateTime.now().toString(),
       );
-      HotelService.createNewHotel( hotel).then((value) {
-
+      HotelService.createNewHotel(hotel).then((value) {
+        ImageChooser.clearImageList();
+        CustomNavigator().pushAndRemoveUntil(const HomeScreen());
       });
-      HotelService.createNewHotel( hotel).then((value) {});
     }
   }
 
@@ -76,4 +86,8 @@ class HotelCubit extends Cubit<HotelState> {
   String get city => _city;
 
   TextEditingController get mapLinkController => _mapLinkController;
+
+  List<String> get imageList => _imageList;
+
+  TextEditingController get priceController => _priceController;
 }

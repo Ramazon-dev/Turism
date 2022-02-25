@@ -1,41 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/screens/business_profile/git_info_page.dart';
+import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/screens/business_profile/input_hotel_page.dart';
 import 'package:mobileapp/screens/business_profile/restaurant_page.dart';
+import 'package:mobileapp/widgets/cards/profile_info_card.dart';
 
-class ProfileAppBar extends StatelessWidget {
-  double height;
+class ProfileAppBar extends StatelessWidget with PreferredSizeWidget {
+  HomeCubit? cubit;
 
-  ProfileAppBar({Key? key, this.height = 152.0}) : super(key: key);
+  ProfileAppBar({Key? key, this.cubit})
+      : super(key: key);
+
+  final UserModel _user = UserModel.fromJson(GetStorage().read('user'));
+
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: const Alignment(0.0, -0.6),
-      height: getHeight(height),
-      decoration: BoxDecoration(
-        gradient: AppColors.linearGradient,
-        borderRadius: MyBorderRadius.only(bottomLeft: 32.0, bottomRight: 32.0),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: SvgPicture.asset(AppIcons.arrowBackWhite),
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Container(
+          alignment: const Alignment(0.0, -0.6),
+          height: 274.h,
+          decoration: BoxDecoration(
+            gradient: AppColors.linearGradient,
+            borderRadius: MyBorderRadius.only(bottomLeft: 32.0, bottomRight: 32.0),
           ),
-          MySizedBox(width: 110.0),
-          Text(
-            LocaleKeys.profile.tr(),
-            style: TextWidget.medium(color: AppColors.white, size: 18.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.canPop(context)
+                      ? Navigator.pop(context)
+                      : cubit!.openDrawer.call();
+                },
+                icon: SvgPicture.asset(
+                  Navigator.canPop(context)
+                      ? AppIcons.arrowBack
+                      : AppIcons.menu,
+                ),
+              ),
+              MySizedBox(width: 110.0),
+              Text(
+                LocaleKeys.profile.tr(),
+                style: TextWidget.medium(color: AppColors.white, size: 18.0),
+              ),
+              const Spacer(),
+              _popUpButton(),
+            ],
           ),
-          const Spacer(),
-          _popUpButton(),
-        ],
-      ),
+        ),
+
+        Positioned(
+            bottom: -120.h,
+            right: 72.w,
+            left: 72.w,
+            child: ProfileInfoCard(user: _user))
+      ],
     );
   }
 
@@ -53,14 +75,14 @@ class ProfileAppBar extends StatelessWidget {
         onSelected: (v) {
           switch (v) {
             case 'git':
-              CustomNavigator().push(const GitInfoPage());
+              CustomNavigator.push(const GitInfoPage());
               break;
 
             case 'hotel':
-              CustomNavigator().push(const InputHotelPage());
+              CustomNavigator.push(const InputHotelPage());
               break;
             case 'restaurant':
-              CustomNavigator().push(const RestaurantPage());
+              CustomNavigator.push(const RestaurantPage());
               break;
           }
         },
@@ -72,8 +94,11 @@ class ProfileAppBar extends StatelessWidget {
   }
 
   final List<PopupMenuItem> _list = [
-    const PopupMenuItem(value: 'git', child: Text("Гит.")),
-    const PopupMenuItem(value: 'hotel', child: Text("Отель.")),
-    const PopupMenuItem(value: 'restaurant', child: Text("Ресторан.")),
+     PopupMenuItem(value: 'git', child: Text(LocaleKeys.git.tr())),
+     PopupMenuItem(value: 'hotel', child: Text(LocaleKeys.hotel.tr())),
+     PopupMenuItem(value: 'restaurant', child: Text(LocaleKeys.restaurant.tr())),
   ];
+
+  @override
+  Size get preferredSize => Size(double.infinity, 274.h);
 }

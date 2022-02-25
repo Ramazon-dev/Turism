@@ -105,7 +105,7 @@ class SignUpPage extends StatelessWidget {
                                   style: TextStyle(color: AppColors.blue),
                                 ),
                                 onPressed: () {
-                                  CustomNavigator().push(SignInPage());
+                                  CustomNavigator.push(const SignInPage());
                                 },
                               ),
                             ),

@@ -17,6 +17,7 @@ class HotelService {
   }
 
   static Future createNewHotel(Hotel hotel) async {
+
     try {
       String token = await GetStorage().read('token');
 
@@ -32,6 +33,7 @@ class HotelService {
         'tell': hotel.tell.toString(),
         'categoryId': '1991edea-7d4a-49fb-b627-79b777cf54ae'
       });
+      request.send().then((value) => print);
 
       // FIXME: BIR NECHTA RASMLARNI JO'NATISH
       for (var photoPath in hotel.media) {

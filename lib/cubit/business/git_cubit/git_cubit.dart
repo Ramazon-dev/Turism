@@ -1,6 +1,8 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/services/git_service.dart';
 
 part 'git_state.dart';
 
@@ -8,14 +10,14 @@ class GitCubit extends Cubit<GitState> {
   GitCubit() : super(GitInitial());
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _phoneController = TextEditingController();
-  // final TextEditingController _cityController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _aboutUzController = TextEditingController();
   final TextEditingController _aboutEnController = TextEditingController();
   final TextEditingController _aboutRuController = TextEditingController();
+  List<String> _languages = [];
+  String _image = '';
 
   String _city = 'Tashkent';
-
 
   bool _hasEng = false;
   bool _hasUzb = false;
@@ -47,15 +49,67 @@ class GitCubit extends Cubit<GitState> {
     emit(GitInitial());
   }
 
-  void onDropdownMenuItemPressed() {
-
+  void onChooseImage() {
+    ImageChooser chooser = ImageChooser();
+    chooser.notStatic().then((value) {
+      _image = ImageChooser.imageList[0];
+      emit(GitInitial());
+    });
   }
 
-  void onSavePressed() {}
+  void onDropdownMenuItemPressed() {}
+
+  void onSavePressed() {
+    if (_formKey.currentState!.validate()) {
+      String phone = _phoneController.text.trim();
+      String aboutUz = _aboutUzController.text.trim();
+      String aboutEn = _aboutEnController.text.trim();
+      String aboutRu = _aboutRuController.text.trim();
+      String price = _priceController.text.trim();
+
+      if (_hasEng) {
+        _languages.add('Eng');
+      }
+
+      if (_hasUzb) {
+        _languages.add('Uzb');
+      }
+
+      if (_hasRus) {
+        _languages.add('Rus');
+      }
+
+      if (_hasKaz) {
+        _languages.add('Uzb');
+      }
+
+      if(_image.isEmpty) {
+        if (ImageChooser.imageList.isNotEmpty) {
+          _image = ImageChooser.imageList[0];
+        } else {
+          Fluttertoast.showToast(msg: 'Please, set an image');
+          return;
+        }
+      }
+
+      Git git = Git(
+        city: _city.toLowerCase(),
+        informEn: aboutEn,
+        informUz: aboutUz,
+        informRu: aboutRu,
+        tell: [phone],
+        price: price,
+        lenguages: _languages,
+        image: _image,
+      );
+      GitService.createNewGit(git).then((value) {
+        ImageChooser.clearImageList();
+        CustomNavigator().pushAndRemoveUntil(const HomeScreen());
+      });
+    }
+  }
 
   TextEditingController get phoneController => _phoneController;
-
-  // TextEditingController get cityController => _cityController;
 
   TextEditingController get priceController => _priceController;
 
@@ -66,6 +120,8 @@ class GitCubit extends Cubit<GitState> {
   TextEditingController get aboutRuController => _aboutRuController;
 
   GlobalKey<FormState> get formKey => _formKey;
+
+  List<String> get languages => _languages;
 
   bool get hasEng => _hasEng;
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/data/git_data.dart';
 import 'package:mobileapp/cubit/git_cubit/git_cubit.dart';
 import 'package:mobileapp/screens/details/git_details.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_widget.dart';
@@ -23,28 +24,15 @@ class GitPage extends StatelessWidget {
                 child: ListView.builder(
                   padding: const EdgeInsets.all(0),
                   itemBuilder: (context, index) {
+
                     return InkWell(
                       onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (__) => GitDetailsPage(
-                                    imageurl:
-                                        'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-                                    name: 'Nargiza Ahmadjonova',
-                                    price: 150,
-                                    rating: 4,
-                                    users: 24,
-                                    language: const ['Uzb', 'Eng', 'Rus'])));
+                                builder: (__) => GitDetailsPage(git: GitData.git)));
                       },
-                      child: MyGitListWidjet(
-                          imageUrl:
-                              'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-                          name: 'Nargiza Ahmadjonova aaaaaaaaaaaaa',
-                          price: 150,
-                          rating: 4,
-                          users: 24,
-                          language: const ['Uzb', 'Eng', 'Rus']),
+                      child: MyGitListWidjet(git: GitData.git),
                     );
                   },
                   itemCount: 4,

@@ -1,3 +1,4 @@
+
 class Git {
   late String image;
   late List<String> languages;
@@ -43,6 +44,7 @@ class Git {
     reyting = json['reyting'];
     users = json['users'];
   }
+
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};

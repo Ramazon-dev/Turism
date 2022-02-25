@@ -4,24 +4,12 @@ import 'package:mobileapp/widgets/description_widjet.dart';
 import 'package:mobileapp/widgets/language_button.dart';
 
 class MyGitListWidjet extends StatelessWidget {
-  String imageUrl;
-  String name;
-  int price;
-  double rating;
-  int users;
-  List language;
+  final Git git;
 
-  MyGitListWidjet(
-      {Key? key,
-      required this.imageUrl,
-      required this.name,
-      required this.price,
-      required this.rating,
-      required this.users,
-      required this.language})
-      : super(key: key);
+  MyGitListWidjet({Key? key, required this.git}) : super(key: key);
   List<SvgPicture>? fullStar;
   List<SvgPicture>? emptyStar;
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -52,19 +40,19 @@ class MyGitListWidjet extends StatelessWidget {
                   ),
                 ),
                 image: DecorationImage(
-                    image: NetworkImage(imageUrl), fit: BoxFit.cover)),
+                    image: NetworkImage(git.image), fit: BoxFit.cover)),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               DescriptionWidget(
-                name: name,
-                price: price,
-                rating: rating,
-                users: users,
+                name: git.informEn,
+                price: int.parse(git.price),
+                rating: 4.6,
+                users: 8,
               ),
-              LanguageWidget(language: language)
+              LanguageWidget(language: git.lenguages)
             ],
           ),
         ],
