@@ -35,8 +35,6 @@ class GitInfoPage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-
-                      // Full name
                       Text(
                         'Bahromjon',
                         style: TextWidget.medium(size: 20.0),
@@ -53,7 +51,7 @@ class GitInfoPage extends StatelessWidget {
               _showLanguages(cubit),
               MySizedBox(height: 30.0),
               ElevatedButtonWidget(
-                onPressed: () {},
+                onPressed: cubit.onSavePressed,
                 label: LocaleKeys.save.tr(),
               ),
             ],

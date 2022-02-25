@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/services/git_service.dart';
 
@@ -14,6 +15,7 @@ class GitCubit extends Cubit<GitState> {
   final TextEditingController _aboutEnController = TextEditingController();
   final TextEditingController _aboutRuController = TextEditingController();
   List<String> _languages = [];
+  String _image = '';
 
   String _city = 'Tashkent';
 
@@ -49,7 +51,10 @@ class GitCubit extends Cubit<GitState> {
 
   void onChooseImage() {
     ImageChooser chooser = ImageChooser();
-    chooser.notStatic().then((value) => emit(GitInitial()));
+    chooser.notStatic().then((value) {
+      _image = ImageChooser.imageList[0];
+      emit(GitInitial());
+    });
   }
 
   void onDropdownMenuItemPressed() {}
@@ -62,20 +67,29 @@ class GitCubit extends Cubit<GitState> {
       String aboutRu = _aboutRuController.text.trim();
       String price = _priceController.text.trim();
 
-      if(_hasEng) {
+      if (_hasEng) {
         _languages.add('Eng');
       }
 
-      if(_hasUzb) {
+      if (_hasUzb) {
         _languages.add('Uzb');
       }
 
-      if(_hasRus) {
+      if (_hasRus) {
         _languages.add('Rus');
       }
 
       if (_hasKaz) {
         _languages.add('Uzb');
+      }
+
+      if(_image.isEmpty) {
+        if (ImageChooser.imageList.isNotEmpty) {
+          _image = ImageChooser.imageList[0];
+        } else {
+          Fluttertoast.showToast(msg: 'Please, set an image');
+          return;
+        }
       }
 
       Git git = Git(
@@ -86,7 +100,7 @@ class GitCubit extends Cubit<GitState> {
         tell: [phone],
         price: price,
         lenguages: _languages,
-        image: '',
+        image: _image,
       );
       GitService.createNewGit(git).then((value) {
         ImageChooser.clearImageList();

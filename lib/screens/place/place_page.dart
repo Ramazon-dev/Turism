@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/widgets/cards/place_info_card.dart';
 
 class PlacePage extends StatelessWidget {
   const PlacePage({Key? key}) : super(key: key);
