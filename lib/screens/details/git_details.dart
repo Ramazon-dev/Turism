@@ -44,14 +44,7 @@ class GitDetailsPage extends StatelessWidget {
                     margin: EdgeInsets.all(getWidth(11)),
                     width: getWidth(323),
                     height: getHeight(255),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(
-                            getWidth(5),
-                          ),
-                        ),
-                        image: DecorationImage(
-                            image: NetworkImage(git.image), fit: BoxFit.cover)),
+                    decoration: MyDecoration.netImage(netImage: git.image),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),

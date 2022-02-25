@@ -42,7 +42,7 @@ class ImageSetter extends StatelessWidget {
                     color: AppColors.grey,
                     height: 61.0.h,
                     fit: BoxFit.contain,
-                  ).onTap(cubit.setImage),
+                  ).onClick(cubit.setImage),
           ),
           SizedBox(height: 12.0.h),
           _showImages(),

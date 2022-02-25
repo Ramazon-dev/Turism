@@ -31,8 +31,8 @@ class CarInfoCard extends StatelessWidget {
               ClipRRect(
                 borderRadius:
                     MyBorderRadius.only(topLeft: 12.0, topRight: 12.0),
-                child: Image.network(
-                  car.img,
+                child: CachedNetworkImage(
+                  imageUrl: car.img,
                   width: MediaQuery.of(context).size.width,
                   height: getHeight(160.0),
                   fit: BoxFit.cover,

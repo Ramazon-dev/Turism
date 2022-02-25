@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/components/my_border_radius.dart';
 
 class MyDecoration {
   static BoxDecoration assetImage({
@@ -29,7 +28,7 @@ class MyDecoration {
           border: border,
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: NetworkImage(netImage),
+            image: CachedNetworkImageProvider(netImage),
           ),
           borderRadius: BorderRadius.circular(getWidth(radius)));
 

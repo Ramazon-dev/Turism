@@ -30,6 +30,9 @@ export 'package:mobileapp/widgets/buttons/text_button_widget.dart';
 export 'package:mobileapp/widgets/drop_down_widget.dart';
 export 'package:mobileapp/widgets/elevated_button_widget.dart';
 export 'package:mobileapp/widgets/image_setter.dart';
+export 'package:mobileapp/widgets/contact_widget.dart';
+export 'package:mobileapp/widgets/rating_widget.dart';
+export 'package:mobileapp/widgets/url_text_widgte.dart';
 
 // Services
 export 'package:mobileapp/services/auth_services.dart';
@@ -69,6 +72,7 @@ export 'package:easy_localization/easy_localization.dart';
 export 'package:on_click/on_click.dart';
 export 'package:http_parser/http_parser.dart';
 export 'package:mime/mime.dart';
+export 'package:cached_network_image/cached_network_image.dart';
 
 // Models
 export 'package:mobileapp/models/car_model.dart';
