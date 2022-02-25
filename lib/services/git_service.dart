@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:mime/mime.dart';
@@ -11,8 +10,6 @@ class GitService {
   static String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
 
   static Future createNewGit(Git git) async {
-    List tell = ['9999', '22222'];
-    List lang = ['en', 'ru'];
     try {
       String token = // await GetStorage().read('token');
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
@@ -27,16 +24,17 @@ class GitService {
         'price': "500"
       });
 
-      for (var i in tell) {
+      // TELL LISTNI JO'NATISH
+      for (var i in git.tell) {
         request.files.add(http.MultipartFile.fromString('tell', i));
       }
 
-      for (var i in lang) {
+      // LANGUAGE LISTNI JO'NATISH
+      for (var i in git.languages) {
         request.files.add(http.MultipartFile.fromString('languages', i));
-        // request.fields.addAll({'languages[$i]': i});
       }
 
-      //  BITTA RASMNI JO'NATISH
+      //  RASMNI JO'NATISH
       final mimeTypeData =
           lookupMimeType(git.image, headerBytes: [0xFF, 0xD8])?.split('/');
       request.files.add(
@@ -65,20 +63,22 @@ class GitService {
     }
   }
 
-  Future<List<Hotel>> fetchHotelsByCity(String cityName) async {
+  Future<List<Git>> fetchGitsByCity(String cityName) async {
     try {
       var response = await http
-          .get(Uri.parse("$baseUrl/hotel"), headers: {"city": cityName});
+          .get(Uri.parse("$baseUrl/git"), headers: {"city": cityName});
       if (response.statusCode == 200) {
-        List<Hotel> hotelList = (jsonDecode(response.body)['data'] as List)
-            .map((e) => Hotel.fromJson(e))
+        List<Git> gitList = (jsonDecode(response.body)['data'] as List)
+            .map((e) => Git.fromJson(e))
             .toList();
-        return hotelList;
+            print(gitList);
+        return gitList;
       } else {
         return jsonDecode(response.body)['message'];
       }
     } catch (e) {
-      List<Hotel> h = [];
+      List<Git> h = [];
+      print('fetch git exception: $e');
       return h;
     }
   }

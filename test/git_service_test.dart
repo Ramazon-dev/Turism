@@ -13,24 +13,12 @@ void main() async {
 
     expect(result, {'1': 1});
   });
-  test('fecht hotels by city test', () async {
-    var result = await HotelService().fetchHotelsByCity('toshkent');
+  test('fecht gits by city test', () async {
+    var result = await GitService().fetchGitsByCity('toshkent');
 
     expect(result, 'OK');
   });
 
-  test('fecht hotels by category test', () async {
-    var result = await HotelService()
-        .fetchHotelsByCategory('1991edea-7d4a-49fb-b627-79b777cf54ae');
-
-    expect(result, 'OK');
-  });
-
-  test('fecht categories of hotel test', () async {
-    var result = await HotelService().fetchCategoriesOfHotel();
-
-    expect(result, 'Saccesful !');
-  });
 
   test('fetch hotel commnets test', () async {
     var result = await HotelService()
@@ -47,17 +35,8 @@ void main() async {
         informRu: 'inform ru',
         image: ImageChooser.image.path,//'/data/user/0/uz.travel.mobileapp/cache/image_picker4674218356279332832.jpg',//,
         tell: ['9999', '22222'],
-        lenguages: ['kz', 'ty'],
+        languages: ['kz', 'ty'],
         price: '500'));
-
-    expect(result, true);
-  });
-
-  test('create hotel test', () async {
-    var result = await HotelService.updateHotelMedia(
-      hotelId: '05c5a595-1a39-4b7e-8ffe-5299e1d2a25e',
-      hotelMedia: ImageChooser.imageList,
-    );
 
     expect(result, true);
   });

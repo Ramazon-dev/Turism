@@ -13,11 +13,18 @@ class OtherPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _imageShow(context),
-            TextButton(
+        child: _buildColumn(context),
+      ),
+    );
+  }
+
+  Column _buildColumn(BuildContext context) {
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _imageShow(context),
+
+          TextButton(
                 child: const Text('hotel register'),
               onPressed: () {
                 print('hotel register bosildi');
@@ -41,6 +48,9 @@ class OtherPage extends StatelessWidget {
               },
             
             ),
+            TextButton(onPressed: ()async{
+              await GitService().fetchGitsByCity('tashkent');
+            }, child: Text('fetch gits by city')),
 
              TextButton(
                 child: const Text('git register'),
@@ -54,7 +64,7 @@ class OtherPage extends StatelessWidget {
         informRu: 'inform ru',
         image: ImageChooser.imageList[0],
         tell: ['9999', '22222'],
-        lenguages: ['kz', 'ty'],
+        languages: ['kz', 'ty'],
         price: '500'),);
                 }else {
                   print(ImageChooser.imageList.toString());
@@ -62,10 +72,8 @@ class OtherPage extends StatelessWidget {
               },
             
             ),
-          ],
-        ),
-      ),
-    );
+        ],
+      );
   }
 
   Column _imageShow(BuildContext context) {
@@ -85,6 +93,7 @@ class OtherPage extends StatelessWidget {
               itemCount:ImageChooser.imageList.length,
               itemBuilder: (context, index) {
                 var image = ImageChooser.imageList[index];
+                print(image);
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
