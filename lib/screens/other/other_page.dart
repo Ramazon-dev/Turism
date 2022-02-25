@@ -47,10 +47,18 @@ class OtherPage extends StatelessWidget {
           },
         ),
         TextButton(
-            onPressed: () async {
-              await GitService().fetchGitsByCity('tashkent');
-            },
-            child: Text('fetch gits by city')),
+          onPressed: () async {
+            await GitService()
+                .addRatingToGit(gitId:  "06d4e2b3-17c1-4ca1-8eb8-92f00e9112f9", rate: 5);
+          },
+          child: Text('add rate to git'),
+        ),
+        TextButton(
+          onPressed: () async {
+            await GitService().fetchGitsByCity('tashkent');
+          },
+          child: Text('fetch gits by city'),
+        ),
       ],
     );
   }

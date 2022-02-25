@@ -7,19 +7,6 @@ import 'package:mobileapp/services/image_pick_service.dart';
 
 void main() async {
 
-
-  test('test', (){
-    var result = HotelService.test();
-
-    expect(result, {'1': 1});
-  });
-  test('fecht gits by city test', () async {
-    var result = await GitService().fetchGitsByCity('toshkent');
-
-    expect(result, 'OK');
-  });
-
-
   test('fetch hotel commnets test', () async {
     var result = await HotelService()
         .fetchHotelComments(hotelId: "2a2ffc5e-112b-4a4a-909a-066202621acc");
@@ -27,19 +14,7 @@ void main() async {
     expect(result['message'], 'OK');
   });
 
-  test('create git test', () async {
-    var result = await GitService.createNewGit(Git(
-        city: 'tashkent',
-        informEn: 'inform en',
-        informUz: 'inform uz',
-        informRu: 'inform ru',
-        image: ImageChooser.image.path,//'/data/user/0/uz.travel.mobileapp/cache/image_picker4674218356279332832.jpg',//,
-        tell: ['9999', '22222'],
-        languages: ['kz', 'ty'],
-        price: '500'));
 
-    expect(result, true);
-  });
 
   test('add rating to hotel test', () async {
     var result = await HotelService().addRatingToHotel(
