@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/models/git_model.dart';
+import 'package:mobileapp/services/git_service.dart';
 import 'package:mobileapp/services/hotel_service.dart';
 import 'package:mobileapp/services/image_pick_service.dart';
 
@@ -16,8 +18,9 @@ class OtherPage extends StatelessWidget {
           children: [
             _imageShow(context),
             TextButton(
+                child: const Text('hotel register'),
               onPressed: () {
-                print('send button bosildi');
+                print('hotel register bosildi');
                 if (ImageChooser.imageList.isNotEmpty) {
                   HotelService.createNewHotel(
                     Hotel(
@@ -36,7 +39,28 @@ class OtherPage extends StatelessWidget {
                   print(ImageChooser.imageList.toString());
                 }
               },
-              child: const Text('send'),
+            
+            ),
+
+             TextButton(
+                child: const Text('git register'),
+              onPressed: () async {
+                print('git register button bosildi');
+                if (ImageChooser.imageList.isNotEmpty) {
+                  await GitService.createNewGit(Git(
+        city: 'tashkent',
+        informEn: 'inform en',
+        informUz: 'inform uz',
+        informRu: 'inform ru',
+        image: ImageChooser.imageList[0],
+        tell: ['9999', '22222'],
+        lenguages: ['kz', 'ty'],
+        price: '500'),);
+                }else {
+                  print(ImageChooser.imageList.toString());
+                }
+              },
+            
             ),
           ],
         ),

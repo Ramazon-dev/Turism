@@ -6,6 +6,13 @@ import 'package:mobileapp/services/hotel_service.dart';
 import 'package:mobileapp/services/image_pick_service.dart';
 
 void main() async {
+
+
+  test('test', (){
+    var result = HotelService.test();
+
+    expect(result, {'1': 1});
+  });
   test('fecht hotels by city test', () async {
     var result = await HotelService().fetchHotelsByCity('toshkent');
 
