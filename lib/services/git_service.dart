@@ -126,15 +126,15 @@ class GitService {
     }
   }
 
-  Future addRatingToHotel(
-      {required String hotelId, required String rate}) async {
+  Future addRatingToGit(
+      {required String gitId, required int rate}) async {
     String token = //await GetStorage().read('token');
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
       var response = await http.post(
         Uri.parse('$baseUrl/reyting'),
-        body: jsonEncode({"value": rate, "hotelId": hotelId}),
+        body: jsonEncode({"value": rate, "gitId": gitId}),
         headers: {'token': token},
       );
 
@@ -142,7 +142,7 @@ class GitService {
         print(jsonDecode(response.body));
         return jsonDecode(response.body);
       } else {
-        print(response.statusCode);
+        print("else error" + response.statusCode.toString());
         return jsonDecode(response.statusCode.toString());
       }
     } catch (e) {
@@ -151,15 +151,16 @@ class GitService {
     }
   }
 
-  Future addCommentToHotel(
-      {required String hotelId, required String commentText}) async {
+
+  Future addCommentToGit(
+      {required String gitId, required String commentText}) async {
     String token = //await GetStorage().read('token');
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
       var response = await http.post(
         Uri.parse('$baseUrl/comment'),
-        body: jsonEncode({"name": commentText, "hotelId": hotelId}),
+        body: jsonEncode({"name": commentText, "gitId": gitId}),
         headers: {'token': token, 'Content-Type': 'application/json'},
       );
 
