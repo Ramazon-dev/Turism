@@ -18,9 +18,19 @@ class OtherPage extends StatelessWidget {
   ElevatedButtonWidget _createGit() => ElevatedButtonWidget(
         onPressed: () {
           Git git = Git(
-              image: ImageChooser.imageList[0],
-              languages: ['uz, en, tr'],
-              tell: ['+ 998 99 999 99 99']);
+            city: 'tashkent',
+            informEn: 'Enlish',
+            informRu: 'Russian',
+            informUz: 'Uzbek',
+            price: '150',
+            reyting: 4,
+            // username: 'newgit',
+            users: 5,
+            image: ImageChooser.imageList[0],
+            languages: ['uz, en, tr'],
+            tell: ['+ 998 99 999 99 99', '1345678'],
+
+          );
           GitService.createNewGit(git);
         },
         label: "Create Git",
@@ -65,7 +75,6 @@ class OtherPage extends StatelessWidget {
           onPressed: () async {},
           child: Text('fetch gits by city'),
         ),
-
         _createGit(),
       ],
     );
