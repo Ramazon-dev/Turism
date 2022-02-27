@@ -9,6 +9,7 @@ class PlacePage extends StatelessWidget {
     return Scaffold(
       appBar: const SimpleAppBar(title: 'Places'),
       body: GridView.builder(
+        itemCount: 12,
         padding: MyEdgeInsets.symmetric(h: 15.0, v: 22.0),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
