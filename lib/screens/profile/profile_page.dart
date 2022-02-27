@@ -27,23 +27,13 @@ class ProfilePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+
             ElevatedButtonWidget(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ProfileAuthPage(),
-                  ),
-                );
-              },
-              label: "Sign In Page",
-            ),
-            ElevatedButtonWidget(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SignInPage(),
+                    builder: (context) =>const SignInPage(),
                   ),
                 );
               },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
+import 'package:mobileapp/screens/profile/auth_profile_page.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:mobileapp/widgets/drawer_widget.dart';
 
@@ -31,31 +32,37 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  List<Widget> _pages(HomeCubit cubit) => [
-        const GitPage(),
-        SearchPage(),
-        HomeBody(cubit: cubit),
-        const CarPage(),
-        ProfilePage(),
-      ];
+  List<Widget> _pages(HomeCubit cubit) {
+    String token = GetStorage().read('token') ?? '';
+    return [
+      const GitPage(),
+      SearchPage(),
+      HomeBody(cubit: cubit),
+      const CarPage(),
+      token.isNotEmpty ?ProfileAuthPage() : SignInPage(),
+    ];
+  }
 
-  List<PreferredSizeWidget?> _appBarList(HomeCubit cubit) => [
-        AppBarOrigin(
-          actions: SvgPicture.asset(AppIcons.language),
-          actions2: SvgPicture.asset(AppIcons.dollar),
-        ),
-        AppBarOrigin(
-          actions: SvgPicture.asset(AppIcons.language),
-          actions2: SvgPicture.asset(AppIcons.dollar),
-        ),
-        AppBarOrigin(
-          actions: SvgPicture.asset(AppIcons.language),
-          actions2: SvgPicture.asset(AppIcons.dollar),
-        ),
-        AppBarOrigin(
-          actions: SvgPicture.asset(AppIcons.language),
-          actions2: SvgPicture.asset(AppIcons.dollar),
-        ),
-        ProfileAppBar(cubit: cubit)
-      ];
+  List<PreferredSizeWidget?> _appBarList(HomeCubit cubit) {
+    String token = GetStorage().read('token') ?? '';
+    return [
+      AppBarOrigin(
+        actions: SvgPicture.asset(AppIcons.language),
+        actions2: SvgPicture.asset(AppIcons.dollar),
+      ),
+      AppBarOrigin(
+        actions: SvgPicture.asset(AppIcons.language),
+        actions2: SvgPicture.asset(AppIcons.dollar),
+      ),
+      AppBarOrigin(
+        actions: SvgPicture.asset(AppIcons.language),
+        actions2: SvgPicture.asset(AppIcons.dollar),
+      ),
+      AppBarOrigin(
+        actions: SvgPicture.asset(AppIcons.language),
+        actions2: SvgPicture.asset(AppIcons.dollar),
+      ),
+      token.isNotEmpty ? ProfileAppBar(cubit: cubit) : null,
+    ];
+  }
 }

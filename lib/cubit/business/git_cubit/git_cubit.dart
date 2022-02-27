@@ -86,6 +86,7 @@ class GitCubit extends Cubit<GitState> {
       if(_image.isEmpty) {
         if (ImageChooser.imageList.isNotEmpty) {
           _image = ImageChooser.imageList[0];
+           print(_image);
         } else {
           Fluttertoast.showToast(msg: 'Please, set an image');
           return;
