@@ -8,7 +8,7 @@ class GitService {
   static Future createNewGit(Git git) async {
     try {
       String token = // await GetStorage().read('token');
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0ODY0YzU0NC1jYTQwLTQ1YzItOGUxYi0yM2FlOTFkOGVkOTYiLCJpYXQiOjE2NDU4NzAxNjIsImV4cCI6MTY2MzE1MDE2Mn0.zN6uOpA3IalCmTDZJqTkFPnBS1QQSmtme03NU1-Lz-4';
 
       var headers = {'token': token};
       var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/git'));
