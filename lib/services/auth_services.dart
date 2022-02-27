@@ -60,10 +60,10 @@ class AuthServices {
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         var data = jsonDecode(await response.stream.bytesToString());
+        String token = data['data']['token'];
         UserModel user = UserModel.fromJson(data['data']['user']);
-        await GetStorage().write('token', data['token']);
+        await GetStorage().write('token', token);
         await GetStorage().write('user', user.toMap());
-        UserData.setCurrentUser = user;
         return true;
       } else {
         print(await response.stream.bytesToString());

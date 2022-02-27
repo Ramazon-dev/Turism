@@ -65,6 +65,8 @@ class OtherPage extends StatelessWidget {
           onPressed: () async {},
           child: Text('fetch gits by city'),
         ),
+
+        _createGit(),
       ],
     );
   }
