@@ -1,10 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/models/git_model.dart';
 import 'package:mobileapp/services/git_service.dart';
-import 'package:mobileapp/services/hotel_service.dart';
-import 'package:mobileapp/services/image_pick_service.dart';
 
 class OtherPage extends StatelessWidget {
   const OtherPage({Key? key}) : super(key: key);
@@ -17,6 +14,17 @@ class OtherPage extends StatelessWidget {
       ),
     );
   }
+
+  ElevatedButtonWidget _createGit() => ElevatedButtonWidget(
+        onPressed: () {
+          Git git = Git(
+              image: ImageChooser.imageList[0],
+              languages: ['uz, en, tr'],
+              tell: ['+ 998 99 999 99 99']);
+          GitService.createNewGit(git);
+        },
+        label: "Create Git",
+      );
 
   Column _buildColumn(BuildContext context) {
     return Column(
@@ -48,15 +56,13 @@ class OtherPage extends StatelessWidget {
         ),
         TextButton(
           onPressed: () async {
-            await GitService()
-                .addRatingToGit(gitId:  "06d4e2b3-17c1-4ca1-8eb8-92f00e9112f9", rate: 5);
+            await GitService().addRatingToGit(
+                gitId: "06d4e2b3-17c1-4ca1-8eb8-92f00e9112f9", rate: 5);
           },
           child: Text('add rate to git'),
         ),
         TextButton(
-          onPressed: () async {
-            await GitService().fetchGitsByCity('tashkent');
-          },
+          onPressed: () async {},
           child: Text('fetch gits by city'),
         ),
       ],
