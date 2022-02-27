@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/screens/about_us_page.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({Key? key}) : super(key: key);
@@ -18,15 +19,19 @@ class DrawerWidget extends StatelessWidget {
           _setCategory('Other', AppIcons.arrowBack, const OtherPage()),
           _setCategory('Настройки', AppIcons.arrowBack, const SettingsPage()),
           const Spacer(),
-          _setCategory('Logout', AppIcons.location, const HomeScreen(), isAll: true),
-
+          _setCategory(
+              LocaleKeys.aboutUs.tr(), AppIcons.location, const AboutUsPage()),
+          _setCategory('Logout', AppIcons.location, const HomeScreen(),
+              isAll: true),
         ],
       ),
     );
   }
 
-  ListTile _setCategory(String title, String icon, Widget page,{bool isAll = false}) => ListTile(
-        onTap: () async{
+  ListTile _setCategory(String title, String icon, Widget page,
+          {bool isAll = false}) =>
+      ListTile(
+        onTap: () async {
           if (isAll) {
             await GetStorage().write('token', '');
             CustomNavigator().pushAndRemoveUntil(page);

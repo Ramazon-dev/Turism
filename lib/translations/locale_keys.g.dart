@@ -26,5 +26,6 @@ abstract class  LocaleKeys {
   static const linkOfSite = 'linkOfSite';
   static const mapLink = 'mapLink';
   static const save = 'save';
+  static const aboutUs = 'aboutUs';
 
 }

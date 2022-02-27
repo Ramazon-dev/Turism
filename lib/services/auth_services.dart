@@ -28,7 +28,6 @@ class AuthServices {
         print(await response.stream.bytesToString());
         return false;
       }
-
     } catch (e) {
       print("SERVICE AUTH SIGN IN ERROR: $e");
     }
