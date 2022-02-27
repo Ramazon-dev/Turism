@@ -18,6 +18,7 @@ class AppColors {
   static const Color starAreaColor = Color(0xffFFFFFF);
   static const Color grey10 = Color(0xffF9F9F9);
   static const Color lightGrey = Color(0xFFF5F5F5);
+  static const Color currenceGrey = Color(0xffEFEFEF);
 
   static const LinearGradient linearGradient = LinearGradient(
     colors: [linear, primary],
