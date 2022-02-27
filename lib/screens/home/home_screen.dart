@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
       SearchPage(),
       HomeBody(cubit: cubit),
       const CarPage(),
-      token.isNotEmpty ?ProfileAuthPage() : SignInPage(),
+      token.isNotEmpty ? const ProfileAuthPage() : const SignInPage(),
     ];
   }
 
