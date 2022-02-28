@@ -49,11 +49,7 @@ class HomeBody extends StatelessWidget {
             date: "10 минут. 5 сек",
           ),
           RowTextWidgets(ontap: () {}, text: "Регионы.", bottomText: "Все"),
-          PopularObject(
-              ontap: () {},
-              itemCount: 4,
-              text: "Tashkent",
-              image: "https://source.unsplash.com/random/1"),
+          PopularObject(),
           RowTextWidgets(
               ontap: () {}, text: "Где мы находимся :)", bottomText: "Все"),
           HotelsView(

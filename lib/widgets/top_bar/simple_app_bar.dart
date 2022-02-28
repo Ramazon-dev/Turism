@@ -14,6 +14,5 @@ class SimpleAppBar extends StatelessWidget with PreferredSizeWidget {
       );
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => Size(double.infinity, getHeight(56.0));
 }
