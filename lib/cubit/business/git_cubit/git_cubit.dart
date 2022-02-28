@@ -14,7 +14,7 @@ class GitCubit extends Cubit<GitState> {
   final TextEditingController _aboutUzController = TextEditingController();
   final TextEditingController _aboutEnController = TextEditingController();
   final TextEditingController _aboutRuController = TextEditingController();
-  List<String> _languages = [];
+  final Set<String> _languages = Set();
   String _image = '';
 
   String _city = 'Tashkent';
@@ -68,31 +68,32 @@ class GitCubit extends Cubit<GitState> {
       String price = _priceController.text.trim();
 
       if (_hasEng) {
-        _languages.add('Eng');
+        _languages.add('en');
       }
 
       if (_hasUzb) {
-        _languages.add('Uzb');
+        _languages.add('uz');
       }
 
       if (_hasRus) {
-        _languages.add('Rus');
+        _languages.add('ru');
       }
 
       if (_hasKaz) {
-        _languages.add('Uzb');
+        _languages.add('kz');
       }
 
-      if(_image.isEmpty) {
+      if (_image.isEmpty) {
         if (ImageChooser.imageList.isNotEmpty) {
           _image = ImageChooser.imageList[0];
-           print(_image);
+          print(_image);
         } else {
           Fluttertoast.showToast(msg: 'Please, set an image');
           return;
         }
       }
 
+      print(_languages);
       Git git = Git(
         city: _city.toLowerCase(),
         informEn: aboutEn,
@@ -100,7 +101,7 @@ class GitCubit extends Cubit<GitState> {
         informRu: aboutRu,
         tell: [phone],
         price: price,
-        languages: _languages,
+        languages: _languages.toList(),
         image: _image,
       );
       GitService.createNewGit(git).then((value) {
@@ -122,7 +123,7 @@ class GitCubit extends Cubit<GitState> {
 
   GlobalKey<FormState> get formKey => _formKey;
 
-  List<String> get languages => _languages;
+  List<String> get languages => _languages.toList();
 
   bool get hasEng => _hasEng;
 
