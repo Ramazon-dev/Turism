@@ -8,8 +8,7 @@ class GitService {
   static Future createNewGit(Git git) async {
     try {
       String token = await GetStorage().read('token');
-      // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0ODY0YzU0NC1jYTQwLTQ1YzItOGUxYi0yM2FlOTFkOGVkOTYiLCJpYXQiOjE2NDU4NzAxNjIsImV4cCI6MTY2MzE1MDE2Mn0.zN6uOpA3IalCmTDZJqTkFPnBS1QQSmtme03NU1-Lz-4';
-
+      print(token);
       var headers = {'token': token};
       var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/git'));
       request.fields.addAll({
@@ -53,6 +52,9 @@ class GitService {
         return response.stream.bytesToString();
       } else {
         print('else error: ' + response.reasonPhrase.toString());
+        print("else status code: " + response.statusCode.toString());
+        response.stream.bytesToString().then((value) => print(value));
+
         return response.reasonPhrase;
       }
     } catch (e) {
@@ -61,7 +63,7 @@ class GitService {
     }
   }
 
-  static Future<List<Git>> fetchGitsByCity(String cityName) async {
+ static Future<List<Git>> fetchGitsByCity(String cityName) async {
     try {
       var response = await http
           .get(Uri.parse("$baseUrl/git"), headers: {"city": cityName});
@@ -69,7 +71,7 @@ class GitService {
         List<Git> gitList = (jsonDecode(response.body)['data'] as List)
             .map((e) => Git.fromJson(e))
             .toList();
-        print(gitList);
+            print(gitList);
         return gitList;
       } else {
         return jsonDecode(response.body)['message'];
@@ -81,7 +83,7 @@ class GitService {
     }
   }
 
-  static Future fetchHotelsByCategory(String categryId) async {
+ static Future fetchHotelsByCategory(String categryId) async {
     try {
       var response = await http.get(Uri.parse("$baseUrl/hotel"),
           headers: {"category_id": categryId});
@@ -125,7 +127,8 @@ class GitService {
     }
   }
 
-  Future addRatingToGit({required String gitId, required int rate}) async {
+  Future addRatingToGit(
+      {required String gitId, required int rate}) async {
     String token = //await GetStorage().read('token');
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
@@ -148,6 +151,7 @@ class GitService {
       return e;
     }
   }
+
 
   Future addCommentToGit(
       {required String gitId, required String commentText}) async {
@@ -250,7 +254,8 @@ class GitService {
   }
 
   Future deleteHotel({required String hotelId}) async {
-    String token = await GetStorage().read('token');
+    String token = //await GetStorage().read('token');
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
       var response = await http.delete(
