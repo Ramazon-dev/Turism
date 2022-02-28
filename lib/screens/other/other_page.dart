@@ -29,7 +29,6 @@ class OtherPage extends StatelessWidget {
             image: ImageChooser.imageList[0],
             languages: ['uz, en, tr'],
             tell: ['+ 998 99 999 99 99', '1345678'],
-
           );
           GitService.createNewGit(git);
         },
@@ -64,16 +63,22 @@ class OtherPage extends StatelessWidget {
             }
           },
         ),
+
+
         TextButton(
           onPressed: () async {
-            await GitService().addRatingToGit(
-                gitId: "06d4e2b3-17c1-4ca1-8eb8-92f00e9112f9", rate: 5);
+            await GitService().deleteGit(
+                gitId: "c79b00f3-b37d-420b-b4ba-c5e45928384c");
           },
-          child: Text('add rate to git'),
+          child: const Text('delete git'),
         ),
+
+
         TextButton(
-          onPressed: () async {},
-          child: Text('fetch gits by city'),
+          onPressed: () async {
+            GitService.fetchGitComments(gitId: '7a04881a-d759-4b16-8008-8cab1c9881bd');
+          },
+          child: Text('fetch gits comments'),
         ),
         _createGit(),
       ],
