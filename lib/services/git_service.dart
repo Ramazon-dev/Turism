@@ -63,7 +63,7 @@ class GitService {
     }
   }
 
- static Future<List<Git>> fetchGitsByCity(String cityName) async {
+  static Future<List<Git>> fetchGitsByCity(String cityName) async {
     try {
       var response = await http
           .get(Uri.parse("$baseUrl/git"), headers: {"city": cityName});
@@ -71,7 +71,7 @@ class GitService {
         List<Git> gitList = (jsonDecode(response.body)['data'] as List)
             .map((e) => Git.fromJson(e))
             .toList();
-            print(gitList);
+        print(gitList);
         return gitList;
       } else {
         return jsonDecode(response.body)['message'];
@@ -83,41 +83,13 @@ class GitService {
     }
   }
 
- static Future fetchHotelsByCategory(String categryId) async {
-    try {
-      var response = await http.get(Uri.parse("$baseUrl/hotel"),
-          headers: {"category_id": categryId});
-      if (response.statusCode == 200) {
-        return jsonDecode(response.body)['message'];
-      } else {
-        return jsonDecode(response.body)['message'];
-      }
-    } catch (e) {
-      return e;
-    }
-  }
-
-  Future fetchCategoriesOfHotel() async {
-    try {
-      var response = await http.get(
-        Uri.parse("$baseUrl/hotels/categories"),
-      );
-      if (response.statusCode == 200) {
-        return jsonDecode(response.body)['message'];
-      } else {
-        return jsonDecode(response.body)['message'];
-      }
-    } catch (e) {
-      return e;
-    }
-  }
-
-  Future fetchHotelComments({required String hotelId}) async {
+  static Future fetchGitComments({required String gitId}) async {
     try {
       var response = await http
-          .get(Uri.parse("$baseUrl/comment"), headers: {"hotel_id": hotelId});
+          .get(Uri.parse("$baseUrl/comment"), headers: {"git_id": gitId});
 
       if (response.statusCode == 200) {
+        print(response.body);
         return jsonDecode(response.body);
       } else {
         return jsonDecode(response.body);
@@ -127,23 +99,22 @@ class GitService {
     }
   }
 
-  Future addRatingToGit(
-      {required String gitId, required int rate}) async {
+  Future addRatingToGit({required String gitId, required int rate}) async {
     String token = //await GetStorage().read('token');
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyZmU4NDQ2Mi00ZjA5LTQ5NGUtYjRkZC1jZWVkMjRmZTI0MTciLCJpYXQiOjE2NDU3ODcxNjMsImV4cCI6MTY2MzA2NzE2M30.Qk-uLwwQ6OmvbPdzxpmNtmdBjYYvovNzwGXCs7LjXFM';
 
     try {
       var response = await http.post(
         Uri.parse('$baseUrl/reyting'),
         body: jsonEncode({"value": rate, "gitId": gitId}),
-        headers: {'token': token},
+        headers: {'token': token,  'Content-Type': 'application/json'},
       );
 
       if (response.statusCode == 201) {
         print(jsonDecode(response.body));
         return jsonDecode(response.body);
       } else {
-        print("else error" + response.statusCode.toString());
+        print("else error: " + jsonDecode(response.body).toString() + response.statusCode.toString());
         return jsonDecode(response.statusCode.toString());
       }
     } catch (e) {
@@ -151,7 +122,6 @@ class GitService {
       return e;
     }
   }
-
 
   Future addCommentToGit(
       {required String gitId, required String commentText}) async {
@@ -178,7 +148,7 @@ class GitService {
     }
   }
 
-  Future updateHotelData(Hotel hotel) async {
+  Future updateGitData(Git git) async {
     String token = //await GetStorage().read('token');
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
@@ -187,16 +157,12 @@ class GitService {
         Uri.parse('$baseUrl/hotel'),
         body: json.encode(
           {
-            "name": hotel.name,
-            "informUz": hotel.informUz,
-            "informEn": hotel.informEn,
-            "informRu": hotel.informRu,
-            "site": hotel.site,
-            "tell": hotel.tell,
-            "city": hotel.city,
-            "karta": hotel.categoryId,
-            "categoryId": hotel.categoryId,
-            "hotelId": hotel.id
+            "informUz": git.informUz,
+            "informEn": git.informEn,
+            "informRu": git.informRu,
+            "tell": git.tell,
+            "city": git.city,
+            "gitId": git.id
           },
         ),
         headers: {'token': token, 'Content-Type': 'application/json'},
@@ -212,18 +178,18 @@ class GitService {
     }
   }
 
-  static Future updateHotelMedia(
-      {required String hotelId, required List hotelMedia}) async {
+  static Future updateGitMedia(
+      {required String gitId, required List gitMedia}) async {
     try {
       String token = //await GetStorage().read('token');
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
       var headers = {'token': token};
       var request =
-          http.MultipartRequest('POST', Uri.parse('$baseUrl/hotel/$hotelId'));
+          http.MultipartRequest('POST', Uri.parse('$baseUrl/hotel/$gitId'));
 
       // FIXME: BIR NECHTA RASMLARNI JO'NATISH
-      for (var photoPath in hotelMedia) {
+      for (var photoPath in gitMedia) {
         final mimeTypeData =
             lookupMimeType(photoPath, headerBytes: [0xFF, 0xD8])?.split('/');
 
@@ -253,13 +219,13 @@ class GitService {
     }
   }
 
-  Future deleteHotel({required String hotelId}) async {
+  Future deleteGit({required String gitId}) async {
     String token = //await GetStorage().read('token');
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
       var response = await http.delete(
-        Uri.parse("$baseUrl/hotel/$hotelId"),
+        Uri.parse("$baseUrl/git/$gitId"),
         headers: {'token': token},
       );
 
