@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:http_parser/http_parser.dart';
-import 'package:mime/mime.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 
 class HotelService {
@@ -33,7 +31,7 @@ class HotelService {
         'tell': hotel.tell.toString(),
         'categoryId': '1991edea-7d4a-49fb-b627-79b777cf54ae'
       });
-      request.send().then((value) => print);
+      // request.send().then((value) => print);
 
       // FIXME: BIR NECHTA RASMLARNI JO'NATISH
       for (var photoPath in hotel.media) {
@@ -48,22 +46,6 @@ class HotelService {
           contentType: MediaType(mimeTypeData![0], mimeTypeData[1]),
         ));
       }
-
-      //  FIXME:  BITTA RASMNI JO'NATISH
-      //  final mimeTypeData =
-      //   lookupMimeType(filePath, headerBytes: [0xFF, 0xD8])?.split('/');
-      // request.files.add(
-      //   await http.MultipartFile.fromPath(
-      //     'media',
-      //     filePath,
-      //     contentType: MediaType(mimeTypeData![0], mimeTypeData[1]),
-      //   ).then(
-      //     (value) {
-      //       print(value.field);
-      //       return value;
-      //     },
-      //   ),
-      // );
 
       request.headers.addAll(headers);
 

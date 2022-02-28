@@ -17,8 +17,6 @@ class GitService {
         'informRu': git.informRu.toString(),
         'informEn': git.informEn.toString(),
         'price': git.price.toString(),
-        // 'lenguages': git.languages.toString(),
-        // 'tell': git.tell.toString(),
       });
 
       // TELL LISTNI JO'NATISH
@@ -49,12 +47,14 @@ class GitService {
 
       if (response.statusCode == 201) {
         print(await response.stream.bytesToString());
+        var gitMap = jsonDecode(await response.stream.bytesToString());
+        Git git = Git.fromJson(gitMap['data']);
+        await GetStorage().write('git', git.toJson());
         return response.stream.bytesToString();
       } else {
         print('else error: ' + response.reasonPhrase.toString());
         print("else status code: " + response.statusCode.toString());
         response.stream.bytesToString().then((value) => print(value));
-
         return response.reasonPhrase;
       }
     } catch (e) {
