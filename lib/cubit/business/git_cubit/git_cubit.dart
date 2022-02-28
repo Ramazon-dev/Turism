@@ -14,7 +14,7 @@ class GitCubit extends Cubit<GitState> {
   final TextEditingController _aboutUzController = TextEditingController();
   final TextEditingController _aboutEnController = TextEditingController();
   final TextEditingController _aboutRuController = TextEditingController();
-  final Set<String> _languages = Set();
+  final Set<String> _languages = {};
   String _image = '';
 
   String _city = 'Tashkent';
@@ -86,14 +86,11 @@ class GitCubit extends Cubit<GitState> {
       if (_image.isEmpty) {
         if (ImageChooser.imageList.isNotEmpty) {
           _image = ImageChooser.imageList[0];
-          print(_image);
         } else {
           Fluttertoast.showToast(msg: 'Please, set an image');
           return;
         }
       }
-
-      print(_languages);
       Git git = Git(
         city: _city.toLowerCase(),
         informEn: aboutEn,

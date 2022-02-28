@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/data/city_list.dart';
+import 'package:mobileapp/models/city_model.dart';
 import 'package:mobileapp/widgets/star_bar.dart';
 
 class ShowNerarby extends StatelessWidget {
@@ -8,11 +10,12 @@ class ShowNerarby extends StatelessWidget {
   double starNumber;
   String text;
   String image;
-   ShowNerarby({
-     required this.ontap,
-     required this.itemCount,
-     required this.starNumber,
-     required this.text,
+
+  ShowNerarby({
+    required this.ontap,
+    required this.itemCount,
+    required this.starNumber,
+    required this.text,
     required this.image,
     Key? key,
   }) : super(key: key);
@@ -32,20 +35,21 @@ class ShowNerarby extends StatelessWidget {
               height: 200.h,
               width: 330.w,
               margin: EdgeInsets.symmetric(horizontal: 5.w),
-              decoration: MyDecoration.netImage(
-                  netImage: image,
-                  radius: 5.0),
+              decoration: MyDecoration.netImage(netImage: image, radius: 5.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: MyEdgeInsets.only(left: 260,top: 10),
+                    padding: MyEdgeInsets.only(left: 260, top: 10),
                     child: StartBar(
                       son: starNumber,
                     ),
                   ),
                   Padding(
-                    padding: MyEdgeInsets.only(top: 90, left: 20,),
+                    padding: MyEdgeInsets.only(
+                      top: 90,
+                      left: 20,
+                    ),
                     child: Text(
                       text,
                       style: TextStyle(
@@ -62,50 +66,36 @@ class ShowNerarby extends StatelessWidget {
   }
 }
 
-
-
 class PopularObject extends StatelessWidget {
-  VoidCallback ontap;
-  int itemCount;
-  String text;
-  String image;
-   PopularObject({
-     required this.itemCount,
-    required this.ontap,
-     required this.text,
-    required this.image,
-    Key? key,
-  }) : super(key: key);
+  const PopularObject({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200.0,
+      height: 200.h,
       child: ListView.builder(
+        // padding: MyEdgeInsets.symmetric(h: 8.0),
         scrollDirection: Axis.horizontal,
-        itemCount: itemCount,
+        itemCount: CityList.cities.length,
         itemBuilder: (context, index) {
-          return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                onTap: ontap,
-                child: Container(
-                  alignment: Alignment.bottomLeft,
-                  height: getHeight(200.0),
-                  width: 330.0,
-                  decoration: MyDecoration.netImage(
-                      netImage: image,
-                      radius: 5.0),
-                  child: Padding(
-                    padding: MyEdgeInsets.only(top: 90, left: 20,bottom: getHeight(20.0)),
-                    child: Text(
-                      text,
-                      style: TextStyle(
-                          fontSize: getWidth(20.0), color: AppColors.white),
-                    ),
-                  ),
-                ),
-              ));
+          CityModel city = CityList.cities[index];
+          return Container(
+            margin: MyEdgeInsets.all(8.0),
+            padding: MyEdgeInsets.all(20.0),
+            alignment: Alignment.bottomLeft,
+            height: getHeight(200.0),
+            width: 330.0,
+            decoration: MyDecoration.netImage(netImage: city.imgUrl),
+            child: Text(
+              city.name,
+              style: TextStyle(
+                fontSize: getWidth(20.0),
+                color: AppColors.white,
+              ),
+            ),
+          ).onClick(() {
+
+          });
         },
       ),
     );
