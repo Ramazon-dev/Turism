@@ -63,20 +63,45 @@ class OtherPage extends StatelessWidget {
             }
           },
         ),
-
-
         TextButton(
           onPressed: () async {
-            await GitService().deleteGit(
-                gitId: "c79b00f3-b37d-420b-b4ba-c5e45928384c");
+            await GitService()
+                .deleteGit(gitId: "c79b00f3-b37d-420b-b4ba-c5e45928384c");
           },
           child: const Text('delete git'),
         ),
-
+        TextButton(
+          onPressed: () async {
+            await GitService.updateGitData(
+              Git(
+                image: ImageChooser.imageList[0],
+                languages: ['eu', 'kz'],
+                tell: ['111', '222'],
+                id: 'a04b86bc-a19c-4d8e-91c5-b01a902b0276',
+                city: 'toshkent',
+                informEn: 'edited',
+                informRu: 'edited',
+                informUz: 'edited',
+                price: '5000',                
+              ),
+            );
+          },
+          child: const Text('update git data'),
+        ),
 
         TextButton(
           onPressed: () async {
-            GitService.fetchGitComments(gitId: '7a04881a-d759-4b16-8008-8cab1c9881bd');
+            await GitService.updateGitImage(
+              gitId: "a04b86bc-a19c-4d8e-91c5-b01a902b0276",
+                gitImage: ImageChooser.imageList.first,
+            );
+          },
+          child: const Text('update git image'),
+        ),
+        TextButton(
+          onPressed: () async {
+            GitService.fetchGitComments(
+                gitId: '7a04881a-d759-4b16-8008-8cab1c9881bd');
           },
           child: Text('fetch gits comments'),
         ),

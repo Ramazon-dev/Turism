@@ -148,13 +148,12 @@ class GitService {
     }
   }
 
-  Future updateGitData(Git git) async {
+  static Future updateGitData(Git git) async {
     String token = //await GetStorage().read('token');
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
-
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZGI4OGM0Yy04ODYxLTRjMTgtOWI3MS04MjZjM2M0NGFlYzEiLCJpYXQiOjE2NDYxNTI2MDcsImV4cCI6MTY2MzQzMjYwN30.WUaeEN7SJeYNC-8pZ-Vh4FcLu5fRAKLAUjFS3JZUUqg';
     try {
       var response = await http.put(
-        Uri.parse('$baseUrl/hotel'),
+        Uri.parse('$baseUrl/git'),
         body: json.encode(
           {
             "informUz": git.informUz,
@@ -162,46 +161,47 @@ class GitService {
             "informRu": git.informRu,
             "tell": git.tell,
             "city": git.city,
-            "gitId": git.id
+            "gitId": git.id,
+            'languages': git.languages,
+            'price': int.parse(git.price.toString())
           },
         ),
         headers: {'token': token, 'Content-Type': 'application/json'},
       );
 
       if (response.statusCode == 200) {
+        print(response.body);
         return jsonDecode(response.body);
       } else {
+        print(response.statusCode);
         return jsonDecode(response.statusCode.toString());
       }
     } catch (e) {
+      print(e);
       return e;
     }
   }
 
-  static Future updateGitMedia(
-      {required String gitId, required List gitMedia}) async {
+  static Future updateGitImage(
+      {required String gitId, required String gitImage}) async {
     try {
       String token = //await GetStorage().read('token');
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZGI4OGM0Yy04ODYxLTRjMTgtOWI3MS04MjZjM2M0NGFlYzEiLCJpYXQiOjE2NDYxNTI2MDcsImV4cCI6MTY2MzQzMjYwN30.WUaeEN7SJeYNC-8pZ-Vh4FcLu5fRAKLAUjFS3JZUUqg';
 
       var headers = {'token': token};
       var request =
-          http.MultipartRequest('POST', Uri.parse('$baseUrl/hotel/$gitId'));
+          http.MultipartRequest('PUT', Uri.parse('$baseUrl/git/$gitId'));
 
-      // FIXME: BIR NECHTA RASMLARNI JO'NATISH
-      for (var photoPath in gitMedia) {
         final mimeTypeData =
-            lookupMimeType(photoPath, headerBytes: [0xFF, 0xD8])?.split('/');
-
+            lookupMimeType(gitImage, headerBytes: [0xFF, 0xD8])?.split('/');
         //------------------
         request.files.add(await http.MultipartFile.fromPath(
-          'media',
-          photoPath,
-          filename: photoPath.split('/').last,
+          'image',
+          gitImage,
+          filename: gitImage.split('/').last,
           contentType: MediaType(mimeTypeData![0], mimeTypeData[1]),
         ));
-      }
-
+      
       request.headers.addAll(headers);
 
       http.StreamedResponse response = await request.send();
