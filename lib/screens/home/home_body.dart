@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/data/city_list.dart';
 import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/screens/home/widgets/container.dart';
 import 'package:mobileapp/screens/home/widgets/hotel_view.dart';
@@ -20,7 +21,7 @@ class HomeBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CategoryList(list: MockData.categoryList, cubit: cubit),
+          CategoryList(list: CityList.cities.map((e) => e.name).toList(), cubit: cubit),
           Padding(
             padding: MyEdgeInsets.only(left: 10),
             child: Text(

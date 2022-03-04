@@ -27,7 +27,6 @@ class HotelCubit extends Cubit<HotelState> {
   void cityChanged(dynamic value) {
     _city = value;
     _chosenCity = CityList().getCity(_city);
-    print('HotelCubit.cityChanged $_chosenCity');
     emit(HotelInitial());
   }
 
