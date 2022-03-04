@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
-import 'package:mobileapp/widgets/contact_widget.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
-import 'package:mobileapp/widgets/language_button.dart';
 
 class TransportDetailPage extends StatelessWidget {
- final CarModel car;
- const TransportDetailPage(
-      {Key? key, required this.car})
-      : super(key: key);
+  final CarModel car;
+
+  const TransportDetailPage({Key? key, required this.car}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +51,7 @@ class TransportDetailPage extends StatelessWidget {
                             image: NetworkImage(car.img), fit: BoxFit.cover)),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,10 +65,9 @@ class TransportDetailPage extends StatelessWidget {
                                 price: car.price,
                                 rating: car.rating,
                                 users: 5),
-                            LanguageWidget(language: []),
                           ],
                         ),
-                        Container(
+                        SizedBox(
                           height: getHeight(45),
                           width: getWidth(150),
                           child: RichText(
@@ -79,15 +75,13 @@ class TransportDetailPage extends StatelessWidget {
                               TextSpan(
                                   text: "02 Фев. 2022",
                                   style: TextStyle(fontSize: getWidth(12))),
-                              TextSpan(
+                              const TextSpan(
                                   text: "10:00",
                                   style: TextStyle(color: AppColors.grey))
                             ]),
                           ),
                         ),
-                        SizedBox(
-                          height: getHeight(28),
-                        ),
+                        SizedBox(height: 28.h),
                         const Text(
                           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at ",
                           style: TextStyle(
@@ -96,7 +90,7 @@ class TransportDetailPage extends StatelessWidget {
                             fontFamily: 'Roboto',
                           ),
                         ),
-                        ContactWidget(),
+                        const ContactWidget(),
                       ],
                     ),
                   )

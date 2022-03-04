@@ -18,7 +18,7 @@ class AboutUsPage extends StatelessWidget {
               SizedBox(height: 10.h),
               Text(
                 'Что это за пролог?',
-                style: TextWidget.medium(size: 20),
+                style: AppTextStyle.medium(size: 20),
               ),
               Container(
                 margin: EdgeInsets.only(top: 20.h, bottom: 20.h),
@@ -36,22 +36,22 @@ class AboutUsPage extends StatelessWidget {
               ),
               Text(
                 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using',
-                style: TextWidget.regular(size: 16.h),
+                style: AppTextStyle.regular(size: 16.h),
               ),
               SizedBox(height: 10.h),
               Text(
                 "Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover ",
-                style: TextWidget.regular(size: 16.h),
+                style: AppTextStyle.regular(size: 16.h),
               ),
               SizedBox(height: 10.h),
               Text(
                 'Кто участвовал в нас?',
-                style: TextWidget.medium(size: 20.h),
+                style: AppTextStyle.medium(size: 20.h),
               ),
               SizedBox(height: 10.h),
               Text(
                 "Content here, content here', making it look like readable English. Many desktop publishing packages and web page ",
-                style: TextWidget.regular(size: 16.h),
+                style: AppTextStyle.regular(size: 16.h),
               ),
               Container(
                 margin: EdgeInsets.only(top: 20.h, bottom: 20.h),
@@ -69,12 +69,12 @@ class AboutUsPage extends StatelessWidget {
               ),
               Text(
                 "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using",
-                style: TextWidget.regular(size: 16.h),
+                style: AppTextStyle.regular(size: 16.h),
               ),
               SizedBox(height: 10.h),
               Text(
                 "Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover ",
-                style: TextWidget.regular(size: 16.h),
+                style: AppTextStyle.regular(size: 16.h),
               ),
               SizedBox(height: 10.h),
               Container(
@@ -94,7 +94,7 @@ class AboutUsPage extends StatelessWidget {
               SizedBox(height: 10.h),
               Text(
                 "Связаться с нами:",
-                style: TextWidget.regular(size: 16.h),
+                style: AppTextStyle.regular(size: 16.h),
               ),
               MySizedBox(height: 17.0),
               _buildLink(

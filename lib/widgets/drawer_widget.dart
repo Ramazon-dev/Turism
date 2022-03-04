@@ -10,20 +10,23 @@ class DrawerWidget extends StatelessWidget {
     SizeConfig().init(context);
     return Drawer(
       backgroundColor: AppColors.primary,
-      child: Column(
-        children: [
-          _setCategory('Hotel', AppIcons.dollar, const HotelListPage()),
-          _setCategory('Currency', AppIcons.dollar, const CurrencyPage()),
-          _setCategory('Places', AppIcons.location, const PlacePage()),
-          _setCategory('Git', AppIcons.location, const GitInfoPage()),
-          _setCategory('Other', AppIcons.arrowBack, const OtherPage()),
-          _setCategory('Настройки', AppIcons.arrowBack, const SettingsPage()),
-          const Spacer(),
-          _setCategory(
-              LocaleKeys.aboutUs.tr(), AppIcons.location, const AboutUsPage()),
-          _setCategory('Logout', AppIcons.location, const HomeScreen(),
-              isAll: true),
-        ],
+      child: SafeArea(
+        child: Column(
+          children: [
+            _setCategory('Hotel', AppIcons.dollar, const HotelListPage()),
+            _setCategory('Currency', AppIcons.dollar, const CurrencyPage()),
+            _setCategory('Places', AppIcons.location, const PlacePage()),
+            _setCategory('Git', AppIcons.location, const GitInfoPage()),
+            _setCategory('Other', AppIcons.arrowBack, const OtherPage()),
+            _setCategory('Настройки', AppIcons.arrowBack, const SettingsPage()),
+
+            const Spacer(),
+            _setCategory(LocaleKeys.aboutUs.tr(), AppIcons.location,
+                const AboutUsPage()),
+            _setCategory('Logout', AppIcons.location, const HomeScreen(),
+                isAll: true),
+          ],
+        ),
       ),
     );
   }
@@ -40,9 +43,9 @@ class DrawerWidget extends StatelessWidget {
           }
         },
         leading: SvgPicture.asset(icon, height: getHeight(32.0)),
-        title: TextWidget(
+        title: Text(
           title,
-          style: TextWidget.regular(color: AppColors.white, size: 32.0),
+          style: AppTextStyle.regular(color: AppColors.white, size: 32.0),
         ),
       );
 }

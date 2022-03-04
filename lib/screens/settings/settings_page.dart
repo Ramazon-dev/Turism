@@ -45,7 +45,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           child: Center(
                             child: Text(
                               locale['title'],
-                              style: TextWidget.medium(
+                              style: AppTextStyle.medium(
                                 size: 20.0,
                                 color: locale['locale'] == currentLocale
                                     ? AppColors.white
@@ -76,7 +76,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       child: Text(
         locale['title'],
-        style: TextWidget.medium(
+        style: AppTextStyle.medium(
           size: 20.0,
           color: locale['locale'] == currentLocale
               ? AppColors.white

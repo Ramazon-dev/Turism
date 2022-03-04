@@ -16,13 +16,14 @@ class HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CategoryList(list: MockData.categoryList, cubit: cubit),
           Padding(
             padding: MyEdgeInsets.only(left: 10),
-            child: TextWidget(
+            child: Text(
               "Ближайшие туры.",
               style: TextStyle(
                   fontSize: getWidth(18.0), fontWeight: FontWeight.w400),
@@ -63,7 +64,7 @@ class HomeBody extends StatelessWidget {
           SizedBox(
             height: getHeight(150.0),
             child: ListView.builder(
-              itemCount: 10,
+                itemCount: 10,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return Padding(

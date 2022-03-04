@@ -23,9 +23,9 @@ class DrawerPage extends StatelessWidget {
   }
 
   ListTile _setCategory(String assetIcon, String title) => ListTile(
-        title: TextWidget(
+        title: Text(
           title,
-          style: TextWidget.regular(size: 32.0, color: AppColors.white),
+          style: AppTextStyle.regular(size: 32.0, color: AppColors.white),
         ),
       );
 }

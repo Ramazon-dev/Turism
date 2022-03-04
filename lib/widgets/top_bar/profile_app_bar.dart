@@ -44,7 +44,7 @@ class ProfileAppBar extends StatelessWidget with PreferredSizeWidget {
               MySizedBox(width: 110.0),
               Text(
                 LocaleKeys.profile.tr(),
-                style: TextWidget.medium(color: AppColors.white, size: 18.0),
+                style: AppTextStyle.medium(color: AppColors.white, size: 18.0),
               ),
               const Spacer(),
               _popUpButton(),

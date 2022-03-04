@@ -27,7 +27,7 @@ class DropDownWidget extends StatelessWidget {
         child: DropdownButton<dynamic>(
           hint: Text(
             'Выберите город',
-            style: TextWidget.regular(color: AppColors.grey),
+            style: AppTextStyle.regular(color: AppColors.grey),
           ),
           items: CityList.list.map((e) => _setItem(e)).toList(),
           value: value,
@@ -38,7 +38,7 @@ class DropDownWidget extends StatelessWidget {
   }
 
   DropdownMenuItem _setItem(String item) => DropdownMenuItem(
-        child: Text(item, style: TextWidget.regular(color: AppColors.grey)),
+        child: Text(item, style: AppTextStyle.regular(color: AppColors.grey)),
         value: item,
       );
 }

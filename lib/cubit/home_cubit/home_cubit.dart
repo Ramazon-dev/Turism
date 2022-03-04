@@ -1,15 +1,22 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
 
+  final ZoomDrawerController _drawerController = ZoomDrawerController();
+
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  void openZoomDrawer() {
+    _drawerController.toggle?.call();
+    emit(HomeInitial());
+  }
+
   void openDrawer() {
-    print('open drawer');
     _scaffoldKey.currentState!.openDrawer();
   }
 
@@ -18,12 +25,12 @@ class HomeCubit extends Cubit<HomeState> {
   int _categoryIndex = 0;
 
   int _currentIndex = 2;
-// bu page ozgarishi uchun 
+
+// bu page ozgarishi uchun
   void onPageChanged(int index) {
     _currentIndex = index;
     emit(HomeInitial());
   }
-
 
 // bu category list uchun
   void onCategoryChanged(int index) {
@@ -35,5 +42,5 @@ class HomeCubit extends Cubit<HomeState> {
 
   int get categoryIndex => _categoryIndex;
 
-// ZoomDrawerController get drawerController => _drawerController;
+  ZoomDrawerController get drawerController => _drawerController;
 }

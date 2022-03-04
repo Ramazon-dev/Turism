@@ -39,7 +39,7 @@ class CarInfoCard extends StatelessWidget {
                 ),
               ),
               MySizedBox(height: 5.0),
-              Text(car.model, style: TextWidget.medium(size: 18.0)),
+              Text(car.model, style: AppTextStyle.medium(size: 18.0)),
               MySizedBox(height: 7.0),
               Container(
                 alignment: Alignment.center,
@@ -49,7 +49,7 @@ class CarInfoCard extends StatelessWidget {
                 padding: MyEdgeInsets.symmetric(v: 5.0, h: 40.0),
                 child: Text(
                   '${car.price}\$',
-                  style: TextWidget.medium(size: 8.0, color: AppColors.white),
+                  style: AppTextStyle.medium(size: 8.0, color: AppColors.white),
                 ),
               ),
             ],

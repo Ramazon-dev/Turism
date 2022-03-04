@@ -37,7 +37,7 @@ class GitInfoPage extends StatelessWidget {
                     children: [
                       Text(
                         'Bahromjon',
-                        style: TextWidget.medium(size: 20.0),
+                        style: AppTextStyle.medium(size: 20.0),
                       ),
                       MySizedBox(height: 10.0),
                       BlueButton(onPressed: () {}, label: LocaleKeys.edit.tr()),

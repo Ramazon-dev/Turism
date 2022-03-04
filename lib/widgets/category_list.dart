@@ -33,7 +33,7 @@ class CategoryList extends StatelessWidget {
                 padding: MyEdgeInsets.symmetric(h: 20.0, v: 10.0),
                 label: Text(
                   text,
-                  style: TextWidget.medium(
+                  style: AppTextStyle.medium(
                     size: 16.0,
                     color: i == cubit.categoryIndex
                         ? AppColors.white

@@ -17,7 +17,7 @@ class SignInPage extends StatelessWidget {
       child: BlocBuilder<SignInCubit, SignInState>(builder: (ctx, state) {
         SignInCubit cubit = ctx.watch();
         return SingleChildScrollView(
-          physics: const NeverScrollableScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           padding: MyEdgeInsets.symmetric(h: 30.0, v: 20.0),
           child: Form(
             key: cubit.formKey,
