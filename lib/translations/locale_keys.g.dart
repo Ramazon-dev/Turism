@@ -27,5 +27,18 @@ abstract class  LocaleKeys {
   static const mapLink = 'mapLink';
   static const save = 'save';
   static const aboutUs = 'aboutUs';
+  static const tashkent = 'tashkent';
+  static const andijan = 'andijan';
+  static const bukhara = 'bukhara';
+  static const samarkand = 'samarkand';
+  static const fergana = 'fergana';
+  static const namangan = 'namangan';
+  static const jizzakh = 'jizzakh';
+  static const khorezm = 'khorezm';
+  static const kashkadarya = 'kashkadarya';
+  static const sirdarya = 'sirdarya';
+  static const karakalpak = 'karakalpak';
+  static const navai = 'navai';
+  static const surkhandarya = 'surkhandarya';
 
 }

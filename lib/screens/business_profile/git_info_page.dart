@@ -3,7 +3,9 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/business/git_cubit/git_cubit.dart';
 
 class GitInfoPage extends StatelessWidget {
-  const GitInfoPage({Key? key}) : super(key: key);
+  GitInfoPage({Key? key}) : super(key: key);
+
+  final Map<String, dynamic> _data = GetStorage().read('user');
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,8 @@ class GitInfoPage extends StatelessWidget {
 
   // Build Scaffold
   Scaffold _buildScaffold(GitCubit cubit) {
-  return Scaffold(
+    UserModel user = UserModel.fromJson(_data);
+    return Scaffold(
       appBar: SimpleAppBar(title: LocaleKeys.git.tr()),
       body: SingleChildScrollView(
         child: Padding(
@@ -36,8 +39,8 @@ class GitInfoPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Bahromjon',
-                        style: TextWidget.medium(size: 20.0),
+                        user.name,
+                        style: AppTextStyle.medium(size: 20.0),
                       ),
                       MySizedBox(height: 10.0),
                       BlueButton(onPressed: () {}, label: LocaleKeys.edit.tr()),

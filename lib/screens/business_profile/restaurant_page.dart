@@ -60,8 +60,6 @@ class RestaurantPage extends StatelessWidget {
         ),
         MySizedBox(height: 20.0),
         DropDownWidget(onChanged: cubit.cityChanged, value: cubit.city),
-        SizedBox(height: 20.0.h),
-        DropDownWidget(onChanged: cubit.cityChanged, value: cubit.city),
         MySizedBox(height: 20.0),
         TextFormFieldWidget(
           inputType: TextInputType.url,

@@ -47,7 +47,7 @@ class ContainerForPopularObject extends StatelessWidget {
                           children: [
                             Padding(
                               padding: MyEdgeInsets.only(right: 50.0, top: 5.0),
-                              child: TextWidget(
+                              child: Text(
                                 "На велосипеде по городу",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w400,
@@ -63,7 +63,7 @@ class ContainerForPopularObject extends StatelessWidget {
                                   SizedBox(
                                     width: getWidth(5.0),
                                   ),
-                                  TextWidget(
+                                  Text(
                                     date,
                                     style: TextStyle(fontSize: getWidth(12.0)),
                                   )

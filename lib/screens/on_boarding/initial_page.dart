@@ -22,9 +22,9 @@ class InitialPage extends StatelessWidget {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (_) => OnBoardingPage()));
               },
-              child: TextWidget(
+              child: Text(
                 LocaleKeys.start.tr(),
-                style: TextWidget.regular(
+                style: AppTextStyle.regular(
                   color: AppColors.white,
                   size: 20.0,
                 ),

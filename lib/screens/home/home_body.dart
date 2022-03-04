@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/data/city_list.dart';
 import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/screens/home/widgets/container.dart';
 import 'package:mobileapp/screens/home/widgets/hotel_view.dart';
@@ -16,13 +17,14 @@ class HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CategoryList(list: MockData.categoryList, cubit: cubit),
+          CategoryList(list: CityList.cities.map((e) => e.name).toList(), cubit: cubit),
           Padding(
             padding: MyEdgeInsets.only(left: 10),
-            child: TextWidget(
+            child: Text(
               "Ближайшие туры.",
               style: TextStyle(
                   fontSize: getWidth(18.0), fontWeight: FontWeight.w400),
@@ -63,7 +65,7 @@ class HomeBody extends StatelessWidget {
           SizedBox(
             height: getHeight(150.0),
             child: ListView.builder(
-              itemCount: 10,
+                itemCount: 10,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return Padding(
