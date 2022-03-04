@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/functions/city_list.dart';
+import 'package:mobileapp/core/data/city_list.dart';
+import 'package:mobileapp/models/city_model.dart';
 
 class DropDownWidget extends StatelessWidget {
   final ValueChanged<dynamic> onChanged;
@@ -29,7 +30,7 @@ class DropDownWidget extends StatelessWidget {
             'Выберите город',
             style: AppTextStyle.regular(color: AppColors.grey),
           ),
-          items: CityList.list.map((e) => _setItem(e)).toList(),
+          items: CityList.cities.map((e) => _setItem(e)).toList(),
           value: value,
           onChanged: onChanged,
         ),
@@ -37,8 +38,8 @@ class DropDownWidget extends StatelessWidget {
     );
   }
 
-  DropdownMenuItem _setItem(String item) => DropdownMenuItem(
-        child: Text(item, style: AppTextStyle.regular(color: AppColors.grey)),
-        value: item,
+  DropdownMenuItem _setItem(CityModel city) => DropdownMenuItem(
+        child: Text(city.name, style: AppTextStyle.regular(color: AppColors.grey)),
+        value: city.name,
       );
 }

@@ -14,7 +14,48 @@ class CodegenLoader extends AssetLoader{
     return Future.value(mapLocales[locale.toString()]);
   }
 
-  static const Map<String,dynamic> ru_RU = {
+  static const Map<String,dynamic> uz_UZ = {
+  "start": "Boshlash",
+  "settings": "Sozlamalar",
+  "welcome": "Hush Kelibsiz!",
+  "select_your_city": "O'z shahringizni tanlang",
+  "lets_go": "Boshladik",
+  "sign_in_your_account": "O'z akkountingizga kiring",
+  "login": "Login",
+  "signIn": "Kirish",
+  "forgotPassword": "Parolni unutdingizmi?",
+  "signUp": "Ro`yxatdan o`tish",
+  "profile": "Profil",
+  "lastPassword": "Eski parol",
+  "newPassword": "Yangi parol",
+  "confirmPassword": "Parolnni takrorlang",
+  "edit": "O`zgartirish",
+  "inputYourNumber": "Telefon raqamningizni kiriting",
+  "select_city": "Shaharni tanlang",
+  "enterPrice": "Xizmat narxini kiriting",
+  "personalInfo": "Shaxsiy ma'lumot",
+  "git": "Git",
+  "hotel": "Mehmonxona",
+  "restaurant": "Restoran.",
+  "linkOfSite": "Sayt havolasi",
+  "mapLink": "Xaritada joylashuvi (havola)",
+  "save": "Saqlash",
+  "aboutUs": "Biz xaqimizda",
+  "tashkent": "Toshkent",
+  "andijan": "Andijon",
+  "bukhara": "Buxoro",
+  "samarkand": "Samarqand",
+  "fergana": "Farg'ona",
+  "namangan": "Namangan",
+  "jizzakh": "Jizzah",
+  "khorezm": "Xorazm",
+  "kashkadarya": "Qashqadaryo",
+  "sirdarya": "Sirdaryo",
+  "karakalpak": "Qoraqalpog'iston",
+  "navai": "Navoi",
+  "surkhandarya": "Surhondaryo"
+};
+static const Map<String,dynamic> ru_RU = {
   "start": "Начать",
   "settings": "Настройки",
   "welcome": "Добро пожаловать!",
@@ -40,7 +81,20 @@ class CodegenLoader extends AssetLoader{
   "linkOfSite": "Ссылка на сайт",
   "mapLink": "Расположение на карте (ссылка)",
   "save": "Сохранить",
-  "aboutUs": "О нас "
+  "aboutUs": "О нас ",
+  "tashkent": "Ташкент",
+  "andijan": "Андижан",
+  "bukhara": "Бухара",
+  "samarkand": "Самарканд",
+  "fergana": "Фергана",
+  "namangan": "Наманган",
+  "jizzakh": "Джизак",
+  "khorezm": "Хорезм",
+  "kashkadarya": "Кашкадарья",
+  "sirdarya": "сырдарьё",
+  "karakalpak": "Каракалпакстан",
+  "navai": "Навои",
+  "surkhandarya": "сурхандарьинская"
 };
 static const Map<String,dynamic> en_GB = {
   "start": "Start",
@@ -68,35 +122,20 @@ static const Map<String,dynamic> en_GB = {
   "linkOfSite": "Link of site",
   "mapLink": "Location in map (link)",
   "save": "Save",
-  "aboutUs": "About us"
+  "aboutUs": "About us",
+  "tashkent": "Tashkent",
+  "andijan": "Andijan",
+  "bukhara": "Bukhara",
+  "samarkand": "Samarkand",
+  "fergana": "Fergana",
+  "namangan": "Namangan",
+  "jizzakh": "Jizzakh",
+  "khorezm": "Khorezm",
+  "kashkadarya": "Kashkadarya",
+  "sirdarya": "Sirdarya",
+  "karakalpak": "Karakalpakistan",
+  "navai": "Navai",
+  "surkhandarya": "Surkhandarya"
 };
-static const Map<String,dynamic> uz_UZ = {
-  "start": "Boshlash",
-  "settings": "Sozlamalar",
-  "welcome": "Hush Kelibsiz!",
-  "select_your_city": "O'z shahringizni tanlang",
-  "lets_go": "Boshladik",
-  "sign_in_your_account": "O'z akkountingizga kiring",
-  "login": "Login",
-  "signIn": "Kirish",
-  "forgotPassword": "Parolni unutdingizmi?",
-  "signUp": "Ro`yxatdan o`tish",
-  "profile": "Profil",
-  "lastPassword": "Eski parol",
-  "newPassword": "Yangi parol",
-  "confirmPassword": "Parolnni takrorlang",
-  "edit": "O`zgartirish",
-  "inputYourNumber": "Telefon raqamningizni kiriting",
-  "select_city": "Shaharni tanlang",
-  "enterPrice": "Xizmat narxini kiriting",
-  "personalInfo": "Shaxsiy ma'lumot",
-  "git": "Git",
-  "hotel": "Mehmonxona",
-  "restaurant": "Restoran.",
-  "linkOfSite": "Sayt havolasi",
-  "mapLink": "Xaritada joylashuvi (havola)",
-  "save": "Saqlash",
-  "aboutUs": "Biz xaqimizda"
-};
-static const Map<String, Map<String,dynamic>> mapLocales = {"ru_RU": ru_RU, "en_GB": en_GB, "uz_UZ": uz_UZ};
+static const Map<String, Map<String,dynamic>> mapLocales = {"uz_UZ": uz_UZ, "ru_RU": ru_RU, "en_GB": en_GB};
 }
