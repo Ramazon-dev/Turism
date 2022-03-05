@@ -5,14 +5,6 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 class HotelService {
   static String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
 
-  static test(){
-    Map a = { '1': 1, '2': 2};
-
-    a.putIfAbsent('1',()=> 21);
-    //a.addAll({'1': 31});
-    print(a);
-    return a;
-  }
 
   static Future createNewHotel(Hotel hotel) async {
 
