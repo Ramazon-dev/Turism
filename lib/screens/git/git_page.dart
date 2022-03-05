@@ -20,7 +20,7 @@ class GitPage extends StatelessWidget {
         builder: (context, state) {
           GitCubit cubit = context.watch();
           return FutureBuilder(
-              future: GitService.fetchGitsByCity('tashkent'),
+              future: GitService.fetchGitsByCity('toshkent'),
               builder: (ctx, AsyncSnapshot<List<Git>> snap) {
                 if (snap.hasData) {
                   return _gitList(snap.data!);

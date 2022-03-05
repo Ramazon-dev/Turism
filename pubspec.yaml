@@ -1,7 +1,7 @@
 name: mobileapp
 description: A new Flutter project.
 
-version: 1.1.1
+version: 1.2.1+2
 
 environment:
   sdk: ">=2.15.0 <3.0.0"

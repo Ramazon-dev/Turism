@@ -14,16 +14,15 @@ class DrawerWidget extends StatelessWidget {
       child: Column(
         children: [
           _buildContainer(),
-          _setCategory('Hotel', AppIcons.dollar, const HotelListPage()),
-          _setCategory('Currency', AppIcons.dollar, const CurrencyPage()),
-          _setCategory('Places', AppIcons.location, const PlacePage()),
-          _setCategory('Git', AppIcons.location,  GitInfoPage()),
-          _setCategory('Other', AppIcons.arrowBack, const OtherPage()),
-          _setCategory('Настройки', AppIcons.arrowBack, const SettingsPage()),
+          _setCategory(LocaleKeys.hotel.tr(), AppIcons.dollar, const HotelListPage()),
+          _setCategory(LocaleKeys.welcome.tr(), AppIcons.dollar, const CurrencyPage()),
+          _setCategory(LocaleKeys.mapLink.tr(), AppIcons.location, const PlacePage()),
+          _setCategory(LocaleKeys.hotel.tr(), AppIcons.arrowBack, const OtherPage()),
+          _setCategory(LocaleKeys.settings.tr(), AppIcons.arrowBack, const SettingsPage()),
           const Spacer(),
           _setCategory(
               LocaleKeys.aboutUs.tr(), AppIcons.location, const AboutUsPage()),
-          _setCategory('Logout', AppIcons.location, const HomeScreen(),
+          _setCategory(LocaleKeys.login.tr(), AppIcons.location, const HomeScreen(),
               isAll: true),
         ],
       ),
