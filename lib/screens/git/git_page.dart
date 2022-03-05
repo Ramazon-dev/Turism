@@ -1,15 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/data/city_list.dart';
-import 'package:mobileapp/core/data/git_data.dart';
 import 'package:mobileapp/cubit/git_cubit/git_cubit.dart';
-import 'package:mobileapp/models/city_model.dart';
 import 'package:mobileapp/screens/details/git_details.dart';
-import 'package:mobileapp/services/git_service.dart';
-import 'package:mobileapp/widgets/city_lsit_widget.dart';
-import 'package:mobileapp/widgets/top_bar/appbar_widget.dart';
-import 'package:mobileapp/widgets/git_list_widjet.dart';
 
 class GitPage extends StatelessWidget {
   const GitPage({Key? key}) : super(key: key);
@@ -24,6 +16,7 @@ class GitPage extends StatelessWidget {
           GitCubit cubit = context.watch();
           return Column(
             children: [
+              // City List Widget
               CityListWidget(
                 onCityChanged: cubit.onCityChanged,
                 cityName: cubit.city.name,
@@ -32,18 +25,28 @@ class GitPage extends StatelessWidget {
                   future: GitService.fetchGitsByCity(cubit.city.value),
                   builder: (ctx, AsyncSnapshot<List<Git>> snap) {
                     if (snap.hasData) {
+                      if (snap.data!.isEmpty) {
+                        return const EmptyPageWidget();
+                      }
                       return _gitList(snap.data!);
                     } else if (snap.hasError) {
                       return const Center(child: Text('Error'));
+                    } else if (snap.connectionState ==
+                        ConnectionState.waiting) {
+                      return _buildCenter();
                     }
-                    return Center(
-                        child: CupertinoActivityIndicator(radius: 32.w));
+
+                    return _buildCenter();
                   }),
             ],
           );
         },
       ),
     );
+  }
+
+  Center _buildCenter() {
+    return Center(child: CupertinoActivityIndicator(radius: 32.w));
   }
 
   Expanded _gitList(List<Git> gitList) {

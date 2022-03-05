@@ -5,7 +5,7 @@ import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/screens/home/widgets/container.dart';
 import 'package:mobileapp/screens/home/widgets/hotel_view.dart';
 import 'package:mobileapp/screens/home/widgets/popolar_object.dart';
-import 'package:mobileapp/widgets/city_lsit_widget.dart';
+import 'package:mobileapp/widgets/city_list_widget.dart';
 import 'package:mobileapp/widgets/row_text.dart';
 
 class HomeBody extends StatelessWidget {
