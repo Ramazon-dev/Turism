@@ -13,39 +13,32 @@ class ProfileAuthPage extends StatefulWidget {
 
 class _ProfileAuthPageState extends State<ProfileAuthPage> {
   bool _isShow = false;
-  late UserModel _user;
-  @override
-  initState() {
-    super.initState();
-    Map<String, dynamic> data = GetStorage().read('user');
-    _user = UserModel.fromJson(data);
-  }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (_)=> HomeCubit(),
-    child: BlocBuilder<HomeCubit, HomeState>(
-      builder: (ctx, state) {
-        HomeCubit cubit = ctx.watch();
-        return _buildBody(cubit);
-      },
-    ),
+    return BlocProvider(
+      create: (_) => HomeCubit(),
+      child: BlocBuilder<HomeCubit, HomeState>(
+        builder: (ctx, state) {
+          HomeCubit cubit = ctx.watch();
+          return _buildBody(cubit);
+        },
+      ),
     );
   }
 
   SingleChildScrollView _buildBody(HomeCubit cubit) {
     return SingleChildScrollView(
-    child: Column(
-      children: [
-        _setTransform(
-          x: 100.0,
-          child: _buildTextButtonWidget(),
-        ),
-        _setTransform(child: _showChangingPasswordFields(), y: -90.0),
-
-      ],
-    ),
-  );
+      child: Column(
+        children: [
+          _setTransform(
+            x: 100.0,
+            child: _buildTextButtonWidget(),
+          ),
+          _setTransform(child: _showChangingPasswordFields(), y: -90.0),
+        ],
+      ),
+    );
   }
 
   // TextButton

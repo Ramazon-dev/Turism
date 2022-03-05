@@ -5,29 +5,15 @@ import 'package:mobileapp/screens/business_profile/input_hotel_page.dart';
 import 'package:mobileapp/screens/business_profile/restaurant_page.dart';
 import 'package:mobileapp/widgets/cards/profile_info_card.dart';
 
-class ProfileAppBar extends StatefulWidget with PreferredSizeWidget {
+class ProfileAppBar extends StatelessWidget with PreferredSizeWidget {
   HomeCubit? cubit;
 
   ProfileAppBar({Key? key, this.cubit}) : super(key: key);
 
-  @override
-  State<ProfileAppBar> createState() => _ProfileAppBarState();
-
-  @override
-  Size get preferredSize => Size(double.infinity, 274.h);
-}
-
-class _ProfileAppBarState extends State<ProfileAppBar> {
-  late UserModel _user;
-  @override
-  void initState() {
-    super.initState();
-    _user  = UserModel.fromJson(GetStorage().read('user'));
-  }
+  final UserModel _user = UserModel.fromJson(GetStorage().read('user'));
 
   @override
   Widget build(BuildContext context) {
-    print('ProfileAppBar.build ${_user.toMap()}');
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -46,7 +32,7 @@ class _ProfileAppBarState extends State<ProfileAppBar> {
                 onPressed: () {
                   Navigator.canPop(context)
                       ? Navigator.pop(context)
-                      : widget.cubit!.openDrawer.call();
+                      : cubit!.openDrawer.call();
                 },
                 icon: SvgPicture.asset(
                   Navigator.canPop(context)
@@ -89,7 +75,6 @@ class _ProfileAppBarState extends State<ProfileAppBar> {
             case 'git':
               CustomNavigator.push(GitInfoPage());
               break;
-
             case 'hotel':
               CustomNavigator.push(const InputHotelPage());
               break;
@@ -111,4 +96,6 @@ class _ProfileAppBarState extends State<ProfileAppBar> {
     PopupMenuItem(value: 'restaurant', child: Text(LocaleKeys.restaurant.tr())),
   ];
 
+  @override
+  Size get preferredSize => Size(double.infinity, 274.h);
 }
