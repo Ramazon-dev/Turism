@@ -1,9 +1,22 @@
-import 'dart:convert';
-
 class Restaurant {
+  late String name;
+  late String informUz;
+  late String informEn;
+  late String informRu;
+  late String karta;
+  late String category;
+  late String city;
+  late List<String> media;
+  late List<String> tell;
+  String? date;
+  String? site;
+  int? reyting;
+  int? users;
+  String? id;
+
   Restaurant({
     required this.name,
-    required this.medias,
+    required this.media,
     required this.informUz,
     required this.informEn,
     required this.informRu,
@@ -12,50 +25,45 @@ class Restaurant {
     required this.tell,
     required this.category,
     this.site,
-    this.owner,
     this.id,
+    this.date,
+    this.reyting,
+    this.users,
   });
 
-  String? id;
-  String name;
-  List<String> medias;
-  String informUz;
-  String informEn;
-  String informRu;
-  String karta;
-  String city;
-  dynamic site;
-  List<String> tell;
-  String category;
-  String? owner;
+  Restaurant.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    media = json['media'];
+    informUz = json['inform_uz'];
+    informEn = json['inform_en'];
+    informRu = json['inform_ru'];
+    karta = json['karta'];
+    city = json['city'];
+    site = json['site'];
+    tell = json['tell'];
+    date = json['date'];
+    category = json['category_id'];
+    reyting = json['reyting'];
+    users = json['users'];
+  }
 
-  factory Restaurant.fromMap(Map<String, dynamic> json) => Restaurant(
-        id: json["id"],
-        name: json["name"],
-        medias: (json["medias"].map((x) => x)),
-        informUz: json["inform_uz"],
-        informEn: json["inform_en"],
-        informRu: json["inform_ru"],
-        karta: json["karta"],
-        city: json["city"],
-        site: json["site"],
-        tell: List<String>.from(json["tell"].map((x) => x)),
-        category: json["category"],
-        owner: json["owner"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "id": id,
-        "name": name,
-        "medias": List<dynamic>.from(medias.map((x) => x)),
-        "inform_uz": informUz,
-        "inform_en": informEn,
-        "inform_ru": informRu,
-        "karta": karta,
-        "city": city,
-        "site": site,
-        "tell": List<dynamic>.from(tell.map((x) => x)),
-        "category": category,
-        "owner": owner,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['media'] = media;
+    data['inform_uz'] = informUz;
+    data['inform_en'] = informEn;
+    data['inform_ru'] = informRu;
+    data['karta'] = karta;
+    data['city'] = city;
+    data['site'] = site;
+    data['tell'] = tell;
+    data['date'] = date;
+    data['category_id'] = category;
+    data['reyting'] = reyting;
+    data['users'] = users;
+    return data;
+  }
 }

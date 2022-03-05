@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/models/category_model.dart';
 import 'package:mobileapp/models/restaurant_model.dart';
 
 class RestaurantService {
@@ -9,8 +10,9 @@ class RestaurantService {
   static Future createNewRestaurant(Restaurant restaurant) async {
     try {
       String token = //await GetStorage().read('token');
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
-    
+          //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZGI4OGM0Yy04ODYxLTRjMTgtOWI3MS04MjZjM2M0NGFlYzEiLCJpYXQiOjE2NDYxNTI2MDcsImV4cCI6MTY2MzQzMjYwN30.WUaeEN7SJeYNC-8pZ-Vh4FcLu5fRAKLAUjFS3JZUUqg';
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+
       var headers = {'token': token};
       var request =
           http.MultipartRequest('POST', Uri.parse('$baseUrl/restaurant'));
@@ -31,7 +33,7 @@ class RestaurantService {
       }
 
       // FIXME: BIR NECHTA RASMLARNI JO'NATISH
-      for (var photoPath in restaurant.medias) {
+      for (var photoPath in restaurant.media) {
         final mimeTypeData =
             lookupMimeType(photoPath, headerBytes: [0xFF, 0xD8])?.split('/');
 
@@ -48,80 +50,95 @@ class RestaurantService {
 
       request.headers.addAll(headers);
 
-      http.StreamedResponse response = await request.send();
+      var streamedResponse = await request.send();
+      var response = await http.Response.fromStream(streamedResponse);
 
       if (response.statusCode == 201) {
-         var result = response.stream.bytesToString();
-        print(result );
-        return result;
+        
+        //Restaurant rest = Restaurant.fromJson(jsonDecode(response.body)['data']);
+
+        GetStorage().write('myRestaurant', jsonDecode(response.body)['data']);
+
+        print("SUCCESFULL bytestostreamBody: " + response.body);
+        print(GetStorage().read('myRestaurant'));
       } else {
-        print('else error: ' + response.reasonPhrase.toString());
-        return response.reasonPhrase;
+        print('else error: ' + response.statusCode.toString());
       }
     } catch (e) {
       print('catch error: ' + e.toString());
-      return null;
     }
   }
 
-  Future<List<Restaurant>> fetchRestaurantByCity(String cityName) async {
+  Future<List<Restaurant>?> fetchRestaurantsByCity(String cityName) async {
     try {
       var response = await http
           .get(Uri.parse("$baseUrl/restaurant"), headers: {"city": cityName});
 
       if (response.statusCode == 200) {
-        print(jsonDecode(response.body)['data']);
-        List<Restaurant> restaurantList = (jsonDecode(response.body)['data'] as List)
-            .map((e) => Restaurant.fromMap(e))
-            .toList();
-            print(restaurantList);
-        return restaurantList;
+        //print(jsonDecode(response.body)['data']);
+        List restaurantList =
+            (jsonDecode(response.body)['data'] as List).map((e) {
+          print("ELEMENT" + e.toString());
+          return Restaurant.fromJson(e);
+        }).toList();
+        return restaurantList as List<Restaurant>;
       } else {
         print(jsonDecode(response.body[0]));
-        return jsonDecode(response.body)['message'];
+        return null;
       }
     } catch (e) {
-      List<Restaurant> h = [];
-
-      // TODO: shu funksiyani qayta ko'rish kerak
-      print("ERROR: " +e.toString());
-      return h;
+      print("ERROR: " + e.toString());
     }
   }
 
-  Future fetchHotelsByCategory(String categryId) async {
+  Future<List<Restaurant>?> fetchRestaurantsByCategory(String categryId) async {
     try {
-      var response = await http.get(Uri.parse("$baseUrl/hotel"),
+      var response = await http.get(Uri.parse("$baseUrl/restaurant"),
           headers: {"category_id": categryId});
       if (response.statusCode == 200) {
-        return jsonDecode(response.body)['message'];
+        List restaurantList =
+            (jsonDecode(response.body)['data'] as List).map((e) {
+          print("ELEMENT" + e.toString());
+          return Restaurant.fromJson(e);
+        }).toList();
+        print(restaurantList);
+        return restaurantList as List<Restaurant>;
       } else {
-        return jsonDecode(response.body)['message'];
+        print(jsonDecode(response.body)['message']);
+        return null;
       }
     } catch (e) {
-      return e;
+      print(e);
+      return null;
     }
   }
 
-  Future fetchCategoriesOfHotel() async {
+  Future fetchCategoriesOfRestaurants() async {
     try {
       var response = await http.get(
-        Uri.parse("$baseUrl/hotels/categories"),
+        Uri.parse("$baseUrl/restaurants/categories"),
       );
       if (response.statusCode == 200) {
-        return jsonDecode(response.body)['message'];
+        List categoryList =
+            (jsonDecode(response.body)['data'] as List).map((e) {
+          print("ELEMENT" + e.toString());
+          return Category.fromJson(e);
+        }).toList();
+
+        return categoryList;
       } else {
-        return jsonDecode(response.body)['message'];
+        return null;
       }
     } catch (e) {
-      return e;
+      return null;
     }
   }
 
-  Future fetchHotelComments({required String hotelId}) async {
+// TODO: iwlaw kk
+  Future fetchRestaurantComments({required String restaurantId}) async {
     try {
-      var response = await http
-          .get(Uri.parse("$baseUrl/comment"), headers: {"hotel_id": hotelId});
+      var response = await http.get(Uri.parse("$baseUrl/comment"),
+          headers: {"restaurant_id": restaurantId});
 
       if (response.statusCode == 200) {
         return jsonDecode(response.body);
@@ -133,23 +150,23 @@ class RestaurantService {
     }
   }
 
-  Future addRatingToHotel(
-      {required String hotelId, required String rate}) async {
+  Future addRatingToRestaurant(
+      {required String restaurantId, required int rate}) async {
     String token = //await GetStorage().read('token');
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZGI4OGM0Yy04ODYxLTRjMTgtOWI3MS04MjZjM2M0NGFlYzEiLCJpYXQiOjE2NDYxNTI2MDcsImV4cCI6MTY2MzQzMjYwN30.WUaeEN7SJeYNC-8pZ-Vh4FcLu5fRAKLAUjFS3JZUUqg';
 
     try {
       var response = await http.post(
         Uri.parse('$baseUrl/reyting'),
-        body: jsonEncode({"value": rate, "hotelId": hotelId}),
-        headers: {'token': token},
+        body: jsonEncode({"value": rate, "restaurantId": restaurantId}),
+        headers: {'token': token, 'Content-Type': 'application/json'},
       );
 
-      if (response.statusCode == 201) {
-        print(jsonDecode(response.body));
+      if (response.statusCode == 200) {
+        print(jsonDecode(response.body)['message']);
         return jsonDecode(response.body);
       } else {
-        print(response.statusCode);
+        print(jsonDecode(response.body)['message']);
         return jsonDecode(response.statusCode.toString());
       }
     } catch (e) {
@@ -158,15 +175,15 @@ class RestaurantService {
     }
   }
 
-  Future addCommentToHotel(
-      {required String hotelId, required String commentText}) async {
+  Future addCommentToRestaurant(
+      {required String restaurantId, required String commentText}) async {
     String token = //await GetStorage().read('token');
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
       var response = await http.post(
         Uri.parse('$baseUrl/comment'),
-        body: jsonEncode({"name": commentText, "hotelId": hotelId}),
+        body: jsonEncode({"name": commentText, "restaurantId": restaurantId}),
         headers: {'token': token, 'Content-Type': 'application/json'},
       );
 
@@ -183,27 +200,26 @@ class RestaurantService {
     }
   }
 
-  Future updateHotelData(Hotel hotel) async {
+  Future updateRestaurantData(Restaurant restaurant) async {
     String token = //await GetStorage().read('token');
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
       var response = await http.put(
-        Uri.parse('$baseUrl/hotel'),
-        body: json.encode(
-          {
-            "name": hotel.name,
-            "informUz": hotel.informUz,
-            "informEn": hotel.informEn,
-            "informRu": hotel.informRu,
-            "site": hotel.site,
-            "tell": hotel.tell,
-            "city": hotel.city,
-            "karta": hotel.categoryId,
-            "categoryId": hotel.categoryId,
-            "hotelId": hotel.id
-          },
-        ),
+        Uri.parse('$baseUrl/restaurant'),
+        body: json.encode(restaurant.toJson()
+            // {
+            //   "name": restaurant.name,
+            //   "informUz": restaurant.informUz,
+            //   "informEn": restaurant.informEn,
+            //   "informRu": restaurant.informRu,
+            //   "site": restaurant.site,
+            //   "tell": restaurant.tell,
+            //   "karta": restaurant.karta,
+            //   "category": restaurant.category,
+            //   "restaurantId": restaurant.id
+            // },
+            ),
         headers: {'token': token, 'Content-Type': 'application/json'},
       );
 
@@ -216,6 +232,7 @@ class RestaurantService {
       return e;
     }
   }
+//8. url/v1/api/restaurant/:{restaurantId} - body : { [media] } --- restaurant rasmlarini o'zgartirish
 
   static Future updateHotelMedia(
       {required String hotelId, required List hotelMedia}) async {

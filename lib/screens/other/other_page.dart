@@ -48,17 +48,17 @@ class OtherPage extends StatelessWidget {
             if (ImageChooser.imageList.isNotEmpty) {
               RestaurantService.createNewRestaurant(
                 Restaurant(
-                    name: 'restaurant test',
-                    city: 'toshkent',
-                    tell: ['+9989777777', '7777'],
-                    informUz: 'inform uz',
-                    informEn: 'inform en',
-                    informRu: 'inform ru',
-                    karta: 'http://google.maps/tashkent',
-                    site: 'http://site.uz',
-                    category: '1991edea-7d4a-49fb-b627-79b777cf54ae',
-                    medias: ImageChooser.imageList,
-                    ),
+                  name: 'restaurant test',
+                  city: 'toshkent',
+                  tell: ['+9989777777', '7777'],
+                  informUz: 'inform uz',
+                  informEn: 'inform en',
+                  informRu: 'inform ru',
+                  karta: 'http://google.maps/tashkent',
+                  site: 'http://site.uz',
+                  category: '1991edea-7d4a-49fb-b627-79b777cf54ae',
+                  media: ImageChooser.imageList,
+                ),
               );
             } else {
               print(ImageChooser.imageList.toString());
@@ -66,20 +66,22 @@ class OtherPage extends StatelessWidget {
           },
         ),
         TextButton(
-          onPressed: () async {
-            await RestaurantService()
-                .deleteRestaurant(restaurantId: "b98742f2-552b-4b7a-b910-235d0d3ad2a2");
-          },
           child: const Text('delete restaurant'),
-        ),
-         TextButton(
           onPressed: () async {
-            await RestaurantService()
-                .fetchRestaurantByCity( "toshkent");
+            await RestaurantService().deleteRestaurant(
+                restaurantId: "64ac9667-f69a-4f8c-b8dc-3ec425c3e093");
           },
-          child: const Text('fetch restaurant by city'),
         ),
         TextButton(
+          child: const Text('add commnet to restaurant'),
+          onPressed: () async {
+            await RestaurantService().addCommentToRestaurant(
+                commentText: 'test text',
+                restaurantId: "3375d7d5-bd96-41a6-98b4-b50a6786308d");
+          },
+        ),
+        TextButton(
+          child: const Text('update git data'),
           onPressed: () async {
             await GitService.updateGitData(
               Git(
@@ -91,28 +93,26 @@ class OtherPage extends StatelessWidget {
                 informEn: 'edited',
                 informRu: 'edited',
                 informUz: 'edited',
-                price: '5000',                
+                price: '5000',
               ),
             );
           },
-          child: const Text('update git data'),
         ),
-
         TextButton(
+          child: const Text('update git image'),
           onPressed: () async {
             await GitService.updateGitImage(
               gitId: "a04b86bc-a19c-4d8e-91c5-b01a902b0276",
-                gitImage: ImageChooser.imageList.first,
+              gitImage: ImageChooser.imageList.first,
             );
           },
-          child: const Text('update git image'),
         ),
         TextButton(
+          child: Text('fetch gits comments'),
           onPressed: () async {
             GitService.fetchGitComments(
                 gitId: '7a04881a-d759-4b16-8008-8cab1c9881bd');
           },
-          child: Text('fetch gits comments'),
         ),
         _createGit(),
       ],
