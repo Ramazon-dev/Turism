@@ -37,5 +37,19 @@
   "sirdarya": "Sirdarya",
   "karakalpak": "Karakalpakistan",
   "navai": "Navai",
-  "surkhandarya": "Surkhandarya"
+  "surkhandarya": "Surkhandarya",
+  "here_you_can_determine": "Here you can determine the amount of money that suits you.",
+  "sum": "Sum",
+  "tourist_zone": "Tourist zone.",
+  "transport": "Transport",
+  "service_area_in": "Service areas in {}:",
+  "logout": "Logout",
+  "places": "Places",
+  "currency": "Currency",
+  "embassy": "Embassy",
+  "search": "Search",
+  "other": "Other",
+  "sign_in_toyour_account": "Sign in to your account",
+  "i_agree_pivacy": "I agree with the privacy policy",
+  "password": "Password"
 }

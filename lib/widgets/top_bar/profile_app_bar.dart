@@ -75,7 +75,6 @@ class ProfileAppBar extends StatelessWidget with PreferredSizeWidget {
             case 'git':
               CustomNavigator.push(GitInfoPage());
               break;
-
             case 'hotel':
               CustomNavigator.push(const InputHotelPage());
               break;

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/functions/text_form_field_validator.dart';
 import 'package:mobileapp/cubit/auth/sign_in_cubit/sign_in_cubit.dart';
 import 'package:mobileapp/screens/auth/forgot_password/forgot_password/forgot_password.dart';
 import 'package:mobileapp/screens/auth/sing_up/sign_up_page.dart';
@@ -35,7 +34,7 @@ class SignInPage extends StatelessWidget {
                 MySizedBox(height: 25.0),
                 TextFormFieldWidget(
                   controller: cubit.passwordController,
-                  hint: LocaleKeys.newPassword.tr(),
+                  hint: LocaleKeys.password.tr(),
                   action: TextInputAction.done,
                 ),
                 CheckboxListTile(

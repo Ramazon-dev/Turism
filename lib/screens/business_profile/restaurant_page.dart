@@ -59,6 +59,7 @@ class RestaurantPage extends StatelessWidget {
           inputType: TextInputType.phone,
           hint: 'Введите номер телефона',
           validator: FormValidator.phone,
+          prefix: const PhonePrefix(),
         ),
         MySizedBox(height: 20.0),
         DropDownWidget(onChanged: cubit.cityChanged, value: cubit.city),

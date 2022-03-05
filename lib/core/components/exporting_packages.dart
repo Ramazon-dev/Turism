@@ -36,6 +36,7 @@ export 'package:mobileapp/widgets/url_text_widgte.dart';
 export 'package:mobileapp/widgets/city_list_widget.dart';
 export 'package:mobileapp/widgets/empty_widget.dart';
 export 'package:mobileapp/widgets/git_list_widjet.dart';
+export 'package:mobileapp/widgets/inputs/phone_prefix.dart';
 
 // Services
 export 'package:mobileapp/services/auth_services.dart';
