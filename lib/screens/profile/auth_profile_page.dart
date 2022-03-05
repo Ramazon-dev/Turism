@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
-import 'package:mobileapp/widgets/cards/profile_info_card.dart';
 
 class ProfileAuthPage extends StatefulWidget {
   const ProfileAuthPage({Key? key}) : super(key: key);
@@ -18,7 +17,8 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
   @override
   initState() {
     super.initState();
-    _user = UserModel.fromJson(GetStorage().read('user'));
+    Map<String, dynamic> data = GetStorage().read('user');
+    _user = UserModel.fromJson(data);
   }
 
   @override

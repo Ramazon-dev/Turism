@@ -37,5 +37,19 @@
   "sirdarya": "сырдарьё",
   "karakalpak": "Каракалпакстан",
   "navai": "Навои",
-  "surkhandarya": "сурхандарьинская"
+  "surkhandarya": "сурхандарьинская",
+  "here_you_can_determine": "Здесь вы можете определить сумму денег, которая вас устраивает.",
+  "sum": "Сум",
+  "tourist_zone": "Туристик зона.",
+  "transport": "Транспорт.",
+  "service_area_in": "Зоны обслуживания в {}:",
+  "logout": "Выйти",
+  "places": "Joylar",
+  "currency": "Валюта",
+  "embassy": "Посольство",
+  "search": "Поиск",
+  "other": "Другой",
+  "sign_in_toyour_account": "Войдите в свой аккаунт",
+  "i_agree_pivacy": "Я согласен с политикой конфиденциальности",
+  "password": "Пароль"
 }

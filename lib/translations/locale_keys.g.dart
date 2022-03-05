@@ -40,5 +40,18 @@ abstract class  LocaleKeys {
   static const karakalpak = 'karakalpak';
   static const navai = 'navai';
   static const surkhandarya = 'surkhandarya';
+  static const here_you_can_determine = 'here_you_can_determine';
+  static const sum = 'sum';
+  static const tourist_zone = 'tourist_zone';
+  static const transport = 'transport';
+  static const service_area_in = 'service_area_in';
+  static const logout = 'logout';
+  static const places = 'places';
+  static const currency = 'currency';
+  static const embassy = 'embassy';
+  static const search = 'search';
+  static const sign_in_to_your_account = 'sign_in_toyour_account';
+  static const i_agree_pivacy = 'i_agree_pivacy';
+  static const password = 'password';
 
 }

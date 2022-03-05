@@ -53,7 +53,21 @@ class CodegenLoader extends AssetLoader{
   "sirdarya": "Sirdaryo",
   "karakalpak": "Qoraqalpog'iston",
   "navai": "Navoi",
-  "surkhandarya": "Surhondaryo"
+  "surkhandarya": "Surhondaryo",
+  "here_you_can_determine": "Bu erda sizga mos keladigan pul miqdorini aniqlashingiz mumkin.",
+  "sum": "So`m",
+  "tourist_zone": "Turistik zona.",
+  "transport": "Transport",
+  "service_area_in": "{}dagi xizmat ko`rsatish hududlari:",
+  "logout": "Chiqish",
+  "places": "Места",
+  "currency": "Valyuta",
+  "embassy": "Elchixona",
+  "search": "Qidirish",
+  "other": "Boshqa",
+  "sign_in_toyour_account": "O`z akkountingizga kiring",
+  "i_agree_pivacy": "Men maxfiylik siyosatiga roziman",
+  "password": "Parol"
 };
 static const Map<String,dynamic> ru_RU = {
   "start": "Начать",
@@ -94,7 +108,21 @@ static const Map<String,dynamic> ru_RU = {
   "sirdarya": "сырдарьё",
   "karakalpak": "Каракалпакстан",
   "navai": "Навои",
-  "surkhandarya": "сурхандарьинская"
+  "surkhandarya": "сурхандарьинская",
+  "here_you_can_determine": "Здесь вы можете определить сумму денег, которая вас устраивает.",
+  "sum": "Сум",
+  "tourist_zone": "Туристик зона.",
+  "transport": "Транспорт.",
+  "service_area_in": "Зоны обслуживания в {}:",
+  "logout": "Выйти",
+  "places": "Joylar",
+  "currency": "Валюта",
+  "embassy": "Посольство",
+  "search": "Поиск",
+  "other": "Другой",
+  "sign_in_toyour_account": "Войдите в свой аккаунт",
+  "i_agree_pivacy": "Я согласен с политикой конфиденциальности",
+  "password": "Пароль"
 };
 static const Map<String,dynamic> en_GB = {
   "start": "Start",
@@ -135,7 +163,21 @@ static const Map<String,dynamic> en_GB = {
   "sirdarya": "Sirdarya",
   "karakalpak": "Karakalpakistan",
   "navai": "Navai",
-  "surkhandarya": "Surkhandarya"
+  "surkhandarya": "Surkhandarya",
+  "here_you_can_determine": "Here you can determine the amount of money that suits you.",
+  "sum": "Sum",
+  "tourist_zone": "Tourist zone.",
+  "transport": "Transport",
+  "service_area_in": "Service areas in {}:",
+  "logout": "Logout",
+  "places": "Places",
+  "currency": "Currency",
+  "embassy": "Embassy",
+  "search": "Search",
+  "other": "Other",
+  "sign_in_toyour_account": "Sign in to your account",
+  "i_agree_pivacy": "I agree with the privacy policy",
+  "password": "Password"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"uz_UZ": uz_UZ, "ru_RU": ru_RU, "en_GB": en_GB};
 }
