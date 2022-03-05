@@ -1,42 +1,49 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/models/restaurant_model.dart';
 
-class HotelService {
+class RestaurantService {
   static String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
 
-
-  static Future createNewHotel(Hotel hotel) async {
-
+  static Future createNewRestaurant(Restaurant restaurant) async {
     try {
-      String token = await GetStorage().read('token');
-
+      String token = //await GetStorage().read('token');
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+    
       var headers = {'token': token};
-      var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/hotel'));
+      var request =
+          http.MultipartRequest('POST', Uri.parse('$baseUrl/restaurant'));
       request.fields.addAll({
-        'name': hotel.name,
-        'city': hotel.city,
-        'informUz': hotel.informUz,
-        'informRu': hotel.informRu,
-        'informEn': hotel.informEn,
-        'karta': hotel.karta,
-        'tell': hotel.tell.toString(),
-        'categoryId': '1991edea-7d4a-49fb-b627-79b777cf54ae'
+        'name': restaurant.name,
+        'city': restaurant.city,
+        'informUz': restaurant.informUz,
+        'informRu': restaurant.informRu,
+        'informEn': restaurant.informEn,
+        'karta': restaurant.karta,
+        'category': '903908cf-7f6d-424f-8c03-66d30e9347bf'
       });
-      // request.send().then((value) => print);
+
+      for (var tell in restaurant.tell) {
+        request.files.add(
+          http.MultipartFile.fromString('tell', tell),
+        );
+      }
 
       // FIXME: BIR NECHTA RASMLARNI JO'NATISH
-      for (var photoPath in hotel.media) {
+      for (var photoPath in restaurant.medias) {
         final mimeTypeData =
             lookupMimeType(photoPath, headerBytes: [0xFF, 0xD8])?.split('/');
 
         //------------------
-        request.files.add(await http.MultipartFile.fromPath(
-          'media',
-          photoPath,
-          filename: photoPath.split('/').last,
-          contentType: MediaType(mimeTypeData![0], mimeTypeData[1]),
-        ));
+        request.files.add(
+          await http.MultipartFile.fromPath(
+            'media',
+            photoPath,
+            filename: photoPath.split('/').last,
+            contentType: MediaType(mimeTypeData![0], mimeTypeData[1]),
+          ),
+        );
       }
 
       request.headers.addAll(headers);
@@ -44,8 +51,9 @@ class HotelService {
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 201) {
-        print(await response.stream.bytesToString());
-        return response.stream.bytesToString();
+         var result = response.stream.bytesToString();
+        print(result );
+        return result;
       } else {
         print('else error: ' + response.reasonPhrase.toString());
         return response.reasonPhrase;
@@ -56,20 +64,27 @@ class HotelService {
     }
   }
 
-  Future<List<Hotel>> fetchHotelsByCity(String cityName) async {
+  Future<List<Restaurant>> fetchRestaurantByCity(String cityName) async {
     try {
       var response = await http
-          .get(Uri.parse("$baseUrl/hotel"), headers: {"city": cityName});
+          .get(Uri.parse("$baseUrl/restaurant"), headers: {"city": cityName});
+
       if (response.statusCode == 200) {
-        List<Hotel> hotelList = (jsonDecode(response.body)['data'] as List)
-            .map((e) => Hotel.fromJson(e))
+        print(jsonDecode(response.body)['data']);
+        List<Restaurant> restaurantList = (jsonDecode(response.body)['data'] as List)
+            .map((e) => Restaurant.fromMap(e))
             .toList();
-        return hotelList;
+            print(restaurantList);
+        return restaurantList;
       } else {
+        print(jsonDecode(response.body[0]));
         return jsonDecode(response.body)['message'];
       }
     } catch (e) {
-      List<Hotel> h = [];
+      List<Restaurant> h = [];
+
+      // TODO: shu funksiyani qayta ko'rish kerak
+      print("ERROR: " +e.toString());
       return h;
     }
   }
@@ -202,14 +217,15 @@ class HotelService {
     }
   }
 
-static Future updateHotelMedia({required String hotelId, required List hotelMedia}) async {
+  static Future updateHotelMedia(
+      {required String hotelId, required List hotelMedia}) async {
     try {
       String token = //await GetStorage().read('token');
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
       var headers = {'token': token};
-      var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/hotel/$hotelId'));
-      
+      var request =
+          http.MultipartRequest('POST', Uri.parse('$baseUrl/hotel/$hotelId'));
 
       // FIXME: BIR NECHTA RASMLARNI JO'NATISH
       for (var photoPath in hotelMedia) {
@@ -242,13 +258,13 @@ static Future updateHotelMedia({required String hotelId, required List hotelMedi
     }
   }
 
-  Future deleteHotel({required String hotelId}) async {
+  Future deleteRestaurant({required String restaurantId}) async {
     String token = //await GetStorage().read('token');
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
       var response = await http.delete(
-        Uri.parse("$baseUrl/hotel/$hotelId"),
+        Uri.parse("$baseUrl/restaurant/$restaurantId"),
         headers: {'token': token},
       );
 

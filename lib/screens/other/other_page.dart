@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/models/restaurant_model.dart';
 import 'package:mobileapp/services/git_service.dart';
+import 'package:mobileapp/services/restaurant_service.dart';
 
 class OtherPage extends StatelessWidget {
   const OtherPage({Key? key}) : super(key: key);
@@ -41,22 +43,22 @@ class OtherPage extends StatelessWidget {
       children: [
         _imageShow(context),
         TextButton(
-          child: const Text('hotel register'),
+          child: const Text('restaurant register'),
           onPressed: () {
-            print('hotel register bosildi');
             if (ImageChooser.imageList.isNotEmpty) {
-              HotelService.createNewHotel(
-                Hotel(
-                    name: 'Hotel test',
-                    city: 'tashkent',
-                    tell: ['+9989777777'],
+              RestaurantService.createNewRestaurant(
+                Restaurant(
+                    name: 'restaurant test',
+                    city: 'toshkent',
+                    tell: ['+9989777777', '7777'],
                     informUz: 'inform uz',
                     informEn: 'inform en',
                     informRu: 'inform ru',
                     karta: 'http://google.maps/tashkent',
                     site: 'http://site.uz',
-                    categoryId: '1991edea-7d4a-49fb-b627-79b777cf54ae',
-                    media: ImageChooser.imageList),
+                    category: '1991edea-7d4a-49fb-b627-79b777cf54ae',
+                    medias: ImageChooser.imageList,
+                    ),
               );
             } else {
               print(ImageChooser.imageList.toString());
@@ -65,10 +67,17 @@ class OtherPage extends StatelessWidget {
         ),
         TextButton(
           onPressed: () async {
-            await GitService()
-                .deleteGit(gitId: "c79b00f3-b37d-420b-b4ba-c5e45928384c");
+            await RestaurantService()
+                .deleteRestaurant(restaurantId: "b98742f2-552b-4b7a-b910-235d0d3ad2a2");
           },
-          child: const Text('delete git'),
+          child: const Text('delete restaurant'),
+        ),
+         TextButton(
+          onPressed: () async {
+            await RestaurantService()
+                .fetchRestaurantByCity( "toshkent");
+          },
+          child: const Text('fetch restaurant by city'),
         ),
         TextButton(
           onPressed: () async {
@@ -121,7 +130,7 @@ class OtherPage extends StatelessWidget {
         if (ImageChooser.imageList.isNotEmpty)
           Container(
             width: MediaQuery.of(context).size.width,
-            height: 500,
+            height: 300,
             color: Colors.grey.shade200,
             child: ListView.builder(
               itemCount: ImageChooser.imageList.length,
