@@ -72,6 +72,8 @@ class GitInfoPage extends StatelessWidget {
               inputType: TextInputType.phone,
               hint: LocaleKeys.inputYourNumber.tr(),
               validator: FormValidator.phone,
+              maxLength: 9,
+              prefix: const PhonePrefix(),
             ),
             MySizedBox(height: 20.0),
             DropDownWidget(onChanged: cubit.cityChanged, value: cubit.city),
