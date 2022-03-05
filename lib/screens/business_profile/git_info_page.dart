@@ -32,7 +32,6 @@ class GitInfoPage extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  // Profile Circle Avatar
                   ProfileCircleAvatar(imageUrl: 'default'),
                   MySizedBox(width: 26.0),
                   Column(
@@ -72,6 +71,7 @@ class GitInfoPage extends StatelessWidget {
               controller: cubit.phoneController,
               inputType: TextInputType.phone,
               hint: LocaleKeys.inputYourNumber.tr(),
+              validator: FormValidator.phone,
             ),
             MySizedBox(height: 20.0),
             DropDownWidget(onChanged: cubit.cityChanged, value: cubit.city),
@@ -80,6 +80,7 @@ class GitInfoPage extends StatelessWidget {
               inputType: TextInputType.number,
               controller: cubit.priceController,
               hint: LocaleKeys.enterPrice.tr(),
+              validator: FormValidator.isNotEmpty,
             ),
             MySizedBox(height: 20.0),
             TextFormFieldWidget(
@@ -88,6 +89,7 @@ class GitInfoPage extends StatelessWidget {
               action: TextInputAction.newline,
               capitalization: TextCapitalization.sentences,
               inputType: TextInputType.multiline,
+              validator: FormValidator.multiLine,
               lines: 5,
             ),
             MySizedBox(height: 20.0),
@@ -97,6 +99,7 @@ class GitInfoPage extends StatelessWidget {
               hint: 'Personal information',
               action: TextInputAction.newline,
               inputType: TextInputType.multiline,
+              validator: FormValidator.multiLine,
               lines: 5,
             ),
             MySizedBox(height: 20.0),
@@ -105,6 +108,7 @@ class GitInfoPage extends StatelessWidget {
               inputType: TextInputType.multiline,
               capitalization: TextCapitalization.sentences,
               action: TextInputAction.newline,
+              validator: FormValidator.multiLine,
               hint: 'Shaxsiy ma\'lumot',
               lines: 5,
             ),

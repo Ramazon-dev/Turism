@@ -24,7 +24,7 @@ class ProfileInfoCard extends StatelessWidget {
               Text(user.name, style: AppTextStyle.medium(size: 18.0)),
               MySizedBox(height: 9.0),
               Text(
-                user.email.substring(0, 25),
+                user.email.toString().substring(0, 25),
                 style: AppTextStyle.medium(color: AppColors.grey),
               ),
               MySizedBox(height: 15.0),

@@ -49,7 +49,7 @@ class MyGitListWidjet extends StatelessWidget {
               DescriptionWidget(
                 name: git.informEn.toString(),
                 price: int.parse(git.price.toString()),
-                rating: 4.6,
+                rating: git.reyting!.toDouble(),
                 users: 8,
               ),
               LanguageWidget(language: git.languages)
