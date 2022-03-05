@@ -62,7 +62,7 @@ class SignUpPage extends StatelessWidget {
                         controller: cubit.passwordController,
                         hint: 'Password',
                         obscureText: true,
-                        validator: FormValidator.general,
+                        validator: FormValidator.password,
                         action: TextInputAction.done,
                       ),
                       MySizedBox(height: 10.0),
@@ -100,8 +100,8 @@ class SignUpPage extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(30),
                               ),
                               child: TextButton(
-                                child: const Text(
-                                  "Войти",
+                                child:  Text(
+                                  LocaleKeys.signIn.tr(),
                                   style: TextStyle(color: AppColors.blue),
                                 ),
                                 onPressed: () {

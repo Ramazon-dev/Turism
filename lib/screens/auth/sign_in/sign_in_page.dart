@@ -35,8 +35,7 @@ class SignInPage extends StatelessWidget {
                 MySizedBox(height: 25.0),
                 TextFormFieldWidget(
                   controller: cubit.passwordController,
-                  hint: 'Password',
-                  validator: FormValidator.general,
+                  hint: LocaleKeys.newPassword.tr(),
                   action: TextInputAction.done,
                 ),
                 CheckboxListTile(
@@ -55,9 +54,9 @@ class SignInPage extends StatelessWidget {
                         left: getWidth(20),
                       ),
                       child: TextButton(
-                        child: const Text(
-                          "Забыл пароль? ",
-                          style: TextStyle(color: AppColors.blue),
+                        child: Text(
+                          LocaleKeys.forgotPassword.tr(),
+                          style: const TextStyle(color: AppColors.blue),
                         ),
                         onPressed: () {
                           Navigator.push(
@@ -82,13 +81,13 @@ class SignInPage extends StatelessWidget {
                       child: TextButton(
                         child: Text(
                           LocaleKeys.signUp.tr(),
-                          style:const TextStyle(color: AppColors.blue),
+                          style: const TextStyle(color: AppColors.blue),
                         ),
                         onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>const SignUpPage(),
+                              builder: (context) => const SignUpPage(),
                             ),
                           );
                         },

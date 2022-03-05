@@ -48,6 +48,8 @@ export 'package:mobileapp/core/components/my_decoration.dart';
 export 'package:mobileapp/core/components/custom_navigator.dart';
 export 'package:mobileapp/core/components/my_shape.dart';
 export 'package:mobileapp/core/components/my_border_radius.dart';
+export 'package:mobileapp/core/functions/text_form_field_validator.dart';
+
 
 // Extensions
 export 'package:mobileapp/core/extension/size_extension.dart';
@@ -57,6 +59,7 @@ export 'package:mobileapp/core/extension/size_extension.dart';
 export 'package:mobileapp/core/constants/app_colors.dart';
 export 'package:mobileapp/core/constants/app_icons.dart';
 export 'package:mobileapp/core/constants/app_images.dart';
+export 'package:mobileapp/core/data/city_list.dart';
 
 // Installed packages
 export 'package:url_launcher/url_launcher.dart';
@@ -81,6 +84,8 @@ export 'package:mobileapp/models/place_model.dart';
 export 'package:mobileapp/core/data/user_data.dart';
 export 'package:mobileapp/models/user_model.dart';
 export 'package:mobileapp/models/git_model.dart';
+export 'package:mobileapp/models/city_model.dart';
+
 
 
 // translations
