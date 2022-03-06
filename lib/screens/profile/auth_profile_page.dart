@@ -4,6 +4,7 @@ import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/models/business_account_model.dart';
 import 'package:mobileapp/models/git_model.dart' as git;
 import 'package:mobileapp/services/business_account_service.dart';
+import 'package:mobileapp/widgets/tiles/business_hotel_tile.dart';
 
 class ProfileAuthPage extends StatefulWidget {
   const ProfileAuthPage({Key? key}) : super(key: key);
@@ -53,7 +54,7 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
 
                   // if restaurant list is not null, restaurant list will be shown
                   model.restaurants != null
-                      ? _showRestaurants()
+                      ? _showRestaurants(model)
                       : const SizedBox()
                 ],
               );
@@ -67,19 +68,27 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
     );
   }
 
-  ListView _showRestaurants() {
-    return ListView.builder(itemBuilder: (ctx, index) {
-      return Container();
+  ListView _showRestaurants(BusinessAccountModel model) {
+    return ListView.builder(
+        padding: MyEdgeInsets.symmetric(h: 15.0),
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: model.hotels!.length,
+        itemBuilder: (ctx, index) {
+          Hotels hotel = model.hotels![index];
+          return BusinessHotelTile(hotels: hotel);
     });
   }
 
   ListView _showHotelList(BusinessAccountModel model) {
     return ListView.builder(
+      padding: MyEdgeInsets.symmetric(h: 15.0),
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: model.hotels!.length,
         itemBuilder: (ctx, i) {
-          return Container();
+          Hotels hotel = model.hotels![i];
+          return BusinessHotelTile(hotels: hotel);
         });
   }
 

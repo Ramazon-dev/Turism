@@ -19,6 +19,7 @@ class BaseBusinessTile extends StatelessWidget {
     return Container(
       height: 134.h,
       width: 345.w,
+      margin: MyEdgeInsets.symmetric(v: 8.0),
       padding: MyEdgeInsets.all(9.0),
       decoration: MyDecoration.circular(
         color: Colors.transparent,

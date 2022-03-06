@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/widgets/rating_bar_widget.dart';
 import 'base_business_tile.dart';
 import 'package:mobileapp/models/business_account_model.dart' as bm;
 
@@ -16,7 +17,8 @@ class BusinessHotelTile extends StatelessWidget {
       title: hotels.id!.substring(0, 15),
       infoWidget: Column(
         children: [
-
+          RatingBarWidget(rating: hotels.reyting!.toDouble()),
+          
         ],
       ),
     );
