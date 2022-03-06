@@ -139,9 +139,7 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
         ),
       );
 
-  void _onPressed() {
-    setState(() {
-      _isShow = !_isShow;
-    });
-  }
+  void _onPressed() => setState(() {
+        _isShow = !_isShow;
+      });
 }
