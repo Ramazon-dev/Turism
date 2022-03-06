@@ -1,33 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/extension/image_extension.dart';
+import 'base_business_tile.dart';
+import 'package:mobileapp/models/business_account_model.dart' as bm;
 
-class BaseBusinessTile extends StatelessWidget {
-  final String imgUrl;
-  final Column infoWidget;
+class BusinessHotelTile extends StatelessWidget {
+  final bm.Hotels hotels;
 
-  const BaseBusinessTile({
-    Key? key,
-    required this.imgUrl,
-    required this.infoWidget,
-  }) : super(key: key);
+  const BusinessHotelTile({Key? key, required this.hotels}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 134.h,
-      width: 345.w,
-      padding: MyEdgeInsets.all(9.0),
-      decoration: MyDecoration.circular(
-        color: Colors.transparent,
-        border: Border.all(color: AppColors.grey),
-      ),
-      child: Row(
+    return BaseBusinessTile(
+      // TODO: Bu yerga Hotel rasmi qo'yiladi
+      imgUrl: MockData.place.media[0],
+      title: hotels.id!.substring(0, 15),
+      infoWidget: Column(
         children: [
-          Image.network(imgUrl, height: 116.h, width: 128.w, fit: BoxFit.cover)
-              .circularBorder(radius: 5.w),
-          SizedBox(width: 9.w),
-          Expanded(child: infoWidget),
+
         ],
       ),
     );
