@@ -4,7 +4,7 @@ import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/models/business_account_model.dart';
 import 'package:mobileapp/models/git_model.dart' as git;
 import 'package:mobileapp/services/business_account_service.dart';
-import 'package:mobileapp/widgets/tiles/business_hotel_tile.dart';
+import 'package:mobileapp/widgets/tiles/hotel_and_res_tile.dart';
 
 class ProfileAuthPage extends StatefulWidget {
   const ProfileAuthPage({Key? key}) : super(key: key);
@@ -33,37 +33,31 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
 
   SingleChildScrollView _buildBody(HomeCubit cubit) {
     return SingleChildScrollView(
-      child: _setTransform(
-        y: 140.0,
-        child: FutureBuilder(
-          future: BusinessAccountService().getServiceList(),
-          builder: (ctx, AsyncSnapshot<BusinessAccountModel> snap) {
-            if (snap.hasData) {
-              BusinessAccountModel model = snap.data!;
-              return Column(
-                children: [
-                  // if git is not null, Git will be shown
-                  model.git != null
-                      ? _myGitListWidget(model)
-                      : const SizedBox(),
+      child: FutureBuilder(
+        future: BusinessAccountService().getServiceList(),
+        builder: (ctx, AsyncSnapshot<BusinessAccountModel> snap) {
+          if (snap.hasData) {
+            BusinessAccountModel model = snap.data!;
+            return Column(
+              children: [
+                SizedBox(height: 140.h),
+                // if git is not null, Git will be shown
+                model.git != null ? _myGitListWidget(model) : const SizedBox(),
 
-                  // if hotel list is not null, hotel list will be shown
-                  model.hotels != null
-                      ? _showHotelList(model)
-                      : const SizedBox(),
+                // if hotel list is not null, hotel list will be shown
+                model.hotels != null ? _showHotelList(model) : const SizedBox(),
 
-                  // if restaurant list is not null, restaurant list will be shown
-                  model.restaurants != null
-                      ? _showRestaurants(model)
-                      : const SizedBox()
-                ],
-              );
-            } else if (snap.hasError) {
-              Center(child: Text(LocaleKeys.personalInfo.tr()));
-            }
-            return const Center(child: CupertinoActivityIndicator());
-          },
-        ),
+                // if restaurant list is not null, restaurant list will be shown
+                model.restaurants != null
+                    ? _showRestaurants(model)
+                    : const SizedBox()
+              ],
+            );
+          } else if (snap.hasError) {
+            Center(child: Text(LocaleKeys.personalInfo.tr()));
+          }
+          return const Center(child: CupertinoActivityIndicator());
+        },
       ),
     );
   }
@@ -73,22 +67,22 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
         padding: MyEdgeInsets.symmetric(h: 15.0),
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: model.hotels!.length,
+        itemCount: model.restaurants!.length,
         itemBuilder: (ctx, index) {
-          Hotels hotel = model.hotels![index];
-          return BusinessHotelTile(hotels: hotel);
-    });
+          Restaurants restaurants = model.restaurants![index];
+          return BusinessHotelResTile(data: restaurants);
+        });
   }
 
   ListView _showHotelList(BusinessAccountModel model) {
     return ListView.builder(
-      padding: MyEdgeInsets.symmetric(h: 15.0),
+        padding: MyEdgeInsets.symmetric(h: 15.0),
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: model.hotels!.length,
         itemBuilder: (ctx, i) {
           Hotels hotel = model.hotels![i];
-          return BusinessHotelTile(hotels: hotel);
+          return BusinessHotelResTile(data: hotel);
         });
   }
 
@@ -106,14 +100,6 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
       ),
     );
   }
-
-  // Transform
-  Transform _setTransform(
-          {double x = 0.0, double y = -140.0, required Widget child}) =>
-      Transform.translate(
-        offset: Offset(getWidth(x), getHeight(y)),
-        child: child,
-      );
 
   // Password fields
   Visibility _showChangingPasswordFields() => Visibility(

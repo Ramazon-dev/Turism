@@ -47,7 +47,7 @@ class RestaurantPage extends StatelessWidget {
     child: Column(
       children: [
         TextFormFieldWidget(
-          controller: cubit.phoneController,
+          controller: cubit.nameController,
           inputType: TextInputType.text,
           hint: 'Название ресторан',
           validator: FormValidator.isNotEmpty,
@@ -59,6 +59,7 @@ class RestaurantPage extends StatelessWidget {
           inputType: TextInputType.phone,
           hint: 'Введите номер телефона',
           validator: FormValidator.phone,
+          maxLength: 9,
           prefix: const PhonePrefix(),
         ),
         MySizedBox(height: 20.0),
@@ -68,13 +69,13 @@ class RestaurantPage extends StatelessWidget {
           inputType: TextInputType.url,
           controller: cubit.priceController,
           validator: FormValidator.isNotEmpty,
-          hint: 'Расположение на карте (ссылка)',
+          hint: LocaleKeys.mapLink.tr(),
         ),
         MySizedBox(height: 20.0),
         TextFormFieldWidget(
           inputType: TextInputType.url,
           controller: cubit.priceController,
-          hint: 'Ссылка на сайт',
+          hint: LocaleKeys.linkOfSite.tr(),
         ),
         MySizedBox(height: 20.0),
         TextFormFieldWidget(
