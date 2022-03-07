@@ -23,15 +23,20 @@ class BaseBusinessTile extends StatelessWidget {
       padding: MyEdgeInsets.all(9.0),
       decoration: MyDecoration.circular(
         color: Colors.transparent,
+        radius: 7.0,
         border: Border.all(color: AppColors.grey),
       ),
       child: Row(
         children: [
-          Image.network(imgUrl, height: 116.h, width: 128.w, fit: BoxFit.cover)
-              .circularBorder(radius: 5.w),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(5.w),
+            child: CachedNetworkImage(
+                imageUrl: imgUrl, height: 116.h, width: 128.w, fit: BoxFit.cover),
+          ),
           SizedBox(width: 9.w),
           Expanded(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _setTitle(),
                 SizedBox(height: 9.h),

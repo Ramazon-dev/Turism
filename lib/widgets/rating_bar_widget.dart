@@ -11,15 +11,21 @@ class RatingBarWidget extends StatelessWidget {
     return Row(
       children: [
         RatingBar.builder(
-            itemCount: 5,
-            itemSize: 14.w,
-            ignoreGestures: true,
-            initialRating: rating,
-            allowHalfRating: true,
-            itemBuilder: (ctx, i) => SvgPicture.asset(AppIcons.star),
-            onRatingUpdate: (v) {}),
-        Text('$rating', style: AppTextStyle.medium(size: 12.0)),
+          itemCount: 5,
+          itemSize: 14.w,
+          ignoreGestures: true,
+          initialRating: rating,
+          allowHalfRating: true,
+          onRatingUpdate: (v) {},
+          itemBuilder: _itemRating,
+        ),
+        Text(' $rating', style: AppTextStyle.medium(size: 12.0)),
       ],
     );
   }
+
+  Widget _itemRating(ctx, i) => SvgPicture.asset(
+        AppIcons.star,
+        color: AppColors.amber,
+      );
 }
