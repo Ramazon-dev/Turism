@@ -10,13 +10,4 @@ void main() async{
 
     expect(result, true);
   });
-
-  test('git comment test', () async {
-    var result = await CommentService().addGitComment(
-      commentText: 'git comment test',
-      gitId: "8a130ae4-688d-41db-89f2-45c95bde3cb3",
-    );
-
-    expect(result, true);
-  });
 }

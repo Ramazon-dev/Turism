@@ -275,10 +275,12 @@ class RestaurantService {
     }
   }
 
-  Future deleteRestaurant({required String restaurantId}) async {
+  Future deleteRestaurant() async {
     String token = //await GetStorage().read('token');
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
+      String restaurantId = GetStorage().read("myRestaurant")['id'].toString();
+      
     try {
       var response = await http.delete(
         Uri.parse("$baseUrl/restaurant/$restaurantId"),
