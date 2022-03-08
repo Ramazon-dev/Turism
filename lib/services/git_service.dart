@@ -100,8 +100,8 @@ class GitService {
   }
 
   Future addRatingToGit({required String gitId, required int rate}) async {
-    String token = //await GetStorage().read('token');
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyZmU4NDQ2Mi00ZjA5LTQ5NGUtYjRkZC1jZWVkMjRmZTI0MTciLCJpYXQiOjE2NDU3ODcxNjMsImV4cCI6MTY2MzA2NzE2M30.Qk-uLwwQ6OmvbPdzxpmNtmdBjYYvovNzwGXCs7LjXFM';
+    String token = await GetStorage().read('token');
+        //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyZmU4NDQ2Mi00ZjA5LTQ5NGUtYjRkZC1jZWVkMjRmZTI0MTciLCJpYXQiOjE2NDU3ODcxNjMsImV4cCI6MTY2MzA2NzE2M30.Qk-uLwwQ6OmvbPdzxpmNtmdBjYYvovNzwGXCs7LjXFM';
 
     try {
       var response = await http.post(
@@ -125,8 +125,8 @@ class GitService {
 
   Future addCommentToGit(
       {required String gitId, required String commentText}) async {
-    String token = //await GetStorage().read('token');
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+    String token = await GetStorage().read('token');
+        //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
       var response = await http.post(
@@ -149,8 +149,8 @@ class GitService {
   }
 
   static Future updateGitData(Git git) async {
-    String token = //await GetStorage().read('token');
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZGI4OGM0Yy04ODYxLTRjMTgtOWI3MS04MjZjM2M0NGFlYzEiLCJpYXQiOjE2NDYxNTI2MDcsImV4cCI6MTY2MzQzMjYwN30.WUaeEN7SJeYNC-8pZ-Vh4FcLu5fRAKLAUjFS3JZUUqg';
+    String token =await GetStorage().read('token');
+         //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZGI4OGM0Yy04ODYxLTRjMTgtOWI3MS04MjZjM2M0NGFlYzEiLCJpYXQiOjE2NDYxNTI2MDcsImV4cCI6MTY2MzQzMjYwN30.WUaeEN7SJeYNC-8pZ-Vh4FcLu5fRAKLAUjFS3JZUUqg';
     try {
       var response = await http.put(
         Uri.parse('$baseUrl/git'),
@@ -220,8 +220,8 @@ class GitService {
   }
 
   Future deleteGit({required String gitId}) async {
-    String token = //await GetStorage().read('token');
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+    String token =await GetStorage().read('token');
+         //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
       var response = await http.delete(

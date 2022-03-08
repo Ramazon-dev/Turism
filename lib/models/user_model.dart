@@ -25,6 +25,7 @@ class UserModel {
     'fullname' : _fullName,
     'email' : _email,
     // 'password' : _password,
+    'id': _id,
     'phone' : _phone,
     'image' : _image,
   };
