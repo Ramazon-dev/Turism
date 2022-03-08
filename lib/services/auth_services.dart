@@ -59,6 +59,7 @@ class AuthServices {
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         var data = jsonDecode(await response.stream.bytesToString());
+        print(data);
         String token = data['data']['token'];
         UserModel user = UserModel.fromJson(data['data']['user']);
         await GetStorage().write('token', token);
@@ -72,5 +73,13 @@ class AuthServices {
       print("SERVICE AUTH SIGN_UP ERROR: $e");
     }
     return false;
+  }
+
+  static fetchUserData() async {
+    String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1';
+    String userId = GetStorage().read('user')['id'];
+    var headers = {'Content-Type': 'application/json'};
+    var request = await http.get(Uri.parse('$baseUrl/api/user/$userId'),
+        headers: headers);
   }
 }

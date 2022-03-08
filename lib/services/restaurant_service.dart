@@ -9,9 +9,9 @@ class RestaurantService {
 
   static Future createNewRestaurant(Restaurant restaurant) async {
     try {
-      String token = //await GetStorage().read('token');
+      String token = await GetStorage().read('token');
           //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZGI4OGM0Yy04ODYxLTRjMTgtOWI3MS04MjZjM2M0NGFlYzEiLCJpYXQiOjE2NDYxNTI2MDcsImV4cCI6MTY2MzQzMjYwN30.WUaeEN7SJeYNC-8pZ-Vh4FcLu5fRAKLAUjFS3JZUUqg';
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+        //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
       var headers = {'token': token};
       var request =
@@ -152,8 +152,8 @@ class RestaurantService {
 
   Future addRatingToRestaurant(
       {required String restaurantId, required int rate}) async {
-    String token = //await GetStorage().read('token');
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZGI4OGM0Yy04ODYxLTRjMTgtOWI3MS04MjZjM2M0NGFlYzEiLCJpYXQiOjE2NDYxNTI2MDcsImV4cCI6MTY2MzQzMjYwN30.WUaeEN7SJeYNC-8pZ-Vh4FcLu5fRAKLAUjFS3JZUUqg';
+    String token = await GetStorage().read('token');
+        //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZGI4OGM0Yy04ODYxLTRjMTgtOWI3MS04MjZjM2M0NGFlYzEiLCJpYXQiOjE2NDYxNTI2MDcsImV4cCI6MTY2MzQzMjYwN30.WUaeEN7SJeYNC-8pZ-Vh4FcLu5fRAKLAUjFS3JZUUqg';
 
     try {
       var response = await http.post(
@@ -177,8 +177,8 @@ class RestaurantService {
 
   Future addCommentToRestaurant(
       {required String restaurantId, required String commentText}) async {
-    String token = //await GetStorage().read('token');
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+    String token = await GetStorage().read('token');
+        //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
       var response = await http.post(
@@ -201,8 +201,8 @@ class RestaurantService {
   }
 
   Future updateRestaurantData(Restaurant restaurant) async {
-    String token = //await GetStorage().read('token');
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+    String token = await GetStorage().read('token');
+        //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
       var response = await http.put(
@@ -237,8 +237,8 @@ class RestaurantService {
   static Future updateHotelMedia(
       {required String hotelId, required List hotelMedia}) async {
     try {
-      String token = //await GetStorage().read('token');
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+      String token = await GetStorage().read('token');
+          //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
       var headers = {'token': token};
       var request =
@@ -275,10 +275,12 @@ class RestaurantService {
     }
   }
 
-  Future deleteRestaurant({required String restaurantId}) async {
-    String token = //await GetStorage().read('token');
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+  Future deleteRestaurant() async {
+    String token = await GetStorage().read('token');
+        //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
+      String restaurantId = GetStorage().read("myRestaurant")['id'].toString();
+      
     try {
       var response = await http.delete(
         Uri.parse("$baseUrl/restaurant/$restaurantId"),

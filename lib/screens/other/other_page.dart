@@ -70,8 +70,7 @@ class OtherPage extends StatelessWidget {
         TextButton(
           child: const Text('delete restaurant'),
           onPressed: () async {
-            await RestaurantService().deleteRestaurant(
-                restaurantId: "64ac9667-f69a-4f8c-b8dc-3ec425c3e093");
+            await RestaurantService().deleteRestaurant();
           },
         ),
         TextButton(

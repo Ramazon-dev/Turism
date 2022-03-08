@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
+
 import 'package:mobileapp/models/business_account_model.dart';
 import 'package:mobileapp/models/git_model.dart' as git;
 import 'package:mobileapp/services/business_account_service.dart';
 import 'package:mobileapp/widgets/tiles/business_hotel_tile.dart';
 import 'package:mobileapp/widgets/tiles/business_restaurant_tile.dart';
+
 
 class ProfileAuthPage extends StatefulWidget {
   const ProfileAuthPage({Key? key}) : super(key: key);
@@ -14,7 +16,7 @@ class ProfileAuthPage extends StatefulWidget {
   State<ProfileAuthPage> createState() => _ProfileAuthPageState();
 }
 
-// TODO Vaqtincha StatefulWidget'da qilindi. Cubitga ulash kerak.
+// TODO: Vaqtincha StatefulWidget'da qilindi. Cubitga ulash kerak.
 
 class _ProfileAuthPageState extends State<ProfileAuthPage> {
   bool _isShow = false;
