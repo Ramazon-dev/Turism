@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/data/city_list.dart';
 import 'package:mobileapp/services/git_service.dart';
 
 part 'git_state.dart';
@@ -17,7 +18,8 @@ class GitCubit extends Cubit<GitState> {
   final Set<String> _languages = {};
   String _image = '';
 
-  String _city = 'Tashkent';
+  String _city = CityList.cities[0].name;
+  String _chosenCity = CityList().getCity(CityList.cities[0].name);
 
   bool _hasEng = false;
   bool _hasUzb = false;
@@ -26,6 +28,7 @@ class GitCubit extends Cubit<GitState> {
 
   void onEngPressed(bool? value) {
     _hasEng = value!;
+
     emit(GitInitial());
   }
 
@@ -46,6 +49,7 @@ class GitCubit extends Cubit<GitState> {
 
   void cityChanged(dynamic value) {
     _city = value;
+    _chosenCity = CityList().getCity(_city);
     emit(GitInitial());
   }
 
@@ -92,7 +96,7 @@ class GitCubit extends Cubit<GitState> {
         }
       }
       Git git = Git(
-        city: _city.toLowerCase(),
+        city: _chosenCity.toLowerCase(),
         informEn: aboutEn,
         informUz: aboutUz,
         informRu: aboutRu,

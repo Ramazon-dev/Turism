@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/functions/text_form_field_validator.dart';
 import 'package:mobileapp/cubit/business/hotel_cubit/hotel_cubit.dart';
 
 // Methods
@@ -69,6 +68,7 @@ class InputHotelPage extends StatelessWidget {
               hint: LocaleKeys.inputYourNumber.tr(),
               validator: FormValidator.phone,
               maxLength: 9,
+              prefix: const PhonePrefix(),
             ),
             MySizedBox(height: 20.0),
 

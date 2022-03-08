@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/models/restaurant_model.dart';
+import 'package:mobileapp/services/business_account_service.dart';
 import 'package:mobileapp/services/git_service.dart';
 import 'package:mobileapp/services/restaurant_service.dart';
 
@@ -11,6 +12,7 @@ class OtherPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: _actionButton(),
       body: Center(
         child: _buildColumn(context),
       ),
@@ -150,4 +152,10 @@ class OtherPage extends StatelessWidget {
       ],
     );
   }
+
+  FloatingActionButton _actionButton() => FloatingActionButton(
+        onPressed: () async {
+          await BusinessAccountService().getServiceList();
+        },
+      );
 }

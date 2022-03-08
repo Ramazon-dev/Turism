@@ -52,7 +52,7 @@ class ResHotelDetailsPage extends StatelessWidget {
                             hotel.name,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
-                            style: TextWidget.medium(),
+                            style: AppTextStyle.medium(),
                           ),
                         ),
                         MySizedBox(height: 10.0),
@@ -90,7 +90,7 @@ class ResHotelDetailsPage extends StatelessWidget {
                         ),
                         Text(
                           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at ",
-                          style: TextWidget.regular(),
+                          style: AppTextStyle.regular(),
                         ),
                         const ContactWidget(),
                       ],

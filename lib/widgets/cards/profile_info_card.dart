@@ -19,16 +19,15 @@ class ProfileInfoCard extends StatelessWidget {
           padding: EdgeInsets.only(top: 23.h),
           child: Column(
             children: [
-              ProfileCircleAvatar(imageUrl: user.image ?? 'default').onClick(() {
-                // TODO o'chirib tashlash kerak
-                print(GetStorage().read('token'));
-              }),
+              ProfileCircleAvatar(imageUrl: user.image ?? 'default'),
               MySizedBox(height: 15.0),
-              Text(user.name, style: TextWidget.medium(size: 18.0)),
+              Text(user.name, style: AppTextStyle.medium(size: 18.0)),
               MySizedBox(height: 9.0),
               Text(
-                user.email,
-                style: TextWidget.medium(color: AppColors.grey),
+                user.email.toString(),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: AppTextStyle.medium(color: AppColors.grey),
               ),
               MySizedBox(height: 15.0),
               BlueButton(onPressed: _onPressed, label: LocaleKeys.edit.tr()),

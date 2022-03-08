@@ -5,14 +5,14 @@ class AuthTextWidget extends StatelessWidget {
   late String text;
   AuthTextWidget({
     Key? key,
-    this.text = 'Войдите в свой аккаунт',
+    this.text = LocaleKeys.sign_in_to_your_account,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Text(
-      text,
+      text.tr(),
       style: TextStyle(
         color: AppColors.primary,
         fontSize: getHeight(40),

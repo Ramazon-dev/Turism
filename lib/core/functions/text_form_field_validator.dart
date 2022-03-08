@@ -33,8 +33,8 @@ class FormValidator {
   static String? multiLine(value) {
     if (value.isEmpty) {
       return "Please, Fill the field";
-    } else if (value.length < 80) {
-      return "Minimum 80 characters";
+    } else if (value.length < 20) {
+      return "Minimum 20 characters";
     }
   }
 
@@ -53,8 +53,8 @@ class FormValidator {
   }
 
   static const String _emailPattern =
-      r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$";
+      r"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$";
 
   static const String _passwordPattern =
-      r"/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9][a-zA-Z0-9!@#$%^&*.,]{7,17}$/";
+      r"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9][a-zA-Z0-9!@#$%^&*.,]{7,17}$";
 }

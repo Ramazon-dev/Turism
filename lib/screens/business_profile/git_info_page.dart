@@ -3,7 +3,9 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/business/git_cubit/git_cubit.dart';
 
 class GitInfoPage extends StatelessWidget {
-  const GitInfoPage({Key? key}) : super(key: key);
+  GitInfoPage({Key? key}) : super(key: key);
+
+  final Map<String, dynamic> _data = GetStorage().read('user');
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,8 @@ class GitInfoPage extends StatelessWidget {
 
   // Build Scaffold
   Scaffold _buildScaffold(GitCubit cubit) {
-  return Scaffold(
+    UserModel user = UserModel.fromJson(_data);
+    return Scaffold(
       appBar: SimpleAppBar(title: LocaleKeys.git.tr()),
       body: SingleChildScrollView(
         child: Padding(
@@ -29,15 +32,14 @@ class GitInfoPage extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  // Profile Circle Avatar
                   ProfileCircleAvatar(imageUrl: 'default'),
                   MySizedBox(width: 26.0),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Bahromjon',
-                        style: TextWidget.medium(size: 20.0),
+                        user.name,
+                        style: AppTextStyle.medium(size: 20.0),
                       ),
                       MySizedBox(height: 10.0),
                       BlueButton(onPressed: () {}, label: LocaleKeys.edit.tr()),
@@ -69,6 +71,9 @@ class GitInfoPage extends StatelessWidget {
               controller: cubit.phoneController,
               inputType: TextInputType.phone,
               hint: LocaleKeys.inputYourNumber.tr(),
+              validator: FormValidator.phone,
+              maxLength: 9,
+              prefix: const PhonePrefix(),
             ),
             MySizedBox(height: 20.0),
             DropDownWidget(onChanged: cubit.cityChanged, value: cubit.city),
@@ -77,6 +82,7 @@ class GitInfoPage extends StatelessWidget {
               inputType: TextInputType.number,
               controller: cubit.priceController,
               hint: LocaleKeys.enterPrice.tr(),
+              validator: FormValidator.isNotEmpty,
             ),
             MySizedBox(height: 20.0),
             TextFormFieldWidget(
@@ -85,6 +91,7 @@ class GitInfoPage extends StatelessWidget {
               action: TextInputAction.newline,
               capitalization: TextCapitalization.sentences,
               inputType: TextInputType.multiline,
+              validator: FormValidator.multiLine,
               lines: 5,
             ),
             MySizedBox(height: 20.0),
@@ -94,6 +101,7 @@ class GitInfoPage extends StatelessWidget {
               hint: 'Personal information',
               action: TextInputAction.newline,
               inputType: TextInputType.multiline,
+              validator: FormValidator.multiLine,
               lines: 5,
             ),
             MySizedBox(height: 20.0),
@@ -102,6 +110,7 @@ class GitInfoPage extends StatelessWidget {
               inputType: TextInputType.multiline,
               capitalization: TextCapitalization.sentences,
               action: TextInputAction.newline,
+              validator: FormValidator.multiLine,
               hint: 'Shaxsiy ma\'lumot',
               lines: 5,
             ),

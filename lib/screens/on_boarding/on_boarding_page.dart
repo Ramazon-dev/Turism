@@ -52,9 +52,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                   bottom: getHeight(18.0),
                   child: Column(
                     children: [
-                      TextWidget(
+                      Text(
                         _onBoardingInfo[_index]['city'],
-                        style: TextWidget.semiBold(
+                        style: AppTextStyle.semiBold(
                           color: AppColors.primary,
                           size: 16.0,
                         ),

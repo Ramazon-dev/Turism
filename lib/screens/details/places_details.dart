@@ -43,7 +43,7 @@ class PlacesDetailsPage extends StatelessWidget {
                     place.name,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
-                    style: TextWidget.medium(size: 18.0),
+                    style: AppTextStyle.medium(size: 18.0),
                   ),
                   MySizedBox(height: 17.0),
                   _buildLink(AppIcons.call, place.phone,
@@ -66,7 +66,7 @@ class PlacesDetailsPage extends StatelessWidget {
                   ),
                   Text(
                     place.description,
-                    style: TextWidget.regular(height: 2.1),
+                    style: AppTextStyle.regular(height: 2.1),
                   ),
                 ],
               ),

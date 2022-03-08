@@ -33,9 +33,9 @@ class PlaceInfoCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(place.phone, style: TextWidget.medium(size: 10.0)),
+                  Text(place.phone, style: AppTextStyle.medium(size: 10.0)),
                   MySizedBox(height: 5.0),
-                  Text(place.name, style: TextWidget.medium(size: 12.0)),
+                  Text(place.name, style: AppTextStyle.medium(size: 12.0)),
                   MySizedBox(height: 19.0),
                 ],
               ),

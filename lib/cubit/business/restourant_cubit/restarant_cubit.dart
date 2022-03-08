@@ -1,15 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
+import 'package:mobileapp/core/data/city_list.dart';
 
 part 'restaurant_state.dart';
 
 class RestaurantCubit extends Cubit<RestorantState> {
   RestaurantCubit() : super(RestorantInitial());
 
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _websiteController = TextEditingController();
   final TextEditingController _mapLinkController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
@@ -17,27 +17,23 @@ class RestaurantCubit extends Cubit<RestorantState> {
   final TextEditingController _aboutEnController = TextEditingController();
   final TextEditingController _aboutRuController = TextEditingController();
 
-  String _city = 'Tashkent';
-
+  String _city = CityList.cities[0].name;
+  String _chosenCity = CityList().getCity(CityList.cities[0].name);
 
   void cityChanged(dynamic value) {
     _city = value;
+    _chosenCity = CityList().getCity(_city);
     emit(RestorantInitial());
   }
 
-  void onDropdownMenuItemPressed() {
-
-  }
+  void onDropdownMenuItemPressed() {}
 
   void onSavePressed() {
     // Agar validate bo'lgan bo'lsa
-    if(_formKey.currentState!.validate()) {
-
-    }
+    if (_formKey.currentState!.validate()) {}
   }
 
   TextEditingController get phoneController => _phoneController;
-
 
   TextEditingController get websiteController => _websiteController;
 
@@ -51,8 +47,9 @@ class RestaurantCubit extends Cubit<RestorantState> {
 
   GlobalKey<FormState> get formKey => _formKey;
 
+  TextEditingController get nameController => _nameController;
+
   String get city => _city;
 
   TextEditingController get mapLinkController => _mapLinkController;
-
 }

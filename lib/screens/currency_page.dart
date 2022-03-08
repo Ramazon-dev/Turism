@@ -20,7 +20,7 @@ class CurrencyPage extends StatelessWidget {
                 children: [
                   Text(
                     'Здесь вы можете определить сумму денег, которая вас устраивает.',
-                    style: TextWidget.medium(size: 18.h),
+                    style: AppTextStyle.medium(size: 18.h),
                   ),
                   SizedBox(height: 30.h),
                   Row(
@@ -78,8 +78,8 @@ class CurrencyPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(summa, style: TextWidget.medium()),
-          Text(text, style: TextWidget.regular()),
+          Text(summa, style: AppTextStyle.medium()),
+          Text(text, style: AppTextStyle.regular()),
         ],
       ),
       height: 51.h,
@@ -99,8 +99,8 @@ class CurrencyPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(dollar, style: TextWidget.medium()),
-          Text(text, style: TextWidget.regular()),
+          Text(dollar, style: AppTextStyle.medium()),
+          Text(text, style: AppTextStyle.regular()),
         ],
       ),
       height: 51.h,
