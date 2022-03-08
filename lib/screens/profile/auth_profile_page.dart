@@ -4,7 +4,8 @@ import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/models/business_account_model.dart';
 import 'package:mobileapp/models/git_model.dart' as git;
 import 'package:mobileapp/services/business_account_service.dart';
-import 'package:mobileapp/widgets/tiles/hotel_and_res_tile.dart';
+import 'package:mobileapp/widgets/tiles/business_hotel_tile.dart';
+import 'package:mobileapp/widgets/tiles/business_restaurant_tile.dart';
 
 class ProfileAuthPage extends StatefulWidget {
   const ProfileAuthPage({Key? key}) : super(key: key);
@@ -70,7 +71,7 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
         itemCount: model.restaurants!.length,
         itemBuilder: (ctx, index) {
           Restaurants restaurants = model.restaurants![index];
-          return BusinessHotelResTile(data: restaurants);
+          return BusinessRestaurantTile(restaurant: restaurants);
         });
   }
 
@@ -82,7 +83,7 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
         itemCount: model.hotels!.length,
         itemBuilder: (ctx, i) {
           Hotels hotel = model.hotels![i];
-          return BusinessHotelResTile(data: hotel);
+          return BusinessHotelResTile(hotels: hotel);
         });
   }
 
