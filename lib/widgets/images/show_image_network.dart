@@ -15,15 +15,17 @@ class ShowImageNetwork extends StatelessWidget {
     return Container(
       width: 315.w,
       height: 288.h,
-      decoration: MyDecoration.circular(border: Border.all()),
+      decoration: MyDecoration.circular(border: Border.all(), color: Colors.transparent),
       padding: MyEdgeInsets.symmetric(h: 12.0, v: 9.0),
+      margin: MyEdgeInsets.only(bottom: 20.0),
       child: Column(
         children: [
           Container(
+            alignment: Alignment.bottomRight,
             decoration:
                 MyDecoration.netImage(netImage: CityList.cities[0].imgUrl),
             height: 216.h,
-            width: 191.w,
+            width: 291.w,
             child: FloatingActionButton(
               mini: true,
               elevation: 0.0,
@@ -32,6 +34,7 @@ class ShowImageNetwork extends StatelessWidget {
               child: SvgPicture.asset(AppIcons.image),
             ),
           ),
+          SizedBox(height: 12.h),
           Row(
             children: [
               _showImage(CityList.cities[1].imgUrl),
@@ -49,6 +52,14 @@ class ShowImageNetwork extends StatelessWidget {
   }
 
   Expanded _showImage(String image) => Expanded(
-        child: CachedNetworkImage(imageUrl: image),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(4.w),
+          child: CachedNetworkImage(
+            imageUrl: image,
+            height: 40.h,
+            width: 65.w,
+            fit: BoxFit.cover,
+          ),
+        ),
       );
 }

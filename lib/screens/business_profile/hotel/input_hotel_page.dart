@@ -83,7 +83,7 @@ class InputHotelPage extends StatelessWidget {
             // Link of geo Location
             TextFormFieldWidget(
               inputType: TextInputType.url,
-              controller: cubit.linkController,
+              controller: cubit.websiteController,
               hint: LocaleKeys.mapLink.tr(),
               validator: FormValidator.general,
             ),
