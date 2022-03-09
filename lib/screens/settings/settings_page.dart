@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/translations/locale_keys.g.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -13,7 +12,6 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     Locale currentLocale = context.locale;
-    print(currentLocale);
     return Scaffold(
       appBar: SimpleAppBar(title: LocaleKeys.settings.tr()),
       body: Padding(
@@ -45,7 +43,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           child: Center(
                             child: Text(
                               locale['title'],
-                              style: TextWidget.medium(
+                              style: AppTextStyle.medium(
                                 size: 20.0,
                                 color: locale['locale'] == currentLocale
                                     ? AppColors.white
@@ -76,7 +74,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       child: Text(
         locale['title'],
-        style: TextWidget.medium(
+        style: AppTextStyle.medium(
           size: 20.0,
           color: locale['locale'] == currentLocale
               ? AppColors.white

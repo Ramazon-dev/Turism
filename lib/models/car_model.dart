@@ -1,3 +1,4 @@
+
 class CarModel {
   String? _model;
   int? _price;

@@ -18,17 +18,17 @@ class UserModel {
     _fullName = json['fullname'];
     _email = json['email'];
     _image = json['image'];
-    // _email = json['phone'];
   }
 
   Map<String, dynamic> toMap() => {
-    'fullname' : _fullName,
-    'email' : _email,
-    // 'password' : _password,
-    'id': _id,
-    'phone' : _phone,
-    'image' : _image,
-  };
+
+        'fullname': _fullName,
+        'email': _email,
+        // 'phone': _phone,
+        // 'image': _image,
+        'id': _id,
+      };
+
 
   String get id => _id!;
 

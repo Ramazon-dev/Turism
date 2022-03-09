@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 
-class  ProfileCircleAvatar extends StatelessWidget {
+class ProfileCircleAvatar extends StatelessWidget {
   final String imageUrl;
   double height;
 
@@ -25,8 +25,9 @@ class  ProfileCircleAvatar extends StatelessWidget {
             radius: 100.0,
           ),
           child: ClipRRect(
-            borderRadius: MyBorderRadius.circular(radius: _isDefault() ? 0.0 : 100.0),
-            child:_isDefault()
+            borderRadius:
+                MyBorderRadius.circular(radius: _isDefault() ? 0.0 : 100.0),
+            child: _isDefault()
                 ? SvgPicture.asset(AppIcons.personal)
                 : CachedNetworkImage(imageUrl: imageUrl),
           ),
@@ -45,5 +46,6 @@ class  ProfileCircleAvatar extends StatelessWidget {
       ],
     );
   }
-  bool _isDefault() => imageUrl=='default';
+
+  bool _isDefault() => imageUrl == 'default';
 }

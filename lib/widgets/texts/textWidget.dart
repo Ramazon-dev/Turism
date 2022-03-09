@@ -1,20 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 
-class TextWidget extends StatelessWidget {
-  final String text;
-  TextStyle? style;
-
-  TextWidget(this.text, {Key? key, this.style}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: style,
-    );
-  }
-
+class AppTextStyle {
   static TextStyle regular({
     double size = 14.0,
     Color color = AppColors.black,

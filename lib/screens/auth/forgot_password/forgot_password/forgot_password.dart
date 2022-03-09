@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/functions/text_form_field_validator.dart';
 import 'package:mobileapp/cubit/auth/sign_up_cubit/sign_up_cubit.dart';
 import 'package:mobileapp/screens/auth/forgot_password/password_sms/password_sms.dart';
 import 'package:mobileapp/screens/auth/forgot_password/widgets/circular_icon.dart';
 import 'package:mobileapp/screens/auth/forgot_password/widgets/text_widget.dart';
-import 'package:mobileapp/widgets/elevated_button_widget.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 
 class ForgotPassword extends StatelessWidget {

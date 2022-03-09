@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/functions/text_form_field_validator.dart';
 import 'package:mobileapp/cubit/auth/sign_up_cubit/sign_up_cubit.dart';
-import 'package:mobileapp/screens/auth/sign_in/sign_in_page.dart';
 import 'package:mobileapp/screens/auth/widgets/text_widget.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -39,9 +37,7 @@ class SignUpPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      AuthTextWidget(
-                        text: 'Регистрация',
-                      ),
+                      AuthTextWidget(text: LocaleKeys.signUp.tr()),
                       MySizedBox(height: 41.0),
                       TextFormFieldWidget(
                         controller: cubit.nameController,
@@ -60,9 +56,9 @@ class SignUpPage extends StatelessWidget {
                       MySizedBox(height: 25.0),
                       TextFormFieldWidget(
                         controller: cubit.passwordController,
-                        hint: 'Password',
+                        hint: LocaleKeys.password.tr(),
                         obscureText: true,
-                        validator: FormValidator.general,
+                        validator: FormValidator.password,
                         action: TextInputAction.done,
                       ),
                       MySizedBox(height: 10.0),
@@ -70,9 +66,7 @@ class SignUpPage extends StatelessWidget {
                         contentPadding: EdgeInsets.zero,
                         value: cubit.isAgree,
                         onChanged: cubit.onCheckBoxPressed,
-                        title: const Text(
-                          "Я согласен с политикой конфиденциальности",
-                        ),
+                        title: Text(LocaleKeys.i_agree_pivacy.tr()),
                         controlAffinity: ListTileControlAffinity.leading,
                         // value: cubit.isTrue,
                         // onChanged: cubit.onChanged,
@@ -80,7 +74,7 @@ class SignUpPage extends StatelessWidget {
                       SizedBox(height: getHeight(60)),
                       ElevatedButtonWidget(
                         onPressed: cubit.onPressed,
-                        label: 'Регистрация',
+                        label: LocaleKeys.signUp.tr(),
                       ),
                       Container(
                         margin: EdgeInsets.only(top: getHeight(30)),
@@ -100,9 +94,9 @@ class SignUpPage extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(30),
                               ),
                               child: TextButton(
-                                child: const Text(
-                                  "Войти",
-                                  style: TextStyle(color: AppColors.blue),
+                                child: Text(
+                                  LocaleKeys.signIn.tr(),
+                                  style: const TextStyle(color: AppColors.blue),
                                 ),
                                 onPressed: () {
                                   CustomNavigator.push(const SignInPage());

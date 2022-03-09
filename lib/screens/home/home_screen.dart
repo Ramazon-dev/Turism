@@ -3,7 +3,7 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/screens/profile/auth_profile_page.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
-import 'package:mobileapp/widgets/drawer_widget.dart';
+import 'package:mobileapp/widgets/navigators/drawer_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

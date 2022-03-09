@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/services/git_service.dart';
 
 part 'git_state.dart';
 
 class GitCubit extends Cubit<GitState> {
   GitCubit() : super(GitInitial());
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
@@ -17,15 +16,47 @@ class GitCubit extends Cubit<GitState> {
   final Set<String> _languages = {};
   String _image = '';
 
-  String _city = 'Tashkent';
+  String _city = CityList.cities[0].name;
+  String _chosenCity = CityList().getCity(CityList.cities[0].name);
 
   bool _hasEng = false;
   bool _hasUzb = false;
   bool _hasRus = false;
   bool _hasKaz = false;
 
+  bool _isEditing = false;
+  String _gitId = '';
+
+  GitCubit.editing(Git git) : super(GitInitial()) {
+    _isEditing = true;
+    _gitId = git.id!;
+    _phoneController.text = git.tell[0];
+    _priceController.text = git.price!;
+    _aboutUzController.text = git.informUz!;
+    _aboutEnController.text = git.informEn!;
+    _aboutRuController.text = git.informRu!;
+    git.languages.map((e) => _languages.add(e));
+    _image = git.image;
+    _city = CityList().getCityName(git.city!);
+    for (var lang in git.languages) {
+      if (lang == 'uz') {
+        _hasUzb = true;
+      }
+      if (lang == 'en') {
+        _hasEng = true;
+      }
+      if (lang == 'kz') {
+        _hasKaz = true;
+      }
+      if (lang == 'ru') {
+        _hasRus = true;
+      }
+    }
+  }
+
   void onEngPressed(bool? value) {
     _hasEng = value!;
+
     emit(GitInitial());
   }
 
@@ -46,6 +77,7 @@ class GitCubit extends Cubit<GitState> {
 
   void cityChanged(dynamic value) {
     _city = value;
+    _chosenCity = CityList().getCity(_city);
     emit(GitInitial());
   }
 
@@ -92,7 +124,8 @@ class GitCubit extends Cubit<GitState> {
         }
       }
       Git git = Git(
-        city: _city.toLowerCase(),
+        id: _gitId.isNotEmpty ? _gitId : null,
+        city: _chosenCity.toLowerCase(),
         informEn: aboutEn,
         informUz: aboutUz,
         informRu: aboutRu,
@@ -101,10 +134,19 @@ class GitCubit extends Cubit<GitState> {
         languages: _languages.toList(),
         image: _image,
       );
-      GitService.createNewGit(git).then((value) {
-        ImageChooser.clearImageList();
-        CustomNavigator().pushAndRemoveUntil(const HomeScreen());
-      });
+
+      if (_isEditing) {
+        // If git is updating
+        GitService.updateGitData(git).then((value) {
+          Fluttertoast.showToast(msg: 'Updated');
+          CustomNavigator().pushAndRemoveUntil(const HomeScreen());
+        });
+      } else {
+        GitService.createNewGit(git).then((value) {
+          ImageChooser.clearImageList();
+          CustomNavigator().pushAndRemoveUntil(const HomeScreen());
+        });
+      }
     }
   }
 

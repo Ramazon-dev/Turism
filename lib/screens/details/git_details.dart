@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
-import 'package:mobileapp/widgets/language_button.dart';
+import 'package:mobileapp/widgets/buttons/language_button.dart';
 
 class GitDetailsPage extends StatelessWidget {
   final Git git;
@@ -11,9 +11,9 @@ class GitDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/';
     String randImg = 'https://source.unsplash.com/random/4';
+
     return Scaffold(
       appBar: AppBarOrigin(
         actions: SvgPicture.asset(AppIcons.language),
@@ -59,13 +59,9 @@ class GitDetailsPage extends StatelessWidget {
                         ),
                         LanguageWidget(language: git.languages),
                         SizedBox(height: getHeight(28)),
-                        const Text(
-                          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at ",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'Roboto',
-                          ),
+                        Text(
+                          "${git.informEn}",
+                          style: AppTextStyle.regular(),
                         ),
                         const ContactWidget(),
                       ],

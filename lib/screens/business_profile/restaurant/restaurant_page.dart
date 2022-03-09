@@ -1,43 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/functions/text_form_field_validator.dart';
-import 'package:mobileapp/cubit/business/hotel_cubit/hotel_cubit.dart';
+import 'package:mobileapp/cubit/business/restourant_cubit/restarant_cubit.dart';
+import 'package:mobileapp/models/restaurant_model.dart';
+import 'package:mobileapp/widgets/images/show_image_network.dart';
 
-// Methods
-// build => Describes the part of the user interface represented by this widget.
-// _buildScaffold => to show UI
-// _showForms => For form fields
+class RestaurantPage extends StatelessWidget {
+  bool isEditing;
+  Restaurant? restaurant;
 
-class InputHotelPage extends StatelessWidget {
-  const InputHotelPage({Key? key}) : super(key: key);
+  RestaurantPage({Key? key, this.isEditing = false, this.restaurant})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => HotelCubit(),
-      child: BlocBuilder<HotelCubit, HotelState>(
+      create: (_) =>
+          isEditing ? RestaurantCubit.editing(restaurant!) : RestaurantCubit(),
+      child: BlocBuilder<RestaurantCubit, RestorantState>(
         builder: (ctx, state) {
-          HotelCubit cubit = ctx.watch();
+          RestaurantCubit cubit = ctx.watch();
           return _buildScaffold(cubit);
         },
       ),
     );
   }
 
-  Scaffold _buildScaffold(HotelCubit cubit) {
+  Scaffold _buildScaffold(RestaurantCubit cubit) {
     return Scaffold(
-      appBar: SimpleAppBar(title: LocaleKeys.hotel.tr()),
+      appBar: SimpleAppBar(title: LocaleKeys.restaurant.tr()),
       body: SingleChildScrollView(
         child: Padding(
           padding: MyEdgeInsets.symmetric(h: 30.0, v: 25.0),
           child: Column(
             children: [
+              Visibility(
+                visible: isEditing,
+                child: ShowImageNetwork(images: restaurant!.media),
+              ),
               _showForms(cubit),
               MySizedBox(height: 20.0),
-              const ImageSetter(),
+              Visibility(visible: !isEditing, child: const ImageSetter()),
               MySizedBox(height: 20.0),
               ElevatedButtonWidget(
-                onPressed: cubit.onSavePressed,
+                onPressed: () {},
                 label: LocaleKeys.save.tr(),
               ),
             ],
@@ -47,66 +52,64 @@ class InputHotelPage extends StatelessWidget {
     );
   }
 
-  // Form Fields
-  Form _showForms(HotelCubit cubit) => Form(
+  // Form fields
+  Form _showForms(RestaurantCubit cubit) => Form(
         key: cubit.formKey,
         child: Column(
           children: [
-            // Hotel name
+
+            // Name of restaurant
             TextFormFieldWidget(
               controller: cubit.nameController,
               inputType: TextInputType.text,
-              hint: LocaleKeys.hotel.tr(),
-              capitalization: TextCapitalization.sentences,
+              hint: 'Название ресторан',
               validator: FormValidator.isNotEmpty,
+              capitalization: TextCapitalization.sentences,
             ),
             MySizedBox(height: 20.0),
 
-            // Phone number
+            // Phone number of restaurant
             TextFormFieldWidget(
               controller: cubit.phoneController,
               inputType: TextInputType.phone,
               hint: LocaleKeys.inputYourNumber.tr(),
               validator: FormValidator.phone,
               maxLength: 9,
+              prefix: const PhonePrefix(),
             ),
             MySizedBox(height: 20.0),
-
-            // City drop down button
+            TextFormFieldWidget(
+              inputType: TextInputType.text,
+              controller: cubit.typeController,
+              validator: FormValidator.isNotEmpty,
+              hint: 'Тип ресторана',
+            ),
+            MySizedBox(height: 20.0),
             DropDownWidget(onChanged: cubit.cityChanged, value: cubit.city),
             MySizedBox(height: 20.0),
-
-            // Link of geo Location
-            TextFormFieldWidget(
-              inputType: TextInputType.url,
-              controller: cubit.linkController,
-              hint: LocaleKeys.mapLink.tr(),
-              validator: FormValidator.general,
-            ),
-            MySizedBox(height: 20.0),
-
-            // link of site
             TextFormFieldWidget(
               inputType: TextInputType.url,
               controller: cubit.mapLinkController,
-              hint: LocaleKeys.linkOfSite.tr(),
               validator: FormValidator.isNotEmpty,
+              hint: LocaleKeys.mapLink.tr(),
             ),
             MySizedBox(height: 20.0),
-
-            // Shaxsiy ma'lumot
+            TextFormFieldWidget(
+              inputType: TextInputType.url,
+              controller: cubit.websiteController,
+              hint: LocaleKeys.linkOfSite.tr(),
+            ),
+            MySizedBox(height: 20.0),
             TextFormFieldWidget(
               controller: cubit.aboutUzController,
               hint: 'Shaxsiy ma\'lumot',
+              validator: FormValidator.multiLine,
               action: TextInputAction.newline,
               capitalization: TextCapitalization.sentences,
               inputType: TextInputType.multiline,
-              validator: FormValidator.multiLine,
               lines: 5,
             ),
             MySizedBox(height: 20.0),
-
-            // Personal information'
             TextFormFieldWidget(
               controller: cubit.aboutEnController,
               capitalization: TextCapitalization.sentences,
@@ -117,15 +120,13 @@ class InputHotelPage extends StatelessWidget {
               lines: 5,
             ),
             MySizedBox(height: 20.0),
-
-            // Информация о себе
             TextFormFieldWidget(
               controller: cubit.aboutRuController,
               inputType: TextInputType.multiline,
               capitalization: TextCapitalization.sentences,
               action: TextInputAction.newline,
               validator: FormValidator.multiLine,
-              hint: 'Информация о себе',
+              hint: 'Shaxsiy ma\'lumot',
               lines: 5,
             ),
           ],

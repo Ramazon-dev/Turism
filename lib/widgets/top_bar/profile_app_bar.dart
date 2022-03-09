@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
-import 'package:mobileapp/screens/business_profile/input_hotel_page.dart';
-import 'package:mobileapp/screens/business_profile/restaurant_page.dart';
+import 'package:mobileapp/screens/business_profile/hotel/input_hotel_page.dart';
+import 'package:mobileapp/screens/business_profile/restaurant/restaurant_page.dart';
 import 'package:mobileapp/widgets/cards/profile_info_card.dart';
 
 class ProfileAppBar extends StatelessWidget with PreferredSizeWidget {
   HomeCubit? cubit;
 
-  ProfileAppBar({Key? key, this.cubit})
-      : super(key: key);
+  ProfileAppBar({Key? key, this.cubit}) : super(key: key);
 
   final UserModel _user = UserModel.fromJson(GetStorage().read('user'));
-
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +22,8 @@ class ProfileAppBar extends StatelessWidget with PreferredSizeWidget {
           height: 274.h,
           decoration: BoxDecoration(
             gradient: AppColors.linearGradient,
-            borderRadius: MyBorderRadius.only(bottomLeft: 32.0, bottomRight: 32.0),
+            borderRadius:
+                MyBorderRadius.only(bottomLeft: 32.0, bottomRight: 32.0),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -44,14 +43,13 @@ class ProfileAppBar extends StatelessWidget with PreferredSizeWidget {
               MySizedBox(width: 110.0),
               Text(
                 LocaleKeys.profile.tr(),
-                style: TextWidget.medium(color: AppColors.white, size: 18.0),
+                style: AppTextStyle.medium(color: AppColors.white, size: 18.0),
               ),
               const Spacer(),
               _popUpButton(),
             ],
           ),
         ),
-
         Positioned(
             bottom: -120.h,
             right: 72.w,
@@ -75,14 +73,13 @@ class ProfileAppBar extends StatelessWidget with PreferredSizeWidget {
         onSelected: (v) {
           switch (v) {
             case 'git':
-              CustomNavigator.push(const GitInfoPage());
+              CustomNavigator.push(GitInfoPage());
               break;
-
             case 'hotel':
-              CustomNavigator.push(const InputHotelPage());
+              CustomNavigator.push(InputHotelPage(isEditing: false));
               break;
             case 'restaurant':
-              CustomNavigator.push(const RestaurantPage());
+              CustomNavigator.push(RestaurantPage());
               break;
           }
         },
@@ -94,9 +91,9 @@ class ProfileAppBar extends StatelessWidget with PreferredSizeWidget {
   }
 
   final List<PopupMenuItem> _list = [
-     PopupMenuItem(value: 'git', child: Text(LocaleKeys.git.tr())),
-     PopupMenuItem(value: 'hotel', child: Text(LocaleKeys.hotel.tr())),
-     PopupMenuItem(value: 'restaurant', child: Text(LocaleKeys.restaurant.tr())),
+    PopupMenuItem(value: 'git', child: Text(LocaleKeys.git.tr())),
+    PopupMenuItem(value: 'hotel', child: Text(LocaleKeys.hotel.tr())),
+    PopupMenuItem(value: 'restaurant', child: Text(LocaleKeys.restaurant.tr())),
   ];
 
   @override

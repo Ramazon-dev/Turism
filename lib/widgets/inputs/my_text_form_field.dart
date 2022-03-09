@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 
 class TextFormFieldWidget extends StatelessWidget {
@@ -13,6 +12,7 @@ class TextFormFieldWidget extends StatelessWidget {
   TextCapitalization capitalization;
   int lines;
   int? maxLength;
+  Widget? prefix;
 
   TextFormFieldWidget({
     Key? key,
@@ -26,6 +26,7 @@ class TextFormFieldWidget extends StatelessWidget {
     this.maxLength,
     this.capitalization = TextCapitalization.none,
     this.lines = 1,
+    this.prefix,
   }) : super(key: key);
 
   @override
@@ -52,6 +53,7 @@ class TextFormFieldWidget extends StatelessWidget {
         counterStyle:const TextStyle(height: double.minPositive),
         counterText: '',
         hintStyle: _textStyle(AppColors.grey),
+        prefixIcon: prefix,
         border: _outlineInputBorder(),
         enabledBorder: _outlineInputBorder(),
         focusedBorder: _outlineInputBorder(),

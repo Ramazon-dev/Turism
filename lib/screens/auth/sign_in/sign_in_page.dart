@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/functions/text_form_field_validator.dart';
 import 'package:mobileapp/cubit/auth/sign_in_cubit/sign_in_cubit.dart';
 import 'package:mobileapp/screens/auth/forgot_password/forgot_password/forgot_password.dart';
 import 'package:mobileapp/screens/auth/sing_up/sign_up_page.dart';
@@ -17,7 +16,7 @@ class SignInPage extends StatelessWidget {
       child: BlocBuilder<SignInCubit, SignInState>(builder: (ctx, state) {
         SignInCubit cubit = ctx.watch();
         return SingleChildScrollView(
-          physics: const NeverScrollableScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           padding: MyEdgeInsets.symmetric(h: 30.0, v: 20.0),
           child: Form(
             key: cubit.formKey,
@@ -35,8 +34,7 @@ class SignInPage extends StatelessWidget {
                 MySizedBox(height: 25.0),
                 TextFormFieldWidget(
                   controller: cubit.passwordController,
-                  hint: 'Password',
-                  validator: FormValidator.general,
+                  hint: LocaleKeys.password.tr(),
                   action: TextInputAction.done,
                 ),
                 CheckboxListTile(
@@ -55,9 +53,9 @@ class SignInPage extends StatelessWidget {
                         left: getWidth(20),
                       ),
                       child: TextButton(
-                        child: const Text(
-                          "Забыл пароль? ",
-                          style: TextStyle(color: AppColors.blue),
+                        child: Text(
+                          LocaleKeys.forgotPassword.tr(),
+                          style: const TextStyle(color: AppColors.blue),
                         ),
                         onPressed: () {
                           Navigator.push(
@@ -82,13 +80,13 @@ class SignInPage extends StatelessWidget {
                       child: TextButton(
                         child: Text(
                           LocaleKeys.signUp.tr(),
-                          style:const TextStyle(color: AppColors.blue),
+                          style: const TextStyle(color: AppColors.blue),
                         ),
                         onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>const SignUpPage(),
+                              builder: (context) => const SignUpPage(),
                             ),
                           );
                         },

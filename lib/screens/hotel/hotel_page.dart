@@ -54,12 +54,12 @@ class HotelListPage extends StatelessWidget {
               children: [
                 Text(
                   hotel.name,
-                  style: TextWidget.medium(color: AppColors.white),
+                  style: AppTextStyle.medium(color: AppColors.white),
                 ),
                 Text(
                   hotel.site.toString(),
                   maxLines: 1,
-                  style: TextWidget.medium(color: AppColors.grey),
+                  style: AppTextStyle.medium(color: AppColors.grey),
                 ),
               ],
             ),

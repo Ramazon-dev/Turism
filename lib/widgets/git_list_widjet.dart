@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
-import 'package:mobileapp/widgets/language_button.dart';
+import 'package:mobileapp/widgets/buttons/language_button.dart';
 
 class MyGitListWidjet extends StatelessWidget {
   final Git git;
@@ -49,7 +49,7 @@ class MyGitListWidjet extends StatelessWidget {
               DescriptionWidget(
                 name: git.informEn.toString(),
                 price: int.parse(git.price.toString()),
-                rating: 4.6,
+                rating: git.reyting!.toDouble(),
                 users: 8,
               ),
               LanguageWidget(language: git.languages)
