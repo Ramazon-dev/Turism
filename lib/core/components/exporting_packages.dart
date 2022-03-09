@@ -7,7 +7,6 @@ export 'package:mobileapp/screens/profile/profile_page.dart';
 export 'package:mobileapp/screens/search/search_page.dart';
 export 'package:mobileapp/screens/auth/sign_in/sign_in_page.dart';
 
-
 export 'package:mobileapp/screens/business_profile/git/git_info_page.dart';
 export 'package:mobileapp/screens/currency_page.dart';
 export 'package:mobileapp/screens/hotel/hotel_page.dart';
@@ -38,7 +37,6 @@ export 'package:mobileapp/widgets/empty_widget.dart';
 export 'package:mobileapp/widgets/git_list_widjet.dart';
 export 'package:mobileapp/widgets/inputs/phone_prefix.dart';
 
-
 // Services
 export 'package:mobileapp/services/auth_services.dart';
 export 'package:mobileapp/services/comment_services.dart';
@@ -46,7 +44,6 @@ export 'package:mobileapp/services/currency_service.dart';
 export 'package:mobileapp/services/hotel_service.dart';
 export 'package:mobileapp/services/image_pick_service.dart';
 export 'package:mobileapp/services/git_service.dart';
-
 
 // Components
 export 'package:mobileapp/core/components/size_config.dart';
@@ -57,10 +54,8 @@ export 'package:mobileapp/core/components/my_shape.dart';
 export 'package:mobileapp/core/components/my_border_radius.dart';
 export 'package:mobileapp/core/functions/text_form_field_validator.dart';
 
-
 // Extensions
 export 'package:mobileapp/core/extension/size_extension.dart';
-
 
 // Constants
 export 'package:mobileapp/core/constants/app_colors.dart';
@@ -93,17 +88,12 @@ export 'package:mobileapp/core/data/user_data.dart';
 export 'package:mobileapp/models/user_model.dart';
 export 'package:mobileapp/models/git_model.dart';
 export 'package:mobileapp/models/city_model.dart';
-
-
+export 'package:mobileapp/models/restaurant_model.dart';
 
 // translations
 export 'package:mobileapp/translations/locale_keys.g.dart';
 export 'package:mobileapp/translations/codegen_loader.g.dart';
 
-
 export 'package:mobileapp/core/functions/mock_data.dart';
 
 export 'package:flutter/services.dart';
-
-
-

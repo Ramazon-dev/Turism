@@ -1,5 +1,4 @@
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/models/city_model.dart';
 
 class CityList {
   static List<CityModel> cities = [

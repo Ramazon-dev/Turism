@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/models/business_account_model.dart';
 import 'package:mobileapp/screens/business_profile/restaurant/restaurant_page.dart';
 import 'package:mobileapp/widgets/buttons/link_with_icon_button.dart';
-
+import 'package:mobileapp/models/business_account_model.dart' as rest;
 import '../rating_bar_widget.dart';
 import 'base_business_tile.dart';
 
 class BusinessRestaurantTile extends StatelessWidget {
-  final Restaurants restaurant;
+  final rest.Restaurants restaurant;
 
   const BusinessRestaurantTile({Key? key, required this.restaurant})
       : super(key: key);
@@ -45,6 +44,9 @@ class BusinessRestaurantTile extends StatelessWidget {
               : const SizedBox(),
         ],
       ),
-    ).onClick(() => CustomNavigator.push(RestaurantPage()));
+    ).onClick(() => CustomNavigator.push(RestaurantPage(
+          restaurant: Restaurant.fromJson(restaurant.toJson()),
+          isEditing: true,
+        )));
   }
 }
