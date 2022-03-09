@@ -83,7 +83,7 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
         itemCount: model.hotels!.length,
         itemBuilder: (ctx, i) {
           Hotels hotel = model.hotels![i];
-          return BusinessHotelResTile(hotels: hotel);
+          return BusinessHotelTile(hotels: hotel);
         });
   }
 

@@ -1,14 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/data/city_list.dart';
-import 'package:mobileapp/services/git_service.dart';
 
 part 'git_state.dart';
 
 class GitCubit extends Cubit<GitState> {
   GitCubit() : super(GitInitial());
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
@@ -25,6 +23,20 @@ class GitCubit extends Cubit<GitState> {
   bool _hasUzb = false;
   bool _hasRus = false;
   bool _hasKaz = false;
+
+  GitCubit.editing(Git git) : super(GitInitial()) {
+
+    _phoneController.text = git.tell[0];
+    _priceController.text = git.price!;
+    _aboutUzController.text = git.informUz!;
+    _aboutEnController.text = git.informEn!;
+    _aboutRuController.text = git.informRu!;
+    git.languages.map((e) => _languages.add(e));
+    _image = git.image;
+
+    _city = git.city!;
+
+  }
 
   void onEngPressed(bool? value) {
     _hasEng = value!;

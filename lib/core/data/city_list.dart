@@ -29,6 +29,17 @@ class CityList {
     return city;
   }
 
+  String getCityName(String key) {
+    String city = key;
+    for (var element in cities) {
+      if (key == element.value) {
+        city = element.name;
+        break;
+      }
+    }
+    return city;
+  }
+
   static const String _tashkent =
       'https://images.unsplash.com/photo-1622030797403-fa221ce5d208?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80';
   static const String _jizzakh =

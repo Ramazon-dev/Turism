@@ -3,7 +3,7 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/screens/auth/forgot_password/create_new_password/create_new_password.dart';
 import 'package:mobileapp/screens/auth/forgot_password/widgets/circular_icon.dart';
 import 'package:mobileapp/screens/auth/forgot_password/widgets/text_widget.dart';
-import 'package:mobileapp/widgets/elevated_button_widget.dart';
+import 'package:mobileapp/widgets/buttons/elevated_button_widget.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 

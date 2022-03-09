@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/business/hotel_cubit/hotel_cubit.dart';
-
-// Methods
-// build => Describes the part of the user interface represented by this widget.
-// _buildScaffold => to show UI
-// _showForms => For form fields
+import 'package:mobileapp/widgets/images/show_image_network.dart';
 
 class InputHotelPage extends StatelessWidget {
-  const InputHotelPage({Key? key}) : super(key: key);
+  final bool isEditing;
+  Hotel? hotel;
+
+  InputHotelPage({Key? key, required this.isEditing, this.hotel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => HotelCubit(),
+      create: (_) => isEditing ? HotelCubit.editing(hotel!) : HotelCubit(),
       child: BlocBuilder<HotelCubit, HotelState>(
         builder: (ctx, state) {
           HotelCubit cubit = ctx.watch();
@@ -31,9 +31,13 @@ class InputHotelPage extends StatelessWidget {
           padding: MyEdgeInsets.symmetric(h: 30.0, v: 25.0),
           child: Column(
             children: [
+              Visibility(
+                visible: isEditing,
+                child: ShowImageNetwork(images: cubit.imageList),
+              ),
               _showForms(cubit),
               MySizedBox(height: 20.0),
-              const ImageSetter(),
+              Visibility(visible: !isEditing, child: const ImageSetter()),
               MySizedBox(height: 20.0),
               ElevatedButtonWidget(
                 onPressed: cubit.onSavePressed,

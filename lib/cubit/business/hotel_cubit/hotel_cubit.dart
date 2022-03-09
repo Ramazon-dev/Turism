@@ -1,9 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/data/city_list.dart';
-import 'package:mobileapp/services/hotel_service.dart';
-import 'package:mobileapp/services/image_pick_service.dart';
 
 part 'hotel_state.dart';
 
@@ -23,6 +19,20 @@ class HotelCubit extends Cubit<HotelState> {
 
   String _city = LocaleKeys.tashkent.tr();
   String _chosenCity = CityList().getCity(LocaleKeys.tashkent.tr());
+
+  HotelCubit.editing(Hotel hotel) : super(HotelInitial()) {
+    _nameController.text = hotel.name;
+    _phoneController.text = hotel.tell[0];
+    _websiteController.text = hotel.site.toString();
+    _mapLinkController.text = hotel.karta;
+    _priceController.text = '150';
+    _aboutUzController.text = hotel.informUz;
+    _aboutEnController.text = hotel.informEn;
+    _aboutRuController.text = hotel.informRu;
+    _imageList = hotel.media;
+    _city = CityList().getCityName(hotel.city);
+
+  }
 
   void cityChanged(dynamic value) {
     _city = value;

@@ -26,7 +26,11 @@ class LinkWithIconButton extends StatelessWidget {
         ),
       ],
     ).onClick(() async{
-      await launch(link);
+      if (await canLaunch(link)) {
+        await launch(link);
+      } else {
+        Fluttertoast.showToast(msg: 'Link is wrong');
+      }
     });
   }
 }
