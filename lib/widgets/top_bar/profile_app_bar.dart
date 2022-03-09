@@ -79,7 +79,7 @@ class ProfileAppBar extends StatelessWidget with PreferredSizeWidget {
               CustomNavigator.push(InputHotelPage(isEditing: false));
               break;
             case 'restaurant':
-              CustomNavigator.push(const RestaurantPage());
+              CustomNavigator.push(RestaurantPage());
               break;
           }
         },
