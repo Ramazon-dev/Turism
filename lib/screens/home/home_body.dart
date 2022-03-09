@@ -17,7 +17,7 @@ class HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
+      // physics: const BouncingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -50,7 +50,7 @@ class HomeBody extends StatelessWidget {
             date: "10 минут. 5 сек",
           ),
           RowTextWidgets(ontap: () {}, text: "Регионы.", bottomText: "Все"),
-          PopularObject(),
+          const PopularObject(),
           RowTextWidgets(
               ontap: () {}, text: "Где мы находимся :)", bottomText: "Все"),
           HotelsView(

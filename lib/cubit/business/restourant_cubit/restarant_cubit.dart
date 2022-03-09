@@ -1,6 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/data/city_list.dart';
+import 'package:mobileapp/models/restaurant_model.dart';
+import 'package:mobileapp/services/restaurant_service.dart';
 
 part 'restaurant_state.dart';
 
@@ -12,13 +15,32 @@ class RestaurantCubit extends Cubit<RestorantState> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _websiteController = TextEditingController();
   final TextEditingController _mapLinkController = TextEditingController();
-  final TextEditingController _priceController = TextEditingController();
+  final TextEditingController _typeController = TextEditingController();
   final TextEditingController _aboutUzController = TextEditingController();
   final TextEditingController _aboutEnController = TextEditingController();
   final TextEditingController _aboutRuController = TextEditingController();
+  List<String> _imageList = [];
 
   String _city = CityList.cities[0].name;
   String _chosenCity = CityList().getCity(CityList.cities[0].name);
+
+  bool _isEditing = false;
+  late String _restaurantId;
+
+  RestaurantCubit.editing(Restaurant rest) : super(RestorantInitial()) {
+    _restaurantId = rest.id!;
+    _isEditing = true;
+    _nameController.text = rest.name;
+    _phoneController.text = rest.tell[0];
+    _typeController.text = rest.category;
+    _websiteController.text = rest.site.toString();
+    _mapLinkController.text = rest.karta;
+    _aboutUzController.text = rest.informUz;
+    _aboutEnController.text = rest.informEn;
+    _aboutRuController.text = rest.informRu;
+    _imageList = rest.media;
+    _city = CityList().getCityName(rest.city);
+  }
 
   void cityChanged(dynamic value) {
     _city = value;
@@ -30,14 +52,45 @@ class RestaurantCubit extends Cubit<RestorantState> {
 
   void onSavePressed() {
     // Agar validate bo'lgan bo'lsa
-    if (_formKey.currentState!.validate()) {}
+    if (_formKey.currentState!.validate()) {
+      String name = _nameController.text.trim();
+      String phone = _phoneController.text.trim();
+      String link = _websiteController.text.trim();
+      String map = _mapLinkController.text.trim();
+      String aboutUz = _aboutUzController.text.trim();
+      String aboutEn = _aboutEnController.text.trim();
+      String aboutRu = _aboutRuController.text.trim();
+
+
+      Restaurant restaurant = Restaurant(
+        name: name,
+        media: _imageList,
+        informUz: aboutUz,
+        informEn: aboutEn,
+        informRu: aboutRu,
+        karta: map,
+        city: city,
+        tell: [phone],
+        category: 'categoryId',
+      );
+
+      if (_isEditing) {
+        // Update
+        Fluttertoast.showToast(msg: 'Soon');
+      } else {
+        RestaurantService.createNewRestaurant(restaurant).then((value) {
+          ImageChooser.clearImageList();
+          CustomNavigator().pushAndRemoveUntil(const HomeScreen());
+        });
+      }
+    }
   }
 
   TextEditingController get phoneController => _phoneController;
 
   TextEditingController get websiteController => _websiteController;
 
-  TextEditingController get priceController => _priceController;
+  TextEditingController get typeController => _typeController;
 
   TextEditingController get aboutUzController => _aboutUzController;
 

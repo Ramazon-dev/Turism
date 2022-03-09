@@ -85,12 +85,15 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
         itemCount: model.hotels!.length,
         itemBuilder: (ctx, i) {
           Hotels hotel = model.hotels![i];
-          return BusinessHotelResTile(hotels: hotel);
+          return BusinessHotelTile(hotels: hotel);
         });
   }
 
-  MyGitListWidjet _myGitListWidget(BusinessAccountModel model) {
-    return MyGitListWidjet(git: git.Git.fromJson(model.git!.toJson()));
+  Widget _myGitListWidget(BusinessAccountModel model) {
+    var gits = git.Git.fromJson(model.git!.toJson());
+    return MyGitListWidjet(git: gits).onClick(() {
+      CustomNavigator.push(GitInfoPage(git: gits, isEditing: true));
+    });
   }
 
   // TextButton

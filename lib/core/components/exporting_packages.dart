@@ -8,7 +8,7 @@ export 'package:mobileapp/screens/search/search_page.dart';
 export 'package:mobileapp/screens/auth/sign_in/sign_in_page.dart';
 
 
-export 'package:mobileapp/screens/business_profile/git_info_page.dart';
+export 'package:mobileapp/screens/business_profile/git/git_info_page.dart';
 export 'package:mobileapp/screens/currency_page.dart';
 export 'package:mobileapp/screens/hotel/hotel_page.dart';
 export 'package:mobileapp/screens/other/other_page.dart';
@@ -16,27 +16,28 @@ export 'package:mobileapp/screens/place/place_page.dart';
 export 'package:mobileapp/screens/settings/settings_page.dart';
 
 // Widgets
-export 'package:mobileapp/widgets/my_text_form_field.dart';
-export 'package:mobileapp/widgets/bottom_nav_bar.dart';
-export 'package:mobileapp/widgets/textWidget.dart';
+export 'package:mobileapp/widgets/inputs/my_text_form_field.dart';
+export 'package:mobileapp/widgets/navigators/bottom_nav_bar.dart';
+export 'package:mobileapp/widgets/texts/textWidget.dart';
 export 'package:mobileapp/widgets/my_sized_box.dart';
-export 'package:mobileapp/widgets/app_drawer.dart';
+export 'package:mobileapp/widgets/navigators/app_drawer.dart';
 export 'package:mobileapp/widgets/top_bar/simple_app_bar.dart';
 export 'package:mobileapp/widgets/cards/place_info_card.dart';
-export 'package:mobileapp/widgets/profile_circle_avatar.dart';
+export 'package:mobileapp/widgets/images/profile_circle_avatar.dart';
 export 'package:mobileapp/widgets/top_bar/profile_app_bar.dart';
 export 'package:mobileapp/widgets/buttons/blue_button.dart';
 export 'package:mobileapp/widgets/buttons/text_button_widget.dart';
-export 'package:mobileapp/widgets/drop_down_widget.dart';
-export 'package:mobileapp/widgets/elevated_button_widget.dart';
-export 'package:mobileapp/widgets/image_setter.dart';
+export 'package:mobileapp/widgets/buttons/drop_down_widget.dart';
+export 'package:mobileapp/widgets/buttons/elevated_button_widget.dart';
+export 'package:mobileapp/widgets/images/image_setter.dart';
 export 'package:mobileapp/widgets/contact_widget.dart';
 export 'package:mobileapp/widgets/rating_widget.dart';
-export 'package:mobileapp/widgets/url_text_widgte.dart';
+export 'package:mobileapp/widgets/texts/url_text_widgte.dart';
 export 'package:mobileapp/widgets/city_list_widget.dart';
 export 'package:mobileapp/widgets/empty_widget.dart';
 export 'package:mobileapp/widgets/git_list_widjet.dart';
 export 'package:mobileapp/widgets/inputs/phone_prefix.dart';
+
 
 // Services
 export 'package:mobileapp/services/auth_services.dart';
@@ -82,6 +83,7 @@ export 'package:on_click/on_click.dart';
 export 'package:http_parser/http_parser.dart';
 export 'package:mime/mime.dart';
 export 'package:cached_network_image/cached_network_image.dart';
+export 'package:fluttertoast/fluttertoast.dart';
 
 // Models
 export 'package:mobileapp/models/car_model.dart';

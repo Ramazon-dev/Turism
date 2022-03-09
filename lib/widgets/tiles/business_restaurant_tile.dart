@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/models/business_account_model.dart';
+import 'package:mobileapp/screens/business_profile/restaurant/restaurant_page.dart';
 import 'package:mobileapp/widgets/buttons/link_with_icon_button.dart';
 
 import '../rating_bar_widget.dart';
@@ -44,6 +45,6 @@ class BusinessRestaurantTile extends StatelessWidget {
               : const SizedBox(),
         ],
       ),
-    );
+    ).onClick(() => CustomNavigator.push(RestaurantPage()));
   }
 }

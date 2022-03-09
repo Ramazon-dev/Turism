@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
-import 'package:mobileapp/screens/business_profile/input_hotel_page.dart';
-import 'package:mobileapp/screens/business_profile/restaurant_page.dart';
+import 'package:mobileapp/screens/business_profile/hotel/input_hotel_page.dart';
+import 'package:mobileapp/screens/business_profile/restaurant/restaurant_page.dart';
 import 'package:mobileapp/widgets/cards/profile_info_card.dart';
 
 class ProfileAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -76,10 +76,10 @@ class ProfileAppBar extends StatelessWidget with PreferredSizeWidget {
               CustomNavigator.push(GitInfoPage());
               break;
             case 'hotel':
-              CustomNavigator.push(const InputHotelPage());
+              CustomNavigator.push(InputHotelPage(isEditing: false));
               break;
             case 'restaurant':
-              CustomNavigator.push(const RestaurantPage());
+              CustomNavigator.push(RestaurantPage());
               break;
           }
         },

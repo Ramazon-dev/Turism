@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/models/business_account_model.dart';
+import 'package:mobileapp/screens/business_profile/hotel/input_hotel_page.dart';
 import 'package:mobileapp/widgets/buttons/link_with_icon_button.dart';
 import 'package:mobileapp/widgets/rating_bar_widget.dart';
 import 'base_business_tile.dart';
 
-class BusinessHotelResTile extends StatelessWidget {
+class BusinessHotelTile extends StatelessWidget {
   final Hotels hotels;
 
-  const BusinessHotelResTile({Key? key, required this.hotels}) : super(key: key);
+  const BusinessHotelTile({Key? key, required this.hotels}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +37,9 @@ class BusinessHotelResTile extends StatelessWidget {
               : const SizedBox(),
         ],
       ),
-    );
+    ).onClick(() => CustomNavigator.push(InputHotelPage(
+          isEditing: true,
+          hotel: Hotel.fromJson(hotels.toJson()),
+        )));
   }
 }
