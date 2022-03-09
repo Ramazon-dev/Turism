@@ -24,8 +24,12 @@ class GitCubit extends Cubit<GitState> {
   bool _hasRus = false;
   bool _hasKaz = false;
 
-  GitCubit.editing(Git git) : super(GitInitial()) {
+  bool _isEditing = false;
+  String _gitId = '';
 
+  GitCubit.editing(Git git) : super(GitInitial()) {
+    _isEditing = true;
+    _gitId = git.id!;
     _phoneController.text = git.tell[0];
     _priceController.text = git.price!;
     _aboutUzController.text = git.informUz!;
@@ -33,9 +37,21 @@ class GitCubit extends Cubit<GitState> {
     _aboutRuController.text = git.informRu!;
     git.languages.map((e) => _languages.add(e));
     _image = git.image;
-
-    _city = git.city!;
-
+    _city = CityList().getCityName(git.city!);
+    for (var lang in git.languages) {
+      if (lang == 'uz') {
+        _hasUzb = true;
+      }
+      if (lang == 'en') {
+        _hasEng = true;
+      }
+      if (lang == 'kz') {
+        _hasKaz = true;
+      }
+      if (lang == 'ru') {
+        _hasRus = true;
+      }
+    }
   }
 
   void onEngPressed(bool? value) {
@@ -108,6 +124,7 @@ class GitCubit extends Cubit<GitState> {
         }
       }
       Git git = Git(
+        id: _gitId.isNotEmpty ? _gitId : null,
         city: _chosenCity.toLowerCase(),
         informEn: aboutEn,
         informUz: aboutUz,
@@ -117,10 +134,19 @@ class GitCubit extends Cubit<GitState> {
         languages: _languages.toList(),
         image: _image,
       );
-      GitService.createNewGit(git).then((value) {
-        ImageChooser.clearImageList();
-        CustomNavigator().pushAndRemoveUntil(const HomeScreen());
-      });
+
+      if (_isEditing) {
+        // If git is updating
+        GitService.updateGitData(git).then((value) {
+          Fluttertoast.showToast(msg: 'Updated');
+          CustomNavigator().pushAndRemoveUntil(const HomeScreen());
+        });
+      } else {
+        GitService.createNewGit(git).then((value) {
+          ImageChooser.clearImageList();
+          CustomNavigator().pushAndRemoveUntil(const HomeScreen());
+        });
+      }
     }
   }
 

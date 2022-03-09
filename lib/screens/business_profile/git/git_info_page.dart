@@ -3,14 +3,16 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/business/git_cubit/git_cubit.dart';
 
 class GitInfoPage extends StatelessWidget {
-  GitInfoPage({Key? key}) : super(key: key);
+  Git? git;
+  bool isEditing;
+  GitInfoPage({Key? key, this.git, this.isEditing = false}) : super(key: key);
 
   final Map<String, dynamic> _data = GetStorage().read('user');
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => GitCubit(),
+      create: (_) => isEditing?  GitCubit.editing(git!) : GitCubit(),
       child: BlocBuilder<GitCubit, GitState>(
         builder: (ctx, state) {
           GitCubit cubit = ctx.watch();

@@ -74,7 +74,6 @@ class HotelCubit extends Cubit<HotelState> {
         media: _imageList,
       );
 
-
       if (_isEditing) {
         // if hotel is updating
         HotelService.updateHotelMedia(hotelId: _hotelId, hotelMedia: _imageList)

@@ -85,7 +85,7 @@ class InputHotelPage extends StatelessWidget {
               inputType: TextInputType.url,
               controller: cubit.websiteController,
               hint: LocaleKeys.mapLink.tr(),
-              validator: FormValidator.general,
+              validator: FormValidator.url,
             ),
             MySizedBox(height: 20.0),
 
@@ -94,7 +94,6 @@ class InputHotelPage extends StatelessWidget {
               inputType: TextInputType.url,
               controller: cubit.mapLinkController,
               hint: LocaleKeys.linkOfSite.tr(),
-              validator: FormValidator.isNotEmpty,
             ),
             MySizedBox(height: 20.0),
 
