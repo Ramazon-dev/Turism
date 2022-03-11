@@ -50,8 +50,9 @@ abstract class  LocaleKeys {
   static const currency = 'currency';
   static const embassy = 'embassy';
   static const search = 'search';
-  static const sign_in_to_your_account = 'sign_in_toyour_account';
+  static const sign_in_toyour_account = 'sign_in_toyour_account';
   static const i_agree_pivacy = 'i_agree_pivacy';
   static const password = 'password';
+  static const on_map = 'on_map';
 
 }

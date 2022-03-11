@@ -67,7 +67,8 @@ class CodegenLoader extends AssetLoader{
   "other": "Boshqa",
   "sign_in_toyour_account": "O`z akkountingizga kiring",
   "i_agree_pivacy": "Men maxfiylik siyosatiga roziman",
-  "password": "Parol"
+  "password": "Parol",
+  "on_map": "Xaritada"
 };
 static const Map<String,dynamic> ru_RU = {
   "start": "Начать",
@@ -122,7 +123,8 @@ static const Map<String,dynamic> ru_RU = {
   "other": "Другой",
   "sign_in_toyour_account": "Войдите в свой аккаунт",
   "i_agree_pivacy": "Я согласен с политикой конфиденциальности",
-  "password": "Пароль"
+  "password": "Пароль",
+  "on_map": "Расположение на карте"
 };
 static const Map<String,dynamic> en_GB = {
   "start": "Start",
@@ -177,7 +179,8 @@ static const Map<String,dynamic> en_GB = {
   "other": "Other",
   "sign_in_toyour_account": "Sign in to your account",
   "i_agree_pivacy": "I agree with the privacy policy",
-  "password": "Password"
+  "password": "Password",
+  "on_map": "In Map"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"uz_UZ": uz_UZ, "ru_RU": ru_RU, "en_GB": en_GB};
 }
