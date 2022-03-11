@@ -24,7 +24,7 @@ class BusinessHotelTile extends StatelessWidget {
           SizedBox(height: 8.h),
           LinkWithIconButton(
             icon: AppIcons.location,
-            label: LocaleKeys.mapLink.tr(),
+            label: LocaleKeys.on_map.tr(),
             link: hotels.karta!,
           ),
           SizedBox(height: 8.h),

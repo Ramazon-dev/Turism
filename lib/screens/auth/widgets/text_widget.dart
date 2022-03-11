@@ -5,7 +5,7 @@ class AuthTextWidget extends StatelessWidget {
   late String text;
   AuthTextWidget({
     Key? key,
-    this.text = LocaleKeys.sign_in_to_your_account,
+    this.text = LocaleKeys.sign_in_toyour_account,
   }) : super(key: key);
 
   @override

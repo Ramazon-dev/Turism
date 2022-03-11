@@ -48,3 +48,4 @@ class CityList {
   static const String _bukhara =
       'https://images.unsplash.com/photo-1603221197221-e9b151b5c83e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80';
 }
+

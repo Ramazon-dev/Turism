@@ -36,6 +36,8 @@ class HomeBody extends StatelessWidget {
             text: "Вас ждет путешествие по реке Амирсой!",
             starNumber: 5.0,
           ),
+
+          /// Популярные пакеты.
           RowTextWidgets(
               ontap: () {
                 print("bosildi");

@@ -31,7 +31,7 @@ class BusinessRestaurantTile extends StatelessWidget {
           SizedBox(height: 8.h),
           LinkWithIconButton(
             icon: AppIcons.location,
-            label: LocaleKeys.mapLink.tr(),
+            label: LocaleKeys.on_map.tr(),
             link: restaurant.karta!,
           ),
           SizedBox(height: 8.h),
