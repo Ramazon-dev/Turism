@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/data/city_list.dart';
 import 'package:mobileapp/models/city_model.dart';
+import 'package:mobileapp/screens/find_by_city/find_by_city_page.dart';
 import 'package:mobileapp/widgets/star_bar.dart';
 
 class ShowNerarby extends StatelessWidget {
@@ -94,7 +95,7 @@ class PopularObject extends StatelessWidget {
               ),
             ),
           ).onClick(() {
-
+            CustomNavigator.push(SelectedCityPage(city: city));
           });
         },
       ),
