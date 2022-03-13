@@ -38,7 +38,7 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
     return SingleChildScrollView(
       child: FutureBuilder(
         future: BusinessAccountService().getServiceList(),
-        builder: (ctx, AsyncSnapshot<BusinessAccountModel> snap) {
+        builder: (ctx, AsyncSnapshot<BusinessAccountModel?> snap) {
           if (snap.hasData) {
             BusinessAccountModel model = snap.data!;
             return Column(
