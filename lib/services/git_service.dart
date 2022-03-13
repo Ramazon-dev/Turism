@@ -101,20 +101,22 @@ class GitService {
 
   Future addRatingToGit({required String gitId, required int rate}) async {
     String token = await GetStorage().read('token');
-        //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyZmU4NDQ2Mi00ZjA5LTQ5NGUtYjRkZC1jZWVkMjRmZTI0MTciLCJpYXQiOjE2NDU3ODcxNjMsImV4cCI6MTY2MzA2NzE2M30.Qk-uLwwQ6OmvbPdzxpmNtmdBjYYvovNzwGXCs7LjXFM';
+    //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyZmU4NDQ2Mi00ZjA5LTQ5NGUtYjRkZC1jZWVkMjRmZTI0MTciLCJpYXQiOjE2NDU3ODcxNjMsImV4cCI6MTY2MzA2NzE2M30.Qk-uLwwQ6OmvbPdzxpmNtmdBjYYvovNzwGXCs7LjXFM';
 
     try {
       var response = await http.post(
         Uri.parse('$baseUrl/reyting'),
         body: jsonEncode({"value": rate, "gitId": gitId}),
-        headers: {'token': token,  'Content-Type': 'application/json'},
+        headers: {'token': token, 'Content-Type': 'application/json'},
       );
 
       if (response.statusCode == 201) {
         print(jsonDecode(response.body));
         return jsonDecode(response.body);
       } else {
-        print("else error: " + jsonDecode(response.body).toString() + response.statusCode.toString());
+        print("else error: " +
+            jsonDecode(response.body).toString() +
+            response.statusCode.toString());
         return jsonDecode(response.statusCode.toString());
       }
     } catch (e) {
@@ -125,8 +127,8 @@ class GitService {
 
   Future addCommentToGit(
       {required String gitId, required String commentText}) async {
-    String token = await GetStorage().read('token');
-        //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+    String token = GetStorage().read('token');
+    //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
       var response = await http.post(
@@ -149,8 +151,8 @@ class GitService {
   }
 
   static Future updateGitData(Git git) async {
-    String token =await GetStorage().read('token');
-         //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZGI4OGM0Yy04ODYxLTRjMTgtOWI3MS04MjZjM2M0NGFlYzEiLCJpYXQiOjE2NDYxNTI2MDcsImV4cCI6MTY2MzQzMjYwN30.WUaeEN7SJeYNC-8pZ-Vh4FcLu5fRAKLAUjFS3JZUUqg';
+    String token = await GetStorage().read('token');
+    //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZGI4OGM0Yy04ODYxLTRjMTgtOWI3MS04MjZjM2M0NGFlYzEiLCJpYXQiOjE2NDYxNTI2MDcsImV4cCI6MTY2MzQzMjYwN30.WUaeEN7SJeYNC-8pZ-Vh4FcLu5fRAKLAUjFS3JZUUqg';
     try {
       var response = await http.put(
         Uri.parse('$baseUrl/git'),
@@ -192,16 +194,16 @@ class GitService {
       var request =
           http.MultipartRequest('PUT', Uri.parse('$baseUrl/git/$gitId'));
 
-        final mimeTypeData =
-            lookupMimeType(gitImage, headerBytes: [0xFF, 0xD8])?.split('/');
-        //------------------
-        request.files.add(await http.MultipartFile.fromPath(
-          'image',
-          gitImage,
-          filename: gitImage.split('/').last,
-          contentType: MediaType(mimeTypeData![0], mimeTypeData[1]),
-        ));
-      
+      final mimeTypeData =
+          lookupMimeType(gitImage, headerBytes: [0xFF, 0xD8])?.split('/');
+      //------------------
+      request.files.add(await http.MultipartFile.fromPath(
+        'image',
+        gitImage,
+        filename: gitImage.split('/').last,
+        contentType: MediaType(mimeTypeData![0], mimeTypeData[1]),
+      ));
+
       request.headers.addAll(headers);
 
       http.StreamedResponse response = await request.send();
@@ -220,8 +222,8 @@ class GitService {
   }
 
   Future deleteGit({required String gitId}) async {
-    String token =await GetStorage().read('token');
-         //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+    String token = await GetStorage().read('token');
+    //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
       var response = await http.delete(

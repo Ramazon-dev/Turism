@@ -82,7 +82,7 @@ class CurrencyPage extends StatelessWidget {
           Text(text, style: AppTextStyle.regular()),
         ],
       ),
-      height: 51.h,
+      height: 55.h,
       width: 145.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
@@ -103,7 +103,7 @@ class CurrencyPage extends StatelessWidget {
           Text(text, style: AppTextStyle.regular()),
         ],
       ),
-      height: 51.h,
+      height: 55.h,
       width: 145.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),

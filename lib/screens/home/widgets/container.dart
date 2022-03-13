@@ -2,73 +2,85 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/data/city_list.dart';
 import 'package:mobileapp/models/city_model.dart';
+import 'package:mobileapp/models/obekt_model.dart';
+import 'package:mobileapp/screens/details/obekt_details.dart';
 import 'package:mobileapp/screens/find_by_city/find_by_city_page.dart';
+import 'package:mobileapp/services/obekt_services.dart';
 import 'package:mobileapp/widgets/star_bar.dart';
 
 class ShowNerarby extends StatelessWidget {
-  VoidCallback ontap;
-  int itemCount;
-  double starNumber;
-  String text;
-  String image;
-
   ShowNerarby({
-    required this.ontap,
-    required this.itemCount,
-    required this.starNumber,
-    required this.text,
-    required this.image,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 240.h,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: itemCount,
-        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: ontap,
-            child: Container(
-              height: 200.h,
-              width: 330.w,
-              margin: EdgeInsets.symmetric(horizontal: 5.w),
-              decoration: MyDecoration.netImage(netImage: image, radius: 5.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: MyEdgeInsets.only(left: 260, top: 10),
-                    child: StartBar(
-                      son: starNumber,
+    return FutureBuilder(
+        future: ObektSevices().fetchobektbyseason(),
+        builder: (context, AsyncSnapshot<List<Obekt>> snap) {
+          if (snap.hasData) {
+            List<Obekt> data = snap.data!;
+            return SizedBox(
+              height: 240.h,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: data.length,
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ObektDetailsPage(
+                                    place: data[index],
+                                  )));
+                    },
+                    child: Container(
+                      height: 200.h,
+                      width: 330.w,
+                      margin: EdgeInsets.symmetric(horizontal: 5.w),
+                      decoration: MyDecoration.netImage(
+                          netImage: data[index].media!.first, radius: 5.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: MyEdgeInsets.only(left: 260, top: 10),
+                            child: StartBar(
+                              son: data[index].reyting!.toDouble(),
+                            ),
+                          ),
+                          Padding(
+                            padding: MyEdgeInsets.only(
+                              top: 90.h,
+                              left: 20.w,
+                            ),
+                            child: Text(
+                              data[index].nameRu!,
+                              style: TextStyle(
+                                  fontSize: getWidth(20.0),
+                                  color: AppColors.white),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: MyEdgeInsets.only(
-                      top: 90,
-                      left: 20,
-                    ),
-                    child: Text(
-                      text,
-                      style: TextStyle(
-                          fontSize: getWidth(20.0), color: AppColors.white),
-                    ),
-                  ),
-                ],
+                  );
+                },
               ),
-            ),
-          );
-        },
-      ),
-    );
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        });
   }
 }
 
 class PopularObject extends StatelessWidget {
-  const PopularObject({Key? key}) : super(key: key);
+  PopularObject({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -2,101 +2,114 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/services/obekt_services.dart';
-import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
-import 'package:mobileapp/widgets/description_widjet.dart';
-import 'package:mobileapp/widgets/buttons/language_button.dart';
 import 'package:http/http.dart' as http;
+import 'package:mobileapp/models/obekt_model.dart';
+import 'package:mobileapp/services/obekt_services.dart';
 
-class GitDetailsPage extends StatefulWidget {
-  final Git git;
+class ObektDetailsPage extends StatefulWidget {
+  final Obekt place;
 
-  GitDetailsPage({Key? key, required this.git}) : super(key: key);
+  const ObektDetailsPage({Key? key, required this.place}) : super(key: key);
 
   @override
-  State<GitDetailsPage> createState() => _GitDetailsPageState();
+  State<ObektDetailsPage> createState() => _ObektDetailsPageState();
 }
 
-class _GitDetailsPageState extends State<GitDetailsPage> {
-  TextEditingController _commentController = TextEditingController();
+class _ObektDetailsPageState extends State<ObektDetailsPage> {
+  bool isComment = false;
 
   List comment = [];
-
-  bool isComment = false;
+  TextEditingController _commentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/';
-    String randImg = 'https://source.unsplash.com/random/4';
-
     return Scaffold(
-      appBar: AppBarOrigin(
-        actions: SvgPicture.asset(AppIcons.language),
-        actions2: SvgPicture.asset(AppIcons.dollar),
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(
+              AppIcons.link,
+              color: AppColors.white,
+            ),
+          ),
+        ],
       ),
+      floatingActionButton: _commentButton(),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height * 0.9,
-              child: Center(
-                child: Container(
-                  margin: EdgeInsets.only(top: getHeight(20)),
-                  height: getHeight(592),
-                  width: getWidth(345),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                        color: AppColors.darkBorder, width: getWidth(1)),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(
-                        getWidth(7),
-                      ),
+              height: getHeight(410),
+              width: getWidth(375),
+              decoration:
+                  MyDecoration.netImage(netImage: widget.place.media![0]),
+            ),
+            Padding(
+              padding: MyEdgeInsets.all(15.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  RatWidget(
+                      rating: widget.place.reyting!.toDouble(),
+                      users: widget.place.users!),
+                  MySizedBox(height: 4.0),
+                  Text(
+                    widget.place.nameRu!,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: AppTextStyle.medium(size: 18.0),
+                  ),
+                  MySizedBox(height: 17.0),
+                  _buildLink(AppIcons.call, widget.place.tell!,
+                      'tel:${widget.place.tell!.replaceAll('-', '')}',
+                      labelColor: AppColors.black),
+                  MySizedBox(height: 10.0),
+                  _buildLink(
+                    AppIcons.location,
+                    'Расположение на карте',
+                    widget.place.karta!,
+                    iconColor: AppColors.red,
+                  ),
+                  MySizedBox(height: 10.0),
+                  _buildLink(
+                      AppIcons.link, widget.place.site!, widget.place.site!),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: getHeight(9.5)),
+                    child: Divider(
+                      thickness: getWidth(1),
                     ),
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.all(getWidth(11)),
-                        width: getWidth(323),
-                        height: getHeight(255),
-                        decoration: MyDecoration.netImage(netImage: randImg),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            DescriptionWidget(
-                              name: widget.git.username.toString(),
-                              price: int.parse(widget.git.price.toString()),
-                              rating: double.parse(widget.git.price.toString()),
-                              users: 5,
-                            ),
-                            LanguageWidget(language: widget.git.languages),
-                            SizedBox(height: getHeight(28)),
-                            Text(
-                              "${widget.git.informEn}",
-                              style: AppTextStyle.regular(),
-                            ),
-                            ContactWidget(
-                              git: widget.git,
-                              commentOpen: onCommentPressed,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                  Text(
+                    widget.place.informRu!,
+                    style: AppTextStyle.regular(height: 2.1),
                   ),
-                ),
+                ],
               ),
             ),
             isComment ? commentfunc(context, sendMessage) : SizedBox()
           ],
         ),
       ),
+    );
+  }
+
+  Row _buildLink(
+    String assetIcon,
+    String label,
+    String link, {
+    Color iconColor = AppColors.black,
+    Color labelColor = AppColors.linkColor,
+  }) {
+    return Row(
+      children: [
+        SvgPicture.asset(assetIcon, height: getHeight(15.0), color: iconColor),
+        MySizedBox(width: 15.0),
+        UrlTextWidget(text: label, url: link, color: labelColor)
+      ],
     );
   }
 
@@ -176,8 +189,8 @@ class _GitDetailsPageState extends State<GitDetailsPage> {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => SignInPage()));
     } else {
-      await GitService().addCommentToGit(
-          gitId: widget.git.id.toString(),
+      await ObektSevices().addCommentToObekt(
+          gitId: widget.place.id.toString(),
           commentText: _commentController.text);
       onCommentPressed();
       setState(() {});
@@ -187,12 +200,11 @@ class _GitDetailsPageState extends State<GitDetailsPage> {
   void onCommentPressed() async {
     try {
       var headers = {
-        // 'object_id':'${obekt.}'
-        'git_id': '${widget.git.id}',
+        'object_id': '${widget.place.id}',
       };
       var request = http.Request('GET',
           Uri.parse('https://ucharteam-tourism.herokuapp.com/v1/api/comment'));
-      request.body = '''''';
+
       request.headers.addAll(headers);
 
       http.StreamedResponse response = await request.send();
@@ -201,6 +213,7 @@ class _GitDetailsPageState extends State<GitDetailsPage> {
         var res = await response.stream.bytesToString();
         comment = jsonDecode(res)['data'];
         isComment = true;
+
         setState(() {});
         print(comment.toString());
       } else {
@@ -210,4 +223,10 @@ class _GitDetailsPageState extends State<GitDetailsPage> {
       print(e.toString());
     }
   }
+
+  FloatingActionButton _commentButton() => FloatingActionButton(
+        onPressed: onCommentPressed,
+        backgroundColor: AppColors.black,
+        child: SvgPicture.asset(AppIcons.comment),
+      );
 }

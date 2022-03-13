@@ -22,6 +22,7 @@ class AppTextStyle {
     String fontFamily = 'Regular',
   }) =>
       TextStyle(
+        overflow: TextOverflow.ellipsis,
         fontSize: getWidth(size),
         color: color,
         fontWeight: FontWeight.w500,

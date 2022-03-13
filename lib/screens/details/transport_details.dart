@@ -90,7 +90,7 @@ class TransportDetailPage extends StatelessWidget {
                             fontFamily: 'Roboto',
                           ),
                         ),
-                        const ContactWidget(),
+                        // const ContactWidget(),
                       ],
                     ),
                   )

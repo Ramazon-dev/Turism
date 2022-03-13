@@ -3,7 +3,7 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/screens/about_us_page.dart';
 
 class SelectedCityPage extends StatelessWidget {
-  final CityModel city;
+  CityModel city;
   SelectedCityPage({Key? key, required this.city}) : super(key: key);
   List<String> listOfStrings = [
     'Туристик зона.',
@@ -12,16 +12,20 @@ class SelectedCityPage extends StatelessWidget {
     'Отель.',
     'Ресторан.',
   ];
-  List<Widget> listOfPages = [
-    const CurrencyPage(),
-    const PlacePage(),
-    const HotelListPage(),
-    const SettingsPage(),
-    const AboutUsPage(),
-  ];
 
   @override
   Widget build(BuildContext context) {
+    print(city.name);
+    List<Widget> listOfPages = [
+      PlacePage(
+        city: city.value,
+        category: "",
+      ),
+      GitPage(),
+      const CurrencyPage(),
+      const HotelListPage(),
+      const SettingsPage(),
+    ];
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
