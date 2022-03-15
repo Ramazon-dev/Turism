@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/data/city_list.dart';
-import 'package:mobileapp/models/city_model.dart';
 import 'package:mobileapp/models/obekt_model.dart';
 import 'package:mobileapp/screens/details/obekt_details.dart';
 import 'package:mobileapp/screens/find_by_city/find_by_city_page.dart';
@@ -9,7 +7,7 @@ import 'package:mobileapp/services/obekt_services.dart';
 import 'package:mobileapp/widgets/star_bar.dart';
 
 class ShowNerarby extends StatelessWidget {
-  ShowNerarby({
+  const ShowNerarby({
     Key? key,
   }) : super(key: key);
 
@@ -71,7 +69,7 @@ class ShowNerarby extends StatelessWidget {
               ),
             );
           } else {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
@@ -80,7 +78,7 @@ class ShowNerarby extends StatelessWidget {
 }
 
 class PopularObject extends StatelessWidget {
-  PopularObject({Key? key}) : super(key: key);
+  const PopularObject({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
