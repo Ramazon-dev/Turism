@@ -15,6 +15,11 @@ class GitCubit extends Cubit<GitState> {
   final TextEditingController _aboutRuController = TextEditingController();
   final Set<String> _languages = {};
   String _image = '';
+  static final Git? _git = GetStorage().read('git');
+  //String image = _git != null ? _git!.image : ''; 
+  
+  void readImage()=> print(_git);
+
 
   String _city = CityList.cities[0].name;
   String _chosenCity = CityList().getCity(CityList.cities[0].name);
@@ -81,10 +86,26 @@ class GitCubit extends Cubit<GitState> {
     emit(GitInitial());
   }
 
-  void onChooseImage() {
+
+   void onChooseImage() {
     ImageChooser chooser = ImageChooser();
     chooser.notStatic().then((value) {
       _image = ImageChooser.imageList[0];
+      emit(GitInitial());
+    });
+  }
+  void onChooseImageV2() {
+    //TODO:
+    
+    print('pressed');
+    ImageChooser.chooseOneImage().then((value) {
+      print("GIT NEW IMAGE: " + value);
+      var git =  GetStorage().read('git');
+      print("GIT ID: " + git.toString());
+      String? gitId = git.id;
+      if (gitId != null) {
+        GitService.updateGitImage(gitId: gitId, gitImage: value);
+      }
       emit(GitInitial());
     });
   }

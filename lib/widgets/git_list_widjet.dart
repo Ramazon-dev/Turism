@@ -40,7 +40,7 @@ class MyGitListWidjet extends StatelessWidget {
                   ),
                 ),
                 image: DecorationImage(
-                    image: NetworkImage(git.image), fit: BoxFit.cover)),
+                    image: NetworkImage("https://ucharteam-tourism.herokuapp.com/v1/media/" + git.image), fit: BoxFit.cover)),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

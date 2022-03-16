@@ -25,7 +25,7 @@ class InputHotelPage extends StatelessWidget {
 
   Scaffold _buildScaffold(HotelCubit cubit) {
     return Scaffold(
-      appBar: SimpleAppBar(title: LocaleKeys.hotel.tr()),
+      appBar: SimpleAppBar(title: LocaleKeys.hotel.tr(), ),
       body: SingleChildScrollView(
         child: Padding(
           padding: MyEdgeInsets.symmetric(h: 30.0, v: 25.0),
@@ -85,7 +85,7 @@ class InputHotelPage extends StatelessWidget {
               inputType: TextInputType.url,
               controller: cubit.websiteController,
               hint: LocaleKeys.mapLink.tr(),
-              validator: FormValidator.url,
+              validator: FormValidator.general,
             ),
             MySizedBox(height: 20.0),
 

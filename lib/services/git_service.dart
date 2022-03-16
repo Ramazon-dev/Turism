@@ -43,22 +43,24 @@ class GitService {
 
       request.headers.addAll(headers);
 
-      http.StreamedResponse response = await request.send();
+      http.StreamedResponse streamedResponse = await request.send();
+      var response = await http.Response.fromStream(streamedResponse);
 
       if (response.statusCode == 201) {
-        var gitMap = jsonDecode(await response.stream.bytesToString());
-        Git git = Git.fromJson(gitMap['data']);
-        await GetStorage().write('git', git.toJson());
-        return response.stream.bytesToString();
+        print(response.body);
+        Map<String, dynamic> gitMap = jsonDecode(response.body)['data'];
+        print(gitMap);
+        // Git git = Git.fromJson(gitMap);
+         GetStorage().write('git',gitMap);
+        print(GetStorage().read('git'));
+        return git;
       } else {
-        print('else error: ' + response.reasonPhrase.toString());
-        print("else status code: " + response.statusCode.toString());
-        response.stream.bytesToString().then((value) => print(value));
-        return response.reasonPhrase;
+        print('else error: ' + (response.body as Map)['message'].toString());
+        return null;
       }
     } catch (e) {
       print('catch errorda: ' + e.toString());
-      return e;
+      return null;
     }
   }
 
@@ -126,7 +128,8 @@ class GitService {
 
   Future addCommentToGit(
       {required String gitId, required String commentText}) async {
-    String token = GetStorage().read('token');
+    String token = await GetStorage().read('token');
+
     //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
@@ -172,22 +175,22 @@ class GitService {
 
       if (response.statusCode == 200) {
         print(response.body);
-        return jsonDecode(response.body);
+        // return jsonDecode(response.body);
       } else {
         print(response.statusCode);
-        return jsonDecode(response.statusCode.toString());
+        // return jsonDecode(response.statusCode.toString());
       }
     } catch (e) {
       print(e);
-      return e;
+      // return e;
     }
   }
 
   static Future updateGitImage(
       {required String gitId, required String gitImage}) async {
     try {
-      String token = //await GetStorage().read('token');
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZGI4OGM0Yy04ODYxLTRjMTgtOWI3MS04MjZjM2M0NGFlYzEiLCJpYXQiOjE2NDYxNTI2MDcsImV4cCI6MTY2MzQzMjYwN30.WUaeEN7SJeYNC-8pZ-Vh4FcLu5fRAKLAUjFS3JZUUqg';
+      String token = await GetStorage().read('token');
+      // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZGI4OGM0Yy04ODYxLTRjMTgtOWI3MS04MjZjM2M0NGFlYzEiLCJpYXQiOjE2NDYxNTI2MDcsImV4cCI6MTY2MzQzMjYwN30.WUaeEN7SJeYNC-8pZ-Vh4FcLu5fRAKLAUjFS3JZUUqg';
 
       var headers = {'token': token};
       var request =
@@ -205,11 +208,15 @@ class GitService {
 
       request.headers.addAll(headers);
 
-      http.StreamedResponse response = await request.send();
+      //http.StreamedResponse response = await request.send();
+
+      var streamedResponse = await request.send();
+      var response = await http.Response.fromStream(streamedResponse);
 
       if (response.statusCode == 200) {
-        print(await response.stream.bytesToString());
-        return response.stream.bytesToString();
+        print(await response.body);
+        GetStorage().write('profileImage', 'value');
+        return response.body;
       } else {
         print('else error: ' + response.reasonPhrase.toString());
         return response.reasonPhrase;

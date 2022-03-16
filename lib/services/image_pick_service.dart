@@ -17,6 +17,14 @@ class ImageChooser {
     imageList.forEach((element) => print(element));
   }
 
+  static  chooseOneImage() async {
+    XFile file;
+    file = (await imagePicker.pickImage(
+      source: ImageSource.gallery,
+    ))!;
+    return file.path;
+  }
+
   static void clearImageList() {
     imageList.clear();
   }
