@@ -11,7 +11,7 @@ import 'package:mobileapp/widgets/row_text.dart';
 class HomeBody extends StatelessWidget {
   final HomeCubit cubit;
 
-  const HomeBody({Key? key, required this.cubit}) : super(key: key);
+  HomeBody({Key? key, required this.cubit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +29,7 @@ class HomeBody extends StatelessWidget {
                   fontSize: getWidth(18.0), fontWeight: FontWeight.w400),
             ),
           ),
-          ShowNerarby(
-            ontap: () {},
-            itemCount: 6,
-            image: "https://source.unsplash.com/random/1",
-            text: "Вас ждет путешествие по реке Амирсой!",
-            starNumber: 5.0,
-          ),
+          ShowNerarby(),
 
           /// Популярные пакеты.
           RowTextWidgets(
@@ -45,14 +39,13 @@ class HomeBody extends StatelessWidget {
               text: "Популярные пакеты.",
               bottomText: "Все"),
           ContainerForPopularObject(
-            ontap: () {},
             itemCount: 4,
             image: "https://source.unsplash.com/random/1",
             objectName: "На велосипеде по городу",
             date: "10 минут. 5 сек",
           ),
           RowTextWidgets(ontap: () {}, text: "Регионы.", bottomText: "Все"),
-          const PopularObject(),
+          PopularObject(),
           RowTextWidgets(
               ontap: () {}, text: "Где мы находимся :)", bottomText: "Все"),
           HotelsView(

@@ -13,15 +13,20 @@ class DrawerWidget extends StatelessWidget {
       child: Column(
         children: [
           _buildContainer(),
-          _setCategory(LocaleKeys.hotel.tr(), AppIcons.dollar, const HotelListPage()),
-          _setCategory(LocaleKeys.currency.tr(), AppIcons.dollar, const CurrencyPage()),
-          _setCategory(LocaleKeys.places.tr(), AppIcons.location, const PlacePage()),
-          _setCategory(LocaleKeys.hotel.tr(), AppIcons.arrowBack, const OtherPage()),
-          _setCategory(LocaleKeys.settings.tr(), AppIcons.arrowBack, const SettingsPage()),
+          _setCategory(
+              LocaleKeys.hotel.tr(), AppIcons.dollar, const HotelListPage()),
+          _setCategory(
+              LocaleKeys.currency.tr(), AppIcons.dollar, const CurrencyPage()),
+          _setCategory(LocaleKeys.places.tr(), AppIcons.location, PlacePage()),
+          _setCategory(
+              LocaleKeys.hotel.tr(), AppIcons.arrowBack, const OtherPage()),
+          _setCategory(LocaleKeys.settings.tr(), AppIcons.arrowBack,
+              const SettingsPage()),
           const Spacer(),
           _setCategory(
               LocaleKeys.aboutUs.tr(), AppIcons.location, const AboutUsPage()),
-          _setCategory(LocaleKeys.logout.tr(), AppIcons.location, const HomeScreen(),
+          _setCategory(
+              LocaleKeys.logout.tr(), AppIcons.location, const HomeScreen(),
               isAll: true),
         ],
       ),
@@ -33,7 +38,8 @@ class DrawerWidget extends StatelessWidget {
       height: 224.h,
       width: 375.w,
       alignment: Alignment.bottomCenter,
-      decoration: MyDecoration.netImage(netImage: CityList.cities[0].imgUrl, radius: 0.0),
+      decoration: MyDecoration.netImage(
+          netImage: CityList.cities[0].imgUrl, radius: 0.0),
       child: Container(
         height: 16.h,
         decoration: BoxDecoration(

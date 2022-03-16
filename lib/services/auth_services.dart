@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/services/business_account_service.dart';
 
 class AuthServices {
   static Future<bool> signIn(String email, String password) async {
@@ -22,6 +23,9 @@ class AuthServices {
         UserModel user = UserModel.fromJson(data['data']['user']);
         await GetStorage().write('token', token);
         await GetStorage().write('user', user.toMap());
+
+        await BusinessAccountService().getServiceList();
+
         UserData.setCurrentUser = user;
         return true;
       } else {
@@ -81,5 +85,11 @@ class AuthServices {
     var headers = {'Content-Type': 'application/json'};
     var request = await http.get(Uri.parse('$baseUrl/api/user/$userId'),
         headers: headers);
+  }
+
+  static Future logout() async {
+    await GetStorage().write('token', '');
+    await GetStorage().remove('user');
+    await GetStorage().remove('businessAccount');
   }
 }

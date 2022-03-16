@@ -3,7 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 
 class ContactWidget extends StatelessWidget {
-  const ContactWidget({Key? key}) : super(key: key);
+  // PlaceModel? obekt;
+  Git? git;
+  Restaurant? restaurant;
+  Hotel? hotel;
+  VoidCallback commentOpen;
+  ContactWidget({
+    Key? key,
+    required this.commentOpen,
+    this.git,
+    this.hotel,
+    this.restaurant,
+  }) : super(key: key);
 
   Future<void> _makePhoneCall(String phoneNumber) async {
     final Uri launchUri = Uri(scheme: 'tel', path: phoneNumber);
@@ -25,7 +36,7 @@ class ContactWidget extends StatelessWidget {
             child: _buildContainer(AppIcons.call),
           ),
           InkWell(
-            onTap: _onCommentPressed,
+            onTap: commentOpen,
             child: _buildContainer(AppIcons.comment),
           ),
         ],
@@ -35,11 +46,14 @@ class ContactWidget extends StatelessWidget {
 
   void _onCommentPressed() async {
     try {
-      var headers = {'cxfzgde': 'toshkent'};
-      var request = http.Request(
-          'GET',
-          Uri.parse(
-              'https://ucharteam-tourism.herokuapp.com/v1/api/restaurant'));
+      var headers = {
+        // 'object_id':'${obekt.}'
+        'git_id': '${git!.id}',
+        'hotel_id': '${hotel?.id}',
+        'restaurant_id': '${restaurant?.id}'
+      };
+      var request = http.Request('GET',
+          Uri.parse('https://ucharteam-tourism.herokuapp.com/v1/api/comment'));
       request.body = '''''';
       request.headers.addAll(headers);
 

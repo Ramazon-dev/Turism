@@ -73,7 +73,11 @@ class ProfileAppBar extends StatelessWidget with PreferredSizeWidget {
         onSelected: (v) {
           switch (v) {
             case 'git':
-              CustomNavigator.push(GitInfoPage());
+              if (GetStorage().read('git') == null) {
+                CustomNavigator.push(GitInfoPage());
+              } else{
+                Fluttertoast.showToast(msg: 'You are already git');
+              }
               break;
             case 'hotel':
               CustomNavigator.push(InputHotelPage(isEditing: false));
@@ -85,12 +89,12 @@ class ProfileAppBar extends StatelessWidget with PreferredSizeWidget {
         },
         offset: Offset(0.0, getHeight(53.0)),
         child: const Text('Бизнес аккаунт', textAlign: TextAlign.center),
-        itemBuilder: (v) => _list,
+        itemBuilder: (v) => _items,
       ),
     );
   }
 
-  final List<PopupMenuItem> _list = [
+  final List<PopupMenuItem> _items = [
     PopupMenuItem(value: 'git', child: Text(LocaleKeys.git.tr())),
     PopupMenuItem(value: 'hotel', child: Text(LocaleKeys.hotel.tr())),
     PopupMenuItem(value: 'restaurant', child: Text(LocaleKeys.restaurant.tr())),

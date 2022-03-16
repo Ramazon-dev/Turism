@@ -15,91 +15,96 @@ class SignInPage extends StatelessWidget {
       create: (_) => SignInCubit(),
       child: BlocBuilder<SignInCubit, SignInState>(builder: (ctx, state) {
         SignInCubit cubit = ctx.watch();
-        return SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          padding: MyEdgeInsets.symmetric(h: 30.0, v: 20.0),
-          child: Form(
-            key: cubit.formKey,
-            child: Column(
-              children: [
-                SizedBox(height: 80.h),
-                AuthTextWidget(),
-                MySizedBox(height: 80.0),
-                TextFormFieldWidget(
-                  controller: cubit.loginController,
-                  hint: 'Email',
-                  inputType: TextInputType.emailAddress,
-                  validator: FormValidator.email,
-                ),
-                MySizedBox(height: 25.0),
-                TextFormFieldWidget(
-                  controller: cubit.passwordController,
-                  hint: LocaleKeys.password.tr(),
-                  action: TextInputAction.done,
-                ),
-                CheckboxListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: const Text("Remember me"),
-                  controlAffinity: ListTileControlAffinity.leading,
-                  value: cubit.isTrue,
-                  onChanged: cubit.onChanged,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: getHeight(104),
-                        left: getWidth(20),
-                      ),
-                      child: TextButton(
-                        child: Text(
-                          LocaleKeys.forgotPassword.tr(),
-                          style: const TextStyle(color: AppColors.blue),
+        return Scaffold(
+          body: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            padding: MyEdgeInsets.symmetric(h: 30.0, v: 20.0),
+            child: Form(
+              key: cubit.formKey,
+              child: Column(
+                children: [
+                  SizedBox(height: 80.h),
+                  AuthTextWidget(),
+                  MySizedBox(height: 80.0.h),
+                  TextFormFieldWidget(
+                    controller: cubit.loginController,
+                    hint: 'Email',
+                    inputType: TextInputType.emailAddress,
+                    validator: FormValidator.email,
+                  ),
+                  MySizedBox(height: 25.0),
+                  TextFormFieldWidget(
+                    controller: cubit.passwordController,
+                    hint: LocaleKeys.password.tr(),
+                    action: TextInputAction.done,
+                  ),
+                  CheckboxListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: const Text("Remember me"),
+                    controlAffinity: ListTileControlAffinity.leading,
+                    value: cubit.isTrue,
+                    onChanged: cubit.onChanged,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.42,
+                        margin: EdgeInsets.only(
+                          top: getHeight(104),
                         ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ForgotPassword(),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: getHeight(100),
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: AppColors.blue,
+                        child: TextButton(
+                          child: Text(
+                            LocaleKeys.forgotPassword.tr(),
+                            style: const TextStyle(
+                                color: AppColors.blue,
+                                overflow: TextOverflow.ellipsis),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ForgotPassword(),
+                              ),
+                            );
+                          },
                         ),
-                        borderRadius: BorderRadius.circular(30),
                       ),
-                      child: TextButton(
-                        child: Text(
-                          LocaleKeys.signUp.tr(),
-                          style: const TextStyle(color: AppColors.blue),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.42,
+                        margin: EdgeInsets.only(
+                          top: getHeight(100),
                         ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SignUpPage(),
-                            ),
-                          );
-                        },
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColors.blue,
+                          ),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: TextButton(
+                          child: Text(
+                            LocaleKeys.signUp.tr(),
+                            style: const TextStyle(color: AppColors.blue),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SignUpPage(),
+                              ),
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: getHeight(60)),
-                ElevatedButtonWidget(
-                  onPressed: cubit.onPressed,
-                  label: LocaleKeys.signIn.tr(),
-                )
-              ],
+                    ],
+                  ),
+                  SizedBox(height: getHeight(60)),
+                  ElevatedButtonWidget(
+                    onPressed: cubit.onPressed,
+                    label: LocaleKeys.signIn.tr(),
+                  )
+                ],
+              ),
             ),
           ),
         );
