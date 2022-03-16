@@ -12,18 +12,19 @@ class GitInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => isEditing?  GitCubit.editing(git!) : GitCubit(),
+      create: (_) => isEditing ? GitCubit.editing(git!) : GitCubit(),
       child: BlocBuilder<GitCubit, GitState>(
         builder: (ctx, state) {
           GitCubit cubit = ctx.watch();
-          return _buildScaffold(cubit);
+          GitCubit cubitRead = ctx.read();
+          return _buildScaffold(cubit, cubitRead);
         },
       ),
     );
   }
 
   // Build Scaffold
-  Scaffold _buildScaffold(GitCubit cubit) {
+  Scaffold _buildScaffold(GitCubit cubit, GitCubit cubitRead) {
     UserModel user = UserModel.fromJson(_data);
     return Scaffold(
       appBar: SimpleAppBar(title: LocaleKeys.git.tr()),
@@ -34,7 +35,11 @@ class GitInfoPage extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  ProfileCircleAvatar(imageUrl: 'default'),
+                  //TODO:
+                  ProfileCircleAvatar(
+                    imageUrl: 'image__0ac91ed7-4dad-4813-8f3b-0f3d74ec4305.jpg',// _git.image,
+                    onPressed: cubitRead.onChooseImage,
+                  ),
                   MySizedBox(width: 26.0),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,7 +49,9 @@ class GitInfoPage extends StatelessWidget {
                         style: AppTextStyle.medium(size: 20.0),
                       ),
                       MySizedBox(height: 10.0),
-                      BlueButton(onPressed: () {}, label: LocaleKeys.edit.tr()),
+                      BlueButton(
+                          onPressed: cubitRead.readImage,
+                          label: LocaleKeys.edit.tr()),
                     ],
                   ),
                 ],

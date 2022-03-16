@@ -3,10 +3,12 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 
 class ProfileCircleAvatar extends StatelessWidget {
   final String imageUrl;
+  VoidCallback onPressed;
   double height;
 
   ProfileCircleAvatar({
     Key? key,
+    required this.onPressed,
     required this.imageUrl,
     this.height = 100.0,
   }) : super(key: key);
@@ -29,20 +31,23 @@ class ProfileCircleAvatar extends StatelessWidget {
                 MyBorderRadius.circular(radius: _isDefault() ? 0.0 : 100.0),
             child: _isDefault()
                 ? SvgPicture.asset(AppIcons.personal)
-                : CachedNetworkImage(imageUrl: imageUrl),
+                : CachedNetworkImage(imageUrl: "https://ucharteam-tourism.herokuapp.com/v1/media/$imageUrl" ),
           ),
         ),
         Positioned(
           bottom: 0.0,
           right: 0.0,
-          child: CircleAvatar(
-            backgroundColor: AppColors.primary,
-            radius: getWidth(21.43),
-            child: SvgPicture.asset(AppIcons.image),
-          ).onClick(() {
-            ImageChooser.chooseImage();
-          }),
-        )
+          child: InkWell(
+            onTap: onPressed,
+            child: CircleAvatar(
+              backgroundColor: AppColors.primary,
+              radius: getWidth(21.43),
+              child: SvgPicture.asset(AppIcons.image),
+          
+              //TODO:
+            ),
+          )),
+        
       ],
     );
   }

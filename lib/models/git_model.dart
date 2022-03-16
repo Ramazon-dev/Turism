@@ -1,4 +1,3 @@
-
 class Git {
   late String image;
   late List<String> languages;
@@ -33,18 +32,17 @@ class Git {
     id = json['id'];
     username = json['username'];
     image = json['image'];
-    languages = json['languages'].cast<String>();
+    languages = json['languages'] as List<String>;
     informUz = json['inform_uz'];
     informEn = json['inform_en'];
     informRu = json['inform_ru'];
     city = json['city'];
-    tell = json['tell'].cast<String>();
+    tell = json['tell'];
     price = json['price'];
     date = json['date'];
     reyting = json['reyting'];
     users = json['users'];
   }
-
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -61,6 +59,8 @@ class Git {
     data['date'] = date;
     data['reyting'] = reyting;
     data['users'] = users;
+    print("GIT TO JSON IN MODEL: "+ data.toString());
     return data;
   }
 }
+
