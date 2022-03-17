@@ -16,7 +16,7 @@ class HotelService {
       request.fields.addAll({
         'name': hotel.name,
         'city': hotel.city,
-        'informUz': hotel.informUz,
+        'informUz': hotel.informUz, 
         'informRu': hotel.informRu,
         'informEn': hotel.informEn,
         'karta': hotel.karta,

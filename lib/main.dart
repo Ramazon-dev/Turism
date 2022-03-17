@@ -5,7 +5,7 @@ import 'package:mobileapp/screens/on_boarding/initial_page.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  await dotenv.load(fileName: ".env");
+  // await dotenv.load(fileName: ".env");
   await GetStorage.init();
 
   runApp(

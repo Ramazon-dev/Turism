@@ -42,6 +42,9 @@ class HotelCubit extends Cubit<HotelState> {
     emit(HotelInitial());
   }
 
+
+//TODO:
+
   void setImage() {
     ImageChooser chooser = ImageChooser();
     chooser.notStatic().then((value) {

@@ -18,9 +18,16 @@ class UrlTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: urlLaunch,
-      child: Text(
-        text!,
-        style: TextStyle(color: color),
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width * 0.8,
+        child: Text(
+          text!,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+          style: TextStyle(
+            color: color,
+          ),
+        ),
       ),
     );
   }

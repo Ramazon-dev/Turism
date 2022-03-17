@@ -19,7 +19,7 @@ class ProfileInfoCard extends StatelessWidget {
           padding: EdgeInsets.only(top: 23.h),
           child: Column(
             children: [
-              ProfileCircleAvatar(imageUrl: user.image ?? 'default'),
+              ProfileCircleAvatar(imageUrl: user.image ?? 'image__0ac91ed7-4dad-4813-8f3b-0f3d74ec4305.jpg', onPressed: (){},),
               MySizedBox(height: 15.0),
               Text(user.name, style: AppTextStyle.medium(size: 18.0)),
               MySizedBox(height: 9.0),

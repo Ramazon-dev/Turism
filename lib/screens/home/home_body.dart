@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/data/city_list.dart';
 import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/screens/home/widgets/container.dart';
 import 'package:mobileapp/screens/home/widgets/hotel_view.dart';
 import 'package:mobileapp/screens/home/widgets/popolar_object.dart';
-import 'package:mobileapp/widgets/city_list_widget.dart';
 import 'package:mobileapp/widgets/row_text.dart';
+import 'package:mobileapp/widgets/texts/text_widgets.dart';
 
 class HomeBody extends StatelessWidget {
   final HomeCubit cubit;
@@ -22,30 +21,23 @@ class HomeBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: MyEdgeInsets.only(left: 10),
+            padding: MyEdgeInsets.only(left: 10, top: 20),
             child: Text(
               "Ближайшие туры.",
               style: TextStyle(
                   fontSize: getWidth(18.0), fontWeight: FontWeight.w400),
             ),
           ),
-          ShowNerarby(
-            ontap: () {},
-            itemCount: 6,
-            image: "https://source.unsplash.com/random/1",
-            text: "Вас ждет путешествие по реке Амирсой!",
-            starNumber: 5.0,
-          ),
+          const ShowNerarby(),
 
           /// Популярные пакеты.
           RowTextWidgets(
               ontap: () {
-                print("bosildi");
+                debugPrint("bosildi");
               },
               text: "Популярные пакеты.",
               bottomText: "Все"),
           ContainerForPopularObject(
-            ontap: () {},
             itemCount: 4,
             image: "https://source.unsplash.com/random/1",
             objectName: "На велосипеде по городу",
@@ -58,7 +50,7 @@ class HomeBody extends StatelessWidget {
           HotelsView(
             ontap: () {},
             itemCount: 3,
-            image: "https://source.unsplash.com/random/1",
+            image: "https://source.unsplash.com/random/index",
             starCount: 40,
             hotelName: "Hotel Uzbekistan",
           ),
@@ -74,7 +66,8 @@ class HomeBody extends StatelessWidget {
                     child: Container(
                       height: getHeight(150.0),
                       width: getWidth(300.0),
-                      decoration: MyDecoration.circular(radius: 5),
+                      decoration: MyDecoration.circular(
+                          color: Colors.grey.shade200, radius: 5),
                       child: Row(
                         children: [
                           Padding(
@@ -84,11 +77,78 @@ class HomeBody extends StatelessWidget {
                               width: getWidth(138.49),
                               decoration: MyDecoration.netImage(
                                   netImage:
-                                      "https://source.unsplash.com/random/1"),
+                                      "https://source.unsplash.com/random/$index"),
                             ),
                           ),
-                          Column(
-                            children: [],
+                          Container(
+                            alignment: Alignment.topCenter,
+                            height: 100,
+                            width: 110,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: const [
+                                    Text("_______"),
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.only(left: 5, right: 5),
+                                      child: Text("___"),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 5),
+                                      child: Text("__"),
+                                    ),
+                                    Text("_"),
+                                  ],
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.only(top: 5, bottom: 5),
+                                  child: Text("Национальные продукты"),
+                                ),
+                                Row(
+                                  children: const [
+                                    Icon(
+                                      Icons.star,
+                                      color: Colors.orangeAccent,
+                                      size: 14,
+                                    ),
+                                    Icon(
+                                      Icons.star,
+                                      color: Colors.orangeAccent,
+                                      size: 14,
+                                    ),
+                                    Icon(
+                                      Icons.star,
+                                      color: Colors.orangeAccent,
+                                      size: 14,
+                                    ),
+                                    Icon(
+                                      Icons.star,
+                                      color: Colors.orangeAccent,
+                                      size: 14,
+                                    ),
+                                    Icon(
+                                      Icons.star,
+                                      color: Colors.orangeAccent,
+                                      size: 14,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 10),
+                                      child: Text("4.8"),
+                                    ),
+                                    
+                                  ],
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.only(left: 15,top: 10),
+                                  child: Text(
+                                        "улица Амира Темура 32А",
+                                        style: TextStyle(
+                                            fontSize: 8, color: AppColors.greyPrice),
+                                      ),
+                                )
+                              ],
+                            ),
                           )
                         ],
                       ),

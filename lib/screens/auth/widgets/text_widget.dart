@@ -15,7 +15,7 @@ class AuthTextWidget extends StatelessWidget {
       text.tr(),
       style: TextStyle(
         color: AppColors.primary,
-        fontSize: getHeight(40),
+        fontSize: getWidth(35),
         fontWeight: FontWeight.w500,
       ),
     );

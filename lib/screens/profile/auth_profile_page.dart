@@ -8,18 +8,8 @@ import 'package:mobileapp/services/business_account_service.dart';
 import 'package:mobileapp/widgets/tiles/business_hotel_tile.dart';
 import 'package:mobileapp/widgets/tiles/business_restaurant_tile.dart';
 
-
-class ProfileAuthPage extends StatefulWidget {
+class ProfileAuthPage extends StatelessWidget {
   const ProfileAuthPage({Key? key}) : super(key: key);
-
-  @override
-  State<ProfileAuthPage> createState() => _ProfileAuthPageState();
-}
-
-// TODO: Vaqtincha StatefulWidget'da qilindi. Cubitga ulash kerak.
-
-class _ProfileAuthPageState extends State<ProfileAuthPage> {
-  bool _isShow = false;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +28,7 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
     return SingleChildScrollView(
       child: FutureBuilder(
         future: BusinessAccountService().getServiceList(),
-        builder: (ctx, AsyncSnapshot<BusinessAccountModel> snap) {
+        builder: (ctx, AsyncSnapshot<BusinessAccountModel?> snap) {
           if (snap.hasData) {
             BusinessAccountModel model = snap.data!;
             return Column(
@@ -95,52 +85,4 @@ class _ProfileAuthPageState extends State<ProfileAuthPage> {
       CustomNavigator.push(GitInfoPage(git: gits, isEditing: true));
     });
   }
-
-  // TextButton
-  Visibility _buildTextButtonWidget() {
-    return Visibility(
-      visible: !_isShow,
-      child: TextButtonWidget(
-        onPressed: _onPressed,
-        label: LocaleKeys.edit.tr(),
-      ),
-    );
-  }
-
-  // Password fields
-  Visibility _showChangingPasswordFields() => Visibility(
-        visible: _isShow,
-        child: Padding(
-          padding: MyEdgeInsets.symmetric(h: 30.0),
-          child: MySizedBox(
-            height: 322.0,
-            child: Form(
-              child: Column(
-                children: [
-                  TextFormFieldWidget(
-                    hint: LocaleKeys.lastPassword.tr(),
-                  ),
-                  MySizedBox(height: 20.0),
-                  TextFormFieldWidget(
-                    hint: LocaleKeys.newPassword.tr(),
-                  ),
-                  MySizedBox(height: 20.0),
-                  TextFormFieldWidget(
-                    hint: LocaleKeys.confirmPassword.tr(),
-                  ),
-                  const Spacer(),
-                  ElevatedButtonWidget(
-                    onPressed: _onPressed,
-                    label: LocaleKeys.save.tr(),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ),
-      );
-
-  void _onPressed() => setState(() {
-        _isShow = !_isShow;
-      });
 }

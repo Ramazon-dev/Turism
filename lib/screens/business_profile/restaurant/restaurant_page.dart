@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/business/restourant_cubit/restarant_cubit.dart';
-import 'package:mobileapp/models/restaurant_model.dart';
 import 'package:mobileapp/widgets/images/show_image_network.dart';
 
 class RestaurantPage extends StatelessWidget {
