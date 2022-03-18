@@ -127,11 +127,7 @@ class HomeBody extends StatelessWidget {
                                       color: Colors.orangeAccent,
                                       size: 14,
                                     ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Colors.orangeAccent,
-                                      size: 14,
-                                    ),
+                                   
                                     Padding(
                                       padding: EdgeInsets.only(left: 10),
                                       child: Text("4.8"),
@@ -142,7 +138,7 @@ class HomeBody extends StatelessWidget {
                                 const Padding(
                                   padding: EdgeInsets.only(left: 15,top: 10),
                                   child: Text(
-                                        "улица Амира Темура 32А",
+                                        "улица Амира Темура 32А   ",
                                         style: TextStyle(
                                             fontSize: 8, color: AppColors.greyPrice),
                                       ),

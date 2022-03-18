@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:mobileapp/core/components/custom_navigator.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/services/auth_services.dart';
 
 part 'sign_up_state.dart';
 
