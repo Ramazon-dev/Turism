@@ -18,11 +18,11 @@ class TransportDetailPage extends StatelessWidget {
         actions: SvgPicture.asset(AppIcons.language),
         actions2: SvgPicture.asset(AppIcons.dollar),
       ),
-      
       body: FutureBuilder(
         future: CarsService.getCars(),
         builder: (context, AsyncSnapshot snap) {
           if (snap.hasData) {
+            debugPrint("asasas\nyana\nyana\nyana\nyana sogindim yana");
             debugPrint("cars page da data keldi ${snap.data}");
             return Column(
               children: [
@@ -100,7 +100,9 @@ class TransportDetailPage extends StatelessWidget {
                                   fontFamily: 'Roboto',
                                 ),
                               ),
-                               ContactWidget(commentOpen: () {  },),
+                              ContactWidget(
+                                commentOpen: () {},
+                              ),
                             ],
                           ),
                         )
