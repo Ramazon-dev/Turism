@@ -4,8 +4,8 @@ import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/screens/home/widgets/container.dart';
 import 'package:mobileapp/screens/home/widgets/hotel_view.dart';
 import 'package:mobileapp/screens/home/widgets/popolar_object.dart';
+import 'package:mobileapp/widgets/rating_bar_widget.dart';
 import 'package:mobileapp/widgets/row_text.dart';
-import 'package:mobileapp/widgets/texts/text_widgets.dart';
 
 class HomeBody extends StatelessWidget {
   final HomeCubit cubit;
@@ -105,44 +105,24 @@ class HomeBody extends StatelessWidget {
                                   padding: EdgeInsets.only(top: 5, bottom: 5),
                                   child: Text("Национальные продукты"),
                                 ),
-                                Row(
-                                  children: const [
-                                    Icon(
-                                      Icons.star,
-                                      color: Colors.orangeAccent,
-                                      size: 14,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Colors.orangeAccent,
-                                      size: 14,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Colors.orangeAccent,
-                                      size: 14,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Colors.orangeAccent,
-                                      size: 14,
-                                    ),
-                                   
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 10),
-                                      child: Text("4.8"),
-                                    ),
-                                    
-                                  ],
-                                ),
+
+                                const RatingBarWidget(rating: 4.5),
+
+                          
                                 const Padding(
-                                  padding: EdgeInsets.only(left: 15,top: 10),
+                                  padding: EdgeInsets.only(left: 15, top: 10),
                                   child: Text(
+
+                                    "улица Амира Темура 32А",
+                                    style: TextStyle(
+                                        fontSize: 8,
+                                        color: AppColors.greyPrice),
+                                  ),
+
                                         "улица Амира Темура 32А   ",
                                         style: TextStyle(
                                             fontSize: 8, color: AppColors.greyPrice),
-                                      ),
-                                )
+                                      ),                              )
                               ],
                             ),
                           )
