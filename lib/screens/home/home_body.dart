@@ -58,79 +58,70 @@ class HomeBody extends StatelessWidget {
           SizedBox(
             height: getHeight(150.0),
             child: ListView.builder(
-                itemCount: 10,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: getHeight(150.0),
-                      width: getWidth(300.0),
-                      decoration: MyDecoration.circular(
-                          color: Colors.grey.shade200, radius: 5),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Container(
-                              height: getHeight(120.0),
-                              width: getWidth(138.49),
-                              decoration: MyDecoration.netImage(
-                                  netImage:
-                                      "https://source.unsplash.com/random/$index"),
-                            ),
+              itemCount: 10,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    height: getHeight(150.0),
+                    width: getWidth(300.0),
+                    decoration: MyDecoration.circular(
+                        color: Colors.grey.shade200, radius: 5),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Container(
+                            height: getHeight(120.0),
+                            width: getWidth(138.49),
+                            decoration: MyDecoration.netImage(
+                                netImage:
+                                    "https://source.unsplash.com/random/$index"),
                           ),
-                          Container(
-                            alignment: Alignment.topCenter,
-                            height: 100,
-                            width: 110,
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: const [
-                                    Text("_______"),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.only(left: 5, right: 5),
-                                      child: Text("___"),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(right: 5),
-                                      child: Text("__"),
-                                    ),
-                                    Text("_"),
-                                  ],
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.only(top: 5, bottom: 5),
-                                  child: Text("Национальные продукты"),
-                                ),
-
-                                const RatingBarWidget(rating: 4.5),
-
-                          
-                                const Padding(
-                                  padding: EdgeInsets.only(left: 15, top: 10),
-                                  child: Text(
-
-                                    "улица Амира Темура 32А",
-                                    style: TextStyle(
-                                        fontSize: 8,
-                                        color: AppColors.greyPrice),
+                        ),
+                        Container(
+                          alignment: Alignment.topCenter,
+                          height: 100,
+                          width: 110,
+                          child: Column(
+                            children: [
+                              Row(
+                                children: const [
+                                  Text("_______"),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 5, right: 5),
+                                    child: Text("___"),
                                   ),
-
-                                        "улица Амира Темура 32А   ",
-                                        style: TextStyle(
-                                            fontSize: 8, color: AppColors.greyPrice),
-                                      ),                              )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 5),
+                                    child: Text("__"),
+                                  ),
+                                  Text("_"),
+                                ],
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.only(top: 5, bottom: 5),
+                                child: Text("Национальные продукты"),
+                              ),
+                              const RatingBarWidget(rating: 4.5),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 15, top: 10),
+                                child: Text(
+                                  "улица Амира Темура 32А",
+                                  style: TextStyle(
+                                      fontSize: 8, color: AppColors.greyPrice),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
                     ),
-                  );
-                }),
+                  ),
+                );
+              },
+            ),
           )
         ],
       ),
