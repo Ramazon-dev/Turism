@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/models/tnas_models.dart';
+import 'package:mobileapp/models/transport_model.dart';
 import 'package:mobileapp/services/car_service.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
@@ -19,11 +21,11 @@ class TransportDetailPage extends StatelessWidget {
         actions2: SvgPicture.asset(AppIcons.dollar),
       ),
       body: FutureBuilder(
-        future: CarsService.getCars(),
-        builder: (context, AsyncSnapshot snap) {
+        future: TransportServisec.getDataFromApi(),
+        builder: (context, AsyncSnapshot<TransportModelsssssss> snap) {
+          var api = snap.data;
+          debugPrint("Junior qovun mana malumot : ${api!.data![0].id}");
           if (snap.hasData) {
-            debugPrint("asasas\nyana\nyana\nyana\nyana sogindim yana");
-            debugPrint("cars page da data keldi ${snap.data}");
             return Column(
               children: [
                 Center(
@@ -115,7 +117,12 @@ class TransportDetailPage extends StatelessWidget {
           } else if (snap.hasError) {
             debugPrint("snap error ketti ${snap.data}");
 
-            return const CircularProgressIndicator();
+            return const Center(
+              child: Text(
+                'error',
+                style: TextStyle(fontSize: 20),
+              ),
+            );
           } else {
             debugPrint("else ni oziga kirdi ${snap.data}");
 
