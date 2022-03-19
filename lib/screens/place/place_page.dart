@@ -30,7 +30,7 @@ class PlacePage extends StatelessWidget {
                           return PlaceInfoCard(place: data[i]);
                         }));
               } else {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               }

@@ -105,16 +105,24 @@ class HomeBody extends StatelessWidget {
                                   padding: EdgeInsets.only(top: 5, bottom: 5),
                                   child: Text("Национальные продукты"),
                                 ),
+
                                 const RatingBarWidget(rating: 4.5),
+
+                          
                                 const Padding(
                                   padding: EdgeInsets.only(left: 15, top: 10),
                                   child: Text(
+
                                     "улица Амира Темура 32А",
                                     style: TextStyle(
                                         fontSize: 8,
                                         color: AppColors.greyPrice),
                                   ),
-                                )
+
+                                        "улица Амира Темура 32А   ",
+                                        style: TextStyle(
+                                            fontSize: 8, color: AppColors.greyPrice),
+                                      ),                              )
                               ],
                             ),
                           )
