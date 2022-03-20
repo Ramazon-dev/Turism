@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/models/tnas_models.dart';
-import 'package:mobileapp/services/car_service.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
 
@@ -70,7 +68,8 @@ class TransportDetailPage extends StatelessWidget {
                         ),
                         image: const DecorationImage(
                           image: NetworkImage(
-                              'https://source.unsplash.com/random/4'),
+                            'https://source.unsplash.com/random/4',
+                          ),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -116,7 +115,7 @@ class TransportDetailPage extends StatelessWidget {
                               fontFamily: 'Roboto',
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             height: getHeight(50),
                             width: getWidth(120),
                             child: ListView.builder(
