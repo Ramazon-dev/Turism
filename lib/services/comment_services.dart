@@ -8,15 +8,12 @@ class CommentService {
   var request = http.Request('POST',
       Uri.parse('https://ucharteam-tourism.herokuapp.com/v1/api/comment'));
 
-  Future<bool> addObjectComment({
-    required String commentText,
-    required String objectId,
-  }) async {
+  Future<bool> addObjectComment(Map<String, String> body) async {
     String token = await GetStorage().read('token');
     try {
       request.headers
           .addAll({'token': token, 'Content-Type': 'application/json'});
-      request.body = json.encode({"name": commentText, "objectId": objectId});
+      request.body = json.encode(body);
 
       http.StreamedResponse response = await request.send();
 
@@ -33,8 +30,6 @@ class CommentService {
   static Future<List<Comment>?> getComment(Map<String, String> headers) async {
     var request = http.MultipartRequest('GET',
         Uri.parse('https://ucharteam-tourism.herokuapp.com/v1/api/comment'));
-    request.fields.addAll({'hotel_id': ''});
-
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
