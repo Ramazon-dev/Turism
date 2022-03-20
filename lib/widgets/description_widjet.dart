@@ -21,33 +21,14 @@ class DescriptionWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width - getWidth(80),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                name,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-                style: TextStyle(
-                  fontSize: getWidth(16),
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Roboto',
-                ),
-              ),
-              Text(
-                name,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-                style: TextStyle(
-                  fontSize: getWidth(16),
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.greyPrice,
-                  fontFamily: 'Roboto',
-                ),
-              ),
-            ],
+        Text(
+          name,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+          style: TextStyle(
+            fontSize: getWidth(16),
+            fontWeight: FontWeight.w500,
+            fontFamily: 'Roboto',
           ),
         ),
         SizedBox(
