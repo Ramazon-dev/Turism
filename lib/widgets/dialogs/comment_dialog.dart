@@ -13,9 +13,10 @@ class CommentListDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [
-        const AddCommentLayout(),
+        AddCommentLayout(type: 'hotelId', id: headers[headers.keys.first]!),
         FutureBuilder(
             future: CommentService.getComment(headers),
             builder: (ctx, AsyncSnapshot<List<Comment>?> snap) {

@@ -5,10 +5,10 @@ import 'package:mobileapp/models/comment.dart';
 import '../core/components/exporting_packages.dart';
 
 class CommentService {
-  var request = http.Request('POST',
+ static var request = http.Request('POST',
       Uri.parse('https://ucharteam-tourism.herokuapp.com/v1/api/comment'));
 
-  Future<bool> addObjectComment(Map<String, String> body) async {
+  static Future<bool> addObjectComment(Map<String, String> body) async {
     String token = await GetStorage().read('token');
     try {
       request.headers

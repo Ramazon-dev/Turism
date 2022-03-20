@@ -15,6 +15,7 @@ class ResHotelDetailsPage extends StatelessWidget {
     SizeConfig().init(context);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.black,
         child: SvgPicture.asset(AppIcons.comment),
