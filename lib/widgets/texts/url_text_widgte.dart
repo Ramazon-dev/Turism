@@ -19,7 +19,7 @@ class UrlTextWidget extends StatelessWidget {
     return InkWell(
       onTap: urlLaunch,
       child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.8,
+        width: MediaQuery.of(context).size.width * 0.75,
         child: Text(
           text!,
           overflow: TextOverflow.ellipsis,

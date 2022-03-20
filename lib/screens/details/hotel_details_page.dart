@@ -20,8 +20,10 @@ class ResHotelDetailsPage extends StatelessWidget {
               height: getHeight(592),
               width: getWidth(345),
               decoration: BoxDecoration(
-                border:
-                    Border.all(color: AppColors.darkBorder, width: getWidth(1)),
+                border: Border.all(
+                  color: AppColors.darkBorder,
+                  width: getWidth(1),
+                ),
                 borderRadius: BorderRadius.all(
                   Radius.circular(
                     getWidth(7),
@@ -93,9 +95,7 @@ class ResHotelDetailsPage extends StatelessWidget {
                           style: AppTextStyle.regular(),
                         ),
                         ContactWidget(
-                          commentOpen: (() {
-                            
-                          }),
+                          commentOpen: (() {}),
                           hotel: hotel,
                         ),
                       ],
