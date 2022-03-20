@@ -14,7 +14,6 @@ class HotelListPage extends StatefulWidget {
 
 class _HotelListPageState extends State<HotelListPage>
     with TickerProviderStateMixin {
-
   late TabController _tabController;
   CityModel _city = CityList.cities[0];
 
