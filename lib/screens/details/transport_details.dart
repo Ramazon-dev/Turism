@@ -97,14 +97,22 @@ class TransportDetailPage extends StatelessWidget {
                             height: getHeight(45),
                             width: getWidth(150),
                             child: RichText(
-                              text: TextSpan(children: [
-                                TextSpan(
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
                                     text: "02 Фев. 2022",
-                                    style: TextStyle(fontSize: getWidth(12))),
-                                const TextSpan(
+                                    style: TextStyle(
+                                      fontSize: getWidth(12),
+                                    ),
+                                  ),
+                                  const TextSpan(
                                     text: "10:00",
-                                    style: TextStyle(color: AppColors.grey))
-                              ]),
+                                    style: TextStyle(
+                                      color: AppColors.grey,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(height: 28.h),

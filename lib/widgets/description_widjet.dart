@@ -37,7 +37,7 @@ class DescriptionWidget extends StatelessWidget {
                 ),
               ),
             ],
-          ),
+      
         ),
         SizedBox(height: getHeight(8)),
         RichText(

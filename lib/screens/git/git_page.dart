@@ -30,6 +30,7 @@ class _GitPageState extends State<GitPage> with TickerProviderStateMixin {
       child: BlocBuilder<GitCubit, GitState>(
         builder: (context, state) {
           GitCubit cubit = context.watch();
+
           return Scaffold(
             appBar: AppBarWithList(
               onTabChanged: _onTabChanged,
@@ -43,6 +44,28 @@ class _GitPageState extends State<GitPage> with TickerProviderStateMixin {
                   if (snap.hasData) {
                     if (snap.data!.isEmpty) {
                       return const EmptyPageWidget();
+
+//           return Column(
+//             children: [
+//               // City List Widget
+//               CityListWidget(
+//                 onCityChanged: cubit.onCityChanged,
+//                 cityName: cubit.city.name,
+//               ),
+//               FutureBuilder(
+//                   future: GitService.fetchGitsByCity(cubit.city.value),
+//                   builder: (ctx, AsyncSnapshot<List<Git>> snap) {
+//                     if (snap.hasData) {
+//                       if (snap.data!.isEmpty) {
+//                         return const EmptyPageWidget();
+//                       }
+//                       return _gitList(snap.data!);
+//                     } else if (snap.hasError) {
+//                       return const Center(child: Text('Error'));
+//                     } else if (snap.connectionState ==
+//                         ConnectionState.waiting) {
+//                       return _buildCenter();
+// >>>>>>> main
                     }
                     return _gitList(snap.data!);
                   } else if (snap.hasError) {
