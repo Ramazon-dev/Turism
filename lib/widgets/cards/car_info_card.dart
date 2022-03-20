@@ -4,8 +4,17 @@ import 'package:mobileapp/screens/details/transport_details.dart';
 
 class CarInfoCard extends StatelessWidget {
   final CarModel car;
+  final String carName;
+  final String carPrice;
+  final String? carImage;
 
-  const CarInfoCard({Key? key, required this.car}) : super(key: key);
+  const CarInfoCard({
+    Key? key,
+    required this.car,
+    required this.carImage,
+    required this.carName,
+    required this.carPrice,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +24,13 @@ class CarInfoCard extends StatelessWidget {
       child: InkWell(
         onTap: () {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (_) => TransportDetailPage(
-                        car: car,
-                      )));
+            context,
+            MaterialPageRoute(
+              builder: (_) => TransportDetailPage(
+                car: car,
+              ),
+            ),
+          );
         },
         child: Card(
           shape: RoundedRectangleBorder(
@@ -31,14 +42,14 @@ class CarInfoCard extends StatelessWidget {
                 borderRadius:
                     MyBorderRadius.only(topLeft: 12.0, topRight: 12.0),
                 child: CachedNetworkImage(
-                  imageUrl: car.img,
+                  imageUrl: carImage ?? car.img,
                   width: MediaQuery.of(context).size.width,
                   height: getHeight(160.0),
                   fit: BoxFit.cover,
                 ),
               ),
               MySizedBox(height: 5.0),
-              Text(car.model, style: AppTextStyle.medium(size: 18.0)),
+              Text(carName, style: AppTextStyle.medium(size: 18.0)),
               MySizedBox(height: 7.0),
               Container(
                 alignment: Alignment.center,
@@ -47,7 +58,7 @@ class CarInfoCard extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 padding: MyEdgeInsets.symmetric(v: 5.0, h: 40.0),
                 child: Text(
-                  '${car.price}\$',
+                  '$carPrice \$',
                   style: AppTextStyle.medium(size: 8.0, color: AppColors.white),
                 ),
               ),

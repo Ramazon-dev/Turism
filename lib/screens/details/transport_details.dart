@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/models/tnas_models.dart';
-import 'package:mobileapp/models/transport_model.dart';
 import 'package:mobileapp/services/car_service.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
@@ -23,9 +22,9 @@ class TransportDetailPage extends StatelessWidget {
       body: FutureBuilder(
         future: TransportServisec.getDataFromApi(),
         builder: (context, AsyncSnapshot<TransportModelsssssss> snap) {
-          var api = snap.data;
-          debugPrint("Junior qovun mana malumot : ${api!.data![0].id}");
           if (snap.hasData) {
+            var api = snap.data;
+            debugPrint("Junior qovun mana malumot : ${api!.data![0].id}");
             return Column(
               children: [
                 Center(
@@ -35,7 +34,9 @@ class TransportDetailPage extends StatelessWidget {
                     width: getWidth(345),
                     decoration: BoxDecoration(
                       border: Border.all(
-                          color: AppColors.darkBorder, width: getWidth(1)),
+                        color: AppColors.darkBorder,
+                        width: getWidth(1),
+                      ),
                       borderRadius: BorderRadius.all(
                         Radius.circular(
                           getWidth(7),
@@ -51,14 +52,16 @@ class TransportDetailPage extends StatelessWidget {
                           width: getWidth(323),
                           height: getHeight(255),
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(
-                                  getWidth(5),
-                                ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(
+                                getWidth(5),
                               ),
-                              image: DecorationImage(
-                                  image: NetworkImage(car.img),
-                                  fit: BoxFit.cover)),
+                            ),
+                            image: DecorationImage(
+                              image: NetworkImage(car.img),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20.w),

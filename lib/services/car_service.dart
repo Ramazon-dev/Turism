@@ -40,6 +40,7 @@ class TransportServisec {
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       var data = jsonDecode(response.body);
+      debugPrint("service dan malumot lekishi $data");
       TransportModelsssssss model = TransportModelsssssss.fromJson(data);
 
       return model;
