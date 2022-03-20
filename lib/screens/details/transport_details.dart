@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/models/tnas_models.dart';
 import 'package:mobileapp/services/car_service.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
@@ -19,11 +20,11 @@ class TransportDetailPage extends StatelessWidget {
         actions2: SvgPicture.asset(AppIcons.dollar),
       ),
       body: FutureBuilder(
-        future: CarsService.getCars(),
-        builder: (context, AsyncSnapshot snap) {
+        future: TransportServisec.getDataFromApi(),
+        builder: (context, AsyncSnapshot<TransportModelsssssss> snap) {
           if (snap.hasData) {
-            debugPrint("asasas\nyana\nyana\nyana\nyana sogindim yana");
-            debugPrint("cars page da data keldi ${snap.data}");
+            var api = snap.data;
+            debugPrint("Junior qovun mana malumot : ${api!.data![0].id}");
             return Column(
               children: [
                 Center(
@@ -33,7 +34,9 @@ class TransportDetailPage extends StatelessWidget {
                     width: getWidth(345),
                     decoration: BoxDecoration(
                       border: Border.all(
-                          color: AppColors.darkBorder, width: getWidth(1)),
+                        color: AppColors.darkBorder,
+                        width: getWidth(1),
+                      ),
                       borderRadius: BorderRadius.all(
                         Radius.circular(
                           getWidth(7),
@@ -49,14 +52,16 @@ class TransportDetailPage extends StatelessWidget {
                           width: getWidth(323),
                           height: getHeight(255),
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(
-                                  getWidth(5),
-                                ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(
+                                getWidth(5),
                               ),
-                              image: DecorationImage(
-                                  image: NetworkImage(car.img),
-                                  fit: BoxFit.cover)),
+                            ),
+                            image: DecorationImage(
+                              image: NetworkImage(car.img),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -115,7 +120,12 @@ class TransportDetailPage extends StatelessWidget {
           } else if (snap.hasError) {
             debugPrint("snap error ketti ${snap.data}");
 
-            return const CircularProgressIndicator();
+            return const Center(
+              child: Text(
+                'error',
+                style: TextStyle(fontSize: 20),
+              ),
+            );
           } else {
             debugPrint("else ni oziga kirdi ${snap.data}");
 
