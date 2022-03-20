@@ -14,5 +14,10 @@ class HotelCubit extends Cubit<HotelState> {
     emit(HotelInitial());
   }
 
+  void onTabChanged(int i) {
+    _city = CityList.cities[i];
+    emit(HotelInitial());
+  }
+
   CityModel get city => _city;
 }
