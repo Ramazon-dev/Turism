@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/data/image_list.dart';
+import 'package:mobileapp/widgets/dialogs/comment_dialog.dart';
 import 'package:mobileapp/widgets/images_page_view.dart';
 import 'package:mobileapp/widgets/phone_list_widget.dart';
 
@@ -17,7 +18,9 @@ class ResHotelDetailsPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.black,
         child: SvgPicture.asset(AppIcons.comment),
-        onPressed: () {},
+        onPressed: () {
+          _onButtonPressed(context);
+        },
       ),
       appBar: SimpleAppBar(title: hotel.name),
       body: Column(
@@ -112,6 +115,13 @@ class ResHotelDetailsPage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  void _onButtonPressed(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => CommentListDialog(headers: {'hotel_id': hotel.id}),
     );
   }
 }

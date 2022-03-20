@@ -9,6 +9,7 @@ import 'package:mobileapp/core/data/image_list.dart';
 import 'package:mobileapp/models/obekt_model.dart';
 import 'package:mobileapp/services/obekt_services.dart';
 import 'package:mobileapp/widgets/images_page_view.dart';
+import 'package:mobileapp/widgets/rating_bar_widget.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ObjectDetailsPage extends StatefulWidget {
@@ -22,6 +23,14 @@ class ObjectDetailsPage extends StatefulWidget {
 
 class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
   bool isComment = false;
+
+  late Obekt _place;
+
+  @override
+  initState() {
+    super.initState();
+    _place = widget.place;
+  }
 
   List comment = [];
   final TextEditingController _commentController = TextEditingController();
@@ -54,9 +63,10 @@ class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  RatWidget(
-                      rating: widget.place.reyting!.toDouble(),
-                      users: widget.place.users!),
+                  RatingBarWidget(
+                    rating: _place.reyting!.toDouble(),
+                    users: _place.users!,
+                  ),
                   MySizedBox(height: 4.0),
                   Text(
                     widget.place.nameRu!,
@@ -101,7 +111,8 @@ class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
   void _onShareButtonPressed() async {
     String name = widget.place.nameEn!;
     String phone = widget.place.tell!;
-    String text = '🗺 $name \n📞 $phone \n📱 Install App: ${AppData.playStoreLink}';
+    String text =
+        '🗺 $name \n📞 $phone \n📱 Install App: ${AppData.playStoreLink}';
     await Share.share(text);
   }
 

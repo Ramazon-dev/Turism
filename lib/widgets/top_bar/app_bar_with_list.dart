@@ -5,11 +5,17 @@ import 'package:mobileapp/widgets/buttons/app_icon_button.dart';
 class AppBarWithList extends StatelessWidget with PreferredSizeWidget {
   final TabController tabController;
   final ValueChanged<int> onTabChanged;
+  final String title;
+  final VoidCallback onPressed;
+  IconData icon;
 
-  const AppBarWithList({
+  AppBarWithList({
     Key? key,
     required this.tabController,
     required this.onTabChanged,
+    required this.title,
+    required this.onPressed,
+    this.icon = Icons.menu,
   }) : super(key: key);
 
   @override
@@ -17,9 +23,13 @@ class AppBarWithList extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       elevation: 1.0,
       centerTitle: true,
+      leading: IconButton(
+        onPressed: onPressed,
+        icon: Icon(icon),
+      ),
       backgroundColor: AppColors.primary,
       title: Text(
-        LocaleKeys.hotel.tr(),
+        title,
         style: AppTextStyle.medium(size: 18.0, color: AppColors.white),
       ),
       actions: [
