@@ -11,8 +11,8 @@ class ImagesPageView extends StatefulWidget {
 }
 
 class _ImagesPageViewState extends State<ImagesPageView> {
-  
   int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -20,7 +20,7 @@ class _ImagesPageViewState extends State<ImagesPageView> {
         ClipRRect(
           borderRadius: MyBorderRadius.circular(),
           child: PageView.builder(
-            onPageChanged: _onPageChanged,
+              onPageChanged: _onPageChanged,
               itemCount: widget.imageList.length,
               itemBuilder: (ctx, i) {
                 return CachedNetworkImage(
@@ -31,18 +31,22 @@ class _ImagesPageViewState extends State<ImagesPageView> {
               }),
         ),
         Positioned(
-            right: 0.0, left: 0.0, bottom: 10.h, child: _showIndicator()),
+          right: 0.0,
+          left: 0.0,
+          bottom: 10.h,
+          child: _showIndicator(),
+        ),
       ],
     );
   }
 
   void _onPageChanged(i) {
-          setState(() {
-            _currentIndex = i;
-          });
-        }
+    setState(() {
+      _currentIndex = i;
+    });
+  }
 
- Wrap _showIndicator() => Wrap(
+  Wrap _showIndicator() => Wrap(
         alignment: WrapAlignment.center,
         spacing: 4.w,
         children: List.generate(

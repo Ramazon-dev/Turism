@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/data/image_list.dart';
 import 'package:mobileapp/widgets/images_page_view.dart';
+import 'package:mobileapp/widgets/phone_list_widget.dart';
 
 class ResHotelDetailsPage extends StatelessWidget {
   final Hotel hotel;
@@ -13,13 +14,18 @@ class ResHotelDetailsPage extends StatelessWidget {
     SizeConfig().init(context);
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.black,
+        child: SvgPicture.asset(AppIcons.comment),
+        onPressed: (){},
+      ),
       appBar: SimpleAppBar(title: hotel.name),
       body: Column(
         children: [
           Center(
             child: Container(
               margin: EdgeInsets.only(top: getHeight(20)),
-              height: getHeight(592),
+              padding: MyEdgeInsets.only(bottom: 24.0),
               width: getWidth(345),
               decoration: BoxDecoration(
                 border: Border.all(
@@ -94,10 +100,13 @@ class ResHotelDetailsPage extends StatelessWidget {
                           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at ",
                           style: AppTextStyle.regular(),
                         ),
-                        ContactWidget(
-                          commentOpen: (() {}),
-                          hotel: hotel,
-                        ),
+                        SizedBox(height: 21.h),
+                        // TODO: Serverdan kelgan ma'lumot bilan almashtiriladi
+                        const PhoneListWidget(phoneList: [
+                          '+998931234567',
+                          '+998931234567',
+                          '+998931234567',
+                        ])
                       ],
                     ),
                   )
