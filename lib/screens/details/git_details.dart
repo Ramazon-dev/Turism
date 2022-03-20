@@ -1,11 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/services/obekt_services.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
-import 'package:mobileapp/widgets/buttons/language_button.dart';
 import 'package:http/http.dart' as http;
 
 class GitDetailsPage extends StatefulWidget {
@@ -75,7 +72,7 @@ class _GitDetailsPageState extends State<GitDetailsPage> {
                               rating: double.parse(widget.git.price.toString()),
                               users: 5,
                             ),
-                            LanguageWidget(language: widget.git.languages),
+                            // LanguageWidget(language: widget.git.languages),
                             SizedBox(height: getHeight(28)),
                             Text(
                               "${widget.git.informEn}",

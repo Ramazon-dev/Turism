@@ -20,24 +20,24 @@ class GitService {
       });
 
       // TELL LISTNI JO'NATISH
-      for (var i in git.tell) {
+      for (var i in git.tell!) {
         request.files.add(http.MultipartFile.fromString('tell', i));
       }
 
       // LANGUAGE LISTNI JO'NATISH
-      for (var i in git.languages) {
+      for (var i in git.languages!) {
         request.files.add(http.MultipartFile.fromString('languages', i));
       }
 
       //  RASMNI JO'NATISH
       final mimeTypeData =
-          lookupMimeType(git.image, headerBytes: [0xFF, 0xD8])?.split('/');
+          lookupMimeType(git.image!, headerBytes: [0xFF, 0xD8])?.split('/');
       request.files.add(
         await http.MultipartFile.fromPath(
           'image',
-          git.image,
+          git.image!,
           contentType: MediaType(mimeTypeData![0], mimeTypeData[1]),
-          filename: git.image.split('/').last,
+          filename: git.image!.split('/').last,
         ),
       );
 
@@ -51,7 +51,7 @@ class GitService {
         Map<String, dynamic> gitMap = jsonDecode(response.body)['data'];
         print(gitMap);
         // Git git = Git.fromJson(gitMap);
-         GetStorage().write('git',gitMap);
+        GetStorage().write('git', gitMap);
         print(GetStorage().read('git'));
         return git;
       } else {

@@ -42,7 +42,7 @@ class MyGitListWidjet extends StatelessWidget {
                 image: DecorationImage(
                     image: NetworkImage(
                         "https://ucharteam-tourism.herokuapp.com/v1/media/" +
-                            git.image),
+                            git.image!),
                     fit: BoxFit.cover)),
           ),
           Column(
@@ -55,7 +55,7 @@ class MyGitListWidjet extends StatelessWidget {
                 rating: git.reyting!.toDouble(),
                 users: 8,
               ),
-              LanguageWidget(language: git.languages)
+              LanguageWidget(language: git.languages!)
             ],
           ),
         ],
