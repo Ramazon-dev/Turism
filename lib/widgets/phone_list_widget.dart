@@ -9,7 +9,10 @@ class PhoneListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: List.generate(phoneList.length, (i) => _setPhone(phoneList[i])),
+      children: List.generate(
+        phoneList.length,
+        (i) => _setPhone(phoneList[i]),
+      ),
     );
   }
 
@@ -19,8 +22,12 @@ class PhoneListWidget extends StatelessWidget {
           children: [
             const Icon(Icons.phone_outlined, color: AppColors.greyPrice),
             SizedBox(width: 8.w),
-            Text(_formattedNumber(phone),
-                style: AppTextStyle.medium(size: 12.w))
+
+            // TODO: API to'g'gilanganidan so'ng formattedga o'zgartiriladi
+            Text(
+              phone,
+              style: AppTextStyle.medium(size: 12.w),
+            )
           ],
         ).onClick(() async {
           await launch('tel:$phone');

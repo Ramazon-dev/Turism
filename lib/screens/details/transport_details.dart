@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/widgets/phone_list_widget.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
 
@@ -115,33 +116,7 @@ class TransportDetailPage extends StatelessWidget {
                               fontFamily: 'Roboto',
                             ),
                           ),
-                          SizedBox(
-                            height: getHeight(50),
-                            width: getWidth(120),
-                            child: ListView.builder(
-                              itemCount: carNumber.length,
-                              itemBuilder: (context, index) {
-                                return Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.call,
-                                    ),
-                                    TextButtonWidget(
-                                      onPressed: () {
-                                        _makePhoneCall(
-                                          carNumber[index],
-                                        );
-                                      },
-                                      label: carNumber[index],
-                                    )
-                                  ],
-                                );
-                              },
-                            ),
-                          ),
-                          // ContactWidget(
-                          //   commentOpen: () {},
-                          // ),
+                          PhoneListWidget(phoneList: carNumber)
                         ],
                       ),
                     )
@@ -151,10 +126,5 @@ class TransportDetailPage extends StatelessWidget {
             ),
           ],
         ));
-  }
-
-  Future<void> _makePhoneCall(String phoneNumber) async {
-    final Uri launchUri = Uri(scheme: 'tel', path: phoneNumber);
-    await launch(launchUri.toString());
   }
 }

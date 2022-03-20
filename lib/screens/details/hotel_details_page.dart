@@ -17,7 +17,7 @@ class ResHotelDetailsPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.black,
         child: SvgPicture.asset(AppIcons.comment),
-        onPressed: (){},
+        onPressed: () {},
       ),
       appBar: SimpleAppBar(title: hotel.name),
       body: Column(
@@ -102,11 +102,7 @@ class ResHotelDetailsPage extends StatelessWidget {
                         ),
                         SizedBox(height: 21.h),
                         // TODO: Serverdan kelgan ma'lumot bilan almashtiriladi
-                        const PhoneListWidget(phoneList: [
-                          '+998931234567',
-                          '+998931234567',
-                          '+998931234567',
-                        ])
+                        PhoneListWidget(phoneList: hotel.tell)
                       ],
                     ),
                   )
