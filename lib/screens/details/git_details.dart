@@ -73,7 +73,7 @@ class _GitDetailsPageState extends State<GitDetailsPage> {
                               users: 5,
                             ),
 
-                            LanguageWidget(language: widget.git.languages!),
+                            // LanguageWidget(language: widget.git.languages!),
                             // LanguageWidget(language: widget.git.languages),
 
                             SizedBox(height: getHeight(28)),

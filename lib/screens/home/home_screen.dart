@@ -55,10 +55,7 @@ class HomeScreen extends StatelessWidget {
         actions: SvgPicture.asset(AppIcons.language),
         actions2: SvgPicture.asset(AppIcons.dollar),
       ),
-      AppBarOrigin(
-        actions: SvgPicture.asset(AppIcons.language),
-        actions2: SvgPicture.asset(AppIcons.dollar),
-      ),
+      null,
       token.isNotEmpty ? ProfileAppBar(cubit: cubit) : null,
     ];
   }
