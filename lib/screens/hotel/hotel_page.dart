@@ -15,6 +15,7 @@ class HotelListPage extends StatefulWidget {
 class _HotelListPageState extends State<HotelListPage>
     with TickerProviderStateMixin {
   late TabController _tabController;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   CityModel _city = CityList.cities[0];
 
   @override
@@ -26,13 +27,14 @@ class _HotelListPageState extends State<HotelListPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBarWithList(
-          tabController: _tabController,
-          onTabChanged: (i) {
-            setState(() {
-              _city = CityList.cities[i];
-            });
-          }),
+        onPressed: () => Navigator.pop(context),
+        tabController: _tabController,
+        title: LocaleKeys.hotel.tr(),
+        onTabChanged: _onTabChanged,
+        icon: Icons.arrow_back_ios_outlined,
+      ),
       body: SingleChildScrollView(
         child: FutureBuilder(
             future: HotelService().fetchHotelsByCity(_city.value),
@@ -63,6 +65,16 @@ class _HotelListPageState extends State<HotelListPage>
             }),
       ),
     );
+  }
+
+  void _openDrawer() {
+    _scaffoldKey.currentState!.openDrawer();
+  }
+
+  void _onTabChanged(i) {
+    setState(() {
+      _city = CityList.cities[i];
+    });
   }
 
   InkWell _buildHotelLayout(String img, Hotel hotel) {

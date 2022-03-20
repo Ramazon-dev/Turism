@@ -13,9 +13,10 @@ class CarPage extends StatefulWidget {
   State<CarPage> createState() => _CarPageState();
 }
 
-class _CarPageState extends State<CarPage> with TickerProviderStateMixin{
+class _CarPageState extends State<CarPage> with TickerProviderStateMixin {
   late TabController _tabController;
   int _currentIndex = 0;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -32,12 +33,18 @@ class _CarPageState extends State<CarPage> with TickerProviderStateMixin{
         builder: (context, state) {
           CarCubit cubit = context.watch();
           return Scaffold(
+            key: _scaffoldKey,
             appBar: AppBarWithList(
+              title: 'Cars',
               onTabChanged: _onTabChanged,
               tabController: _tabController,
+              onPressed: () {
+                _scaffoldKey.currentState!.openDrawer();
+              },
             ),
             body: FutureBuilder(
-              future: TransportServisec.getDataFromApi(CityList.cities[_currentIndex].value),
+              future: TransportServisec.getDataFromApi(
+                  CityList.cities[_currentIndex].value),
               builder: (context, AsyncSnapshot<TransportModelsssssss> snap) {
                 if (snap.hasError) {
                   return const Center(

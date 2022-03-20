@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/git_cubit/git_cubit.dart';
 import 'package:mobileapp/screens/details/git_details.dart';
+import 'package:mobileapp/widgets/navigators/drawer_widget.dart';
 import 'package:mobileapp/widgets/top_bar/app_bar_with_list.dart';
 
 class GitPage extends StatefulWidget {
@@ -14,6 +15,8 @@ class GitPage extends StatefulWidget {
 
 class _GitPageState extends State<GitPage> with TickerProviderStateMixin {
   late TabController _tabController;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   int _currentIndex = 0;
 
   @override
@@ -32,9 +35,15 @@ class _GitPageState extends State<GitPage> with TickerProviderStateMixin {
           GitCubit cubit = context.watch();
 
           return Scaffold(
+            key: _scaffoldKey,
+            drawer: DrawerWidget(),
             appBar: AppBarWithList(
               onTabChanged: _onTabChanged,
               tabController: _tabController,
+              title: LocaleKeys.git.tr(),
+              onPressed: (){
+                _scaffoldKey.currentState!.openDrawer();
+              },
             ),
             body: FutureBuilder(
                 future: GitService.fetchGitsByCity(

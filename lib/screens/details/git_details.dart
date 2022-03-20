@@ -34,7 +34,7 @@ class _GitDetailsPageState extends State<GitDetailsPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height * 0.9,
               child: Center(
                 child: Container(
@@ -174,7 +174,7 @@ class _GitDetailsPageState extends State<GitDetailsPage> {
 // print(${r.toString()});
     if (GetStorage().read('token') == null) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => SignInPage()));
+          context, MaterialPageRoute(builder: (context) => const SignInPage()));
     } else {
       await GitService().addCommentToGit(
           gitId: widget.git.id.toString(),

@@ -17,7 +17,7 @@ class ResHotelDetailsPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.black,
         child: SvgPicture.asset(AppIcons.comment),
-        onPressed: () {},
+        onPressed: _onButtonPressed,
       ),
       appBar: SimpleAppBar(title: hotel.name),
       body: Column(
@@ -113,5 +113,11 @@ class ResHotelDetailsPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _onButtonPressed() {
+    CommentService.getComment({'hotel_id': hotel.id}).then((value) {
+
+    });
   }
 }
