@@ -17,10 +17,10 @@ class GitPage extends StatelessWidget {
           return Column(
             children: [
               // City List Widget
-              CityListWidget(
-                onCityChanged: cubit.onCityChanged,
-                cityName: cubit.city.name,
-              ),
+              // CityListWidget(
+              //   onCityChanged: cubit.onCityChanged,
+              //   cityName: cubit.city.name,
+              // ),
               FutureBuilder(
                   future: GitService.fetchGitsByCity(cubit.city.value),
                   builder: (ctx, AsyncSnapshot<List<Git>> snap) {
