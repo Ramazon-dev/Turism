@@ -3,12 +3,10 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
 import 'package:mobileapp/widgets/buttons/language_button.dart';
 
-class MyGitListWidjet extends StatelessWidget {
+class MyGitListWidget extends StatelessWidget {
   final Git git;
 
-  MyGitListWidjet({Key? key, required this.git}) : super(key: key);
-  List<SvgPicture>? fullStar;
-  List<SvgPicture>? emptyStar;
+  const MyGitListWidget({Key? key, required this.git}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +40,7 @@ class MyGitListWidjet extends StatelessWidget {
                 image: DecorationImage(
                     image: NetworkImage(
                         "https://ucharteam-tourism.herokuapp.com/v1/media/" +
-                            git.image),
+                            git.image!),
                     fit: BoxFit.cover)),
           ),
           Column(
@@ -50,12 +48,12 @@ class MyGitListWidjet extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               DescriptionWidget(
-                name: git.informEn.toString(),
+                name: git.username.toString(),
                 price: git.price.toString(),
                 rating: git.reyting!.toDouble(),
                 users: 8,
               ),
-              LanguageWidget(language: git.languages)
+              LanguageWidget(language: git.languages!)
             ],
           ),
         ],

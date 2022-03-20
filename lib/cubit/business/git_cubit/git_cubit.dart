@@ -35,15 +35,15 @@ class GitCubit extends Cubit<GitState> {
   GitCubit.editing(Git git) : super(GitInitial()) {
     _isEditing = true;
     _gitId = git.id!;
-    _phoneController.text = git.tell[0];
+    _phoneController.text = git.tell![0];
     _priceController.text = git.price!;
     _aboutUzController.text = git.informUz!;
     _aboutEnController.text = git.informEn!;
     _aboutRuController.text = git.informRu!;
-    git.languages.map((e) => _languages.add(e));
-    _image = git.image;
+    git.languages!.map((e) => _languages.add(e));
+    _image = git.image!;
     _city = CityList().getCityName(git.city!);
-    for (var lang in git.languages) {
+    for (var lang in git.languages!) {
       if (lang == 'uz') {
         _hasUzb = true;
       }
