@@ -16,7 +16,6 @@ class HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return SingleChildScrollView(
-      // physics: const BouncingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -112,17 +111,12 @@ class HomeBody extends StatelessWidget {
                                 const Padding(
                                   padding: EdgeInsets.only(left: 15, top: 10),
                                   child: Text(
-
                                     "улица Амира Темура 32А",
                                     style: TextStyle(
                                         fontSize: 8,
                                         color: AppColors.greyPrice),
                                   ),
-
-                                        "улица Амира Темура 32А   ",
-                                        style: TextStyle(
-                                            fontSize: 8, color: AppColors.greyPrice),
-                                      ),                              )
+                                )
                               ],
                             ),
                           )

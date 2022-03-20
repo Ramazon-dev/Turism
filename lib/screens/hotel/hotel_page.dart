@@ -1,35 +1,62 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/cubit/hotel_cubit/hotel_cubit.dart';
 import 'package:mobileapp/screens/details/hotel_details_page.dart';
-import 'package:mobileapp/services/hotel_service.dart';
 
 class HotelListPage extends StatelessWidget {
   const HotelListPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const SimpleAppBar(title: 'Hotel'),
-      body: FutureBuilder(
-          future: HotelService().fetchHotelsByCity('tashkent'),
-          builder: (context, AsyncSnapshot<List<Hotel>> snap) {
-            if (snap.hasError) {
-              return const Text('Error');
-            } else if (snap.hasData) {
-              return GridView.builder(
-                  padding: MyEdgeInsets.symmetric(h: 15.0, v: 20.0),
-                  gridDelegate: _gridDelegate(),
-                  itemCount: snap.data!.length,
-                  itemBuilder: (ctx, i) {
-                    Hotel hotel = snap.data![i];
-                    String img =
-                        hotel.media[0].toString().replaceAll('k__image__', '');
-                    return _buildHotelLayout(img, hotel);
-                  });
-            }
-            return const CupertinoActivityIndicator();
-          }),
+    return BlocProvider(
+      create: (_) => HotelCubit(),
+      child: BlocBuilder<HotelCubit, HotelState>(
+        builder: (ctx, state) {
+          HotelCubit cubit = ctx.watch();
+          return Scaffold(
+            appBar: const SimpleAppBar(title: 'Hotel'),
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  CityListWidget(
+                    onCityChanged: cubit.onCityChanged,
+                    cityName: cubit.city.name,
+                  ),
+                  FutureBuilder(
+                      future:
+                          HotelService().fetchHotelsByCity(cubit.city.value),
+                      builder: (context, AsyncSnapshot<List<Hotel>> snap) {
+                        if (snap.hasError) {
+                          return const Text('Error');
+                        } else if (snap.hasData) {
+                          if (snap.data!.isEmpty) {
+                            return const EmptyPageWidget();
+                          }
+
+                          return GridView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              padding: MyEdgeInsets.symmetric(h: 15.0, v: 20.0),
+                              gridDelegate: _gridDelegate(),
+                              itemCount: snap.data!.length,
+                              itemBuilder: (ctx, i) {
+                                Hotel hotel = snap.data![i];
+                                String img = hotel.media[0]
+                                    .toString()
+                                    .replaceAll('k__image__', '');
+
+                                return _buildHotelLayout(img, hotel);
+                              });
+                        }
+                        return const CupertinoActivityIndicator();
+                      }),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 

@@ -1,9 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/models/restaurant_model.dart';
 import 'package:mobileapp/services/business_account_service.dart';
-import 'package:mobileapp/services/git_service.dart';
 import 'package:mobileapp/services/restaurant_service.dart';
 
 class OtherPage extends StatelessWidget {
