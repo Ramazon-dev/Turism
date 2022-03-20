@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/data/image_list.dart';
+import 'package:mobileapp/widgets/images_page_view.dart';
 
 class ResHotelDetailsPage extends StatelessWidget {
   final Hotel hotel;
@@ -38,9 +40,7 @@ class ResHotelDetailsPage extends StatelessWidget {
                     margin: EdgeInsets.all(getWidth(11)),
                     width: getWidth(323),
                     height: getHeight(255),
-                    decoration: MyDecoration.netImage(
-                        netImage: hotel.media[0].replaceAll('k__image__', ''),
-                        radius: 7.0),
+                    child: ImagesPageView(imageList: ImageList.images),
                   ),
                   Padding(
                     padding: MyEdgeInsets.symmetric(h: 20.0),
