@@ -40,7 +40,10 @@ class MyGitListWidjet extends StatelessWidget {
                   ),
                 ),
                 image: DecorationImage(
-                    image: NetworkImage("https://ucharteam-tourism.herokuapp.com/v1/media/" + git.image), fit: BoxFit.cover)),
+                    image: NetworkImage(
+                        "https://ucharteam-tourism.herokuapp.com/v1/media/" +
+                            git.image),
+                    fit: BoxFit.cover)),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +51,7 @@ class MyGitListWidjet extends StatelessWidget {
             children: [
               DescriptionWidget(
                 name: git.informEn.toString(),
-                price: int.parse(git.price.toString()),
+                price: git.price.toString(),
                 rating: git.reyting!.toDouble(),
                 users: 8,
               ),

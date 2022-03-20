@@ -71,7 +71,7 @@ class _GitDetailsPageState extends State<GitDetailsPage> {
                           children: [
                             DescriptionWidget(
                               name: widget.git.username.toString(),
-                              price: int.parse(widget.git.price.toString()),
+                              price: widget.git.price.toString(),
                               rating: double.parse(widget.git.price.toString()),
                               users: 5,
                             ),

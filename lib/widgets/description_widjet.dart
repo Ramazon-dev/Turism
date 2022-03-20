@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:mobileapp/widgets/rating_widget.dart';
 
 class DescriptionWidget extends StatelessWidget {
   String name;
-  int price;
+  String price;
   double rating;
   int users;
   DescriptionWidget(

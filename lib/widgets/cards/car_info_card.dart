@@ -3,17 +3,25 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/screens/details/transport_details.dart';
 
 class CarInfoCard extends StatelessWidget {
-  final CarModel car;
+  // final CarModel car;
   final String carName;
   final String carPrice;
   final String? carImage;
+  final String carInfo;
+  final List<String> carNumber;
+  final int users;
+  final double rating;
 
   const CarInfoCard({
     Key? key,
-    required this.car,
+    // required this.car,
     required this.carImage,
     required this.carName,
     required this.carPrice,
+    required this.carInfo,
+    required this.carNumber,
+    required this.rating,
+    required this.users,
   }) : super(key: key);
 
   @override
@@ -27,7 +35,14 @@ class CarInfoCard extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (_) => TransportDetailPage(
-                car: car,
+                // car: car,
+                carImage: carImage!,
+                carName: carName,
+                carPrice: carPrice,
+                carInfo: carInfo,
+                carNumber: carNumber,
+                rating: rating,
+                users: users,
               ),
             ),
           );
@@ -42,7 +57,7 @@ class CarInfoCard extends StatelessWidget {
                 borderRadius:
                     MyBorderRadius.only(topLeft: 12.0, topRight: 12.0),
                 child: CachedNetworkImage(
-                  imageUrl: carImage ?? car.img,
+                  imageUrl: 'https://source.unsplash.com/random/4',
                   width: MediaQuery.of(context).size.width,
                   height: getHeight(160.0),
                   fit: BoxFit.cover,
