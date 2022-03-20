@@ -72,7 +72,10 @@ class _GitDetailsPageState extends State<GitDetailsPage> {
                               rating: double.parse(widget.git.price.toString()),
                               users: 5,
                             ),
+
+                            LanguageWidget(language: widget.git.languages!),
                             // LanguageWidget(language: widget.git.languages),
+
                             SizedBox(height: getHeight(28)),
                             Text(
                               "${widget.git.informEn}",

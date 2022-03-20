@@ -6,6 +6,7 @@ class DescriptionWidget extends StatelessWidget {
   String price;
   double rating;
   int users;
+
   DescriptionWidget(
       {Key? key,
       required this.name,
@@ -21,19 +22,24 @@ class DescriptionWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Text(
-          name,
-          overflow: TextOverflow.ellipsis,
-          maxLines: 1,
-          style: TextStyle(
-            fontSize: getWidth(16),
-            fontWeight: FontWeight.w500,
-            fontFamily: 'Roboto',
-          ),
-        ),
         SizedBox(
-          height: getHeight(8),
+          width: MediaQuery.of(context).size.width - getWidth(80),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                name,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: TextStyle(
+                  fontSize: getWidth(16),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+      
         ),
+        SizedBox(height: getHeight(8)),
         RichText(
             text: TextSpan(children: [
           TextSpan(

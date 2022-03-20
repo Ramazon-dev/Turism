@@ -64,11 +64,12 @@ class GitService {
     }
   }
 
-  static Future<List<Git>> fetchGitsByCity(String cityName) async {
+  static Future<List<Git>>? fetchGitsByCity(String cityName) async {
     try {
       var response = await http
           .get(Uri.parse("$baseUrl/git"), headers: {"city": cityName});
       if (response.statusCode == 200) {
+        print('GitService.fetchGitsByCity: ${response.body}');
         List<Git> gitList = (jsonDecode(response.body)['data'] as List)
             .map((e) => Git.fromJson(e))
             .toList();

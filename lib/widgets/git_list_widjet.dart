@@ -3,12 +3,10 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
 import 'package:mobileapp/widgets/buttons/language_button.dart';
 
-class MyGitListWidjet extends StatelessWidget {
+class MyGitListWidget extends StatelessWidget {
   final Git git;
 
-  MyGitListWidjet({Key? key, required this.git}) : super(key: key);
-  List<SvgPicture>? fullStar;
-  List<SvgPicture>? emptyStar;
+  const MyGitListWidget({Key? key, required this.git}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +44,7 @@ class MyGitListWidjet extends StatelessWidget {
                 Radius.circular(
                   getWidth(5),
                 ),
+
               ),
               image: DecorationImage(
                 image: NetworkImage(

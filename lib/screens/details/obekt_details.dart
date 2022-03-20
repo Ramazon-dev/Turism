@@ -1,25 +1,30 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:http/http.dart' as http;
+import 'package:mobileapp/core/data/app_data.dart';
+import 'package:mobileapp/core/data/image_list.dart';
 import 'package:mobileapp/models/obekt_model.dart';
 import 'package:mobileapp/services/obekt_services.dart';
+import 'package:mobileapp/widgets/images_page_view.dart';
+import 'package:share_plus/share_plus.dart';
 
-class ObektDetailsPage extends StatefulWidget {
+class ObjectDetailsPage extends StatefulWidget {
   final Obekt place;
 
-  const ObektDetailsPage({Key? key, required this.place}) : super(key: key);
+  const ObjectDetailsPage({Key? key, required this.place}) : super(key: key);
 
   @override
-  State<ObektDetailsPage> createState() => _ObektDetailsPageState();
+  State<ObjectDetailsPage> createState() => _ObjectDetailsPageState();
 }
 
-class _ObektDetailsPageState extends State<ObektDetailsPage> {
+class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
   bool isComment = false;
 
   List comment = [];
-  TextEditingController _commentController = TextEditingController();
+  final TextEditingController _commentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,23 +35,19 @@ class _ObektDetailsPageState extends State<ObektDetailsPage> {
         elevation: 0.0,
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset(
-              AppIcons.link,
-              color: AppColors.white,
-            ),
-          ),
+              onPressed: _onShareButtonPressed,
+              icon: const Icon(CupertinoIcons.share)),
         ],
       ),
       floatingActionButton: _commentButton(),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: getHeight(410),
               width: getWidth(375),
-              decoration:
-                  MyDecoration.netImage(netImage: widget.place.media![0]),
+              // TODO: if server will be worked, Image list must be changed
+              child: ImagesPageView(imageList: ImageList.images),
             ),
             Padding(
               padding: MyEdgeInsets.all(15.0),
@@ -95,6 +96,13 @@ class _ObektDetailsPageState extends State<ObektDetailsPage> {
         ),
       ),
     );
+  }
+
+  void _onShareButtonPressed() async {
+    String name = widget.place.nameEn!;
+    String phone = widget.place.tell!;
+    String text = '🗺 $name \n📞 $phone \n📱 Install App: ${AppData.playStoreLink}';
+    await Share.share(text);
   }
 
   Row _buildLink(

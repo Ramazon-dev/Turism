@@ -46,10 +46,7 @@ class HomeScreen extends StatelessWidget {
   List<PreferredSizeWidget?> _appBarList(HomeCubit cubit) {
     String token = GetStorage().read('token') ?? '';
     return [
-      AppBarOrigin(
-        actions: SvgPicture.asset(AppIcons.language),
-        actions2: SvgPicture.asset(AppIcons.dollar),
-      ),
+      null,
       AppBarOrigin(
         actions: SvgPicture.asset(AppIcons.language),
         actions2: SvgPicture.asset(AppIcons.dollar),

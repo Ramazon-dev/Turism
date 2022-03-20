@@ -20,7 +20,9 @@ class BusinessHotelTile extends StatelessWidget {
       infoWidget: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          RatingBarWidget(rating: hotels.reyting!.toDouble()),
+          RatingBarWidget(rating: hotels.reyting!.toDouble(),
+          users: hotels.users!,
+          ),
           SizedBox(height: 8.h),
           LinkWithIconButton(
             icon: AppIcons.location,
