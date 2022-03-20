@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/screens/home/widgets/container.dart';
-import 'package:mobileapp/screens/home/widgets/hotel_view.dart';
 import 'package:mobileapp/screens/home/widgets/popolar_object.dart';
-import 'package:mobileapp/widgets/rating_bar_widget.dart';
 import 'package:mobileapp/widgets/row_text.dart';
 
 class HomeBody extends StatelessWidget {
@@ -33,7 +31,7 @@ class HomeBody extends StatelessWidget {
           /// Популярные пакеты.
           RowTextWidgets(
               ontap: () {
-                debugPrint("bosildi");
+                debugPrint("bosildi   !!!!");
               },
               text: "Популярные пакеты.",
               bottomText: "Все"),
@@ -47,16 +45,42 @@ class HomeBody extends StatelessWidget {
           const PopularObject(),
           RowTextWidgets(
               ontap: () {}, text: "Где мы находимся :)", bottomText: "Все"),
-          HotelsView(
-            ontap: () {},
-            itemCount: 3,
-            image: "https://source.unsplash.com/random/index",
-            starCount: 40,
-            hotelName: "Hotel Uzbekistan",
+
+          SizedBox(
+            height: getHeight(154.0),
+            width: MediaQuery.of(context).size.width,
+            child: ListView.builder(
+              itemCount: 6,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: MyEdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () {},
+                    child: Container(
+                        alignment: Alignment.bottomLeft,
+                        height: getHeight(150.0),
+                        width: getWidth(111.0),
+                        decoration: MyDecoration.netImage(
+                            netImage:
+                                "https://source.unsplash.com/random/$index"),
+                        child: Padding(
+                          padding: MyEdgeInsets.only(left: 10, bottom: 5.0),
+                          child: Text(
+                            "Hilton",
+                            style: TextStyle(
+                                fontSize: getWidth(10.0), color: Colors.white),
+                          ),
+                        )),
+                  ),
+                );
+              },
+            ),
           ),
+
           RowTextWidgets(ontap: () {}, text: "Ресторан", bottomText: "Все"),
           SizedBox(
-            height: getHeight(150.0),
+            height: getHeight(210.0),
             child: ListView.builder(
               itemCount: 10,
               scrollDirection: Axis.horizontal,
@@ -64,58 +88,45 @@ class HomeBody extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    height: getHeight(150.0),
-                    width: getWidth(300.0),
+                    height: getHeight(200.0),
+                    width: getWidth(150.0),
                     decoration: MyDecoration.circular(
                         color: Colors.grey.shade200, radius: 5),
-                    child: Row(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(15.0),
+                          padding: const EdgeInsets.only(right: 15.0,left: 15.0,top: 15),
                           child: Container(
-                            height: getHeight(120.0),
-                            width: getWidth(138.49),
+                            height: getHeight(110.0),
+                            width: getWidth(130.0),
                             decoration: MyDecoration.netImage(
                                 netImage:
                                     "https://source.unsplash.com/random/$index"),
                           ),
                         ),
-                        Container(
-                          alignment: Alignment.topCenter,
-                          height: 100,
-                          width: 110,
-                          child: Column(
-                            children: [
-                              Row(
-                                children: const [
-                                  Text("_______"),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 5, right: 5),
-                                    child: Text("___"),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(right: 5),
-                                    child: Text("__"),
-                                  ),
-                                  Text("_"),
-                                ],
+                        Padding(
+                          padding: const EdgeInsets.only(right: 4.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Text("_______"),
+                              Padding(
+                                padding: EdgeInsets.only(right: 5,left: 5,),
+                                child: Text("___"),
                               ),
-                              const Padding(
-                                padding: EdgeInsets.only(top: 5, bottom: 5),
-                                child: Text("Национальные продукты"),
+                              Padding(
+                                padding: EdgeInsets.only(right: 5),
+                                child: Text("__"),
                               ),
-                              const RatingBarWidget(rating: 4.5),
-                              const Padding(
-                                padding: EdgeInsets.only(left: 15, top: 10),
-                                child: Text(
-                                  "улица Амира Темура 32А",
-                                  style: TextStyle(
-                                      fontSize: 8, color: AppColors.greyPrice),
-                                ),
-                              ),
+                              Text("_"),
                             ],
                           ),
-                        )
+                        ),
+                        const Padding(
+                                padding: EdgeInsets.only(left: 15),
+                                child: Text("Национальные продукты",style: TextStyle(fontSize: 15.0),),
+                              ),
                       ],
                     ),
                   ),
