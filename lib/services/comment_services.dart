@@ -8,22 +8,25 @@ class CommentService {
  static var request = http.Request('POST',
       Uri.parse('https://ucharteam-tourism.herokuapp.com/v1/api/comment'));
 
-  static Future<bool> addObjectComment(Map<String, String> body) async {
+  static Future<bool> addObjectComment({required String commentText, required String  typeId, required String type}) async {
     String token = await GetStorage().read('token');
     try {
       request.headers
           .addAll({'token': token, 'Content-Type': 'application/json'});
-      request.body = json.encode(body);
+      request.body = json.encode({'name': commentText, type.replaceAll('_id', 'Id'): typeId});
 
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 201) {
+        print(true);
         return true;
       } else {
         print(response.reasonPhrase);
+         print(false);
         return false;
       }
-    } catch (e) {}
+    } catch (e) {print(e);}
+    print(false);
     return false;
   }
 
