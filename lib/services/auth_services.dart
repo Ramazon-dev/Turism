@@ -42,7 +42,6 @@ class AuthServices {
     required String password,
   }) async {
     String baseUrlTest = 'https://ucharteam-tourism.herokuapp.com/v1';
-    // String baseUrl = dotenv.env['BASE_URL'].toString();
 
     print('$baseUrlTest/auth/register');
 

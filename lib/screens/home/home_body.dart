@@ -64,6 +64,7 @@ class HomeBody extends StatelessWidget {
             hotelName: "Hotel Uzbekistan",
           ),
           RowTextWidgets(ontap: () {}, text: "Ресторан", bottomText: "Все"),
+          // RESTAURANTS
           SizedBox(
             height: getHeight(150.0),
             child: ListView.builder(
@@ -85,7 +86,7 @@ class HomeBody extends StatelessWidget {
                               width: getWidth(138.49),
                               decoration: MyDecoration.netImage(
                                   netImage:
-                                      "https://source.unsplash.com/random/1"),
+                                      "https://source.unsplash.com/random/$index"),
                             ),
                           ),
                           Column(

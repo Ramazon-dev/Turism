@@ -8,11 +8,12 @@ class ShowNerarby extends StatelessWidget {
   double starNumber;
   String text;
   String image;
-   ShowNerarby({
-     required this.ontap,
-     required this.itemCount,
-     required this.starNumber,
-     required this.text,
+
+  ShowNerarby({
+    required this.ontap,
+    required this.itemCount,
+    required this.starNumber,
+    required this.text,
     required this.image,
     Key? key,
   }) : super(key: key);
@@ -30,24 +31,28 @@ class ShowNerarby extends StatelessWidget {
               child: InkWell(
                 onTap: ontap,
                 child: Container(
-                  height: getHeight(200.0),
                   width: 330.0,
-                  decoration: MyDecoration.netImage(
-                      netImage: image,
-                      radius: 5.0),
+                  decoration:
+                      MyDecoration.netImage(netImage: image, radius: 5.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: MyEdgeInsets.only(left: 260,top: 10),
+                        padding: MyEdgeInsets.only(left: 260, top: 10),
                         child: StartBar(
                           son: starNumber,
                         ),
                       ),
+                      Spacer(),
                       Padding(
-                        padding: MyEdgeInsets.only(top: 90, left: 20,),
+                        padding: MyEdgeInsets.only(
+                          left: 20,
+
+                        ),
                         child: Text(
                           text,
+                          maxLines: 2,
+
                           style: TextStyle(
                               fontSize: getWidth(20.0), color: AppColors.white),
                         ),
@@ -62,17 +67,16 @@ class ShowNerarby extends StatelessWidget {
   }
 }
 
-
-
 class PopularObject extends StatelessWidget {
   VoidCallback ontap;
   int itemCount;
   String text;
   String image;
-   PopularObject({
-     required this.itemCount,
+
+  PopularObject({
+    required this.itemCount,
     required this.ontap,
-     required this.text,
+    required this.text,
     required this.image,
     Key? key,
   }) : super(key: key);
@@ -93,11 +97,11 @@ class PopularObject extends StatelessWidget {
                   alignment: Alignment.bottomLeft,
                   height: getHeight(200.0),
                   width: 330.0,
-                  decoration: MyDecoration.netImage(
-                      netImage: image,
-                      radius: 5.0),
+                  decoration:
+                      MyDecoration.netImage(netImage: image, radius: 5.0),
                   child: Padding(
-                    padding: MyEdgeInsets.only(top: 90, left: 20,bottom: getHeight(20.0)),
+                    padding: MyEdgeInsets.only(
+                        top: 90, left: 20, bottom: getHeight(20.0)),
                     child: Text(
                       text,
                       style: TextStyle(
