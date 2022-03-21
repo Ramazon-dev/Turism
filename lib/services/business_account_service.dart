@@ -11,12 +11,12 @@ class BusinessAccountService {
   Future<BusinessAccountModel?> getServiceList() async {
     try {
       Uri url = Uri.parse(_baseUrl);
-
+      print(_token);
       final Map<String, String> headers = {'token': _token};
       var response = await http.get(url, headers: headers);
 
       var data = jsonDecode(response.body)['data'];
-
+     // print("DATA: "+ data);
       BusinessAccountModel businessAccountModel =
           BusinessAccountModel.fromJson(data);
       await GetStorage()

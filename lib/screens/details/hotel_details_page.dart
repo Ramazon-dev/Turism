@@ -85,18 +85,19 @@ class ResHotelDetailsPage extends StatelessWidget {
                         SizedBox(
                           height: getHeight(4),
                         ),
-                        Row(
-                          children: [
-                            SvgPicture.asset(AppIcons.link),
-                            SizedBox(
-                              width: getWidth(4),
-                            ),
-                            UrlTextWidget(
-                              url: hotel.site,
-                              text: hotel.site,
-                            )
-                          ],
-                        ),
+                        if (hotel.site != null)
+                          Row(
+                            children: [
+                              SvgPicture.asset(AppIcons.link),
+                              SizedBox(
+                                width: getWidth(4),
+                              ),
+                              UrlTextWidget(
+                                url: hotel.site,
+                                text: hotel.site,
+                              )
+                            ],
+                          ),
                         SizedBox(
                           height: getHeight(28),
                         ),
@@ -120,7 +121,6 @@ class ResHotelDetailsPage extends StatelessWidget {
   }
 
   void _onButtonPressed(BuildContext context) {
-
     showModalBottomSheet(
       context: context,
       builder: (ctx) => CommentListDialog(headers: {'hotel_id': hotel.id}),
