@@ -25,16 +25,16 @@ class HotelCubit extends Cubit<HotelState> {
   String toastMessage = '';
 
   HotelCubit.editing(Hotel hotel) : super(HotelInitial()) {
-    _hotelId = hotel.id!;
+    _hotelId = hotel.id;
     _isEditing = true;
-    _nameController.text = hotel.name!;
+    _nameController.text = hotel.name;
     _phoneController.text = hotel.tell![0];
     _websiteController.text = hotel.site.toString();
-    _mapLinkController.text = hotel.karta!;
-    _aboutUzController.text = hotel.informUz!;
-    _aboutEnController.text = hotel.informEn!;
-    _aboutRuController.text = hotel.informRu!;
-    _imageList = hotel.media!;
+    _mapLinkController.text = hotel.karta;
+    _aboutUzController.text = hotel.informUz;
+    _aboutEnController.text = hotel.informEn;
+    _aboutRuController.text = hotel.informRu;
+    _imageList = hotel.media;
     _city = CityList().getCityName(hotel.city!);
   }
 

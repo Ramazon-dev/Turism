@@ -72,7 +72,7 @@ class ProfileAuthPage extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: model.hotels!.length,
         itemBuilder: (ctx, i) {
-          Hotel hotel = model.hotels![i];
+          Hotel hotel = model.hotels![i] ;
           return BusinessHotelTile(hotel: hotel);
         });
   }

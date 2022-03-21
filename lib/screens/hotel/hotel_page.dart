@@ -55,7 +55,7 @@ class _HotelListPageState extends State<HotelListPage>
                     itemCount: snap.data!.length,
                     itemBuilder: (ctx, i) {
                       Hotel hotel = snap.data![i];
-                      String img = hotel.media![0];
+                      String img = hotel.media[0];
                       img = imageFilter(img);
                       return _buildHotelLayout(img, hotel);
                     });
@@ -100,7 +100,7 @@ class _HotelListPageState extends State<HotelListPage>
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  hotel.name!,
+                  hotel.name,
                   style: AppTextStyle.medium(color: AppColors.white),
                 ),
                 Text(

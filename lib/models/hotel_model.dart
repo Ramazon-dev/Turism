@@ -4,7 +4,7 @@ class Hotel {
   List<String>? _media;
   String? _informUz;
   String? _informEn;
-  String? _informRu;
+  String? _informRu; 
   String? _karta;
   String? _city;
   String? _site;

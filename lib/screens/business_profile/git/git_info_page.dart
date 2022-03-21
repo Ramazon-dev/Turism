@@ -39,7 +39,7 @@ class GitInfoPage extends StatelessWidget {
                 children: [
                   //TODO:
                   ProfileCircleAvatar(
-                    imageUrl: imageFilter( git!.image.toString()),
+                    imageUrl: imageFilter( git!.image!),
 
                     onPressed: cubitRead.onChooseImage,
                   ),

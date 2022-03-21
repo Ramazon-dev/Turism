@@ -24,7 +24,7 @@ class ResHotelDetailsPage extends StatelessWidget {
           _onButtonPressed(context);
         },
       ),
-      appBar: SimpleAppBar(title: hotel.name!),
+      appBar: SimpleAppBar(title: hotel.name),
       body: Column(
         children: [
           Center(
@@ -63,7 +63,7 @@ class ResHotelDetailsPage extends StatelessWidget {
                         MySizedBox(
                           width: 178.0,
                           child: Text(
-                            hotel.name!,
+                            hotel.name,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: AppTextStyle.medium(),
@@ -102,7 +102,7 @@ class ResHotelDetailsPage extends StatelessWidget {
                           ),
                         SizedBox(height: getHeight(28)),
                         Text(
-                          hotel.informEn!,
+                          hotel.informEn,
                           style: AppTextStyle.regular(),
                         ),
                         SizedBox(height: 21.h),
@@ -124,7 +124,7 @@ class ResHotelDetailsPage extends StatelessWidget {
   void _onButtonPressed(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      builder: (ctx) => CommentListDialog(headers: {'hotel_id': hotel.id!}),
+      builder: (ctx) => CommentListDialog(headers: {'hotel_id': hotel.id}),
     );
   }
 }

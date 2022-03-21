@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/models/business_account_model.dart';
 import 'package:mobileapp/screens/business_profile/hotel/input_hotel_page.dart';
 import 'package:mobileapp/screens/profile/auth_profile_page.dart';
 import 'package:mobileapp/widgets/dialogs/comment_dialog.dart';
@@ -8,7 +7,7 @@ import 'package:mobileapp/widgets/images_page_view.dart';
 import 'package:mobileapp/widgets/phone_list_widget.dart';
 
 class ResHotelDetailsPageForOwner extends StatelessWidget {
-  final Hotels hotel;
+  final Hotel hotel;
 
   const ResHotelDetailsPageForOwner({Key? key, required this.hotel})
       : super(key: key);
@@ -27,7 +26,7 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
           _onButtonPressed(context);
         },
       ),
-      appBar: SimpleAppBar(title: hotel.name!),
+      appBar: SimpleAppBar(title: hotel.name),
       body: Column(
         children: [
           Center(
@@ -54,7 +53,7 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
                     margin: EdgeInsets.all(getWidth(11)),
                     width: getWidth(323),
                     height: getHeight(255),
-                    child: ImagesPageView(imageList: hotel.media!),
+                    child: ImagesPageView(imageList: hotel.media),
                   ),
                   Padding(
                     padding: MyEdgeInsets.symmetric(h: 20.0),
@@ -65,7 +64,7 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
                         MySizedBox(
                           width: 178.0,
                           child: Text(
-                            hotel.name!,
+                            hotel.name,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: AppTextStyle.medium(),
@@ -144,7 +143,7 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
                                         child: const Text('Ha'),
                                         onPressed: () {
                                           HotelService()
-                                              .deleteHotel(hotelId: hotel.id!)
+                                              .deleteHotel(hotelId: hotel.id)
                                               .then((value) =>
                                                   Navigator.pushAndRemoveUntil(
                                                       context,
@@ -180,7 +179,7 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
   void _onButtonPressed(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      builder: (ctx) => CommentListDialog(headers: {'hotel_id': hotel.id!}),
+      builder: (ctx) => CommentListDialog(headers: {'hotel_id': hotel.id}),
     );
   }
 }
