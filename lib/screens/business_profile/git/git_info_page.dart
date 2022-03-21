@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/business/git_cubit/git_cubit.dart';
 
+// ignore: must_be_immutable
 class GitInfoPage extends StatelessWidget {
   Git? git;
   bool isEditing;
@@ -37,7 +38,7 @@ class GitInfoPage extends StatelessWidget {
                 children: [
                   //TODO:
                   ProfileCircleAvatar(
-                    imageUrl: 'image__0ac91ed7-4dad-4813-8f3b-0f3d74ec4305.jpg',// _git.image,
+                    imageUrl: git!.image ??'default',// _git.image,
                     onPressed: cubitRead.onChooseImage,
                   ),
                   MySizedBox(width: 26.0),

@@ -35,27 +35,10 @@ class MyGitListWidget extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            margin: EdgeInsets.only(
-              right: getWidth(9),
-            ),
+            margin: EdgeInsets.only(right: getWidth(9)),
             width: getWidth(128),
             height: getHeight(116),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(
-                Radius.circular(
-                  getWidth(5),
-                ),
-
-              ),
-              image:const  DecorationImage(
-                image: NetworkImage(
-                  ImageList.profileBlank
-                  // "https://ucharteam-tourism.herokuapp.com/v1/media/" +
-                  //     git.image!,
-                ),
-                fit: BoxFit.cover,
-              ),
-            ),
+            decoration: MyDecoration.netImage(netImage: ImageList.profileBlank),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

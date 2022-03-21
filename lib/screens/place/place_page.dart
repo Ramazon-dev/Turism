@@ -3,6 +3,7 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/models/obekt_model.dart';
 import 'package:mobileapp/services/obekt_services.dart';
 
+// ignore: must_be_immutable
 class PlacePage extends StatelessWidget {
   String? city;
   String? category;

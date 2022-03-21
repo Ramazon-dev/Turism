@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/models/business_account_model.dart';
-import 'package:mobileapp/services/business_account_service.dart';
 
 class AuthServices {
   static Future<bool> signIn(String email, String password) async {
@@ -46,7 +44,6 @@ class AuthServices {
     required String password,
   }) async {
     String baseUrlTest = 'https://ucharteam-tourism.herokuapp.com/v1';
-    // String baseUrl = dotenv.env['BASE_URL'].toString();
 
     print('$baseUrlTest/auth/register');
 

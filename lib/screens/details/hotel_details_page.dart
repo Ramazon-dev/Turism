@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/data/image_list.dart';
 import 'package:mobileapp/widgets/dialogs/comment_dialog.dart';
 import 'package:mobileapp/widgets/images_page_view.dart';
 import 'package:mobileapp/widgets/phone_list_widget.dart';
@@ -51,7 +50,7 @@ class ResHotelDetailsPage extends StatelessWidget {
                     margin: EdgeInsets.all(getWidth(11)),
                     width: getWidth(323),
                     height: getHeight(255),
-                    child: ImagesPageView(imageList: ImageList.images),
+                    child: ImagesPageView(imageList: hotel.media!),
                   ),
                   Padding(
                     padding: MyEdgeInsets.symmetric(h: 20.0),
@@ -81,13 +80,11 @@ class ResHotelDetailsPage extends StatelessWidget {
                             ),
                             UrlTextWidget(
                               url: hotel.karta,
-                              text: 'Расположение на карте',
+                              text: LocaleKeys.on_map.tr(),
                             )
                           ],
                         ),
-                        SizedBox(
-                          height: getHeight(4),
-                        ),
+                        SizedBox(height: getHeight(4)),
                         if (hotel.site != null)
                           Row(
                             children: [
@@ -101,11 +98,9 @@ class ResHotelDetailsPage extends StatelessWidget {
                               )
                             ],
                           ),
-                        SizedBox(
-                          height: getHeight(28),
-                        ),
+                        SizedBox(height: getHeight(28)),
                         Text(
-                          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at ",
+                          hotel.informEn!,
                           style: AppTextStyle.regular(),
                         ),
                         SizedBox(height: 21.h),
