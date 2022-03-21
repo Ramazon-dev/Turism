@@ -18,11 +18,9 @@ class CommentService {
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 201) {
-        print(true);
         return true;
       } else {
         print(response.reasonPhrase);
-         print(false);
         return false;
       }
     } catch (e) {print(e);}

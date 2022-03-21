@@ -36,7 +36,7 @@ class _GitPageState extends State<GitPage> with TickerProviderStateMixin {
 
           return Scaffold(
             key: _scaffoldKey,
-            drawer: DrawerWidget(),
+            drawer: const DrawerWidget(),
             appBar: AppBarWithList(
               onTabChanged: _onTabChanged,
               tabController: _tabController,
