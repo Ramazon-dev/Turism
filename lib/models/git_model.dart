@@ -1,13 +1,11 @@
+
 import 'dart:convert';
 
 Git gitFromJson(String str) => Git.fromJson(json.decode(str));
-
 String gitToJson(Git data) => json.encode(data.toJson());
-
 class Git {
   Git({
     String? id,
-    String? username,
     String? image,
     List<String>? languages,
     String? informUz,
@@ -18,8 +16,8 @@ class Git {
     String? price,
     String? date,
     int? reyting,
-    int? users,
-  }) {
+    String? username,
+    int? users,}){
     _id = id;
     _username = username;
     _image = image;
@@ -37,10 +35,8 @@ class Git {
 
   Git.fromJson(dynamic json) {
     _id = json['id'];
-    _username = json['username'];
     _image = json['image'];
-    _languages =
-        json['languages'] != null ? json['languages'].cast<String>() : [];
+    _languages = json['languages'] != null ? json['languages'].cast<String>() : [];
     _informUz = json['inform_uz'];
     _informEn = json['inform_en'];
     _informRu = json['inform_ru'];
@@ -50,11 +46,11 @@ class Git {
     _date = json['date'];
     _reyting = json['reyting'];
     _users = json['users'];
+    _username = json['username'];
   }
-
   String? _id;
-  String? _username;
   String? _image;
+  String? _username;
   List<String>? _languages;
   String? _informUz;
   String? _informEn;
@@ -67,35 +63,22 @@ class Git {
   int? _users;
 
   String? get id => _id;
-
-  String? get username => _username;
-
   String? get image => _image;
-
   List<String>? get languages => _languages;
-
   String? get informUz => _informUz;
-
   String? get informEn => _informEn;
-
   String? get informRu => _informRu;
-
   String? get city => _city;
-
   List<String>? get tell => _tell;
-
   String? get price => _price;
-
   String? get date => _date;
-
   int? get reyting => _reyting;
-
   int? get users => _users;
+  String? get username => _username;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = _id;
-    map['username'] = _username;
     map['image'] = _image;
     map['languages'] = _languages;
     map['inform_uz'] = _informUz;
@@ -107,6 +90,8 @@ class Git {
     map['date'] = _date;
     map['reyting'] = _reyting;
     map['users'] = _users;
+    map['username'] = _username;
     return map;
   }
+
 }

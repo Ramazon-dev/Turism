@@ -14,19 +14,19 @@ class HotelService {
       var headers = {'token': token};
       var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/hotel'));
       request.fields.addAll({
-        'name': hotel.name,
-        'city': hotel.city,
-        'informUz': hotel.informUz, 
-        'informRu': hotel.informRu,
-        'informEn': hotel.informEn,
-        'karta': hotel.karta,
+        'name': hotel.name!,
+        'city': hotel.city!,
+        'informUz': hotel.informUz!,
+        'informRu': hotel.informRu!,
+        'informEn': hotel.informEn!,
+        'karta': hotel.karta!,
         'tell': hotel.tell.toString(),
         'categoryId': '1991edea-7d4a-49fb-b627-79b777cf54ae'
       });
       // request.send().then((value) => print);
 
       // FIXME: BIR NECHTA RASMLARNI JO'NATISH
-      for (var photoPath in hotel.media) {
+      for (var photoPath in hotel.media!) {
         final mimeTypeData =
             lookupMimeType(photoPath, headerBytes: [0xFF, 0xD8])?.split('/');
 
