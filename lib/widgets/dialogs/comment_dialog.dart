@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/models/comment.dart';
 import 'package:mobileapp/widgets/tiles/comment_tile.dart';
@@ -7,15 +6,15 @@ import 'package:mobileapp/widgets/tiles/comment_tile.dart';
 import '../inputs/add_comment_layout.dart';
 
 class CommentListDialog extends StatelessWidget {
-  final Map<String, String> headers;
+  late Map<String, String> headers;
 
-  const CommentListDialog({Key? key, required this.headers}) : super(key: key);
+   CommentListDialog({Key? key, required this.headers}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        AddCommentLayout(type: _renameType(headers.keys.first), id: headers[headers.keys.first]!),
+        AddCommentLayout(type: headers.keys.first, id: headers.values.first),
         FutureBuilder(
             future: CommentService.getComment(headers),
             builder: (ctx, AsyncSnapshot<List<Comment>?> snap) {
@@ -44,4 +43,6 @@ class CommentListDialog extends StatelessWidget {
   }
 
   String _renameType(String type) => type.replaceAll('_id', 'Id');
+
+ 
 }

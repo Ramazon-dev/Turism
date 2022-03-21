@@ -54,10 +54,17 @@ class _HotelListPageState extends State<HotelListPage>
                     itemCount: snap.data!.length,
                     itemBuilder: (ctx, i) {
                       Hotel hotel = snap.data![i];
-                      String img = hotel.media[0]
-                          .toString()
-                          .replaceAll('k__image__', '');
-
+                      String img =hotel.media[0];
+                      print("OLD: "+img);
+                      if (img[0] == 'k') {
+                        img =
+                            hotel.media[0].replaceAll('k__image__', '');
+                      } else {
+                        img =
+                            "https://ucharteam-tourism.herokuapp.com/v1/media/" +
+                                hotel.media[0].replaceAll('k__image__', '');
+                      }
+                      print("NEW: "+img);
                       return _buildHotelLayout(img, hotel);
                     });
               }
