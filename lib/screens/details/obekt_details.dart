@@ -8,6 +8,7 @@ import 'package:mobileapp/core/data/app_data.dart';
 import 'package:mobileapp/core/data/image_list.dart';
 import 'package:mobileapp/models/obekt_model.dart';
 import 'package:mobileapp/services/obekt_services.dart';
+import 'package:mobileapp/widgets/dialogs/comment_dialog.dart';
 import 'package:mobileapp/widgets/images_page_view.dart';
 import 'package:mobileapp/widgets/rating_bar_widget.dart';
 import 'package:share_plus/share_plus.dart';
@@ -203,7 +204,6 @@ class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
   }
 
   sendMessage() async {
-// print(${r.toString()});
     if (GetStorage().read('token') == null) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => SignInPage()));
@@ -244,8 +244,14 @@ class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
   }
 
   FloatingActionButton _commentButton() => FloatingActionButton(
-        onPressed: onCommentPressed,
+        onPressed: _onCommentButtonPressed,
         backgroundColor: AppColors.black,
         child: SvgPicture.asset(AppIcons.comment),
       );
+
+  void _onCommentButtonPressed() {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) => CommentListDialog(headers: {'object_id': _place.id!}));
+  }
 }
