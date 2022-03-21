@@ -20,6 +20,14 @@ class CustomNavigator {
       MaterialPageRoute(builder: (_) => page),
     );
   }
+
+  void pushAndRemoveUntil(Widget page) {
+    Navigator.pushAndRemoveUntil(
+      _context,
+      MaterialPageRoute(builder: (_) => page),
+      (route) => false,
+    );
+  }
 }
 
 void navigatorPushReplacement(Widget page) {
