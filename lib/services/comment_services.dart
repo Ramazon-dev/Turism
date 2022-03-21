@@ -5,15 +5,19 @@ import 'package:mobileapp/models/comment.dart';
 import '../core/components/exporting_packages.dart';
 
 class CommentService {
- static var request = http.Request('POST',
+  static var request = http.Request('POST',
       Uri.parse('https://ucharteam-tourism.herokuapp.com/v1/api/comment'));
 
-  static Future<bool> addObjectComment({required String commentText, required String  typeId, required String type}) async {
+  static Future<bool> addObjectComment(
+      {required String commentText,
+      required String typeId,
+      required String type}) async {
     String token = await GetStorage().read('token');
     try {
       request.headers
           .addAll({'token': token, 'Content-Type': 'application/json'});
-      request.body = json.encode({'name': commentText, type.replaceAll('_id', 'Id'): typeId});
+      request.body = json
+          .encode({'name': commentText, type.replaceAll('_id', 'Id'): typeId});
 
       http.StreamedResponse response = await request.send();
 
@@ -23,7 +27,9 @@ class CommentService {
         print(response.reasonPhrase);
         return false;
       }
-    } catch (e) {print(e);}
+    } catch (e) {
+      print(e);
+    }
     print(false);
     return false;
   }

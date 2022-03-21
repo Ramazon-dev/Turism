@@ -3,6 +3,7 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/components/image_filter.dart';
 import 'package:mobileapp/cubit/business/git_cubit/git_cubit.dart';
 
+// ignore: must_be_immutable
 class GitInfoPage extends StatelessWidget {
   Git? git;
   bool isEditing;
@@ -39,6 +40,7 @@ class GitInfoPage extends StatelessWidget {
                   //TODO:
                   ProfileCircleAvatar(
                     imageUrl: imageFilter( git!.image.toString()),
+
                     onPressed: cubitRead.onChooseImage,
                   ),
                   MySizedBox(width: 26.0),

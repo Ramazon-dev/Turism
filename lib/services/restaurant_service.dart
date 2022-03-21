@@ -16,23 +16,23 @@ class RestaurantService {
       var request =
           http.MultipartRequest('POST', Uri.parse('$baseUrl/restaurant'));
       request.fields.addAll({
-        'name': restaurant.name,
-        'city': restaurant.city,
-        'informUz': restaurant.informUz,
-        'informRu': restaurant.informRu,
-        'informEn': restaurant.informEn,
-        'karta': restaurant.karta,
+        'name': restaurant.name!,
+        'city': restaurant.city!,
+        'informUz': restaurant.informUz!,
+        'informRu': restaurant.informRu!,
+        'informEn': restaurant.informEn!,
+        'karta': restaurant.karta!,
         'category': '903908cf-7f6d-424f-8c03-66d30e9347bf'
       });
 
-      for (var tell in restaurant.tell) {
+      for (var tell in restaurant.tell!) {
         request.files.add(
           http.MultipartFile.fromString('tell', tell),
         );
       }
 
       // FIXME: BIR NECHTA RASMLARNI JO'NATISH
-      for (var photoPath in restaurant.media) {
+      for (var photoPath in restaurant.media!) {
         final mimeTypeData =
             lookupMimeType(photoPath, headerBytes: [0xFF, 0xD8])?.split('/');
 
@@ -53,7 +53,7 @@ class RestaurantService {
       var response = await http.Response.fromStream(streamedResponse);
 
       if (response.statusCode == 201) {
-        
+        await BusinessAccountService.setIntoStorage();
         //Restaurant rest = Restaurant.fromJson(jsonDecode(response.body)['data']);
 
         GetStorage().write('myRestaurant', jsonDecode(response.body)['data']);

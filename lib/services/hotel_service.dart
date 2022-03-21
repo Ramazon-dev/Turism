@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/business/hotel_cubit/hotel_cubit.dart';
 
+import 'business_account_service.dart';
+
 class HotelService {
   static String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
 
@@ -14,20 +16,22 @@ class HotelService {
       var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/hotel'));
       request.fields.addAll({
         'name': hotel.name,
-        'city': hotel.city,
+        'city': hotel.city!,
         'informUz': hotel.informUz,
         'informRu': hotel.informRu,
         'informEn': hotel.informEn,
         'karta': hotel.karta,
         // "tell": hotel.tell[0],
+
         'categoryId': '1991edea-7d4a-49fb-b627-79b777cf54ae'
       });
 
-      for (var tell in hotel.tell) {
+      for (var tell in hotel.tell!) {
         request.files.add(http.MultipartFile.fromString('tell', tell));
       }
 
       for (var photoPath in hotel.media) {
+
         final mimeTypeData =
             lookupMimeType(photoPath, headerBytes: [0xFF, 0xD8])?.split('/');
 
@@ -47,6 +51,7 @@ class HotelService {
       if (response.statusCode == 201) {
         print(response.body);
         return response.statusCode;
+
       } else {
         print('else error: ' + response.statusCode.toString());
         return response.body;

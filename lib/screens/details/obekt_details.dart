@@ -1,13 +1,10 @@
-import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:http/http.dart' as http;
 import 'package:mobileapp/core/data/app_data.dart';
 import 'package:mobileapp/core/data/image_list.dart';
 import 'package:mobileapp/models/obekt_model.dart';
-import 'package:mobileapp/services/obekt_services.dart';
 import 'package:mobileapp/widgets/dialogs/comment_dialog.dart';
 import 'package:mobileapp/widgets/images_page_view.dart';
 import 'package:mobileapp/widgets/rating_bar_widget.dart';
@@ -23,7 +20,6 @@ class ObjectDetailsPage extends StatefulWidget {
 }
 
 class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
-  bool isComment = false;
 
   late Obekt _place;
 
@@ -33,11 +29,9 @@ class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
     _place = widget.place;
   }
 
-  List comment = [];
-  final TextEditingController _commentController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
+    print('_ObjectDetailsPageState.build: ${_place.media}');
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -57,7 +51,7 @@ class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
               height: getHeight(410),
               width: getWidth(375),
               // TODO: if server will be worked, Image list must be changed
-              child: ImagesPageView(imageList: ImageList.images),
+              child: ImagesPageView(imageList: _place.media!),
             ),
             Padding(
               padding: MyEdgeInsets.all(15.0),
@@ -102,7 +96,7 @@ class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
                 ],
               ),
             ),
-            isComment ? commentfunc(context, sendMessage) : SizedBox()
+            // isComment ? commentfunc(context, sendMessage) : SizedBox()
           ],
         ),
       ),
@@ -132,117 +126,6 @@ class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
       ],
     );
   }
-
-  Column commentfunc(BuildContext context, VoidCallback funcComment) {
-    return Column(
-      children: [
-        Container(
-          alignment: Alignment.center,
-          // color: Colors.red,
-          height: getHeight(45),
-          width: MediaQuery.of(context).size.width,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: getWidth(8)),
-                child: SvgPicture.asset(AppIcons.commentperson),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.72,
-                child: TextFormFieldWidget(
-                  controller: _commentController,
-                ),
-              ),
-              InkWell(
-                onTap: funcComment,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: getWidth(8)),
-                  child: SvgPicture.asset(AppIcons.send),
-                ),
-              )
-            ],
-          ),
-        ),
-        Container(
-          width: getWidth(288),
-          padding: const EdgeInsets.all(8.0),
-          height: getHeight(400),
-          child: ListView.builder(
-            reverse: true,
-            itemBuilder: (context, i) {
-              return Container(
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      child: Text(
-                        comment[i]['user'][0],
-                      ),
-                    ),
-                    SizedBox(
-                      width: getWidth(10),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "${comment[i]['user']}",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text("${comment[i]['name']}"),
-                      ],
-                    ),
-                  ],
-                ),
-              );
-            },
-            itemCount: comment.length,
-          ),
-        )
-      ],
-    );
-  }
-
-  sendMessage() async {
-    if (GetStorage().read('token') == null) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => SignInPage()));
-    } else {
-      await ObektSevices().addCommentToObekt(
-          gitId: widget.place.id.toString(),
-          commentText: _commentController.text);
-      onCommentPressed();
-      setState(() {});
-    }
-  }
-
-  void onCommentPressed() async {
-    try {
-      var headers = {
-        'object_id': '${widget.place.id}',
-      };
-      var request = http.Request('GET',
-          Uri.parse('https://ucharteam-tourism.herokuapp.com/v1/api/comment'));
-
-      request.headers.addAll(headers);
-
-      http.StreamedResponse response = await request.send();
-
-      if (response.statusCode == 200) {
-        var res = await response.stream.bytesToString();
-        comment = jsonDecode(res)['data'];
-        isComment = true;
-
-        setState(() {});
-        print(comment.toString());
-      } else {
-        print(response.reasonPhrase);
-      }
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-
   FloatingActionButton _commentButton() => FloatingActionButton(
         onPressed: _onCommentButtonPressed,
         backgroundColor: AppColors.black,
@@ -251,7 +134,10 @@ class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
 
   void _onCommentButtonPressed() {
     showModalBottomSheet(
-        context: context,
-        builder: (_) => CommentListDialog(headers: {'object_id': _place.id!}));
+      context: context,
+      builder: (_) => CommentListDialog(headers: {'object_id': _place.id!}),
+    );
   }
+
+
 }

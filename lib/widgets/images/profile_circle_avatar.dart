@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/data/image_list.dart';
 
+// ignore: must_be_immutable
 class ProfileCircleAvatar extends StatelessWidget {
   final String imageUrl;
   VoidCallback onPressed;
@@ -20,7 +22,6 @@ class ProfileCircleAvatar extends StatelessWidget {
         Container(
           width: getHeight(height),
           height: getHeight(height),
-          padding: _isDefault() ? EdgeInsets.all(24.w) : EdgeInsets.zero,
           decoration: MyDecoration.circular(
             border: Border.all(color: AppColors.primary, width: getWidth(2)),
             color: Colors.transparent,
@@ -37,6 +38,7 @@ class ProfileCircleAvatar extends StatelessWidget {
                           AppImages.notFound,
                           fit: BoxFit.cover,
                         )),
+
           ),
         ),
         Positioned(
@@ -49,7 +51,7 @@ class ProfileCircleAvatar extends StatelessWidget {
                 radius: getWidth(21.43),
                 child: SvgPicture.asset(AppIcons.image),
 
-                //TODO:
+
               ),
             )),
       ],

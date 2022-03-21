@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobileapp/core/components/data_formatter.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/data/image_list.dart';
 import 'package:mobileapp/models/comment.dart';
@@ -18,7 +19,9 @@ class CommentTile extends StatelessWidget {
           CircleAvatar(
             backgroundColor: AppColors.lightGrey,
             backgroundImage: CachedNetworkImageProvider(
-              comment.image ?? ImageList.profileBlank,
+              DataFormatter.formatImageUrl(
+                comment.image ?? ImageList.profileBlank,
+              ),
             ),
           ),
           SizedBox(width: 10.w),
@@ -26,7 +29,9 @@ class CommentTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(comment.user!, style: AppTextStyle.regular(size: 10.0)),
-              Text(comment.name!, style: AppTextStyle.regular(size: 10.0, color: AppColors.grey)),
+              Text(comment.name!,
+                  style:
+                      AppTextStyle.regular(size: 10.0, color: AppColors.grey)),
             ],
           )
         ],

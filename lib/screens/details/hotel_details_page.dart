@@ -3,6 +3,7 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/widgets/dialogs/comment_dialog.dart';
 import 'package:mobileapp/widgets/images_page_view.dart';
 import 'package:mobileapp/widgets/phone_list_widget.dart';
+import 'package:mobileapp/widgets/rating_bar_widget.dart';
 
 class ResHotelDetailsPage extends StatelessWidget {
   final Hotel hotel;
@@ -23,7 +24,7 @@ class ResHotelDetailsPage extends StatelessWidget {
           _onButtonPressed(context);
         },
       ),
-      appBar: SimpleAppBar(title: hotel.name),
+      appBar: SimpleAppBar(title: hotel.name!),
       body: Column(
         children: [
           Center(
@@ -51,6 +52,7 @@ class ResHotelDetailsPage extends StatelessWidget {
                     width: getWidth(323),
                     height: getHeight(255),
                     child: ImagesPageView(imageList: hotel.media),
+
                   ),
                   Padding(
                     padding: MyEdgeInsets.symmetric(h: 20.0),
@@ -61,14 +63,16 @@ class ResHotelDetailsPage extends StatelessWidget {
                         MySizedBox(
                           width: 178.0,
                           child: Text(
-                            hotel.name,
+                            hotel.name!,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: AppTextStyle.medium(),
                           ),
                         ),
                         MySizedBox(height: 10.0),
-                        RatWidget(rating: 3, users: 0),
+                        RatingBarWidget(
+                            rating: hotel.reyting!.toDouble(),
+                            users: hotel.users!),
                         MySizedBox(height: 10.0),
                         Row(
                           children: [
@@ -78,13 +82,11 @@ class ResHotelDetailsPage extends StatelessWidget {
                             ),
                             UrlTextWidget(
                               url: hotel.karta,
-                              text: 'Расположение на карте',
+                              text: LocaleKeys.on_map.tr(),
                             )
                           ],
                         ),
-                        SizedBox(
-                          height: getHeight(4),
-                        ),
+                        SizedBox(height: getHeight(4)),
                         if (hotel.site != null)
                           Row(
                             children: [
@@ -98,16 +100,14 @@ class ResHotelDetailsPage extends StatelessWidget {
                               )
                             ],
                           ),
-                        SizedBox(
-                          height: getHeight(28),
-                        ),
+                        SizedBox(height: getHeight(28)),
                         Text(
-                          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at ",
+                          hotel.informEn!,
                           style: AppTextStyle.regular(),
                         ),
                         SizedBox(height: 21.h),
-                        // TODO: Serverdan kelgan ma'lumot bilan almashtiriladi
-                        PhoneListWidget(phoneList: hotel.tell),
+                        PhoneListWidget(phoneList: hotel.tell!),
+
 
                       ],
                     ),
@@ -124,7 +124,7 @@ class ResHotelDetailsPage extends StatelessWidget {
   void _onButtonPressed(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      builder: (ctx) => CommentListDialog(headers: {'hotel_id': hotel.id}),
+      builder: (ctx) => CommentListDialog(headers: {'hotel_id': hotel.id!}),
     );
   }
 }

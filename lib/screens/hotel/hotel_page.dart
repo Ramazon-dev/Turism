@@ -55,12 +55,15 @@ class _HotelListPageState extends State<HotelListPage>
                     itemCount: snap.data!.length,
                     itemBuilder: (ctx, i) {
                       Hotel hotel = snap.data![i];
-                      String img = hotel.media[0];
+                      String img = hotel.media![0];
                       img = imageFilter(img);
                       return _buildHotelLayout(img, hotel);
                     });
               }
-              return SizedBox(height: SizeConfig.screenHeight -200 ,child: const Center(child: CupertinoActivityIndicator()));
+              return SizedBox(
+                height: SizeConfig.screenHeight - 200,
+                child: const Center(child: CupertinoActivityIndicator()),
+              );
             }),
       ),
     );
@@ -84,7 +87,8 @@ class _HotelListPageState extends State<HotelListPage>
       borderRadius: MyBorderRadius.circular(radius: 7.0),
       child: Container(
         alignment: Alignment.bottomCenter,
-        decoration: MyDecoration.netImage(netImage: img, radius: 7.0, color: AppColors.disabled),
+        decoration: MyDecoration.netImage(
+            netImage: img, radius: 7.0, color: AppColors.disabled),
         child: GlassContainer(
           width: getWidth(375.0),
           height: getHeight(64.0),
@@ -96,7 +100,7 @@ class _HotelListPageState extends State<HotelListPage>
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  hotel.name,
+                  hotel.name!,
                   style: AppTextStyle.medium(color: AppColors.white),
                 ),
                 Text(
