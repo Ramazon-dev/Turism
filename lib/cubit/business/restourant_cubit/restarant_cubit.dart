@@ -27,16 +27,16 @@ class RestaurantCubit extends Cubit<RestorantState> {
   RestaurantCubit.editing(Restaurant rest) : super(RestorantInitial()) {
     _restaurantId = rest.id!;
     _isEditing = true;
-    _nameController.text = rest.name;
-    _phoneController.text = rest.tell[0];
-    _typeController.text = rest.categoryId;
+    _nameController.text = rest.name!;
+    _phoneController.text = rest.tell![0];
+    _typeController.text = rest.categoryId!;
     _websiteController.text = rest.site.toString();
-    _mapLinkController.text = rest.karta;
-    _aboutUzController.text = rest.informUz;
-    _aboutEnController.text = rest.informEn;
-    _aboutRuController.text = rest.informRu;
-    _imageList = rest.media;
-    _city = CityList().getCityName(rest.city);
+    _mapLinkController.text = rest.karta!;
+    _aboutUzController.text = rest.informUz!;
+    _aboutEnController.text = rest.informEn!;
+    _aboutRuController.text = rest.informRu!;
+    _imageList = rest.media!;
+    _city = CityList().getCityName(rest.city!);
   }
 
   void cityChanged(dynamic value) {

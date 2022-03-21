@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/data/image_list.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
 import 'package:mobileapp/widgets/buttons/language_button.dart';
 
@@ -46,10 +47,11 @@ class MyGitListWidget extends StatelessWidget {
                 ),
 
               ),
-              image: DecorationImage(
+              image:const  DecorationImage(
                 image: NetworkImage(
-                  "https://ucharteam-tourism.herokuapp.com/v1/media/" +
-                      git.image!,
+                  ImageList.profileBlank
+                  // "https://ucharteam-tourism.herokuapp.com/v1/media/" +
+                  //     git.image!,
                 ),
                 fit: BoxFit.cover,
               ),

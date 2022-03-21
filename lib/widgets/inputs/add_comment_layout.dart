@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/data/image_list.dart';
 
+// ignore: must_be_immutable
 class AddCommentLayout extends StatefulWidget {
   late String type;
   late String id;
@@ -23,7 +24,6 @@ class _AddCommentLayoutState extends State<AddCommentLayout> {
 
   @override
   Widget build(BuildContext context) {
-    print('${widget.type}: ${widget.id}');
     return Padding(
       padding: MyEdgeInsets.symmetric(v: 20.0, h: 15.0),
       child: Row(
@@ -57,8 +57,8 @@ class _AddCommentLayoutState extends State<AddCommentLayout> {
           IconButton(
             onPressed: _onSendButtonPressed,
             icon: isSended
-                ? Icon(Icons.send, color: AppColors.blue)
-                : CircularProgressIndicator(),
+                ? const Icon(Icons.send, color: AppColors.blue)
+                : const CircularProgressIndicator(),
             constraints: const BoxConstraints(),
           )
         ],
@@ -70,9 +70,10 @@ class _AddCommentLayoutState extends State<AddCommentLayout> {
     String comment = _commentController.text.trim();
     setState(() => isSended = false);
     if (comment.isNotEmpty) {
-      await CommentService.addObjectComment(
+      CommentService.addObjectComment(
               commentText: comment, type: widget.type, typeId: widget.id)
           .then((value) => setState(() => isSended = value));
+      _commentController.clear();
     } else {
       return;
     }

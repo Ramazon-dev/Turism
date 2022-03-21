@@ -16,12 +16,12 @@ class BusinessRestaurantTile extends StatelessWidget {
     return BaseBusinessTile(
       // TODO: Bu yerga Hotel rasmi qo'yiladi
       imgUrl: MockData.place.media[0],
-      title: restaurant.name,
+      title: restaurant.name!,
       infoWidget: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            restaurant.informUz,
+            restaurant.informUz!,
             maxLines: 1,
             style: AppTextStyle.regular(size: 12.0, color: AppColors.grey),
           ),
@@ -34,7 +34,7 @@ class BusinessRestaurantTile extends StatelessWidget {
           LinkWithIconButton(
             icon: AppIcons.location,
             label: LocaleKeys.tourist_zone.tr(),
-            link: restaurant.karta,
+            link: restaurant.karta!,
           ),
           SizedBox(height: 8.h),
           restaurant.site != null
