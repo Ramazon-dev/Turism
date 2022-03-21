@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobileapp/core/components/data_formatter.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 
 class ImagesPageView extends StatefulWidget {
@@ -24,7 +25,7 @@ class _ImagesPageViewState extends State<ImagesPageView> {
               itemCount: widget.imageList.length,
               itemBuilder: (ctx, i) {
                 return CachedNetworkImage(
-                  imageUrl: widget.imageList[i],
+                  imageUrl: DataFormatter.formatImageUrl(widget.imageList[i]),
                   fit: BoxFit.cover,
                   width: double.infinity,
                 );

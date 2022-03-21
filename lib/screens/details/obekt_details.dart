@@ -31,6 +31,7 @@ class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    print('_ObjectDetailsPageState.build: ${_place.media}');
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -50,7 +51,7 @@ class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
               height: getHeight(410),
               width: getWidth(375),
               // TODO: if server will be worked, Image list must be changed
-              child: ImagesPageView(imageList: ImageList.images),
+              child: ImagesPageView(imageList: _place.media!),
             ),
             Padding(
               padding: MyEdgeInsets.all(15.0),
@@ -137,4 +138,6 @@ class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
       builder: (_) => CommentListDialog(headers: {'object_id': _place.id!}),
     );
   }
+
+
 }
