@@ -62,7 +62,7 @@ class MyGitListWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               DescriptionWidget(
-                name: git.username.toString(),
+                name: git.username ?? 'Your account',
                 price: git.price.toString(),
                 rating: git.reyting!.toDouble(),
                 users: 8,

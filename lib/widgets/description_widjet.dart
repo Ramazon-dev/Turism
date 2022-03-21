@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/widgets/rating_bar_widget.dart';
 
+// ignore: must_be_immutable
 class DescriptionWidget extends StatelessWidget {
   String name;
   String price;
@@ -45,7 +47,6 @@ class DescriptionWidget extends StatelessWidget {
               color: AppColors.greyPrice,
               fontSize: getWidth(16),
               fontWeight: FontWeight.w500,
-              fontFamily: 'Roboto',
             ),
           ),
           TextSpan(
@@ -54,14 +55,11 @@ class DescriptionWidget extends StatelessWidget {
               color: AppColors.black,
               fontSize: getWidth(8),
               fontWeight: FontWeight.w400,
-              fontFamily: 'Roboto',
             ),
           )
         ])),
-        SizedBox(
-          height: getHeight(10),
-        ),
-        RatWidget(rating: rating, users: users)
+        SizedBox(height: getHeight(10)),
+        RatingBarWidget(rating: rating, users: users)
       ],
     );
   }

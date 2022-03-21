@@ -5,6 +5,7 @@ class FormValidator {
     } else if (!_validPattern(value, _emailPattern)) {
       return "Input valid email";
     }
+    return null;
   }
 
   static String? password(value) {
@@ -13,6 +14,7 @@ class FormValidator {
     } else if (!_validPattern(value, _passwordPattern)) {
       return "Password is not safety";
     }
+    return null;
   }
 
   static String? url(value) {
@@ -21,6 +23,7 @@ class FormValidator {
     } else if (!_validPattern(value, _urlPattern)) {
       return "Please, enter valid url";
     }
+    return null;
   }
 
   static String? general(value) {
@@ -29,6 +32,7 @@ class FormValidator {
     } else if (value.length < 8) {
       return "Minimum 8 characters";
     }
+    return null;
   }
 
   static String? phone(value) {
@@ -37,6 +41,7 @@ class FormValidator {
     } else if (value.length < 9) {
       return "required 9 numbers";
     }
+    return null;
   }
 
 
@@ -46,14 +51,14 @@ class FormValidator {
     } else if (value.length < 20) {
       return "Minimum 20 characters";
     }
+    return null;
   }
 
    static String? isNotEmpty(value) {
     if (value.isEmpty) {
       return "Please, Fill the field";
-    } else if (value.length < 8) {
-      return "Minimum 8 characters";
     }
+    return null;
   }
 
 

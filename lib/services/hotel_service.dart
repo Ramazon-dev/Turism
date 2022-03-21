@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mobileapp/core/components/exporting_packages.dart';
 
+import 'business_account_service.dart';
+
 class HotelService {
   static String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
 
@@ -45,6 +47,7 @@ class HotelService {
 
       if (response.statusCode == 201) {
         print(await response.stream.bytesToString());
+        await BusinessAccountService.setIntoStorage();
         return response.stream.bytesToString();
       } else {
         print('else error: ' + response.reasonPhrase.toString());

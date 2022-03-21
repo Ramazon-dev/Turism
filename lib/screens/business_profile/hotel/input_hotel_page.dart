@@ -3,6 +3,7 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/business/hotel_cubit/hotel_cubit.dart';
 import 'package:mobileapp/widgets/images/show_image_network.dart';
 
+// ignore: must_be_immutable
 class InputHotelPage extends StatelessWidget {
   final bool isEditing;
   Hotel? hotel;

@@ -44,6 +44,7 @@ export 'package:mobileapp/services/currency_service.dart';
 export 'package:mobileapp/services/hotel_service.dart';
 export 'package:mobileapp/services/image_pick_service.dart';
 export 'package:mobileapp/services/git_service.dart';
+export 'package:mobileapp/services/business_account_service.dart';
 
 // Components
 export 'package:mobileapp/core/components/size_config.dart';
