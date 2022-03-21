@@ -26,7 +26,7 @@ class CommentTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(comment.user!, style: AppTextStyle.regular(size: 10.0)),
-              Text(comment.user!, style: AppTextStyle.regular(size: 10.0, color: AppColors.grey)),
+              Text(comment.name!, style: AppTextStyle.regular(size: 10.0, color: AppColors.grey)),
             ],
           )
         ],

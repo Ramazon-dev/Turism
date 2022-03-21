@@ -13,10 +13,9 @@ class CommentListDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: [
-        AddCommentLayout(type: 'hotelId', id: headers[headers.keys.first]!),
+        AddCommentLayout(type: _renameType(headers.keys.first), id: headers[headers.keys.first]!),
         FutureBuilder(
             future: CommentService.getComment(headers),
             builder: (ctx, AsyncSnapshot<List<Comment>?> snap) {
@@ -43,4 +42,6 @@ class CommentListDialog extends StatelessWidget {
       ],
     );
   }
+
+  String _renameType(String type) => type.replaceAll('_id', 'Id');
 }
