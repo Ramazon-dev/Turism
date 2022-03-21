@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mobileapp/core/components/exporting_packages.dart';
 
+import 'business_account_service.dart';
+
 class HotelService {
   static String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
 
@@ -14,19 +16,19 @@ class HotelService {
       var headers = {'token': token};
       var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/hotel'));
       request.fields.addAll({
-        'name': hotel.name,
-        'city': hotel.city,
-        'informUz': hotel.informUz, 
-        'informRu': hotel.informRu,
-        'informEn': hotel.informEn,
-        'karta': hotel.karta,
+        'name': hotel.name!,
+        'city': hotel.city!,
+        'informUz': hotel.informUz!,
+        'informRu': hotel.informRu!,
+        'informEn': hotel.informEn!,
+        'karta': hotel.karta!,
         'tell': hotel.tell.toString(),
         'categoryId': '1991edea-7d4a-49fb-b627-79b777cf54ae'
       });
       // request.send().then((value) => print);
 
       // FIXME: BIR NECHTA RASMLARNI JO'NATISH
-      for (var photoPath in hotel.media) {
+      for (var photoPath in hotel.media!) {
         final mimeTypeData =
             lookupMimeType(photoPath, headerBytes: [0xFF, 0xD8])?.split('/');
 
@@ -45,6 +47,7 @@ class HotelService {
 
       if (response.statusCode == 201) {
         print(await response.stream.bytesToString());
+        await BusinessAccountService.setIntoStorage();
         return response.stream.bytesToString();
       } else {
         print('else error: ' + response.reasonPhrase.toString());

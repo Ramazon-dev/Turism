@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/components/image_filter.dart';
+import 'package:mobileapp/core/components/size_config.dart';
 import 'package:mobileapp/screens/details/hotel_details_page.dart';
 import 'package:mobileapp/widgets/top_bar/app_bar_with_list.dart';
 
@@ -54,14 +56,15 @@ class _HotelListPageState extends State<HotelListPage>
                     itemCount: snap.data!.length,
                     itemBuilder: (ctx, i) {
                       Hotel hotel = snap.data![i];
-                      String img = hotel.media[0]
-                          .toString()
-                          .replaceAll('k__image__', '');
-
+                      String img = hotel.media![0];
+                      img = imageFilter(img);
                       return _buildHotelLayout(img, hotel);
                     });
               }
-              return const CupertinoActivityIndicator();
+              return SizedBox(
+                height: SizeConfig.screenHeight - 200,
+                child: const Center(child: CupertinoActivityIndicator()),
+              );
             }),
       ),
     );
@@ -85,7 +88,8 @@ class _HotelListPageState extends State<HotelListPage>
       borderRadius: MyBorderRadius.circular(radius: 7.0),
       child: Container(
         alignment: Alignment.bottomCenter,
-        decoration: MyDecoration.netImage(netImage: img, radius: 7.0),
+        decoration: MyDecoration.netImage(
+            netImage: img, radius: 7.0, color: AppColors.disabled),
         child: GlassContainer(
           width: getWidth(375.0),
           height: getHeight(64.0),
@@ -97,7 +101,7 @@ class _HotelListPageState extends State<HotelListPage>
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  hotel.name,
+                  hotel.name!,
                   style: AppTextStyle.medium(color: AppColors.white),
                 ),
                 Text(

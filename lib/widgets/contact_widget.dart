@@ -31,7 +31,7 @@ class ContactWidget extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-              _makePhoneCall('+998946581098');
+              _makePhoneCall(git!.tell.toString());
             },
             child: _buildContainer(AppIcons.call),
           ),
@@ -47,7 +47,6 @@ class ContactWidget extends StatelessWidget {
   void _onCommentPressed() async {
     try {
       var headers = {
-        // 'object_id':'${obekt.}'
         'git_id': '${git!.id}',
         'hotel_id': '${hotel?.id}',
         'restaurant_id': '${restaurant?.id}'

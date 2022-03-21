@@ -4,6 +4,7 @@ import 'package:mobileapp/core/data/image_list.dart';
 import 'package:mobileapp/widgets/dialogs/comment_dialog.dart';
 import 'package:mobileapp/widgets/images_page_view.dart';
 import 'package:mobileapp/widgets/phone_list_widget.dart';
+import 'package:mobileapp/widgets/rating_bar_widget.dart';
 
 class ResHotelDetailsPage extends StatelessWidget {
   final Hotel hotel;
@@ -23,7 +24,7 @@ class ResHotelDetailsPage extends StatelessWidget {
           _onButtonPressed(context);
         },
       ),
-      appBar: SimpleAppBar(title: hotel.name),
+      appBar: SimpleAppBar(title: hotel.name!),
       body: Column(
         children: [
           Center(
@@ -61,14 +62,16 @@ class ResHotelDetailsPage extends StatelessWidget {
                         MySizedBox(
                           width: 178.0,
                           child: Text(
-                            hotel.name,
+                            hotel.name!,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: AppTextStyle.medium(),
                           ),
                         ),
                         MySizedBox(height: 10.0),
-                        RatWidget(rating: 3, users: 0),
+                        RatingBarWidget(
+                            rating: hotel.reyting!.toDouble(),
+                            users: hotel.users!),
                         MySizedBox(height: 10.0),
                         Row(
                           children: [
@@ -85,18 +88,19 @@ class ResHotelDetailsPage extends StatelessWidget {
                         SizedBox(
                           height: getHeight(4),
                         ),
-                        Row(
-                          children: [
-                            SvgPicture.asset(AppIcons.link),
-                            SizedBox(
-                              width: getWidth(4),
-                            ),
-                            UrlTextWidget(
-                              url: hotel.site,
-                              text: hotel.site,
-                            )
-                          ],
-                        ),
+                        if (hotel.site != null)
+                          Row(
+                            children: [
+                              SvgPicture.asset(AppIcons.link),
+                              SizedBox(
+                                width: getWidth(4),
+                              ),
+                              UrlTextWidget(
+                                url: hotel.site,
+                                text: hotel.site,
+                              )
+                            ],
+                          ),
                         SizedBox(
                           height: getHeight(28),
                         ),
@@ -106,7 +110,7 @@ class ResHotelDetailsPage extends StatelessWidget {
                         ),
                         SizedBox(height: 21.h),
                         // TODO: Serverdan kelgan ma'lumot bilan almashtiriladi
-                        PhoneListWidget(phoneList: hotel.tell)
+                        PhoneListWidget(phoneList: hotel.tell!)
                       ],
                     ),
                   )
@@ -120,10 +124,9 @@ class ResHotelDetailsPage extends StatelessWidget {
   }
 
   void _onButtonPressed(BuildContext context) {
-
     showModalBottomSheet(
       context: context,
-      builder: (ctx) => CommentListDialog(headers: {'hotel_id': hotel.id}),
+      builder: (ctx) => CommentListDialog(headers: {'hotel_id': hotel.id!}),
     );
   }
 }

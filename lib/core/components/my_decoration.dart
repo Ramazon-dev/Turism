@@ -12,6 +12,7 @@ class MyDecoration {
           color: color,
           borderRadius: MyBorderRadius.circular(radius: radius),
           border: border,
+          
           image: DecorationImage(
             fit: BoxFit.cover,
             image: AssetImage(assetImage),

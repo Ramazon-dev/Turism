@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 
+// ignore: must_be_immutable
 class RatingBarWidget extends StatelessWidget {
   final double rating;
   final int users;
   Color color;
+  double itemSize;
 
   RatingBarWidget({
     Key? key,
     required this.rating,
     required this.users,
+    this.itemSize = 14.0,
     this.color = AppColors.black,
   }) : super(key: key);
 
@@ -19,7 +22,7 @@ class RatingBarWidget extends StatelessWidget {
       children: [
         RatingBar.builder(
           itemCount: 5,
-          itemSize: 14.w,
+          itemSize: itemSize.w,
           ignoreGestures: true,
           initialRating: rating,
           allowHalfRating: true,
@@ -27,7 +30,10 @@ class RatingBarWidget extends StatelessWidget {
           itemBuilder: _itemRating,
         ),
         Text(' $rating', style: AppTextStyle.medium(size: 12.0, color: color)),
-        Text('($users)' ,style: AppTextStyle.medium(size: 12.0, color: color.withOpacity(0.8)))
+        Text(
+          '($users)',
+          style: AppTextStyle.medium(size: 12.0, color: color.withOpacity(0.8)),
+        )
       ],
     );
   }

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/models/business_account_model.dart';
 import 'package:mobileapp/services/business_account_service.dart';
 
 class AuthServices {
@@ -17,14 +18,15 @@ class AuthServices {
       request.headers.addAll(headers);
       http.StreamedResponse response = await request.send();
       if (response.statusCode == 200 || response.statusCode == 201) {
-        // var data = await response.stream.bytesToString();
         var data = jsonDecode(await response.stream.bytesToString());
         String token = data['data']['token'];
         UserModel user = UserModel.fromJson(data['data']['user']);
         await GetStorage().write('token', token);
         await GetStorage().write('user', user.toMap());
 
-        await BusinessAccountService().getServiceList();
+
+
+        BusinessAccountService.setIntoStorage();
 
         UserData.setCurrentUser = user;
         return true;
@@ -63,7 +65,6 @@ class AuthServices {
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         var data = jsonDecode(await response.stream.bytesToString());
-        print(data);
         String token = data['data']['token'];
         UserModel user = UserModel.fromJson(data['data']['user']);
         await GetStorage().write('token', token);
@@ -88,8 +89,9 @@ class AuthServices {
   }
 
   static Future logout() async {
-    await GetStorage().write('token', '');
+    await GetStorage().remove('token');
     await GetStorage().remove('user');
     await GetStorage().remove('businessAccount');
+    await GetStorage().remove('git');
   }
 }

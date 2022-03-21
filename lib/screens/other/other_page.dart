@@ -56,7 +56,7 @@ class OtherPage extends StatelessWidget {
                   informRu: 'inform ru',
                   karta: 'http://google.maps/tashkent',
                   site: 'http://site.uz',
-                  category: '1991edea-7d4a-49fb-b627-79b777cf54ae',
+                  categoryId: '1991edea-7d4a-49fb-b627-79b777cf54ae',
                   media: ImageChooser.imageList,
                 ),
               );
@@ -153,7 +153,7 @@ class OtherPage extends StatelessWidget {
 
   FloatingActionButton _actionButton() => FloatingActionButton(
         onPressed: () async {
-          await BusinessAccountService().getServiceList();
+          await BusinessAccountService.getServiceList();
         },
       );
 }
