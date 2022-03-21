@@ -17,7 +17,7 @@ class RestaurantService {
       var request =
           http.MultipartRequest('POST', Uri.parse('$baseUrl/restaurant'));
       request.fields.addAll({
-        'name': restaurant.name,
+        'name': restaurant.name!,
         'city': restaurant.city,
         'informUz': restaurant.informUz,
         'informRu': restaurant.informRu,

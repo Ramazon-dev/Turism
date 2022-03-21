@@ -19,7 +19,7 @@ class GitDetailsPage extends StatefulWidget {
 }
 
 class _GitDetailsPageState extends State<GitDetailsPage> {
-  TextEditingController _commentController = TextEditingController();
+  final TextEditingController _commentController = TextEditingController();
 
   List comment = [];
 

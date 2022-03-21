@@ -1,69 +1,119 @@
+import 'dart:convert';
+
+Restaurant restaurantsFromJson(String str) =>
+    Restaurant.fromJson(json.decode(str));
+
+String restaurantsToJson(Restaurant data) => json.encode(data.toJson());
+
 class Restaurant {
-  late String name;
-  late String informUz;
-  late String informEn;
-  late String informRu;
-  late String karta;
-  late String category;
-  late String city;
-  late List<String> media;
-  late List<String> tell;
-  String? date;
-  String? site;
-  int? reyting;
-  int? users;
-  String? id;
-
   Restaurant({
-    required this.name,
-    required this.media,
-    required this.informUz,
-    required this.informEn,
-    required this.informRu,
-    required this.karta,
-    required this.city,
-    required this.tell,
-    required this.category,
-    this.site,
-    this.id,
-    this.date,
-    this.reyting,
-    this.users,
-  });
-
-  Restaurant.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    media = json['media'];
-    informUz = json['inform_uz'];
-    informEn = json['inform_en'];
-    informRu = json['inform_ru'];
-    karta = json['karta'];
-    city = json['city'];
-    site = json['site'];
-    tell = json['tell'];
-    date = json['date'];
-    category = json['category_id'];
-    reyting = json['reyting'];
-    users = json['users'];
+    String? id,
+    String? name,
+    List<String>? media,
+    String? informUz,
+    String? informEn,
+    String? informRu,
+    String? karta,
+    String? city,
+    dynamic site,
+    List<String>? tell,
+    String? date,
+    String? categoryId,
+    int? reyting,
+    int? users,
+  }) {
+    _id = id;
+    _name = name;
+    _media = media;
+    _informUz = informUz;
+    _informEn = informEn;
+    _informRu = informRu;
+    _karta = karta;
+    _city = city;
+    _site = site;
+    _tell = tell;
+    _date = date;
+    _categoryId = categoryId;
+    _reyting = reyting;
+    _users = users;
   }
 
+  Restaurant.fromJson(dynamic json) {
+    _id = json['id'];
+    _name = json['name'];
+    _media = json['media'] != null ? json['media'].cast<String>() : [];
+    _informUz = json['inform_uz'];
+    _informEn = json['inform_en'];
+    _informRu = json['inform_ru'];
+    _karta = json['karta'];
+    _city = json['city'];
+    _site = json['site'];
+    _tell = json['tell'] != null ? json['tell'].cast<String>() : [];
+    _date = json['date'];
+    _categoryId = json['category_id'];
+    _reyting = json['reyting'];
+    _users = json['users'];
+  }
+
+  String? _id;
+  String? _name;
+  List<String>? _media;
+  String? _informUz;
+  String? _informEn;
+  String? _informRu;
+  String? _karta;
+  String? _city;
+  dynamic _site;
+  List<String>? _tell;
+  String? _date;
+  String? _categoryId;
+  int? _reyting;
+  int? _users;
+
+  String get id => _id!;
+
+  String get name => _name!;
+
+  List<String> get media => _media!;
+
+  String get informUz => _informUz!;
+
+  String get informEn => _informEn!;
+
+  String get informRu => _informRu!;
+
+  String get karta => _karta!;
+
+  String get city => _city!;
+
+  dynamic get site => _site!;
+
+  List<String> get tell => _tell!;
+
+  String get date => _date!;
+
+  String get categoryId => _categoryId!;
+
+  int get reyting => _reyting!;
+
+  int get users => _users!;
+
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['media'] = media;
-    data['inform_uz'] = informUz;
-    data['inform_en'] = informEn;
-    data['inform_ru'] = informRu;
-    data['karta'] = karta;
-    data['city'] = city;
-    data['site'] = site;
-    data['tell'] = tell;
-    data['date'] = date;
-    data['category_id'] = category;
-    data['reyting'] = reyting;
-    data['users'] = users;
-    return data;
+    final map = <String, dynamic>{};
+    map['id'] = _id;
+    map['name'] = _name;
+    map['media'] = _media;
+    map['inform_uz'] = _informUz;
+    map['inform_en'] = _informEn;
+    map['inform_ru'] = _informRu;
+    map['karta'] = _karta;
+    map['city'] = _city;
+    map['site'] = _site;
+    map['tell'] = _tell;
+    map['date'] = _date;
+    map['category_id'] = _categoryId;
+    map['reyting'] = _reyting;
+    map['users'] = _users;
+    return map;
   }
 }

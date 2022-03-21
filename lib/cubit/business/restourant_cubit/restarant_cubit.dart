@@ -1,8 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/data/city_list.dart';
-import 'package:mobileapp/models/restaurant_model.dart';
 import 'package:mobileapp/services/restaurant_service.dart';
 
 part 'restaurant_state.dart';
@@ -32,7 +29,7 @@ class RestaurantCubit extends Cubit<RestorantState> {
     _isEditing = true;
     _nameController.text = rest.name;
     _phoneController.text = rest.tell[0];
-    _typeController.text = rest.category;
+    _typeController.text = rest.categoryId;
     _websiteController.text = rest.site.toString();
     _mapLinkController.text = rest.karta;
     _aboutUzController.text = rest.informUz;
@@ -61,7 +58,6 @@ class RestaurantCubit extends Cubit<RestorantState> {
       String aboutEn = _aboutEnController.text.trim();
       String aboutRu = _aboutRuController.text.trim();
 
-
       Restaurant restaurant = Restaurant(
         name: name,
         media: _imageList,
@@ -71,7 +67,7 @@ class RestaurantCubit extends Cubit<RestorantState> {
         karta: map,
         city: city,
         tell: [phone],
-        category: 'categoryId',
+        categoryId: 'categoryId',
       );
 
       if (_isEditing) {

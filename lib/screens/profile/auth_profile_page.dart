@@ -62,7 +62,7 @@ class ProfileAuthPage extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: model.restaurants!.length,
         itemBuilder: (ctx, index) {
-          Restaurants restaurants = model.restaurants![index];
+          Restaurant restaurants = model.restaurants![index];
           return BusinessRestaurantTile(restaurant: restaurants);
         });
   }
@@ -74,8 +74,8 @@ class ProfileAuthPage extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: model.hotels!.length,
         itemBuilder: (ctx, i) {
-          Hotels hotel = model.hotels![i];
-          return BusinessHotelTile(hotels: hotel);
+          Hotel hotel = model.hotels![i] as Hotel;
+          return BusinessHotelTile(hotel: hotel);
         });
   }
 
