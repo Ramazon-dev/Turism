@@ -31,23 +31,27 @@ class ProfileCircleAvatar extends StatelessWidget {
                 MyBorderRadius.circular(radius: _isDefault() ? 0.0 : 100.0),
             child: _isDefault()
                 ? SvgPicture.asset(AppIcons.personal)
-                : CachedNetworkImage(imageUrl: "https://ucharteam-tourism.herokuapp.com/v1/media/$imageUrl" ),
+                : CachedNetworkImage(
+                    imageUrl: imageUrl,
+                    errorWidget: (context, url, error) => Image.asset(
+                          AppImages.notFound,
+                          fit: BoxFit.cover,
+                        )),
           ),
         ),
         Positioned(
-          bottom: 0.0,
-          right: 0.0,
-          child: InkWell(
-            onTap: onPressed,
-            child: CircleAvatar(
-              backgroundColor: AppColors.primary,
-              radius: getWidth(21.43),
-              child: SvgPicture.asset(AppIcons.image),
-          
-              //TODO:
-            ),
-          )),
-        
+            bottom: 0.0,
+            right: 0.0,
+            child: InkWell(
+              onTap: onPressed,
+              child: CircleAvatar(
+                backgroundColor: AppColors.primary,
+                radius: getWidth(21.43),
+                child: SvgPicture.asset(AppIcons.image),
+
+                //TODO:
+              ),
+            )),
       ],
     );
   }

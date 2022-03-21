@@ -35,8 +35,8 @@ class ImageSetter extends StatelessWidget {
           _dottedBorder(
             height: 216.0,
             width: 291.0,
-            child: ImageChooser.imageList.length > 4
-                ? _showImage(ImageChooser.imageList[4])
+            child: cubit.imageList.length > 4
+                ? _showImage(cubit.imageList[4])
                 : SvgPicture.asset(
                     AppIcons.add,
                     color: AppColors.grey,
@@ -47,13 +47,13 @@ class ImageSetter extends StatelessWidget {
                   ).onClick(cubit.setImage),
           ),
           SizedBox(height: 12.0.h),
-          _showImages(),
+          _showImages(cubit),
         ],
       ),
     );
   }
 
-  Row _showImages() {
+  Row _showImages(HotelCubit cubit) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/components/image_filter.dart';
-import 'package:mobileapp/core/components/size_config.dart';
 import 'package:mobileapp/screens/details/hotel_details_page.dart';
 import 'package:mobileapp/widgets/top_bar/app_bar_with_list.dart';
 

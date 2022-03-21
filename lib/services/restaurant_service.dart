@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/models/category_model.dart';
-import 'package:mobileapp/models/restaurant_model.dart';
 
 class RestaurantService {
   static String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';

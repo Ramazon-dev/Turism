@@ -79,9 +79,11 @@ class Hotels {
     dynamic site,
     List<String>? tell,
     String? date,
+    String? owner,
     String? categoryId,
     int? reyting,
     int? users,
+
   }) {
     _id = id;
     _name = name;
@@ -97,6 +99,7 @@ class Hotels {
     _categoryId = categoryId;
     _reyting = reyting;
     _users = users;
+    _owner = owner;
   }
 
   Hotels.fromJson(dynamic json) {
@@ -114,6 +117,7 @@ class Hotels {
     _categoryId = json['category_id'];
     _reyting = json['reyting'];
     _users = json['users'];
+    _owner = json['owner'];
   }
 
   String? _id;
@@ -127,6 +131,7 @@ class Hotels {
   dynamic _site;
   List<String>? _tell;
   String? _date;
+  String? _owner;
   String? _categoryId;
   int? _reyting;
   int? _users;
@@ -144,6 +149,8 @@ class Hotels {
   String? get karta => _karta;
 
   String? get city => _city;
+
+  String? get owner => _owner;
 
   dynamic get site => _site;
 
@@ -175,6 +182,7 @@ class Hotels {
     map['category_id'] = _categoryId;
     map['reyting'] = _reyting;
     map['users'] = _users;
+    map['owner'] = _owner;
     return map;
   }
 }

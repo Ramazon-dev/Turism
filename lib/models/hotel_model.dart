@@ -13,6 +13,7 @@ class Hotel {
   String? _categoryId;
   int? _reyting;
   int? _users;
+  String? _owner;
 
   Hotel(
       {String? id,
@@ -27,6 +28,7 @@ class Hotel {
       List<String>? tell,
       String? date,
       String? categoryId,
+      String? owner,
       int? reyting,
       int? users}) {
     if (id != null) {
@@ -71,6 +73,9 @@ class Hotel {
     if (users != null) {
       _users = users;
     }
+    if (owner != null) {
+      _owner = owner;
+    }
   }
 
   String get id => _id!;
@@ -80,6 +85,8 @@ class Hotel {
   List<String> get media => _media!;
 
   String get informUz => _informUz!;
+
+  String get owner => _owner!;
 
   String get informEn => _informEn!;
 
@@ -116,6 +123,7 @@ class Hotel {
     _categoryId = json['category_id'];
     _reyting = json['reyting'];
     _users = json['users'];
+    _owner = json['owner'];
   }
 
   Map<String, dynamic> toJson() {
@@ -134,6 +142,12 @@ class Hotel {
     data['category_id'] = _categoryId;
     data['reyting'] = _reyting;
     data['users'] = _users;
+    data['owner'] = _owner;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'Hotel: { name: $name, media: $media, informUz: $informUz, infomrEn: $informEn, informRu: $informRu, karta: $karta, city: $city, tell: $tell, }';
   }
 }

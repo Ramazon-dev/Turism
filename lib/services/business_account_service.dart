@@ -16,7 +16,7 @@ class BusinessAccountService {
       var response = await http.get(url, headers: headers);
 
       var data = jsonDecode(response.body)['data'];
-     // print("DATA: "+ data);
+     // print("DATA: "+ data);yoki 
       BusinessAccountModel businessAccountModel =
           BusinessAccountModel.fromJson(data);
       await GetStorage()

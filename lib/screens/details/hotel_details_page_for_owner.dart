@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/models/business_account_model.dart';
+import 'package:mobileapp/screens/business_profile/hotel/input_hotel_page.dart';
+import 'package:mobileapp/screens/profile/auth_profile_page.dart';
 import 'package:mobileapp/widgets/dialogs/comment_dialog.dart';
 import 'package:mobileapp/widgets/images_page_view.dart';
 import 'package:mobileapp/widgets/phone_list_widget.dart';
 
-class ResHotelDetailsPage extends StatelessWidget {
-  final Hotel hotel;
+class ResHotelDetailsPageForOwner extends StatelessWidget {
+  final Hotels hotel;
 
-  const ResHotelDetailsPage({Key? key, required this.hotel}) : super(key: key);
+  const ResHotelDetailsPageForOwner({Key? key, required this.hotel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    print( GetStorage().read('user')['id']);
-    //print(hotel.owner);
+    print(GetStorage().read('user')['id']);
+    print(hotel.owner);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionButton(
@@ -23,7 +27,7 @@ class ResHotelDetailsPage extends StatelessWidget {
           _onButtonPressed(context);
         },
       ),
-      appBar: SimpleAppBar(title: hotel.name),
+      appBar: SimpleAppBar(title: hotel.name!),
       body: Column(
         children: [
           Center(
@@ -50,7 +54,7 @@ class ResHotelDetailsPage extends StatelessWidget {
                     margin: EdgeInsets.all(getWidth(11)),
                     width: getWidth(323),
                     height: getHeight(255),
-                    child: ImagesPageView(imageList: hotel.media),
+                    child: ImagesPageView(imageList: hotel.media!),
                   ),
                   Padding(
                     padding: MyEdgeInsets.symmetric(h: 20.0),
@@ -61,7 +65,7 @@ class ResHotelDetailsPage extends StatelessWidget {
                         MySizedBox(
                           width: 178.0,
                           child: Text(
-                            hotel.name,
+                            hotel.name!,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: AppTextStyle.medium(),
@@ -106,9 +110,61 @@ class ResHotelDetailsPage extends StatelessWidget {
                           style: AppTextStyle.regular(),
                         ),
                         SizedBox(height: 21.h),
-                        // TODO: Serverdan kelgan ma'lumot bilan almashtiriladi
-                        PhoneListWidget(phoneList: hotel.tell),
-
+                        PhoneListWidget(phoneList: hotel.tell!),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            IconButton(
+                              onPressed: () => CustomNavigator.push(
+                                InputHotelPage(
+                                  isEditing: true,
+                                  hotel: Hotel.fromJson(hotel.toJson()),
+                                ),
+                              ),
+                              icon: const Icon(
+                                Icons.edit,
+                              ),
+                              color: Colors.green,
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: const Text(
+                                        "Chindan o'chirishni istaysizmi"),
+                                    actions: [
+                                      TextButton(
+                                        child: const Text("Yo'q"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                      TextButton(
+                                        child: const Text('Ha'),
+                                        onPressed: () {
+                                          HotelService()
+                                              .deleteHotel(hotelId: hotel.id!)
+                                              .then((value) =>
+                                                  Navigator.pushAndRemoveUntil(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (_) =>
+                                                              const ProfileAuthPage()),
+                                                      (route) => false));
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   )
@@ -124,7 +180,7 @@ class ResHotelDetailsPage extends StatelessWidget {
   void _onButtonPressed(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      builder: (ctx) => CommentListDialog(headers: {'hotel_id': hotel.id}),
+      builder: (ctx) => CommentListDialog(headers: {'hotel_id': hotel.id!}),
     );
   }
 }
