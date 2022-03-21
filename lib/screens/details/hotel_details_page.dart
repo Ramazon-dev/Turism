@@ -4,6 +4,7 @@ import 'package:mobileapp/core/data/image_list.dart';
 import 'package:mobileapp/widgets/dialogs/comment_dialog.dart';
 import 'package:mobileapp/widgets/images_page_view.dart';
 import 'package:mobileapp/widgets/phone_list_widget.dart';
+import 'package:mobileapp/widgets/rating_bar_widget.dart';
 
 class ResHotelDetailsPage extends StatelessWidget {
   final Hotel hotel;
@@ -68,7 +69,9 @@ class ResHotelDetailsPage extends StatelessWidget {
                           ),
                         ),
                         MySizedBox(height: 10.0),
-                        RatWidget(rating: 3, users: 0),
+                        RatingBarWidget(
+                            rating: hotel.reyting!.toDouble(),
+                            users: hotel.users!),
                         MySizedBox(height: 10.0),
                         Row(
                           children: [

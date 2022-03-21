@@ -3,8 +3,6 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 
 import 'package:mobileapp/models/business_account_model.dart';
-import 'package:mobileapp/models/git_model.dart' as git;
-import 'package:mobileapp/services/business_account_service.dart';
 import 'package:mobileapp/widgets/tiles/business_hotel_tile.dart';
 import 'package:mobileapp/widgets/tiles/business_restaurant_tile.dart';
 
@@ -27,7 +25,7 @@ class ProfileAuthPage extends StatelessWidget {
   SingleChildScrollView _buildBody(HomeCubit cubit) {
     return SingleChildScrollView(
       child: FutureBuilder(
-        future: BusinessAccountService().getServiceList(),
+        future: BusinessAccountService.getServiceListFromStorage(),
         builder: (ctx, AsyncSnapshot<BusinessAccountModel?> snap) {
           if (snap.hasData) {
             BusinessAccountModel model = snap.data!;
@@ -74,15 +72,14 @@ class ProfileAuthPage extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: model.hotels!.length,
         itemBuilder: (ctx, i) {
-          Hotel hotel = model.hotels![i] as Hotel;
+          Hotel hotel = model.hotels![i];
           return BusinessHotelTile(hotel: hotel);
         });
   }
 
   Widget _myGitListWidget(BusinessAccountModel model) {
-    var gits = git.Git.fromJson(model.git!.toJson());
-    return MyGitListWidget(git: gits).onClick(() {
-      CustomNavigator.push(GitInfoPage(git: gits, isEditing: true));
+    return MyGitListWidget(git: model.git!).onClick(() {
+      CustomNavigator.push(GitInfoPage(git: model.git, isEditing: true));
     });
   }
 }

@@ -54,7 +54,7 @@ class RestaurantService {
       var response = await http.Response.fromStream(streamedResponse);
 
       if (response.statusCode == 201) {
-        
+        await BusinessAccountService.setIntoStorage();
         //Restaurant rest = Restaurant.fromJson(jsonDecode(response.body)['data']);
 
         GetStorage().write('myRestaurant', jsonDecode(response.body)['data']);

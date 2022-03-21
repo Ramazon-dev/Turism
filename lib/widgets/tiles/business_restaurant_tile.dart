@@ -21,7 +21,7 @@ class BusinessRestaurantTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            restaurant.informUz!,
+            restaurant.date!,
             maxLines: 1,
             style: AppTextStyle.regular(size: 12.0, color: AppColors.grey),
           ),
@@ -36,14 +36,14 @@ class BusinessRestaurantTile extends StatelessWidget {
             label: LocaleKeys.tourist_zone.tr(),
             link: restaurant.karta!,
           ),
-          SizedBox(height: 8.h),
-          restaurant.site != null
-              ? LinkWithIconButton(
-                  icon: AppIcons.link,
-                  label: restaurant.site.toString(),
-                  link: restaurant.site.toString(),
-                )
-              : const SizedBox(),
+          // SizedBox(height: 8.h),
+          // restaurant.site != null
+          //     ? LinkWithIconButton(
+          //         icon: AppIcons.link,
+          //         label: restaurant.site.toString(),
+          //         link: restaurant.site.toString(),
+          //       )
+          //     : const SizedBox(),
         ],
       ),
     ).onClick(() => CustomNavigator.push(RestaurantPage(

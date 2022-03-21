@@ -57,8 +57,7 @@ class DrawerWidget extends StatelessWidget {
       ListTile(
         onTap: () async {
           if (isAll) {
-            await GetStorage().write('token', '');
-            await GetStorage().write('user', {});
+            await AuthServices.logout();
             CustomNavigator().pushAndRemoveUntil(page);
           } else {
             CustomNavigator.push(page);

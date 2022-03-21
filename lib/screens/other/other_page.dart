@@ -153,7 +153,7 @@ class OtherPage extends StatelessWidget {
 
   FloatingActionButton _actionButton() => FloatingActionButton(
         onPressed: () async {
-          await BusinessAccountService().getServiceList();
+          await BusinessAccountService.getServiceList();
         },
       );
 }

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/components/image_filter.dart';
@@ -18,17 +17,9 @@ class GitDetailsPage extends StatefulWidget {
 }
 
 class _GitDetailsPageState extends State<GitDetailsPage> {
-  final TextEditingController _commentController = TextEditingController();
-
-  List comment = [];
-
-  bool isComment = false;
 
   @override
   Widget build(BuildContext context) {
-    String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/';
-    String randImg = 'https://source.unsplash.com/random/4';
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionButton(
@@ -75,7 +66,7 @@ class _GitDetailsPageState extends State<GitDetailsPage> {
                     DescriptionWidget(
                       name: widget.git.username.toString(),
                       price: widget.git.price.toString(),
-                      rating: double.parse(widget.git.price.toString()),
+                      rating: double.parse(widget.git.reyting.toString()),
                       users: 5,
                     ),
 
@@ -89,10 +80,6 @@ class _GitDetailsPageState extends State<GitDetailsPage> {
                     SizedBox(height: getHeight(16)),
 
                     PhoneListWidget(phoneList: widget.git.tell!.toList())
-                    // ContactWidget(
-                    //   git: widget.git,
-                    //   commentOpen: onCommentPressed,
-                    // ),
                   ],
                 ),
               ),
