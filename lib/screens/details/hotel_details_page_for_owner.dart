@@ -5,6 +5,7 @@ import 'package:mobileapp/screens/profile/auth_profile_page.dart';
 import 'package:mobileapp/widgets/dialogs/comment_dialog.dart';
 import 'package:mobileapp/widgets/images_page_view.dart';
 import 'package:mobileapp/widgets/phone_list_widget.dart';
+import 'package:mobileapp/widgets/rating_bar_widget.dart';
 
 class ResHotelDetailsPageForOwner extends StatelessWidget {
   final Hotel hotel;
@@ -17,13 +18,7 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
     SizeConfig().init(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.black,
-        child: SvgPicture.asset(AppIcons.comment),
-        onPressed: () {
-          _onButtonPressed(context);
-        },
-      ),
+      floatingActionButton: _buildFloatingActionButton(context),
       appBar: SimpleAppBar(title: hotel.name),
       body: Column(
         children: [
@@ -69,7 +64,10 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
                           ),
                         ),
                         MySizedBox(height: 10.0),
-                        RatWidget(rating: 3, users: 0),
+                        RatingBarWidget(
+                          rating: hotel.reyting!.toDouble(),
+                          users: hotel.users!,
+                        ),
                         MySizedBox(height: 10.0),
                         Row(
                           children: [
@@ -79,7 +77,7 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
                             ),
                             UrlTextWidget(
                               url: hotel.karta,
-                              text: 'Расположение на карте',
+                              text: LocaleKeys.on_map.tr(),
                             )
                           ],
                         ),
@@ -103,7 +101,7 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
                           height: getHeight(28),
                         ),
                         Text(
-                          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at ",
+                          hotel.informEn.tr(),
                           style: AppTextStyle.regular(),
                         ),
                         SizedBox(height: 21.h),
@@ -171,6 +169,14 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  FloatingActionButton _buildFloatingActionButton(BuildContext context) {
+    return FloatingActionButton(
+      backgroundColor: AppColors.black,
+      child: SvgPicture.asset(AppIcons.comment),
+      onPressed: () => _onButtonPressed(context),
     );
   }
 

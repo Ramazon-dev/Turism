@@ -1,30 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/models/transport_model.dart';
 import 'package:mobileapp/widgets/phone_list_widget.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
 
-class TransportDetailPage extends StatelessWidget {
-  // final CarModel car;
-  final String carImage;
-  final String carName;
-  final String carPrice;
-  final String carInfo;
-  final List<String> carNumber;
-  final int users;
-  final double rating;
+import '../../widgets/dialogs/comment_dialog.dart';
 
-  const TransportDetailPage({
-    Key? key,
-    // required this.car,
-    required this.carImage,
-    required this.carInfo,
-    required this.carName,
-    required this.carPrice,
-    required this.carNumber,
-    required this.rating,
-    required this.users,
-  }) : super(key: key);
+class TransportDetailPage extends StatelessWidget {
+  final TransportModel transport;
+
+  const TransportDetailPage({Key? key, required this.transport}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -86,10 +72,10 @@ class TransportDetailPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               DescriptionWidget(
-                                name: carName,
-                                price: carPrice,
-                                rating: rating,
-                                users: users,
+                                name: transport.name!,
+                                price: transport.price!,
+                                rating: transport.reyting!.toDouble(),
+                                users: transport.users!,
                               ),
                             ],
                           ),
@@ -117,14 +103,14 @@ class TransportDetailPage extends StatelessWidget {
                           ),
                           SizedBox(height: 28.h),
                           Text(
-                            carInfo,
+                            transport.informEn!,
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                               fontFamily: 'Roboto',
                             ),
                           ),
-                          PhoneListWidget(phoneList: carNumber)
+                          PhoneListWidget(phoneList: transport.tell!)
                         ],
                       ),
                     )
@@ -134,5 +120,19 @@ class TransportDetailPage extends StatelessWidget {
             ),
           ],
         ));
+  }
+
+  FloatingActionButton _actionButton(BuildContext context) =>
+      FloatingActionButton(
+        onPressed: () => _onButtonPressed(context),
+        backgroundColor: AppColors.black,
+        child: SvgPicture.asset(AppIcons.comment),
+      );
+
+  void _onButtonPressed(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => CommentListDialog(headers: {'transport_id': transport.id!}),
+    );
   }
 }

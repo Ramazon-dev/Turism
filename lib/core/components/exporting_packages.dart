@@ -36,6 +36,7 @@ export 'package:mobileapp/widgets/city_list_widget.dart';
 export 'package:mobileapp/widgets/empty_widget.dart';
 export 'package:mobileapp/widgets/git_list_widjet.dart';
 export 'package:mobileapp/widgets/inputs/phone_prefix.dart';
+export 'package:mobileapp/widgets/dialogs/comment_dialog.dart';
 
 // Services
 export 'package:mobileapp/services/auth_services.dart';
@@ -82,7 +83,6 @@ export 'package:cached_network_image/cached_network_image.dart';
 export 'package:fluttertoast/fluttertoast.dart';
 
 // Models
-export 'package:mobileapp/models/car_model.dart';
 export 'package:mobileapp/models/hotel_model.dart';
 export 'package:mobileapp/models/place_model.dart';
 export 'package:mobileapp/core/data/user_data.dart';
@@ -90,6 +90,7 @@ export 'package:mobileapp/models/user_model.dart';
 export 'package:mobileapp/models/git_model.dart';
 export 'package:mobileapp/models/city_model.dart';
 export 'package:mobileapp/models/restaurant_model.dart';
+export 'package:mobileapp/models/transport_model.dart';
 
 // translations
 export 'package:mobileapp/translations/locale_keys.g.dart';

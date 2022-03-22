@@ -86,7 +86,7 @@ class Hotel {
 
   String get informUz => _informUz!;
 
-  String get owner => _owner!;
+  String? get owner => _owner;
 
   String get informEn => _informEn!;
 
