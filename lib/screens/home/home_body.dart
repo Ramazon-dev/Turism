@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
+import 'package:mobileapp/models/category_model.dart';
 import 'package:mobileapp/screens/home/widgets/container.dart';
 import 'package:mobileapp/screens/home/widgets/popolar_object.dart';
+import 'package:mobileapp/screens/restaurant/restaurants_grid_view.dart';
 import 'package:mobileapp/widgets/row_text.dart';
 
 class HomeBody extends StatelessWidget {
   final HomeCubit cubit;
 
-  const HomeBody({Key? key, required this.cubit}) : super(key: key);
-
+  HomeBody({Key? key, required this.cubit}) : super(key: key);
+  late List<Category> restaurantCategories;
   @override
   Widget build(BuildContext context) {
+    restaurantCategories = (GetStorage().read('restCategories') as List)
+        .map((e) => Category.fromJson(e))
+        .toList();
     SizeConfig().init(context);
     return SingleChildScrollView(
       // physics: const BouncingScrollPhysics(),
@@ -84,16 +89,26 @@ class HomeBody extends StatelessWidget {
             ),
           ),
 
-          RowTextWidgets(ontap: () {}, text: "Ресторан", bottomText: "Все"),
+          RowTextWidgets(
+              ontap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => RestaurantsGridView())),
+              text: "Ресторан",
+              bottomText: "Все"),
           SizedBox(
             height: getHeight(210.0),
             child: ListView.builder(
-              itemCount: 10,
+              itemCount: restaurantCategories.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
+                return InkWell(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => RestaurantsGridView())),
                   child: Container(
+                    margin: const EdgeInsets.all(8.0),
                     height: getHeight(200.0),
                     width: getWidth(150.0),
                     decoration: MyDecoration.circular(
@@ -133,10 +148,10 @@ class HomeBody extends StatelessWidget {
                             ],
                           ),
                         ),
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.only(left: 15),
                           child: Text(
-                            "Национальные продукты",
+                            restaurantCategories[index].nameUz + ' taomlari',
                             style: TextStyle(fontSize: 15.0),
                           ),
                         ),

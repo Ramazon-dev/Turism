@@ -35,6 +35,7 @@ class ProfileAuthPage extends StatelessWidget {
                 return Column(
                   children: [
 
+
                     SizedBox(height:140.h),
                     // if git is not null, Git will be shown
                     model.git != null ? _myGitListWidget(model) : const SizedBox(),
@@ -78,7 +79,7 @@ class ProfileAuthPage extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: model.hotels!.length,
         itemBuilder: (ctx, i) {
-          Hotel hotel = model.hotels![i] ;
+          Hotel hotel = model.hotels![i];
           return BusinessHotelTile(hotel: hotel);
         });
   }

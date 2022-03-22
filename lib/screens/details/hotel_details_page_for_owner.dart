@@ -144,7 +144,7 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (_) =>
-                                                              const ProfileAuthPage()),
+                                                              const HomeScreen()),
                                                       (route) => false));
                                         },
                                       ),

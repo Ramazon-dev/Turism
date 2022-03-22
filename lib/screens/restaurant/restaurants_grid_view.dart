@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/components/image_filter.dart';
 import 'package:mobileapp/screens/details/hotel_details_page.dart';
+import 'package:mobileapp/screens/details/restaurant_details_page.dart';
+import 'package:mobileapp/services/restaurant_service.dart';
 import 'package:mobileapp/widgets/top_bar/app_bar_with_list.dart';
 
 class RestaurantsGridView extends StatefulWidget {
-  late Restaurant rest;
-  RestaurantsGridView({Key? key, required this.rest}) : super(key: key);
+  RestaurantsGridView({Key? key}) : super(key: key);
 
   @override
   State<RestaurantsGridView> createState() => _RestaurantsGridViewState();
@@ -32,14 +33,14 @@ class _RestaurantsGridViewState extends State<RestaurantsGridView>
       appBar: AppBarWithList(
         onPressed: () => Navigator.pop(context),
         tabController: _tabController,
-        title: LocaleKeys.hotel.tr(),
+        title: LocaleKeys.restaurant.tr(),
         onTabChanged: _onTabChanged,
         icon: Icons.arrow_back_ios_outlined,
       ),
       body: SingleChildScrollView(
         child: FutureBuilder(
-            future: HotelService().fetchHotelsByCity(_city.value),
-            builder: (context, AsyncSnapshot<List<Hotel>> snap) {
+            future: RestaurantService().fetchRestaurantsByCity(_city.value),
+            builder: (context, AsyncSnapshot<List<Restaurant>?> snap) {
               if (snap.hasError) {
                 return const Text('Error');
               } else if (snap.hasData) {
@@ -54,10 +55,9 @@ class _RestaurantsGridViewState extends State<RestaurantsGridView>
                     gridDelegate: _gridDelegate(),
                     itemCount: snap.data!.length,
                     itemBuilder: (ctx, i) {
-                      Hotel hotel = snap.data![i];
-                      String img = hotel.media[0];
-                      img = imageFilter(img);
-                      return _buildHotelLayout(img, hotel);
+                      Restaurant rest = snap.data![i];
+                      String img = imageFilter(rest.media![0]);
+                      return _buildHotelLayout(img, rest);
                     });
               }
               return SizedBox(
@@ -79,10 +79,10 @@ class _RestaurantsGridViewState extends State<RestaurantsGridView>
     });
   }
 
-  InkWell _buildHotelLayout(String img, Hotel hotel) {
+  InkWell _buildHotelLayout(String img, Restaurant rest) {
     return InkWell(
       onTap: () {
-        CustomNavigator.push(ResHotelDetailsPage(hotel: hotel));
+        CustomNavigator.push(ResDetailsPage(rest: rest));
       },
       borderRadius: MyBorderRadius.circular(radius: 7.0),
       child: Container(
@@ -100,11 +100,11 @@ class _RestaurantsGridViewState extends State<RestaurantsGridView>
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  hotel.name,
+                  rest.name!,
                   style: AppTextStyle.medium(color: AppColors.white),
                 ),
                 Text(
-                  hotel.site.toString(),
+                  rest.site.toString(),
                   maxLines: 1,
                   style: AppTextStyle.medium(color: AppColors.grey),
                 ),

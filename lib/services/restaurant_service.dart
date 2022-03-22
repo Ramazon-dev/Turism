@@ -68,17 +68,20 @@ class RestaurantService {
 
   Future<List<Restaurant>?> fetchRestaurantsByCity(String cityName) async {
     try {
+      print('fetch restaurnt by city: $cityName');
       var response = await http
           .get(Uri.parse("$baseUrl/restaurant"), headers: {"city": cityName});
 
       if (response.statusCode == 200) {
         //print(jsonDecode(response.body)['data']);
-        List restaurantList =
+        List<Restaurant> restaurantList =
             (jsonDecode(response.body)['data'] as List).map((e) {
-          print("ELEMENT" + e.toString());
+        //  print("ELEMENT" + e.toString());
+        //  e['reyting'].toDouble;
           return Restaurant.fromJson(e);
         }).toList();
-        return restaurantList as List<Restaurant>;
+        print(restaurantList);
+        return restaurantList ;
       } else {
         print(jsonDecode(response.body[0]));
         return null;
@@ -86,6 +89,7 @@ class RestaurantService {
     } catch (e) {
       print("ERROR: " + e.toString());
     }
+    return null;
   }
 
   Future<List<Restaurant>?> fetchRestaurantsByCategory(String categryId) async {
@@ -95,7 +99,7 @@ class RestaurantService {
       if (response.statusCode == 200) {
         List restaurantList =
             (jsonDecode(response.body)['data'] as List).map((e) {
-          print("ELEMENT" + e.toString());
+       //   print("ELEMENT" + e.toString());
           return Restaurant.fromJson(e);
         }).toList();
         print(restaurantList);
@@ -259,8 +263,9 @@ class RestaurantService {
       );
 
       if (response.statusCode == 201) {
+        await BusinessAccountService.setIntoStorage();
         print(jsonDecode(response.body));
-        return jsonDecode(response.body);
+        return jsonDecode(response.body)['message'];
       } else {
         print(response.body);
         return jsonDecode(response.body);

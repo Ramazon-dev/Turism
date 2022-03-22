@@ -7,10 +7,10 @@ import 'package:mobileapp/widgets/dialogs/comment_dialog.dart';
 import 'package:mobileapp/widgets/images_page_view.dart';
 import 'package:mobileapp/widgets/phone_list_widget.dart';
 
-class ResDetailsPageForOwner extends StatelessWidget {
+class ResDetailsPage extends StatelessWidget {
   final Restaurant rest;
 
-  const ResDetailsPageForOwner({Key? key, required this.rest})
+  const ResDetailsPage({Key? key, required this.rest})
       : super(key: key);
 
   @override
@@ -109,60 +109,7 @@ class ResDetailsPageForOwner extends StatelessWidget {
                         ),
                         SizedBox(height: 21.h),
                         PhoneListWidget(phoneList: rest.tell!),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            IconButton(
-                              onPressed: () => CustomNavigator.push(
-                                RestaurantPage(
-                                  isEditing: true,
-                                  restaurant: rest,
-                                ),
-                              ),
-                              icon: const Icon(
-                                Icons.edit,
-                              ),
-                              color: Colors.green,
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => AlertDialog(
-                                    title: const Text(
-                                        "Chindan o'chirishni istaysizmi"),
-                                    actions: [
-                                      TextButton(
-                                        child: const Text("Yo'q"),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                      TextButton(
-                                        child: const Text('Ha'),
-                                        onPressed: () {
-                                          RestaurantService()
-                                              .deleteRestaurant(rest.id!)
-                                              .then((value) =>
-                                                  Navigator.pushReplacement(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            const HomeScreen()),
-                                                  ));
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                              icon: const Icon(
-                                Icons.delete,
-                                color: Colors.red,
-                              ),
-                            ),
-                          ],
-                        )
+                        
                       ],
                     ),
                   )
