@@ -103,7 +103,7 @@ class TransportDetailPage extends StatelessWidget {
                           ),
                           SizedBox(height: 28.h),
                           Text(
-                            transport.informEn!,
+                            transport.showInfo(context.locale.languageCode),
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,

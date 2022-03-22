@@ -122,12 +122,6 @@ class RestaurantService {
       if (response.statusCode == 200) {
         List data = jsonDecode(response.body)['data'];
         GetStorage().write('restCategories', data);
-
-        // List<Category> categoryList = (data as List).map((e) {
-        //   print("ELEMENT" + e.toString());
-        //   return Category.fromJson(e);
-        // }).toList();
-
         return null;
       } else {
         print(jsonDecode(response.body)['message']);
