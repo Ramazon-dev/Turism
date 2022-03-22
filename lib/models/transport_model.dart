@@ -116,4 +116,13 @@ class TransportModel {
     map['users'] = _users;
     return map;
   }
+
+  String showInfo(String locale) {
+    if (locale == 'uz_UZ') {
+      return _informUz!;
+    } else if (locale == 'en_GB') {
+      return _informEn!;
+    }
+    return _informRu!;
+  }
 }

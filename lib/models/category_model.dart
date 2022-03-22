@@ -30,4 +30,14 @@ class Category {
     data['date'] = date;
     return data;
   }
+
+
+  String showInfo(String locale) {
+    if (locale == 'uz') {
+      return nameUz;
+    } else if (locale == 'en') {
+      return nameEn;
+    }
+    return nameRu;
+  }
 }

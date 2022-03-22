@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/business/restourant_cubit/restarant_cubit.dart';
+import 'package:mobileapp/services/locale_service.dart';
 import 'package:mobileapp/widgets/images/show_image_network.dart';
 
+// ignore: must_be_immutable
 class RestaurantPage extends StatelessWidget {
   bool isEditing;
   Restaurant? restaurant;
 
   RestaurantPage({Key? key, this.isEditing = false, this.restaurant})
       : super(key: key);
-  
 
+  late BuildContext _context;
 
   @override
   Widget build(BuildContext context) {
+    _context = context;
     return BlocProvider(
       create: (_) =>
           isEditing ? RestaurantCubit.editing(restaurant!) : RestaurantCubit(),
       child: BlocBuilder<RestaurantCubit, RestorantState>(
-        builder: (ctx, state)  {
+        builder: (ctx, state) {
           RestaurantCubit cubit = ctx.watch();
           RestaurantCubit cubitRead = ctx.read();
           return _buildScaffold(cubit, cubitRead);
@@ -45,7 +48,9 @@ class RestaurantPage extends StatelessWidget {
               Visibility(visible: !isEditing, child: const ImageSetter()),
               MySizedBox(height: 20.0),
               ElevatedButtonWidget(
-                onPressed: () {cubitRead.onSavePressed();},
+                onPressed: () {
+                  cubitRead.onSavePressed();
+                },
                 label: LocaleKeys.save.tr(),
               ),
             ],
@@ -81,17 +86,19 @@ class RestaurantPage extends StatelessWidget {
             ),
             MySizedBox(height: 20.0),
 
-            // RESTAURANT CATEGORY 
-            DropDownWidget(onChanged: cubit.categoryChanged, value: cubit.category.nameUz,items: cubit.categories.map((e) => e.nameUz).toList(), ),
-            // TextFormFieldWidget(
-            //   inputType: TextInputType.text,
-            //   controller: cubit.typeController,
-            //   validator: FormValidator.isNotEmpty,
-            //   hint: 'Тип ресторана',
-            // ),
+            // RESTAURANT CATEGORY
+            DropDownWidget(
+              onChanged: cubit.categoryChanged,
+              value: cubit.category.showInfo(LocaleService.currentLocale),
+              items: cubit.categories.map((e) => e.showInfo(LocaleService.currentLocale)).toList(),
+            ),
+
             MySizedBox(height: 20.0),
             // CITY CHANGE
-            DropDownWidget(onChanged: cubit.cityChanged, value: cubit.city, items: CityList.cities.map((e) => e.name).toList()),
+            DropDownWidget(
+                onChanged: cubit.cityChanged,
+                value: cubit.city,
+                items: CityList.cities.map((e) => e.name).toList()),
             MySizedBox(height: 20.0),
             TextFormFieldWidget(
               inputType: TextInputType.url,

@@ -45,7 +45,6 @@ class HomeScreen extends StatelessWidget {
   }
 
   List<PreferredSizeWidget?> _appBarList(HomeCubit cubit) {
-    String token = GetStorage().read('token') ?? '';
     return [
       null,
       SearchTabBar(),
@@ -53,20 +52,8 @@ class HomeScreen extends StatelessWidget {
         actions: SvgPicture.asset(AppIcons.language),
         actions2: SvgPicture.asset(AppIcons.dollar),
       ),
-
-      // AppBarOrigin(
-      //   actions: SvgPicture.asset(AppIcons.language),
-      //   actions2: SvgPicture.asset(AppIcons.dollar),
-      // ),
-      AppBarOrigin(
-        actions: SvgPicture.asset(AppIcons.language),
-        actions2: SvgPicture.asset(AppIcons.dollar),
-      ),
-      AppBarOrigin(
-        actions: SvgPicture.asset(AppIcons.language),
-        actions2: SvgPicture.asset(AppIcons.dollar),
-      ),
-      token.isNotEmpty ? ProfileAppBar(cubit: cubit) : null,
+      null,
+      null,
     ];
   }
 }

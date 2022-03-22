@@ -151,4 +151,13 @@ class Hotel {
   String toString() {
     return 'Hotel: { name: $name, media: $media, informUz: $informUz, infomrEn: $informEn, informRu: $informRu, karta: $karta, city: $city, tell: $tell, }';
   }
+
+  String showInfo(String locale) {
+    if (locale == 'uz') {
+      return _informUz!;
+    } else if (locale == 'en') {
+      return _informEn!;
+    }
+    return _informRu!;
+  }
 }

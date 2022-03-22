@@ -117,6 +117,15 @@ class Restaurant {
     return map;
   }
 
+  String showInfo(String locale) {
+    if (locale == 'uz') {
+      return _informUz!;
+    } else if (locale == 'en') {
+      return _informEn!;
+    }
+    return _informRu!;
+  }
+
   @override
   String toString() {
     return "Restaurant: {name: $name, media: $media, category: $categoryId, site: $site, tell: $tell, city: $city, karta: $karta, infoRu: $informRu, infoEn: $informEn ,infoUz: $informUz}";
