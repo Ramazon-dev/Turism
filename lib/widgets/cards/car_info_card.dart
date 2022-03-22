@@ -1,28 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/models/transport_model.dart';
 import 'package:mobileapp/screens/details/transport_details.dart';
 
 class CarInfoCard extends StatelessWidget {
-  // final CarModel car;
-  final String carName;
-  final String carPrice;
-  final String? carImage;
-  final String carInfo;
-  final List<String> carNumber;
-  final int users;
-  final double rating;
+  final TransportModel transport;
 
-  const CarInfoCard({
-    Key? key,
-    // required this.car,
-    required this.carImage,
-    required this.carName,
-    required this.carPrice,
-    required this.carInfo,
-    required this.carNumber,
-    required this.rating,
-    required this.users,
-  }) : super(key: key);
+  const CarInfoCard({Key? key, required this.transport}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,16 +18,7 @@ class CarInfoCard extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (_) => TransportDetailPage(
-                // car: car,
-                carImage: carImage!,
-                carName: carName,
-                carPrice: carPrice,
-                carInfo: carInfo,
-                carNumber: carNumber,
-                rating: rating,
-                users: users,
-              ),
+              builder: (_) => TransportDetailPage(transport: transport),
             ),
           );
         },
@@ -64,7 +39,7 @@ class CarInfoCard extends StatelessWidget {
                 ),
               ),
               MySizedBox(height: 5.0),
-              Text(carName, style: AppTextStyle.medium(size: 18.0)),
+              Text(transport.name!, style: AppTextStyle.medium(size: 18.0)),
               MySizedBox(height: 7.0),
               Container(
                 alignment: Alignment.center,
@@ -73,7 +48,7 @@ class CarInfoCard extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 padding: MyEdgeInsets.symmetric(v: 5.0, h: 40.0),
                 child: Text(
-                  '$carPrice \$',
+                  '${transport.price} \$',
                   style: AppTextStyle.medium(size: 8.0, color: AppColors.white),
                 ),
               ),

@@ -1,94 +1,119 @@
+import 'dart:convert';
+
+TransportModel transportModelFromJson(String str) =>
+    TransportModel.fromJson(json.decode(str));
+
+String transportModelToJson(TransportModel data) => json.encode(data.toJson());
+
 class TransportModel {
-  String? message;
-  List<Data>? data;
-
-  TransportModel({this.message, this.data});
-
-  TransportModel.fromJson(Map<String, dynamic> json) {
-    message = json['message'];
-    if (json['data'] != null) {
-      data = <Data>[];
-      json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
-      });
-    }
+  TransportModel({
+    String? id,
+    String? owner,
+    String? name,
+    List<String>? media,
+    String? informUz,
+    String? informEn,
+    String? informRu,
+    String? city,
+    List<String>? tell,
+    String? price,
+    String? date,
+    String? categoryId,
+    num? reyting,
+    int? users,
+  }) {
+    _id = id;
+    _owner = owner;
+    _name = name;
+    _media = media;
+    _informUz = informUz;
+    _informEn = informEn;
+    _informRu = informRu;
+    _city = city;
+    _tell = tell;
+    _price = price;
+    _date = date;
+    _categoryId = categoryId;
+    _reyting = reyting;
+    _users = users;
   }
+
+  TransportModel.fromJson(dynamic json) {
+    _id = json['id'];
+    _owner = json['owner'];
+    _name = json['name'];
+    _media = json['media'] != null ? json['media'].cast<String>() : [];
+    _informUz = json['inform_uz'];
+    _informEn = json['inform_en'];
+    _informRu = json['inform_ru'];
+    _city = json['city'];
+    _tell = json['tell'] != null ? json['tell'].cast<String>() : [];
+    _price = json['price'];
+    _date = json['date'];
+    _categoryId = json['category_id'];
+    _reyting = json['reyting'];
+    _users = json['users'];
+  }
+
+  String? _id;
+  String? _owner;
+  String? _name;
+  List<String>? _media;
+  String? _informUz;
+  String? _informEn;
+  String? _informRu;
+  String? _city;
+  List<String>? _tell;
+  String? _price;
+  String? _date;
+  String? _categoryId;
+  num? _reyting;
+  int? _users;
+
+  String? get id => _id;
+
+  String? get owner => _owner;
+
+  String? get name => _name;
+
+  List<String>? get media => _media;
+
+  String? get informUz => _informUz;
+
+  String? get informEn => _informEn;
+
+  String? get informRu => _informRu;
+
+  String? get city => _city;
+
+  List<String>? get tell => _tell;
+
+  String? get price => _price;
+
+  String? get date => _date;
+
+  String? get categoryId => _categoryId;
+
+  num? get reyting => _reyting;
+
+  int? get users => _users;
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['message'] = this.message;
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class Data {
-  String? id;
-  String? owner;
-  String? name;
-  List<String>? media;
-  String? informUz;
-  String? informEn;
-  String? informRu;
-  String? city;
-  List<String>? tell;
-  String? price;
-  String? date;
-  String? categoryId;
-  double? reyting;
-  int? users;
-
-  Data(
-      {this.id,
-      this.owner,
-      this.name,
-      this.media,
-      this.informUz,
-      this.informEn,
-      this.informRu,
-      this.city,
-      this.tell,
-      this.price,
-      this.date,
-      this.categoryId,
-      this.reyting,
-      this.users});
-
-  Data.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    owner = json['owner'];
-    name = json['name'];
-    media = json['media'].cast<String>();
-    informUz = json['inform_uz'];
-    informEn = json['inform_en'];
-    informRu = json['inform_ru'];
-    city = json['city'];
-    tell = json['tell'].cast<String>();
-    price = json['price'];
-    date = json['date'];
-    categoryId = json['category_id'];
-    reyting = json['reyting'];
-    users = json['users'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['owner'] = this.owner;
-    data['name'] = this.name;
-    data['media'] = this.media;
-    data['inform_uz'] = this.informUz;
-    data['inform_en'] = this.informEn;
-    data['inform_ru'] = this.informRu;
-    data['city'] = this.city;
-    data['tell'] = this.tell;
-    data['price'] = this.price;
-    data['date'] = this.date;
-    data['category_id'] = this.categoryId;
-    data['reyting'] = this.reyting;
-    data['users'] = this.users;
-    return data;
+    final map = <String, dynamic>{};
+    map['id'] = _id;
+    map['owner'] = _owner;
+    map['name'] = _name;
+    map['media'] = _media;
+    map['inform_uz'] = _informUz;
+    map['inform_en'] = _informEn;
+    map['inform_ru'] = _informRu;
+    map['city'] = _city;
+    map['tell'] = _tell;
+    map['price'] = _price;
+    map['date'] = _date;
+    map['category_id'] = _categoryId;
+    map['reyting'] = _reyting;
+    map['users'] = _users;
+    return map;
   }
 }

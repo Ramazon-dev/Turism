@@ -6,8 +6,9 @@ import 'package:mobileapp/models/comment.dart';
 
 class CommentTile extends StatelessWidget {
   final Comment comment;
+  final UserModel _userModel = UserModel.fromJson(GetStorage().read('user'));
 
-  const CommentTile({Key? key, required this.comment}) : super(key: key);
+  CommentTile({Key? key, required this.comment}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,8 @@ class CommentTile extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(comment.user!, style: AppTextStyle.regular(size: 10.0)),
+              Text(_userModel.id == comment.userId ? "You" : comment.user!,
+                  style: AppTextStyle.semiBold(size: 10.0)),
               Text(comment.name!,
                   style:
                       AppTextStyle.regular(size: 10.0, color: AppColors.grey)),

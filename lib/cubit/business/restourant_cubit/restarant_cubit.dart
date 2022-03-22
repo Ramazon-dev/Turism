@@ -99,6 +99,7 @@ class RestaurantCubit extends Cubit<RestorantState> {
       if (_isEditing) {
         // Update
         Fluttertoast.showToast(msg: 'Soon');
+
       } else {
         print(restaurant.toString());
         RestaurantService.createNewRestaurant(restaurant).then((value) {
