@@ -39,7 +39,7 @@ class InputHotelPage extends StatelessWidget {
           if (state is HotelSucces) {
             Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (_) => const ProfileAuthPage()),
+                MaterialPageRoute(builder: (_) => const HomeScreen()),
                 (route) => false);
             return SizedBox();
           } else {

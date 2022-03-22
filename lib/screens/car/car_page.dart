@@ -37,7 +37,7 @@ class _CarPageState extends State<CarPage> with TickerProviderStateMixin {
             key: _scaffoldKey,
             drawer: const DrawerWidget(),
             appBar: AppBarWithList(
-              title: 'Cars',
+              title: LocaleKeys.transport.tr(),
               onTabChanged: _onTabChanged,
               tabController: _tabController,
               onPressed: () {
@@ -82,7 +82,7 @@ class _CarPageState extends State<CarPage> with TickerProviderStateMixin {
                     ),
                   );
                 } else {
-                  return const CircularProgressIndicator();
+                  return const Center(child:  CircularProgressIndicator());
                 }
               },
             ),
