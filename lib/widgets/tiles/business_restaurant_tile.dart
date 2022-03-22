@@ -27,7 +27,10 @@ class BusinessRestaurantTile extends StatelessWidget {
             style: AppTextStyle.regular(size: 12.0, color: AppColors.grey),
           ),
           SizedBox(height: 10.h),
-          RatingBarWidget(rating: restaurant.reyting!.toDouble()),
+          RatingBarWidget(
+            rating: restaurant.reyting!.toDouble(),
+            users: restaurant.users!,
+          ),
           SizedBox(height: 8.h),
           LinkWithIconButton(
             icon: AppIcons.location,

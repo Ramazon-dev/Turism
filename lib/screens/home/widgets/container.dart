@@ -30,7 +30,7 @@ class ShowNerarby extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ObektDetailsPage(
+                              builder: (context) => ObjectDetailsPage(
                                     place: data[index],
                                   )));
                     },

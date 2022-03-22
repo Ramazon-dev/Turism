@@ -42,7 +42,6 @@ class HotelCubit extends Cubit<HotelState> {
     emit(HotelInitial());
   }
 
-
 //TODO:
 
   void setImage() {
@@ -79,10 +78,13 @@ class HotelCubit extends Cubit<HotelState> {
 
       if (_isEditing) {
         // if hotel is updating
-        HotelService.updateHotelMedia(hotelId: _hotelId, hotelMedia: _imageList)
-            .then((value) {
-          Fluttertoast.showToast(msg: 'Updated');
-          CustomNavigator().pushAndRemoveUntil(const HomeScreen());
+        HotelService().updateHotelData(hotel).then((value) {
+          if (value != null) {
+            Fluttertoast.showToast(msg: 'Updated');
+            CustomNavigator().pushAndRemoveUntil(const HomeScreen());
+          } else {
+            Fluttertoast.showToast(msg: value.toString());
+          }
         });
       } else {
         // Else

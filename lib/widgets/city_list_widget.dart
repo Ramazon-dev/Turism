@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 
 class CityListWidget extends StatelessWidget {
-
   final String cityName;
   final ValueChanged<CityModel> onCityChanged;
+
   const CityListWidget({
     Key? key,
     required this.onCityChanged,
@@ -34,9 +34,7 @@ class CityListWidget extends StatelessWidget {
                       ? AppColors.white
                       : AppColors.greyPrice,
                 ),
-              ).onClick(() {
-                onCityChanged.call(city);
-              }),
+              ).onClick(() => onCityChanged.call(city)),
             );
           }),
     );

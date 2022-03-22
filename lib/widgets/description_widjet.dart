@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:mobileapp/widgets/rating_widget.dart';
 
 class DescriptionWidget extends StatelessWidget {
   String name;
-  int price;
+  String price;
   double rating;
   int users;
+
   DescriptionWidget(
       {Key? key,
       required this.name,
@@ -23,22 +22,21 @@ class DescriptionWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Container(
-          width: getWidth(178),
-          child: Text(
-            name,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-            style: TextStyle(
-              fontSize: getWidth(14),
-              fontWeight: FontWeight.w500,
-              fontFamily: 'Roboto',
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              name,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              style: TextStyle(
+                fontSize: getWidth(16),
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
+          ],
         ),
-        SizedBox(
-          height: getHeight(8),
-        ),
+        SizedBox(height: getHeight(8)),
         RichText(
             text: TextSpan(children: [
           TextSpan(

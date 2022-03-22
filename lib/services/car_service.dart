@@ -32,10 +32,10 @@ class CarsService {
 }
 
 class TransportServisec {
-  static Future<TransportModelsssssss> getDataFromApi() async {
+  static Future<TransportModelsssssss> getDataFromApi(String city) async {
     var response = await http.get(
       Uri.parse('https://ucharteam-tourism.herokuapp.com/v1/api/transport'),
-      headers: {"city": "toshkent"},
+      headers: {"city": city},
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {

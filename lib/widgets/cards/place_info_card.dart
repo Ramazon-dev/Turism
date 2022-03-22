@@ -14,7 +14,7 @@ class PlaceInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        CustomNavigator.push(ObektDetailsPage(place: place));
+        CustomNavigator.push(ObjectDetailsPage(place: place));
       },
       child: Card(
         margin: EdgeInsets.zero,

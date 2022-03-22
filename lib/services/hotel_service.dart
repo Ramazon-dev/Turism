@@ -121,8 +121,6 @@ class HotelService {
   Future addRatingToHotel(
       {required String hotelId, required String rate}) async {
     String token = await GetStorage().read('token');
-       // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
-
     try {
       var response = await http.post(
         Uri.parse('$baseUrl/reyting'),
@@ -146,7 +144,7 @@ class HotelService {
   Future addCommentToHotel(
       {required String hotelId, required String commentText}) async {
     String token = await GetStorage().read('token');
-        //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+        // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
       var response = await http.post(
@@ -170,7 +168,6 @@ class HotelService {
 
   Future updateHotelData(Hotel hotel) async {
     String token = await GetStorage().read('token');
-        //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
       var response = await http.put(
@@ -191,22 +188,21 @@ class HotelService {
         ),
         headers: {'token': token, 'Content-Type': 'application/json'},
       );
-
       if (response.statusCode == 200) {
+        print('HotelService.updateHotelData: ${response.statusCode}');
         return jsonDecode(response.body);
       } else {
+        print('HotelService.updateHotelData: ${response.statusCode}');
         return jsonDecode(response.statusCode.toString());
       }
     } catch (e) {
-      return e;
+      return null;
     }
   }
 
 static Future updateHotelMedia({required String hotelId, required List hotelMedia}) async {
     try {
       String token = await GetStorage().read('token');
-        //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
-
       var headers = {'token': token};
       var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/hotel/$hotelId'));
       

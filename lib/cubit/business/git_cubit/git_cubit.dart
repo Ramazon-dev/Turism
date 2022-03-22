@@ -16,10 +16,9 @@ class GitCubit extends Cubit<GitState> {
   final Set<String> _languages = {};
   String _image = '';
   static final Git? _git = GetStorage().read('git');
-  //String image = _git != null ? _git!.image : ''; 
-  
-  void readImage()=> print(_git);
+  //String image = _git != null ? _git!.image : '';
 
+  void readImage() => print(_git);
 
   String _city = CityList.cities[0].name;
   String _chosenCity = CityList().getCity(CityList.cities[0].name);
@@ -35,15 +34,15 @@ class GitCubit extends Cubit<GitState> {
   GitCubit.editing(Git git) : super(GitInitial()) {
     _isEditing = true;
     _gitId = git.id!;
-    _phoneController.text = git.tell[0];
+    _phoneController.text = git.tell![0];
     _priceController.text = git.price!;
     _aboutUzController.text = git.informUz!;
     _aboutEnController.text = git.informEn!;
     _aboutRuController.text = git.informRu!;
-    git.languages.map((e) => _languages.add(e));
-    _image = git.image;
+    git.languages!.map((e) => _languages.add(e));
+    _image = git.image!;
     _city = CityList().getCityName(git.city!);
-    for (var lang in git.languages) {
+    for (var lang in git.languages!) {
       if (lang == 'uz') {
         _hasUzb = true;
       }
@@ -86,21 +85,21 @@ class GitCubit extends Cubit<GitState> {
     emit(GitInitial());
   }
 
-
-   void onChooseImage() {
+  void onChooseImage() {
     ImageChooser chooser = ImageChooser();
     chooser.notStatic().then((value) {
       _image = ImageChooser.imageList[0];
       emit(GitInitial());
     });
   }
+
   void onChooseImageV2() {
     //TODO:
-    
+
     print('pressed');
     ImageChooser.chooseOneImage().then((value) {
       print("GIT NEW IMAGE: " + value);
-      var git =  GetStorage().read('git');
+      var git = GetStorage().read('git');
       print("GIT ID: " + git.toString());
       String? gitId = git.id;
       if (gitId != null) {
