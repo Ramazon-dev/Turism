@@ -6,12 +6,12 @@ import 'package:mobileapp/services/restaurant_service.dart';
 import 'package:mobileapp/widgets/dialogs/comment_dialog.dart';
 import 'package:mobileapp/widgets/images_page_view.dart';
 import 'package:mobileapp/widgets/phone_list_widget.dart';
+import 'package:mobileapp/widgets/rating_bar_widget.dart';
 
 class ResDetailsPage extends StatelessWidget {
   final Restaurant rest;
 
-  const ResDetailsPage({Key? key, required this.rest})
-      : super(key: key);
+  const ResDetailsPage({Key? key, required this.rest}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class ResDetailsPage extends StatelessWidget {
                           ),
                         ),
                         MySizedBox(height: 10.0),
-                        RatWidget(rating: 3, users: 0),
+                        RatingBarWidget(rating: rest.reyting!.toDouble(), users: rest.users!),
                         MySizedBox(height: 10.0),
                         Row(
                           children: [
@@ -80,7 +80,7 @@ class ResDetailsPage extends StatelessWidget {
                             ),
                             UrlTextWidget(
                               url: rest.karta,
-                              text: 'Расположение на карте',
+                              text: LocaleKeys.on_map.tr(),
                             )
                           ],
                         ),
@@ -104,12 +104,11 @@ class ResDetailsPage extends StatelessWidget {
                           height: getHeight(28),
                         ),
                         Text(
-                          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at ",
+                          rest.showInfo(context.locale.languageCode),
                           style: AppTextStyle.regular(),
                         ),
                         SizedBox(height: 21.h),
                         PhoneListWidget(phoneList: rest.tell!),
-                        
                       ],
                     ),
                   )
