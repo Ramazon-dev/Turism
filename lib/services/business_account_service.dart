@@ -17,7 +17,7 @@ class BusinessAccountService {
       var response = await http.get(url, headers: headers);
 
       var data = jsonDecode(response.body)['data'];
-      // print("DATA: "+ data);
+
       BusinessAccountModel businessAccountModel =
           BusinessAccountModel.fromJson(data);
       await GetStorage()

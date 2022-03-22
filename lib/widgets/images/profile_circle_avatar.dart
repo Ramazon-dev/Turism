@@ -28,10 +28,17 @@ class ProfileCircleAvatar extends StatelessWidget {
             radius: 100.0,
           ),
           child: ClipRRect(
-            borderRadius: MyBorderRadius.circular(radius: 100.0),
-            child: CachedNetworkImage(
-              imageUrl: _isDefault() ? ImageList.profileBlank : imageUrl,
-            ),
+            borderRadius:
+                MyBorderRadius.circular(radius: _isDefault() ? 0.0 : 100.0),
+            child: _isDefault()
+                ? SvgPicture.asset(AppIcons.personal)
+                : CachedNetworkImage(
+                    imageUrl: imageUrl,
+                    errorWidget: (context, url, error) => Image.asset(
+                          AppImages.notFound,
+                          fit: BoxFit.cover,
+                        )),
+
           ),
         ),
         Positioned(
@@ -43,6 +50,7 @@ class ProfileCircleAvatar extends StatelessWidget {
                 backgroundColor: AppColors.primary,
                 radius: getWidth(21.43),
                 child: SvgPicture.asset(AppIcons.image),
+
 
               ),
             )),

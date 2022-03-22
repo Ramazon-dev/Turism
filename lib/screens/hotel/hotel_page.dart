@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/components/image_filter.dart';
-import 'package:mobileapp/core/components/size_config.dart';
 import 'package:mobileapp/screens/details/hotel_details_page.dart';
 import 'package:mobileapp/widgets/top_bar/app_bar_with_list.dart';
 
@@ -56,7 +55,7 @@ class _HotelListPageState extends State<HotelListPage>
                     itemCount: snap.data!.length,
                     itemBuilder: (ctx, i) {
                       Hotel hotel = snap.data![i];
-                      String img = hotel.media![0];
+                      String img = hotel.media[0];
                       img = imageFilter(img);
                       return _buildHotelLayout(img, hotel);
                     });
@@ -101,7 +100,7 @@ class _HotelListPageState extends State<HotelListPage>
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  hotel.name!,
+                  hotel.name,
                   style: AppTextStyle.medium(color: AppColors.white),
                 ),
                 Text(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/components/image_filter.dart';
 import 'package:mobileapp/models/obekt_model.dart';
 import 'package:mobileapp/screens/details/obekt_details.dart';
 import 'package:mobileapp/screens/find_by_city/find_by_city_page.dart';
@@ -39,7 +40,8 @@ class ShowNerarby extends StatelessWidget {
                       width: 330.w,
                       margin: EdgeInsets.symmetric(horizontal: 5.w),
                       decoration: MyDecoration.netImage(
-                          netImage: data[index].media!.first, radius: 5.0),
+                          netImage: imageFilter(data[index].media!.first),
+                          radius: 5.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -69,8 +71,10 @@ class ShowNerarby extends StatelessWidget {
               ),
             );
           } else {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Container(
+              height: 200.h,
+              alignment: Alignment.center,
+              child: const CircularProgressIndicator(),
             );
           }
         });

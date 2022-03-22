@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/components/image_filter.dart';
 import 'package:mobileapp/screens/profile/change_info_page.dart';
 
 class ProfileInfoCard extends StatelessWidget {
@@ -19,7 +20,7 @@ class ProfileInfoCard extends StatelessWidget {
           padding: EdgeInsets.only(top: 23.h),
           child: Column(
             children: [
-              ProfileCircleAvatar(imageUrl: user.image ?? 'default', onPressed: (){},),
+              ProfileCircleAvatar(imageUrl: user.image != null ? imageFilter(user.image!):  'default', onPressed: (){},),
               MySizedBox(height: 15.0),
               Text(user.name, style: AppTextStyle.medium(size: 18.0)),
               MySizedBox(height: 9.0),

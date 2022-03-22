@@ -1,34 +1,37 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/cubit/business/hotel_cubit/hotel_cubit.dart';
 
 import 'business_account_service.dart';
 
 class HotelService {
   static String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
 
-
   static Future createNewHotel(Hotel hotel) async {
-
     try {
       String token = await GetStorage().read('token');
-
+      // print('create new hotel method: ' + token);
       var headers = {'token': token};
       var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/hotel'));
       request.fields.addAll({
-        'name': hotel.name!,
+        'name': hotel.name,
         'city': hotel.city!,
-        'informUz': hotel.informUz!,
-        'informRu': hotel.informRu!,
-        'informEn': hotel.informEn!,
-        'karta': hotel.karta!,
-        'tell': hotel.tell.toString(),
+        'informUz': hotel.informUz,
+        'informRu': hotel.informRu,
+        'informEn': hotel.informEn,
+        'karta': hotel.karta,
+        // "tell": hotel.tell[0],
+
         'categoryId': '1991edea-7d4a-49fb-b627-79b777cf54ae'
       });
-      // request.send().then((value) => print);
 
-      // FIXME: BIR NECHTA RASMLARNI JO'NATISH
-      for (var photoPath in hotel.media!) {
+      for (var tell in hotel.tell!) {
+        request.files.add(http.MultipartFile.fromString('tell', tell));
+      }
+
+      for (var photoPath in hotel.media) {
+
         final mimeTypeData =
             lookupMimeType(photoPath, headerBytes: [0xFF, 0xD8])?.split('/');
 
@@ -43,15 +46,15 @@ class HotelService {
 
       request.headers.addAll(headers);
 
-      http.StreamedResponse response = await request.send();
-
+      http.StreamedResponse streamedRes = await request.send();
+      var response = await http.Response.fromStream(streamedRes);
       if (response.statusCode == 201) {
-        print(await response.stream.bytesToString());
-        await BusinessAccountService.setIntoStorage();
-        return response.stream.bytesToString();
+        print(response.body);
+        return response.statusCode;
+
       } else {
-        print('else error: ' + response.reasonPhrase.toString());
-        return response.reasonPhrase;
+        print('else error: ' + response.statusCode.toString());
+        return response.body;
       }
     } catch (e) {
       print('catch error: ' + e.toString());
@@ -147,7 +150,7 @@ class HotelService {
   Future addCommentToHotel(
       {required String hotelId, required String commentText}) async {
     String token = await GetStorage().read('token');
-        // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+    // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
       var response = await http.post(
@@ -203,12 +206,13 @@ class HotelService {
     }
   }
 
-static Future updateHotelMedia({required String hotelId, required List hotelMedia}) async {
+  static Future updateHotelMedia(
+      {required String hotelId, required List hotelMedia}) async {
     try {
       String token = await GetStorage().read('token');
       var headers = {'token': token};
-      var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/hotel/$hotelId'));
-      
+      var request =
+          http.MultipartRequest('POST', Uri.parse('$baseUrl/hotel/$hotelId'));
 
       // FIXME: BIR NECHTA RASMLARNI JO'NATISH
       for (var photoPath in hotelMedia) {
@@ -243,7 +247,7 @@ static Future updateHotelMedia({required String hotelId, required List hotelMedi
 
   Future deleteHotel({required String hotelId}) async {
     String token = await GetStorage().read('token');
-        //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+    //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
       var response = await http.delete(
