@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/components/my_border_radius.dart';
+import 'package:mobileapp/core/components/image_filter.dart';
 import 'package:mobileapp/models/obekt_model.dart';
 import 'package:mobileapp/screens/details/obekt_details.dart';
-import 'package:mobileapp/screens/details/places_details.dart';
 
 class PlaceInfoCard extends StatelessWidget {
   final Obekt place;
@@ -24,7 +23,7 @@ class PlaceInfoCard extends StatelessWidget {
             ClipRRect(
               borderRadius: MyBorderRadius.only(topRight: 7.0, topLeft: 7.0),
               child: CachedNetworkImage(
-                imageUrl:''+ place.media!.first,
+                imageUrl:imageFilter( place.media!.first),
                 height: getHeight(200.0),
                 width: getWidth(375.0),
                 fit: BoxFit.cover,
