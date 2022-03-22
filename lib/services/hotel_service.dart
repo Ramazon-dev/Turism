@@ -1,9 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/cubit/business/hotel_cubit/hotel_cubit.dart';
-
-import 'business_account_service.dart';
 
 class HotelService {
   static String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';

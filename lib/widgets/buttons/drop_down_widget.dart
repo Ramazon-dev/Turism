@@ -6,11 +6,13 @@ import 'package:mobileapp/models/city_model.dart';
 class DropDownWidget extends StatelessWidget {
   final ValueChanged<dynamic> onChanged;
   final String value;
+  final List items;
 
   const DropDownWidget({
     Key? key,
     required this.onChanged,
     required this.value,
+    required this.items
   }) : super(key: key);
 
   @override
@@ -30,7 +32,7 @@ class DropDownWidget extends StatelessWidget {
             'Выберите город',
             style: AppTextStyle.regular(color: AppColors.grey),
           ),
-          items: CityList.cities.map((e) => _setItem(e)).toList(),
+          items: items.map((e) => _setItem(e)).toList(),
           value: value,
           onChanged: onChanged,
         ),
@@ -38,8 +40,8 @@ class DropDownWidget extends StatelessWidget {
     );
   }
 
-  DropdownMenuItem _setItem(CityModel city) => DropdownMenuItem(
-        child: Text(city.name, style: AppTextStyle.regular(color: AppColors.grey)),
-        value: city.name,
+  DropdownMenuItem _setItem(String name) => DropdownMenuItem(
+        child: Text(name, style: AppTextStyle.regular(color: AppColors.grey)),
+        value: name,
       );
 }

@@ -88,7 +88,7 @@ class GitInfoPage extends StatelessWidget {
               prefix: const PhonePrefix(),
             ),
             MySizedBox(height: 20.0),
-            DropDownWidget(onChanged: cubit.cityChanged, value: cubit.city),
+            DropDownWidget(onChanged: cubit.cityChanged, value: cubit.city, items: CityList.cities.map((e) => e.name).toList(),),
             MySizedBox(height: 20.0),
             TextFormFieldWidget(
               inputType: TextInputType.number,

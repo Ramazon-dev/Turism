@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/components/image_filter.dart';
 import 'package:mobileapp/screens/business_profile/restaurant/restaurant_page.dart';
+import 'package:mobileapp/screens/details/restaurant_details_page_for_owner.dart';
+import 'package:mobileapp/screens/restaurant/restaurants_grid_view.dart';
 import 'package:mobileapp/widgets/buttons/link_with_icon_button.dart';
 import '../rating_bar_widget.dart';
 import 'base_business_tile.dart';
@@ -14,8 +17,7 @@ class BusinessRestaurantTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseBusinessTile(
-      // TODO: Bu yerga Hotel rasmi qo'yiladi
-      imgUrl: MockData.place.media[0],
+      imgUrl: imageFilter(restaurant.media![0]),
       title: restaurant.name!,
       infoWidget: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,9 +48,8 @@ class BusinessRestaurantTile extends StatelessWidget {
           //     : const SizedBox(),
         ],
       ),
-    ).onClick(() => CustomNavigator.push(RestaurantPage(
-          restaurant: Restaurant.fromJson(restaurant.toJson()),
-          isEditing: true,
-        )));
+    ).onClick(() => CustomNavigator.push(
+          ResDetailsPageForOwner(rest: restaurant),
+        ));
   }
 }

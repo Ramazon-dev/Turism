@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/screens/business_profile/hotel/input_hotel_page.dart';
+import 'package:mobileapp/screens/business_profile/restaurant/restaurant_page.dart';
 import 'package:mobileapp/screens/profile/auth_profile_page.dart';
+import 'package:mobileapp/services/restaurant_service.dart';
 import 'package:mobileapp/widgets/dialogs/comment_dialog.dart';
 import 'package:mobileapp/widgets/images_page_view.dart';
 import 'package:mobileapp/widgets/phone_list_widget.dart';
 
-class ResHotelDetailsPageForOwner extends StatelessWidget {
-  final Hotel hotel;
+class ResDetailsPageForOwner extends StatelessWidget {
+  final Restaurant rest;
 
-  const ResHotelDetailsPageForOwner({Key? key, required this.hotel})
+  const ResDetailsPageForOwner({Key? key, required this.rest})
       : super(key: key);
 
   @override
@@ -24,7 +26,7 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
           _onButtonPressed(context);
         },
       ),
-      appBar: SimpleAppBar(title: hotel.name),
+      appBar: SimpleAppBar(title: rest.name!),
       body: Column(
         children: [
           Center(
@@ -51,7 +53,7 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
                     margin: EdgeInsets.all(getWidth(11)),
                     width: getWidth(323),
                     height: getHeight(255),
-                    child: ImagesPageView(imageList: hotel.media),
+                    child: ImagesPageView(imageList: rest.media!),
                   ),
                   Padding(
                     padding: MyEdgeInsets.symmetric(h: 20.0),
@@ -62,7 +64,7 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
                         MySizedBox(
                           width: 178.0,
                           child: Text(
-                            hotel.name,
+                            rest.name!,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: AppTextStyle.medium(),
@@ -78,7 +80,7 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
                               width: getWidth(4),
                             ),
                             UrlTextWidget(
-                              url: hotel.karta,
+                              url: rest.karta,
                               text: 'Расположение на карте',
                             )
                           ],
@@ -86,7 +88,7 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
                         SizedBox(
                           height: getHeight(4),
                         ),
-                        if (hotel.site != null)
+                        if (rest.site != null)
                           Row(
                             children: [
                               SvgPicture.asset(AppIcons.link),
@@ -94,8 +96,8 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
                                 width: getWidth(4),
                               ),
                               UrlTextWidget(
-                                url: hotel.site,
-                                text: hotel.site,
+                                url: rest.site,
+                                text: rest.site,
                               )
                             ],
                           ),
@@ -107,15 +109,15 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
                           style: AppTextStyle.regular(),
                         ),
                         SizedBox(height: 21.h),
-                        PhoneListWidget(phoneList: hotel.tell!),
+                        PhoneListWidget(phoneList: rest.tell!),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             IconButton(
                               onPressed: () => CustomNavigator.push(
-                                InputHotelPage(
+                                RestaurantPage(
                                   isEditing: true,
-                                  hotel: Hotel.fromJson(hotel.toJson()),
+                                  restaurant: rest,
                                 ),
                               ),
                               icon: const Icon(
@@ -140,15 +142,15 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
                                       TextButton(
                                         child: const Text('Ha'),
                                         onPressed: () {
-                                          HotelService()
-                                              .deleteHotel(hotelId: hotel.id)
+                                          RestaurantService()
+                                              .deleteRestaurant(rest.id!)
                                               .then((value) =>
-                                                  Navigator.pushAndRemoveUntil(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (_) =>
-                                                              const ProfileAuthPage()),
-                                                      (route) => false));
+                                                  Navigator.pushReplacement(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (_) =>
+                                                            const ProfileAuthPage()),
+                                                  ));
                                         },
                                       ),
                                     ],
@@ -177,7 +179,7 @@ class ResHotelDetailsPageForOwner extends StatelessWidget {
   void _onButtonPressed(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      builder: (ctx) => CommentListDialog(headers: {'hotel_id': hotel.id}),
+      builder: (ctx) => CommentListDialog(headers: {'restaurant_id': rest.id!}),
     );
   }
 }

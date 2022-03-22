@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/models/category_model.dart';
 
 class RestaurantService {
   static String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
@@ -9,8 +8,6 @@ class RestaurantService {
   static Future createNewRestaurant(Restaurant restaurant) async {
     try {
       String token = await GetStorage().read('token');
-          //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZGI4OGM0Yy04ODYxLTRjMTgtOWI3MS04MjZjM2M0NGFlYzEiLCJpYXQiOjE2NDYxNTI2MDcsImV4cCI6MTY2MzQzMjYwN30.WUaeEN7SJeYNC-8pZ-Vh4FcLu5fRAKLAUjFS3JZUUqg';
-        //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
       var headers = {'token': token};
       var request =
@@ -22,7 +19,8 @@ class RestaurantService {
         'informRu': restaurant.informRu!,
         'informEn': restaurant.informEn!,
         'karta': restaurant.karta!,
-        'category': '903908cf-7f6d-424f-8c03-66d30e9347bf'
+        'category': restaurant.categoryId!,
+        'site': restaurant.site!
       });
 
       for (var tell in restaurant.tell!) {
@@ -54,17 +52,17 @@ class RestaurantService {
 
       if (response.statusCode == 201) {
         await BusinessAccountService.setIntoStorage();
-        //Restaurant rest = Restaurant.fromJson(jsonDecode(response.body)['data']);
+        var data = jsonDecode(response.body)['data'];
 
-        GetStorage().write('myRestaurant', jsonDecode(response.body)['data']);
+      GetStorage().write('myRestaurant', data);
 
-        print("SUCCESFULL bytestostreamBody: " + response.body);
-        print(GetStorage().read('myRestaurant'));
+        return response.statusCode;
       } else {
-        print('else error: ' + response.statusCode.toString());
+        return jsonDecode(response.body)['message'].toString();
       }
     } catch (e) {
       print('catch error: ' + e.toString());
+      return e;
     }
   }
 
@@ -112,23 +110,27 @@ class RestaurantService {
     }
   }
 
-  Future fetchCategoriesOfRestaurants() async {
+  static Future fetchCategoriesOfRestaurants() async {
     try {
       var response = await http.get(
         Uri.parse("$baseUrl/restaurants/categories"),
       );
       if (response.statusCode == 200) {
-        List categoryList =
-            (jsonDecode(response.body)['data'] as List).map((e) {
-          print("ELEMENT" + e.toString());
-          return Category.fromJson(e);
-        }).toList();
+        List data = jsonDecode(response.body)['data'];
+        GetStorage().write('restCategories', data);
 
-        return categoryList;
+        // List<Category> categoryList = (data as List).map((e) {
+        //   print("ELEMENT" + e.toString());
+        //   return Category.fromJson(e);
+        // }).toList();
+
+        return null;
       } else {
+        print(jsonDecode(response.body)['message']);
         return null;
       }
     } catch (e) {
+      print(e);
       return null;
     }
   }
@@ -152,7 +154,7 @@ class RestaurantService {
   Future addRatingToRestaurant(
       {required String restaurantId, required int rate}) async {
     String token = await GetStorage().read('token');
-        //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZGI4OGM0Yy04ODYxLTRjMTgtOWI3MS04MjZjM2M0NGFlYzEiLCJpYXQiOjE2NDYxNTI2MDcsImV4cCI6MTY2MzQzMjYwN30.WUaeEN7SJeYNC-8pZ-Vh4FcLu5fRAKLAUjFS3JZUUqg';
+    //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZGI4OGM0Yy04ODYxLTRjMTgtOWI3MS04MjZjM2M0NGFlYzEiLCJpYXQiOjE2NDYxNTI2MDcsImV4cCI6MTY2MzQzMjYwN30.WUaeEN7SJeYNC-8pZ-Vh4FcLu5fRAKLAUjFS3JZUUqg';
 
     try {
       var response = await http.post(
@@ -174,34 +176,11 @@ class RestaurantService {
     }
   }
 
-  Future addCommentToRestaurant(
-      {required String restaurantId, required String commentText}) async {
-    String token = await GetStorage().read('token');
-        //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
-    try {
-      var response = await http.post(
-        Uri.parse('$baseUrl/comment'),
-        body: jsonEncode({"name": commentText, "restaurantId": restaurantId}),
-        headers: {'token': token, 'Content-Type': 'application/json'},
-      );
-
-      if (response.statusCode == 201 || response.statusCode == 200) {
-        print(jsonDecode(response.body));
-        return jsonDecode(response.body);
-      } else {
-        print(response.body);
-        return jsonDecode(response.body);
-      }
-    } catch (e) {
-      print(e);
-      return e;
-    }
-  }
 
   Future updateRestaurantData(Restaurant restaurant) async {
     String token = await GetStorage().read('token');
-        //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+    //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
       var response = await http.put(
@@ -237,7 +216,7 @@ class RestaurantService {
       {required String hotelId, required List hotelMedia}) async {
     try {
       String token = await GetStorage().read('token');
-          //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
+      //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
       var headers = {'token': token};
       var request =
@@ -274,15 +253,14 @@ class RestaurantService {
     }
   }
 
-  Future deleteRestaurant() async {
+  Future deleteRestaurant(String restId) async {
     String token = await GetStorage().read('token');
-        //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
-      String restaurantId = GetStorage().read("myRestaurant")['id'].toString();
-      
+    // String restaurantId = GetStorage().read("myRestaurant")['id'].toString();
+
     try {
       var response = await http.delete(
-        Uri.parse("$baseUrl/restaurant/$restaurantId"),
+        Uri.parse("$baseUrl/restaurant/$restId"),
         headers: {'token': token},
       );
 

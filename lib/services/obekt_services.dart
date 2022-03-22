@@ -21,7 +21,6 @@ class ObektSevices {
       );
 
       if (response.statusCode == 201 || response.statusCode == 200) {
-        print(jsonDecode(response.body));
         return jsonDecode(response.body);
       } else {
         print(response.body);
@@ -39,11 +38,11 @@ class ObektSevices {
       var response = await http.get(Uri.parse("$baseUrl/object"),
           headers: {"city": cityName!, "category_id": category_id!});
       if (response.statusCode == 200) {
-        print("${jsonDecode(response.body)['data']}_______________");
+        // print("${jsonDecode(response.body)['data']}_______________");
         List<Obekt> ObektList = (jsonDecode(response.body)['data'] as List)
             .map((e) => Obekt.fromJson(e))
             .toList();
-        print("${ObektList}_______");
+        // print("${ObektList}_______");
         return ObektList;
       } else {
         print(jsonDecode(response.body)['message']);
@@ -60,12 +59,12 @@ class ObektSevices {
     try {
       var response = await http.get(Uri.parse("$baseUrl/objects/categories"));
       if (response.statusCode == 200) {
-        print("${jsonDecode(response.body)['data']}");
+        // print("${jsonDecode(response.body)['data']}");
         List<ObektCategoriya> ObektList =
             (jsonDecode(response.body)['data'] as List)
                 .map((e) => ObektCategoriya.fromJson(e))
                 .toList();
-        print(ObektList);
+        // print(ObektList);
         return ObektList;
       } else {
         return jsonDecode(response.body)['message'];
@@ -82,11 +81,11 @@ class ObektSevices {
       var response = await http.get(Uri.parse("$baseUrl/object"));
 
       if (response.statusCode == 200) {
-        print("${jsonDecode(response.body)['data']}");
+        // print("${jsonDecode(response.body)['data']}");
         List<Obekt> ObektList = (jsonDecode(response.body)['data'] as List)
             .map((e) => Obekt.fromJson(e))
             .toList();
-        print(ObektList);
+        // print(ObektList);
         return ObektList;
       } else {
         return jsonDecode(response.body)['message'];

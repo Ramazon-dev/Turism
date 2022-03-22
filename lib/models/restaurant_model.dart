@@ -116,4 +116,9 @@ class Restaurant {
     map['users'] = _users;
     return map;
   }
+
+  @override
+  String toString() {
+    return "Restaurant: {name: $name, media: $media, category: $categoryId, site: $site, tell: $tell, city: $city, karta: $karta, infoRu: $informRu, infoEn: $informEn ,infoUz: $informUz}";
+  }
 }
