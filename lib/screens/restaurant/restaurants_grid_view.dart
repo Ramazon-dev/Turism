@@ -33,7 +33,7 @@ class _RestaurantsGridViewState extends State<RestaurantsGridView>
       appBar: AppBarWithList(
         onPressed: () => Navigator.pop(context),
         tabController: _tabController,
-        title: LocaleKeys.hotel.tr(),
+        title: LocaleKeys.restaurant.tr(),
         onTabChanged: _onTabChanged,
         icon: Icons.arrow_back_ios_outlined,
       ),

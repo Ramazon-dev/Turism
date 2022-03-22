@@ -28,7 +28,6 @@ class HotelService {
       }
 
       for (var photoPath in hotel.media) {
-
         final mimeTypeData =
             lookupMimeType(photoPath, headerBytes: [0xFF, 0xD8])?.split('/');
 
@@ -48,7 +47,6 @@ class HotelService {
       if (response.statusCode == 201) {
         print(response.body);
         return response.statusCode;
-
       } else {
         print('else error: ' + response.statusCode.toString());
         return response.body;
@@ -253,6 +251,7 @@ class HotelService {
       );
 
       if (response.statusCode == 201) {
+        await BusinessAccountService.setIntoStorage();
         print(jsonDecode(response.body));
         return jsonDecode(response.body);
       } else {

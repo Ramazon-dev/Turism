@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/components/image_filter.dart';
 import 'package:mobileapp/screens/details/transport_details.dart';
 
 class CarInfoCard extends StatelessWidget {
@@ -57,7 +58,7 @@ class CarInfoCard extends StatelessWidget {
                 borderRadius:
                     MyBorderRadius.only(topLeft: 12.0, topRight: 12.0),
                 child: CachedNetworkImage(
-                  imageUrl: 'https://source.unsplash.com/random/4',
+                  imageUrl:imageFilter( carImage!),
                   width: MediaQuery.of(context).size.width,
                   height: getHeight(160.0),
                   fit: BoxFit.cover,

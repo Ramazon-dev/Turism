@@ -96,7 +96,7 @@ class HotelCubit extends Cubit<HotelState> {
             emit(HotelSucces());
 
             
-            CustomNavigator().pushAndRemoveUntil(const ProfileAuthPage());
+            CustomNavigator().pushAndRemoveUntil(const  HomeScreen());
           } else {
             toastMessage = value.toString();
             emit(HotelError());

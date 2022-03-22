@@ -148,7 +148,7 @@ class ResDetailsPageForOwner extends StatelessWidget {
                                                     context,
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            const ProfileAuthPage()),
+                                                            const HomeScreen()),
                                                   ));
                                         },
                                       ),
