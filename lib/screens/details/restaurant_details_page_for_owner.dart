@@ -148,7 +148,7 @@ class ResDetailsPageForOwner extends StatelessWidget {
                                                   Navigator.pushReplacement(
                                                     context,
                                                     MaterialPageRoute(
-                                                        builder: (_) =>
+                                                        builder: (context) =>
                                                             const ProfileAuthPage()),
                                                   ));
                                         },
