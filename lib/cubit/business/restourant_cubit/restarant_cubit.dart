@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/models/category_model.dart';
+import 'package:mobileapp/services/locale_service.dart';
 import 'package:mobileapp/services/restaurant_service.dart';
 
 part 'restaurant_state.dart';
@@ -54,7 +55,7 @@ class RestaurantCubit extends Cubit<RestorantState> {
 
   void categoryChanged(dynamic value) {
     for (var ctgry in categories) {
-      if (value == ctgry.nameUz) {
+      if (value == ctgry.showInfo(LocaleService.currentLocale)) {
         category = ctgry;
       }
     }

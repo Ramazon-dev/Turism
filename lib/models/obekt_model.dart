@@ -82,4 +82,13 @@ class Obekt {
         "reyting": reyting,
         "users": users,
       };
+
+  String showInfo(String locale) {
+    if (locale == 'uz') {
+      return nameUz!;
+    } else if (locale == 'en') {
+      return nameEn!;
+    }
+    return nameRu!;
+  }
 }

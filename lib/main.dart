@@ -6,10 +6,8 @@ import 'package:mobileapp/services/restaurant_service.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  // await dotenv.load(fileName: ".env");
   await GetStorage.init();
   await RestaurantService.fetchCategoriesOfRestaurants();
-  print(GetStorage().read('restCategories'));
 
   runApp(
     EasyLocalization(

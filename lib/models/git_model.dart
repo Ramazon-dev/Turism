@@ -1,8 +1,9 @@
-
 import 'dart:convert';
 
 Git gitFromJson(String str) => Git.fromJson(json.decode(str));
+
 String gitToJson(Git data) => json.encode(data.toJson());
+
 class Git {
   Git({
     String? id,
@@ -17,7 +18,8 @@ class Git {
     String? date,
     int? reyting,
     String? username,
-    int? users,}){
+    int? users,
+  }) {
     _id = id;
     _username = username;
     _image = image;
@@ -36,7 +38,8 @@ class Git {
   Git.fromJson(dynamic json) {
     _id = json['id'];
     _image = json['image'];
-    _languages = json['languages'] != null ? json['languages'].cast<String>() : [];
+    _languages =
+        json['languages'] != null ? json['languages'].cast<String>() : [];
     _informUz = json['inform_uz'];
     _informEn = json['inform_en'];
     _informRu = json['inform_ru'];
@@ -48,6 +51,7 @@ class Git {
     _users = json['users'];
     _username = json['username'];
   }
+
   String? _id;
   String? _image;
   String? _username;
@@ -63,17 +67,29 @@ class Git {
   int? _users;
 
   String? get id => _id;
+
   String? get image => _image;
+
   List<String>? get languages => _languages;
+
   String? get informUz => _informUz;
+
   String? get informEn => _informEn;
+
   String? get informRu => _informRu;
+
   String? get city => _city;
+
   List<String>? get tell => _tell;
+
   String? get price => _price;
+
   String? get date => _date;
+
   int? get reyting => _reyting;
+
   int? get users => _users;
+
   String? get username => _username;
 
   Map<String, dynamic> toJson() {
@@ -94,4 +110,12 @@ class Git {
     return map;
   }
 
+  String showInfo(String locale) {
+    if (locale == 'uz') {
+      return _informUz!;
+    } else if (locale == 'en') {
+      return _informEn!;
+    }
+    return _informRu!;
+  }
 }

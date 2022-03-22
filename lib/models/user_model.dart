@@ -21,14 +21,12 @@ class UserModel {
   }
 
   Map<String, dynamic> toMap() => {
-
         'fullname': _fullName,
         'email': _email,
         // 'phone': _phone,
         // 'image': _image,
         'id': _id,
       };
-
 
   String get id => _id!;
 

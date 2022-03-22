@@ -1,11 +1,8 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/data/app_data.dart';
-import 'package:mobileapp/core/data/image_list.dart';
 import 'package:mobileapp/models/obekt_model.dart';
-import 'package:mobileapp/widgets/dialogs/comment_dialog.dart';
 import 'package:mobileapp/widgets/images_page_view.dart';
 import 'package:mobileapp/widgets/rating_bar_widget.dart';
 import 'package:share_plus/share_plus.dart';
@@ -20,7 +17,6 @@ class ObjectDetailsPage extends StatefulWidget {
 }
 
 class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
-
   late Obekt _place;
 
   @override
@@ -31,7 +27,6 @@ class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    print('_ObjectDetailsPageState.build: ${_place.media}');
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -90,13 +85,12 @@ class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
                     ),
                   ),
                   Text(
-                    widget.place.informRu!,
+                    widget.place.showInfo(context.locale.languageCode),
                     style: AppTextStyle.regular(height: 2.1),
                   ),
                 ],
               ),
             ),
-            // isComment ? commentfunc(context, sendMessage) : SizedBox()
           ],
         ),
       ),
@@ -126,6 +120,7 @@ class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
       ],
     );
   }
+
   FloatingActionButton _commentButton() => FloatingActionButton(
         onPressed: _onCommentButtonPressed,
         backgroundColor: AppColors.black,
@@ -138,6 +133,4 @@ class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
       builder: (_) => CommentListDialog(headers: {'object_id': _place.id!}),
     );
   }
-
-
 }
