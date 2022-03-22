@@ -22,7 +22,7 @@ class _SearchPageState extends State<SearchPage> {
     "гит"
   ];
 
-  List<bool> istap = [false, false, false, false, false];
+  int istap = 0;
 
   List<String> surovjoy = ["restaurant", "transport", "object", "hotel", "git"];
 
@@ -49,7 +49,7 @@ class _SearchPageState extends State<SearchPage> {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: (() {
-                          istap[index] = !istap[index];
+                          istap = index;
                           setState(() {});
                         }),
                         child: Container(
@@ -59,7 +59,7 @@ class _SearchPageState extends State<SearchPage> {
                           height: getHeight(32),
                           width: getWidth(67),
                           decoration: BoxDecoration(
-                              color: istap[index]
+                              color: istap == index
                                   ? AppColors.white
                                   : AppColors.primary,
                               border: Border.all(
@@ -69,7 +69,7 @@ class _SearchPageState extends State<SearchPage> {
                             categoriya[index],
                             style: TextStyle(
                               fontSize: getWidth(10),
-                              color: istap[index]
+                              color: istap == index
                                   ? AppColors.primary
                                   : AppColors.white,
                             ),
@@ -124,10 +124,21 @@ class _SearchPageState extends State<SearchPage> {
         SizedBox(
           height: getHeight(55),
           child: FutureBuilder(
-              future: SearchServis().getSearch(),
-              builder: (context, snap) {
-                if (snap.hasData) {
-                  return Text("Hech narsa yo'q");
+              future:
+                  SearchServis().getSearch(controller.text, surovjoy[istap]),
+              builder: (context, AsyncSnapshot snap) {
+                if (snap.hasError) {
+                  print("===========");
+                  return Container(
+                    child: ListView.builder(itemBuilder: (context, index) {
+                      switch (snap.data) {
+                        case Restaurant:
+                          return Container(child: Text(snap.data!.toString()));
+                        default:
+                          return Container();
+                      }
+                    }),
+                  );
                 } else {
                   return Text("Hech narsa yo'q");
                 }
