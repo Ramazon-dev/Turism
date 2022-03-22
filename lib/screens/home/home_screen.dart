@@ -4,6 +4,7 @@ import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/screens/profile/auth_profile_page.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:mobileapp/widgets/navigators/drawer_widget.dart';
+import 'package:mobileapp/widgets/top_bar/searchtapbar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -47,6 +48,16 @@ class HomeScreen extends StatelessWidget {
     String token = GetStorage().read('token') ?? '';
     return [
       null,
+      SearchTabBar(),
+      AppBarOrigin(
+        actions: SvgPicture.asset(AppIcons.language),
+        actions2: SvgPicture.asset(AppIcons.dollar),
+      ),
+
+      // AppBarOrigin(
+      //   actions: SvgPicture.asset(AppIcons.language),
+      //   actions2: SvgPicture.asset(AppIcons.dollar),
+      // ),
       AppBarOrigin(
         actions: SvgPicture.asset(AppIcons.language),
         actions2: SvgPicture.asset(AppIcons.dollar),
@@ -55,7 +66,6 @@ class HomeScreen extends StatelessWidget {
         actions: SvgPicture.asset(AppIcons.language),
         actions2: SvgPicture.asset(AppIcons.dollar),
       ),
-      null,
       token.isNotEmpty ? ProfileAppBar(cubit: cubit) : null,
     ];
   }
