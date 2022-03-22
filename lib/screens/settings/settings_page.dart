@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/cubit/settings/language_cubit.dart';
+import 'package:mobileapp/services/locale_service.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -9,6 +11,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+
   @override
   Widget build(BuildContext context) {
     Locale currentLocale = context.locale;
@@ -31,7 +34,10 @@ class _SettingsPageState extends State<SettingsPage> {
                     child: InkWell(
                       onTap: () async {
                         await context.setLocale(locale['locale']);
-                        setState(() {});
+                        await LocaleService.setLocale(context.locale.languageCode);
+                        setState(() {
+
+                        });
                       },
                       child: Material(
                         borderRadius: MyBorderRadius.circular(),
@@ -57,28 +63,6 @@ class _SettingsPageState extends State<SettingsPage> {
                   );
                 })
           ],
-        ),
-      ),
-    );
-  }
-
-  Container _buildContainer(Locale currentLocale, Map<String, dynamic> locale) {
-    return Container(
-      height: 60.0.h,
-      width: 375.0.w,
-      alignment: Alignment.center,
-      decoration: MyDecoration.circular(
-        color: currentLocale == locale['locale']
-            ? AppColors.primary
-            : AppColors.lightGrey,
-      ),
-      child: Text(
-        locale['title'],
-        style: AppTextStyle.medium(
-          size: 20.0,
-          color: locale['locale'] == currentLocale
-              ? AppColors.white
-              : AppColors.grey,
         ),
       ),
     );

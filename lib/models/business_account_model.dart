@@ -3,17 +3,22 @@ import 'package:mobileapp/models/restaurant_model.dart';
 import 'git_model.dart';
 import 'hotel_model.dart';
 
-BusinessAccountModel businessAccountModelFromJson(String str) => BusinessAccountModel.fromJson(json.decode(str));
-String businessAccountModelToJson(BusinessAccountModel data) => json.encode(data.toJson());
+BusinessAccountModel businessAccountModelFromJson(String str) =>
+    BusinessAccountModel.fromJson(json.decode(str));
+
+String businessAccountModelToJson(BusinessAccountModel data) =>
+    json.encode(data.toJson());
+
 class BusinessAccountModel {
   BusinessAccountModel({
-      Git? git, 
-      List<Restaurant>? restaurants, 
-      List<Hotel>? hotels,}){
+    Git? git,
+    List<Restaurant>? restaurants,
+    List<Hotel>? hotels,
+  }) {
     _git = git;
     _restaurants = restaurants;
     _hotels = hotels;
-}
+  }
 
   BusinessAccountModel.fromJson(dynamic json) {
     _git = json['git'] != null ? Git.fromJson(json['git']) : null;
@@ -30,12 +35,15 @@ class BusinessAccountModel {
       });
     }
   }
+
   Git? _git;
   List<Restaurant>? _restaurants;
   List<Hotel>? _hotels;
 
   Git? get git => _git;
+
   List<Restaurant>? get restaurants => _restaurants;
+
   List<Hotel>? get hotels => _hotels;
 
   Map<String, dynamic> toJson() {
@@ -51,15 +59,11 @@ class BusinessAccountModel {
     }
     return map;
   }
-
 }
 
 Hotel hotelsFromJson(String str) => Hotel.fromJson(json.decode(str));
-
-
 
 Restaurant restaurantsFromJson(String str) =>
     Restaurant.fromJson(json.decode(str));
 
 String restaurantsToJson(Restaurant data) => json.encode(data.toJson());
-

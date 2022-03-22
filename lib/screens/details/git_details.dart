@@ -74,7 +74,7 @@ class _GitDetailsPageState extends State<GitDetailsPage> {
 
                     SizedBox(height: getHeight(28)),
                     Text(
-                      "${widget.git.informEn}",
+                      widget.git.showInfo(context.locale.languageCode),
                       style: AppTextStyle.regular(),
                     ),
                     SizedBox(height: getHeight(16)),

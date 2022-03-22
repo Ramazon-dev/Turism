@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/widgets/dialogs/comment_dialog.dart';
 import 'package:mobileapp/widgets/images_page_view.dart';
 import 'package:mobileapp/widgets/phone_list_widget.dart';
 import 'package:mobileapp/widgets/rating_bar_widget.dart';
@@ -13,8 +12,6 @@ class ResHotelDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    print(GetStorage().read('user')['id']);
-    //print(hotel.owner);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionButton(
@@ -101,7 +98,7 @@ class ResHotelDetailsPage extends StatelessWidget {
                           ),
                         SizedBox(height: getHeight(28)),
                         Text(
-                          hotel.informEn,
+                          hotel.showInfo(context.locale.languageCode),
                           style: AppTextStyle.regular(),
                         ),
                         SizedBox(height: 21.h),
