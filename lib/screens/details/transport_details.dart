@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/models/transport_model.dart';
 import 'package:mobileapp/widgets/phone_list_widget.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
 
-import '../../widgets/dialogs/comment_dialog.dart';
 
 class TransportDetailPage extends StatelessWidget {
   final TransportModel transport;
@@ -17,6 +15,8 @@ class TransportDetailPage extends StatelessWidget {
     SizeConfig().init(context);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      floatingActionButton: _actionButton(context),
         appBar: AppBarOrigin(
           actions: SvgPicture.asset(AppIcons.language),
           actions2: SvgPicture.asset(AppIcons.dollar),

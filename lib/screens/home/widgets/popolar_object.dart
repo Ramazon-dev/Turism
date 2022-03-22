@@ -1,16 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mobileapp/models/obekt_model.dart';
 import 'package:mobileapp/services/obekt_categoriya.dart';
 import 'package:mobileapp/services/obekt_services.dart';
-import 'package:mobileapp/widgets/star_bar.dart';
 
 import '../../../core/components/exporting_packages.dart';
 
+// ignore: must_be_immutable
 class ContainerForPopularObject extends StatelessWidget {
   int itemCount;
   String objectName;
   String image;
   String date;
+
   ContainerForPopularObject({
     required this.itemCount,
     required this.date,
@@ -28,6 +29,7 @@ class ContainerForPopularObject extends StatelessWidget {
     "https://yoshlikjurnali.uz/wp-content/uploads/zomin_haqida_uylar-640x400.jpg",
     "https://ichef.bbci.co.uk/news/640/amz/worldservice/live/assets/images/2015/08/07/150807140426_tajikistan_lakes2_976x549_b.babayev.jpg"
   ];
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -105,9 +107,9 @@ class ContainerForPopularObject extends StatelessWidget {
                   }),
             );
           } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return SizedBox(
+                height: 128.h,
+                child: const Center(child: CupertinoActivityIndicator()));
           }
         });
   }

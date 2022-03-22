@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/widgets/buttons/app_icon_button.dart';
 
+// ignore: must_be_immutable
 class AppBarWithList extends StatelessWidget with PreferredSizeWidget {
   final TabController tabController;
   final ValueChanged<int> onTabChanged;
