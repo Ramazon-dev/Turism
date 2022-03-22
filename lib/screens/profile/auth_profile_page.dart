@@ -25,7 +25,7 @@ class ProfileAuthPage extends StatelessWidget {
   SingleChildScrollView _buildBody(HomeCubit cubit) {
     return SingleChildScrollView(
       child: FutureBuilder(
-        future: BusinessAccountService.getServiceListFromStorage(),
+        future: BusinessAccountService.getServiceList(),
         builder: (ctx, AsyncSnapshot<BusinessAccountModel?> snap) {
           if (snap.hasData) {
             BusinessAccountModel model = snap.data!;

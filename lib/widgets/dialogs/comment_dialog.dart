@@ -8,7 +8,7 @@ import '../inputs/add_comment_layout.dart';
 class CommentListDialog extends StatelessWidget {
   late Map<String, String> headers;
 
-   CommentListDialog({Key? key, required this.headers}) : super(key: key);
+  CommentListDialog({Key? key, required this.headers}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +43,4 @@ class CommentListDialog extends StatelessWidget {
   }
 
   String _renameType(String type) => type.replaceAll('_id', 'Id');
-
- 
 }

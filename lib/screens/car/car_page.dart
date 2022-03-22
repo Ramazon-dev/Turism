@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/car_cubit/car_cubit.dart';
-import 'package:mobileapp/models/tnas_models.dart';
+import 'package:mobileapp/models/transport_model.dart';
 import 'package:mobileapp/services/car_service.dart';
 import 'package:mobileapp/widgets/cards/car_info_card.dart';
 import 'package:mobileapp/widgets/navigators/drawer_widget.dart';
@@ -45,9 +45,9 @@ class _CarPageState extends State<CarPage> with TickerProviderStateMixin {
               },
             ),
             body: FutureBuilder(
-              future: TransportServisec.getDataFromApi(
+              future: TransportService.getDataFromApi(
                   CityList.cities[_currentIndex].value),
-              builder: (context, AsyncSnapshot<TransportModelsssssss> snap) {
+              builder: (context, AsyncSnapshot<List<TransportModel>?> snap) {
                 if (snap.hasError) {
                   return const Center(
                     child: Text("Internet conntection has error"),
@@ -55,23 +55,17 @@ class _CarPageState extends State<CarPage> with TickerProviderStateMixin {
                 } else if (snap.hasData) {
                   var data = snap.data;
 
-                  if (data!.data!.isEmpty) {
+                  if (data!.isEmpty) {
                     return const EmptyPageWidget();
                   }
 
                   return GridView.builder(
                     padding: MyEdgeInsets.symmetric(h: 16.0, v: 25.0),
-                    itemCount: data.data!.length,
+                    itemCount: data.length,
                     itemBuilder: (ctx, i) {
+                      TransportModel transportModel = data[i];
                       return CarInfoCard(
-                        // car: MockData.carModel,
-                        carImage: data.data![i].media![0],
-                        carName: data.data![i].name!,
-                        carPrice: data.data![i].price!,
-                        carInfo: data.data![i].informUz!,
-                        carNumber: data.data![i].tell!,
-                        rating: data.data![i].reyting!,
-                        users: data.data![i].users!,
+                        transport: transportModel,
                       );
                     },
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

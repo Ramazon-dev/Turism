@@ -13,7 +13,7 @@ class ResHotelDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    print( GetStorage().read('user')['id']);
+    print(GetStorage().read('user')['id']);
     //print(hotel.owner);
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -52,7 +52,6 @@ class ResHotelDetailsPage extends StatelessWidget {
                     width: getWidth(323),
                     height: getHeight(255),
                     child: ImagesPageView(imageList: hotel.media),
-
                   ),
                   Padding(
                     padding: MyEdgeInsets.symmetric(h: 20.0),
@@ -107,8 +106,6 @@ class ResHotelDetailsPage extends StatelessWidget {
                         ),
                         SizedBox(height: 21.h),
                         PhoneListWidget(phoneList: hotel.tell!),
-
-
                       ],
                     ),
                   )

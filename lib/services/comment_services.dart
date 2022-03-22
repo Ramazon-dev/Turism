@@ -8,10 +8,11 @@ class CommentService {
   static var request = http.Request('POST',
       Uri.parse('https://ucharteam-tourism.herokuapp.com/v1/api/comment'));
 
-  static Future<bool> addObjectComment(
-      {required String commentText,
-      required String typeId,
-      required String type}) async {
+  static Future<bool> addObjectComment({
+    required String commentText,
+    required String typeId,
+    required String type,
+  }) async {
     String token = await GetStorage().read('token');
     try {
       request.headers
