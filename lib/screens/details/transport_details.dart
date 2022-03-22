@@ -3,20 +3,21 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/widgets/phone_list_widget.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
-
+import 'package:easy_padding/easy_padding.dart';
 
 class TransportDetailPage extends StatelessWidget {
   final TransportModel transport;
 
-  const TransportDetailPage({Key? key, required this.transport}) : super(key: key);
+  const TransportDetailPage({Key? key, required this.transport})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      floatingActionButton: _actionButton(context),
+        resizeToAvoidBottomInset: false,
+        floatingActionButton: _actionButton(context),
         appBar: AppBarOrigin(
           actions: SvgPicture.asset(AppIcons.language),
           actions2: SvgPicture.asset(AppIcons.dollar),
@@ -26,7 +27,7 @@ class TransportDetailPage extends StatelessWidget {
             Center(
               child: Container(
                 margin: EdgeInsets.only(top: getHeight(20)),
-                height: getHeight(592),
+                height: getHeight(620),
                 width: getWidth(345),
                 decoration: BoxDecoration(
                   border: Border.all(
@@ -122,17 +123,19 @@ class TransportDetailPage extends StatelessWidget {
         ));
   }
 
-  FloatingActionButton _actionButton(BuildContext context) =>
-      FloatingActionButton(
-        onPressed: () => _onButtonPressed(context),
-        backgroundColor: AppColors.black,
-        child: SvgPicture.asset(AppIcons.comment),
-      );
+  _actionButton(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () => _onButtonPressed(context),
+      backgroundColor: AppColors.black,
+      child: SvgPicture.asset(AppIcons.comment),
+    ).only(bottom: getHeight(60), right: getWidth(30));
+  }
 
   void _onButtonPressed(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      builder: (ctx) => CommentListDialog(headers: {'transport_id': transport.id!}),
+      builder: (ctx) =>
+          CommentListDialog(headers: {'transport_id': transport.id!}),
     );
   }
 }
