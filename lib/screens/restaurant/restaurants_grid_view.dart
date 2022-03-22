@@ -6,8 +6,7 @@ import 'package:mobileapp/screens/details/hotel_details_page.dart';
 import 'package:mobileapp/widgets/top_bar/app_bar_with_list.dart';
 
 class RestaurantsGridView extends StatefulWidget {
-  late Restaurant rest;
-  RestaurantsGridView({Key? key, required this.rest}) : super(key: key);
+  RestaurantsGridView({Key? key}) : super(key: key);
 
   @override
   State<RestaurantsGridView> createState() => _RestaurantsGridViewState();

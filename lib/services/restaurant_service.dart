@@ -265,8 +265,9 @@ class RestaurantService {
       );
 
       if (response.statusCode == 201) {
+        await BusinessAccountService.setIntoStorage();
         print(jsonDecode(response.body));
-        return jsonDecode(response.body);
+        return jsonDecode(response.body)['message'];
       } else {
         print(response.body);
         return jsonDecode(response.body);
