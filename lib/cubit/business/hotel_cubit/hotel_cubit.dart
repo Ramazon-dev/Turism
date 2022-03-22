@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/screens/profile/auth_profile_page.dart';
 
 part 'hotel_state.dart';
 
@@ -21,19 +22,20 @@ class HotelCubit extends Cubit<HotelState> {
 
   bool _isEditing = false;
   late String _hotelId;
+  String toastMessage = '';
 
   HotelCubit.editing(Hotel hotel) : super(HotelInitial()) {
     _hotelId = hotel.id;
     _isEditing = true;
     _nameController.text = hotel.name;
-    _phoneController.text = hotel.tell[0];
+    _phoneController.text = hotel.tell![0];
     _websiteController.text = hotel.site.toString();
     _mapLinkController.text = hotel.karta;
     _aboutUzController.text = hotel.informUz;
     _aboutEnController.text = hotel.informEn;
     _aboutRuController.text = hotel.informRu;
     _imageList = hotel.media;
-    _city = CityList().getCityName(hotel.city);
+    _city = CityList().getCityName(hotel.city!);
   }
 
   void cityChanged(dynamic value) {
@@ -45,17 +47,17 @@ class HotelCubit extends Cubit<HotelState> {
 //TODO:
 
   void setImage() {
-    ImageChooser chooser = ImageChooser();
-    chooser.notStatic().then((value) {
-      _imageList = ImageChooser.imageList;
-      emit(HotelInitial());
-    });
+    ImageChooser.chooseImage();
+    _imageList = ImageChooser.imageList;
+    print(_imageList);
+    emit(HotelInitial());
   }
 
   void onDropdownMenuItemPressed() {}
 
-  void onSavePressed() {
+  Future<void> onSavePressed() async {
     if (_formKey.currentState!.validate()) {
+      emit(HotelLoading());
       String name = _nameController.text.trim();
       String phone = _phoneController.text.trim();
       String link = _websiteController.text.trim();
@@ -73,9 +75,8 @@ class HotelCubit extends Cubit<HotelState> {
         karta: map,
         site: link,
         tell: [phone],
-        media: _imageList,
+        media: ImageChooser.imageList,
       );
-
       if (_isEditing) {
         // if hotel is updating
         HotelService().updateHotelData(hotel).then((value) {
@@ -88,9 +89,19 @@ class HotelCubit extends Cubit<HotelState> {
         });
       } else {
         // Else
-        HotelService.createNewHotel(hotel).then((value) {
-          ImageChooser.clearImageList();
-          CustomNavigator().pushAndRemoveUntil(const HomeScreen());
+        await HotelService.createNewHotel(hotel).then((value) {
+          print(value);
+          emit(HotelInitial());
+          if (value == 201) {
+            emit(HotelSucces());
+
+            
+            CustomNavigator().pushAndRemoveUntil(const ProfileAuthPage());
+          } else {
+            toastMessage = value.toString();
+            emit(HotelError());
+          }
+          emit(HotelInitial());
         });
       }
     }

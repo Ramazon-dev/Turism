@@ -18,7 +18,7 @@ class LinkWithIconButton extends StatelessWidget {
     return Row(
       children: [
         SvgPicture.asset(icon),
-        SizedBox(width: 15.w),
+        SizedBox(width: 5.w),
         Text(
           label,
           maxLines: 1,

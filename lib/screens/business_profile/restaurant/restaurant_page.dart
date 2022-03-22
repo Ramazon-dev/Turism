@@ -34,7 +34,7 @@ class RestaurantPage extends StatelessWidget {
             children: [
               Visibility(
                 visible: isEditing,
-                child: ShowImageNetwork(images: restaurant!.media),
+                child: ShowImageNetwork(images: restaurant!.media!),
               ),
               _showForms(cubit),
               MySizedBox(height: 20.0),

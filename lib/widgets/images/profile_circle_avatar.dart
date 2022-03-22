@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/data/image_list.dart';
 
+// ignore: must_be_immutable
 class ProfileCircleAvatar extends StatelessWidget {
   final String imageUrl;
   VoidCallback onPressed;
@@ -20,7 +22,6 @@ class ProfileCircleAvatar extends StatelessWidget {
         Container(
           width: getHeight(height),
           height: getHeight(height),
-          padding: _isDefault() ? EdgeInsets.all(24.w) : EdgeInsets.zero,
           decoration: MyDecoration.circular(
             border: Border.all(color: AppColors.primary, width: getWidth(2)),
             color: Colors.transparent,
@@ -31,23 +32,28 @@ class ProfileCircleAvatar extends StatelessWidget {
                 MyBorderRadius.circular(radius: _isDefault() ? 0.0 : 100.0),
             child: _isDefault()
                 ? SvgPicture.asset(AppIcons.personal)
-                : CachedNetworkImage(imageUrl: "https://ucharteam-tourism.herokuapp.com/v1/media/$imageUrl" ),
+                : CachedNetworkImage(
+                    imageUrl: imageUrl,
+                    errorWidget: (context, url, error) => Image.asset(
+                          AppImages.notFound,
+                          fit: BoxFit.cover,
+                        )),
+
           ),
         ),
         Positioned(
-          bottom: 0.0,
-          right: 0.0,
-          child: InkWell(
-            onTap: onPressed,
-            child: CircleAvatar(
-              backgroundColor: AppColors.primary,
-              radius: getWidth(21.43),
-              child: SvgPicture.asset(AppIcons.image),
-          
-              //TODO:
-            ),
-          )),
-        
+            bottom: 0.0,
+            right: 0.0,
+            child: InkWell(
+              onTap: onPressed,
+              child: CircleAvatar(
+                backgroundColor: AppColors.primary,
+                radius: getWidth(21.43),
+                child: SvgPicture.asset(AppIcons.image),
+
+
+              ),
+            )),
       ],
     );
   }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/business/hotel_cubit/hotel_cubit.dart';
+import 'package:mobileapp/screens/profile/auth_profile_page.dart';
 import 'package:mobileapp/widgets/images/show_image_network.dart';
 
+// ignore: must_be_immutable
 class InputHotelPage extends StatelessWidget {
   final bool isEditing;
   Hotel? hotel;
@@ -15,17 +17,44 @@ class InputHotelPage extends StatelessWidget {
     return BlocProvider(
       create: (_) => isEditing ? HotelCubit.editing(hotel!) : HotelCubit(),
       child: BlocBuilder<HotelCubit, HotelState>(
+        // listener: (context, state) {
+        //   HotelCubit cubit = context.watch();
+        //   if (state is HotelSucces) {
+        //     ScaffoldMessenger.of(context).showSnackBar(_snackBar('Succesfull'));
+        //   } else if (state is HotelError) {
+        //     ScaffoldMessenger.of(context)
+        //         .showSnackBar(_snackBar(cubit.toastMessage));
+        //   }
+        // },
+        // buildWhen: (previous, current) {
+        //   if (current is HotelError) {
+        //     return false;
+        //   } else {
+        //     return true;
+        //   }
+        // },
         builder: (ctx, state) {
           HotelCubit cubit = ctx.watch();
-          return _buildScaffold(cubit);
+          HotelCubit cubitRead = ctx.read();
+          if (state is HotelSucces) {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (_) => const ProfileAuthPage()),
+                (route) => false);
+            return SizedBox();
+          } else {
+            return _buildScaffold(cubit, cubitRead);
+          }
         },
       ),
     );
   }
 
-  Scaffold _buildScaffold(HotelCubit cubit) {
+  Scaffold _buildScaffold(HotelCubit cubit, HotelCubit cubitRead) {
     return Scaffold(
-      appBar: SimpleAppBar(title: LocaleKeys.hotel.tr(), ),
+      appBar: SimpleAppBar(
+        title: LocaleKeys.hotel.tr(),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: MyEdgeInsets.symmetric(h: 30.0, v: 25.0),
@@ -40,7 +69,7 @@ class InputHotelPage extends StatelessWidget {
               Visibility(visible: !isEditing, child: const ImageSetter()),
               MySizedBox(height: 20.0),
               ElevatedButtonWidget(
-                onPressed: cubit.onSavePressed,
+                onPressed: cubitRead.onSavePressed,
                 label: LocaleKeys.save.tr(),
               ),
             ],
@@ -134,4 +163,11 @@ class InputHotelPage extends StatelessWidget {
           ],
         ),
       );
+
+  SnackBar _snackBar(String msg) {
+    return SnackBar(
+      duration: const Duration(seconds: 2),
+      content: Text(msg),
+    );
+  }
 }

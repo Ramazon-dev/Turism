@@ -17,9 +17,9 @@ class DrawerWidget extends StatelessWidget {
               LocaleKeys.hotel.tr(), AppIcons.dollar, const HotelListPage()),
           _setCategory(
               LocaleKeys.currency.tr(), AppIcons.dollar, const CurrencyPage()),
-          _setCategory(LocaleKeys.places.tr(), AppIcons.location, PlacePage()),
-          _setCategory(
-              LocaleKeys.hotel.tr(), AppIcons.arrowBack, const OtherPage()),
+          // _setCategory(LocaleKeys.places.tr(), AppIcons.location, PlacePage()),
+          // _setCategory(
+          //     LocaleKeys.hotel.tr(), AppIcons.arrowBack, const OtherPage()),
           _setCategory(LocaleKeys.settings.tr(), AppIcons.arrowBack,
               const SettingsPage()),
           const Spacer(),
@@ -57,8 +57,7 @@ class DrawerWidget extends StatelessWidget {
       ListTile(
         onTap: () async {
           if (isAll) {
-            await GetStorage().write('token', '');
-            await GetStorage().write('user', {});
+            await AuthServices.logout();
             CustomNavigator().pushAndRemoveUntil(page);
           } else {
             CustomNavigator.push(page);

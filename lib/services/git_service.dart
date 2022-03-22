@@ -8,7 +8,6 @@ class GitService {
   static Future createNewGit(Git git) async {
     try {
       String token = await GetStorage().read('token');
-      print(token);
       var headers = {'token': token};
       var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/git'));
       request.fields.addAll({
@@ -47,19 +46,12 @@ class GitService {
       var response = await http.Response.fromStream(streamedResponse);
 
       if (response.statusCode == 201) {
-        print(response.body);
-        Map<String, dynamic> gitMap = jsonDecode(response.body)['data'];
-        print(gitMap);
-        // Git git = Git.fromJson(gitMap);
-        GetStorage().write('git', gitMap);
-        print(GetStorage().read('git'));
+        await BusinessAccountService.setIntoStorage();
         return git;
       } else {
-        print('else error: ' + (response.body as Map)['message'].toString());
         return null;
       }
     } catch (e) {
-      print('catch errorda: ' + e.toString());
       return null;
     }
   }
@@ -69,18 +61,15 @@ class GitService {
       var response = await http
           .get(Uri.parse("$baseUrl/git"), headers: {"city": cityName});
       if (response.statusCode == 200) {
-        print('GitService.fetchGitsByCity: ${response.body}');
         List<Git> gitList = (jsonDecode(response.body)['data'] as List)
             .map((e) => Git.fromJson(e))
             .toList();
-        print(gitList);
         return gitList;
       } else {
         return jsonDecode(response.body)['message'];
       }
     } catch (e) {
       List<Git> h = [];
-      print('fetch git exception: $e');
       return h;
     }
   }
@@ -91,7 +80,6 @@ class GitService {
           .get(Uri.parse("$baseUrl/comment"), headers: {"git_id": gitId});
 
       if (response.statusCode == 200) {
-        print(response.body);
         return jsonDecode(response.body);
       } else {
         return jsonDecode(response.body);
@@ -103,8 +91,6 @@ class GitService {
 
   Future addRatingToGit({required String gitId, required int rate}) async {
     String token = await GetStorage().read('token');
-    //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyZmU4NDQ2Mi00ZjA5LTQ5NGUtYjRkZC1jZWVkMjRmZTI0MTciLCJpYXQiOjE2NDU3ODcxNjMsImV4cCI6MTY2MzA2NzE2M30.Qk-uLwwQ6OmvbPdzxpmNtmdBjYYvovNzwGXCs7LjXFM';
-
     try {
       var response = await http.post(
         Uri.parse('$baseUrl/reyting'),
@@ -113,16 +99,11 @@ class GitService {
       );
 
       if (response.statusCode == 201) {
-        print(jsonDecode(response.body));
         return jsonDecode(response.body);
       } else {
-        print("else error: " +
-            jsonDecode(response.body).toString() +
-            response.statusCode.toString());
         return jsonDecode(response.statusCode.toString());
       }
     } catch (e) {
-      print(e);
       return e;
     }
   }
@@ -130,8 +111,6 @@ class GitService {
   Future addCommentToGit(
       {required String gitId, required String commentText}) async {
     String token = await GetStorage().read('token');
-
-    //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMzIyYjkxNi01MjQ0LTQ5YTItOWY0Ni1jM2E3YTYzNjA0Y2IiLCJpYXQiOjE2NDUwOTUwNzEsImV4cCI6MTY2MjM3NTA3MX0.cX0A_pOKUn7K6iekxocSWK4K5WrtHph_2-WrOXPDyis';
 
     try {
       var response = await http.post(
@@ -141,21 +120,17 @@ class GitService {
       );
 
       if (response.statusCode == 201 || response.statusCode == 200) {
-        print(jsonDecode(response.body));
         return jsonDecode(response.body);
       } else {
-        print(response.body);
         return jsonDecode(response.body);
       }
     } catch (e) {
-      print(e);
       return e;
     }
   }
 
   static Future updateGitData(Git git) async {
     String token = await GetStorage().read('token');
-    //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZGI4OGM0Yy04ODYxLTRjMTgtOWI3MS04MjZjM2M0NGFlYzEiLCJpYXQiOjE2NDYxNTI2MDcsImV4cCI6MTY2MzQzMjYwN30.WUaeEN7SJeYNC-8pZ-Vh4FcLu5fRAKLAUjFS3JZUUqg';
     try {
       var response = await http.put(
         Uri.parse('$baseUrl/git'),
@@ -175,7 +150,6 @@ class GitService {
       );
 
       if (response.statusCode == 200) {
-        print(response.body);
         // return jsonDecode(response.body);
       } else {
         print(response.statusCode);
@@ -191,7 +165,6 @@ class GitService {
       {required String gitId, required String gitImage}) async {
     try {
       String token = await GetStorage().read('token');
-      // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZGI4OGM0Yy04ODYxLTRjMTgtOWI3MS04MjZjM2M0NGFlYzEiLCJpYXQiOjE2NDYxNTI2MDcsImV4cCI6MTY2MzQzMjYwN30.WUaeEN7SJeYNC-8pZ-Vh4FcLu5fRAKLAUjFS3JZUUqg';
 
       var headers = {'token': token};
       var request =

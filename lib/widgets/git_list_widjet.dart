@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/data/image_list.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
 import 'package:mobileapp/widgets/buttons/language_button.dart';
 
@@ -34,33 +35,17 @@ class MyGitListWidget extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            margin: EdgeInsets.only(
-              right: getWidth(9),
-            ),
+            margin: EdgeInsets.only(right: getWidth(9)),
             width: getWidth(128),
             height: getHeight(116),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(
-                Radius.circular(
-                  getWidth(5),
-                ),
-
-              ),
-              image: DecorationImage(
-                image: NetworkImage(
-                  "https://ucharteam-tourism.herokuapp.com/v1/media/" +
-                      git.image!,
-                ),
-                fit: BoxFit.cover,
-              ),
-            ),
+            decoration: MyDecoration.netImage(netImage: ImageList.profileBlank),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               DescriptionWidget(
-                name: git.username.toString(),
+                name: git.username ?? 'Your account',
                 price: git.price.toString(),
                 rating: git.reyting!.toDouble(),
                 users: 8,

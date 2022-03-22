@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/screens/about_us_page.dart';
 
 class SelectedCityPage extends StatelessWidget {
   CityModel city;
@@ -21,8 +20,8 @@ class SelectedCityPage extends StatelessWidget {
         city: city.value,
         category: "",
       ),
-      GitPage(),
-      const CurrencyPage(),
+      const GitPage(),
+      const CarPage(),
       const HotelListPage(),
       const SettingsPage(),
     ];

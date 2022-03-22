@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mobileapp/core/components/data_formatter.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/components/image_filter.dart';
 
 class ImagesPageView extends StatefulWidget {
   final List<String> imageList;
@@ -24,9 +26,11 @@ class _ImagesPageViewState extends State<ImagesPageView> {
               itemCount: widget.imageList.length,
               itemBuilder: (ctx, i) {
                 return CachedNetworkImage(
-                  imageUrl: widget.imageList[i],
+                  imageUrl: imageFilter(widget.imageList[i]),
+
                   fit: BoxFit.cover,
                   width: double.infinity,
+                errorWidget: (context, url, error ) => Image.asset(AppImages.notFound, fit: BoxFit.cover,),
                 );
               }),
         ),

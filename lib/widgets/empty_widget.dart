@@ -6,12 +6,15 @@ class EmptyPageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return SizedBox(
+      height: SizeConfig.screenHeight * 0.45,
+      width:  SizeConfig.screenWidth,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SvgPicture.asset(AppImages.empty),
-          Text('No data'),
+          const Text('No data'),
         ],
       ),
     );

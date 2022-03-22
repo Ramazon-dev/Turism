@@ -16,7 +16,6 @@ class GitCubit extends Cubit<GitState> {
   final Set<String> _languages = {};
   String _image = '';
   static final Git? _git = GetStorage().read('git');
-  //String image = _git != null ? _git!.image : '';
 
   void readImage() => print(_git);
 

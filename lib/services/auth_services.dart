@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/services/business_account_service.dart';
 
 class AuthServices {
   static Future<bool> signIn(String email, String password) async {
@@ -17,14 +16,15 @@ class AuthServices {
       request.headers.addAll(headers);
       http.StreamedResponse response = await request.send();
       if (response.statusCode == 200 || response.statusCode == 201) {
-        // var data = await response.stream.bytesToString();
         var data = jsonDecode(await response.stream.bytesToString());
         String token = data['data']['token'];
         UserModel user = UserModel.fromJson(data['data']['user']);
         await GetStorage().write('token', token);
         await GetStorage().write('user', user.toMap());
 
-        await BusinessAccountService().getServiceList();
+
+
+        BusinessAccountService.setIntoStorage();
 
         UserData.setCurrentUser = user;
         return true;
@@ -44,7 +44,6 @@ class AuthServices {
     required String password,
   }) async {
     String baseUrlTest = 'https://ucharteam-tourism.herokuapp.com/v1';
-    // String baseUrl = dotenv.env['BASE_URL'].toString();
 
     print('$baseUrlTest/auth/register');
 
@@ -63,7 +62,6 @@ class AuthServices {
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         var data = jsonDecode(await response.stream.bytesToString());
-        print(data);
         String token = data['data']['token'];
         UserModel user = UserModel.fromJson(data['data']['user']);
         await GetStorage().write('token', token);
@@ -88,8 +86,9 @@ class AuthServices {
   }
 
   static Future logout() async {
-    await GetStorage().write('token', '');
+    await GetStorage().remove('token');
     await GetStorage().remove('user');
     await GetStorage().remove('businessAccount');
+    await GetStorage().remove('git');
   }
 }

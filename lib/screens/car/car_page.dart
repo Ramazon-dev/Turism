@@ -4,6 +4,7 @@ import 'package:mobileapp/cubit/car_cubit/car_cubit.dart';
 import 'package:mobileapp/models/tnas_models.dart';
 import 'package:mobileapp/services/car_service.dart';
 import 'package:mobileapp/widgets/cards/car_info_card.dart';
+import 'package:mobileapp/widgets/navigators/drawer_widget.dart';
 import 'package:mobileapp/widgets/top_bar/app_bar_with_list.dart';
 
 class CarPage extends StatefulWidget {
@@ -31,9 +32,10 @@ class _CarPageState extends State<CarPage> with TickerProviderStateMixin {
       create: (_) => CarCubit(),
       child: BlocBuilder<CarCubit, CarState>(
         builder: (context, state) {
-          CarCubit cubit = context.watch();
+          // CarCubit cubit = context.watch();
           return Scaffold(
             key: _scaffoldKey,
+            drawer: const DrawerWidget(),
             appBar: AppBarWithList(
               title: 'Cars',
               onTabChanged: _onTabChanged,
@@ -61,8 +63,6 @@ class _CarPageState extends State<CarPage> with TickerProviderStateMixin {
                     padding: MyEdgeInsets.symmetric(h: 16.0, v: 25.0),
                     itemCount: data.data!.length,
                     itemBuilder: (ctx, i) {
-                      debugPrint("rasm url qismi ${data.data![i].media}");
-
                       return CarInfoCard(
                         // car: MockData.carModel,
                         carImage: data.data![i].media![0],
