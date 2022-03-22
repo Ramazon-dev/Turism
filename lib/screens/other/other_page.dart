@@ -65,20 +65,20 @@ class OtherPage extends StatelessWidget {
             }
           },
         ),
-        TextButton(
-          child: const Text('delete restaurant'),
-          onPressed: () async {
-            await RestaurantService().deleteRestaurant();
-          },
-        ),
-        TextButton(
-          child: const Text('add commnet to restaurant'),
-          onPressed: () async {
-            await RestaurantService().addCommentToRestaurant(
-                commentText: 'test text',
-                restaurantId: "3375d7d5-bd96-41a6-98b4-b50a6786308d");
-          },
-        ),
+        // TextButton(
+        //   child: const Text('delete restaurant'),
+        //   onPressed: () async {
+        //     await RestaurantService().deleteRestaurant();
+        //   },
+        // ),
+        // TextButton(
+        //   child: const Text('add commnet to restaurant'),
+        //   onPressed: () async {
+        //     await RestaurantService().addCommentToRestaurant(
+        //         commentText: 'test text',
+        //         restaurantId: "3375d7d5-bd96-41a6-98b4-b50a6786308d");
+        //   },
+        // ),
         TextButton(
           child: const Text('update git data'),
           onPressed: () async {

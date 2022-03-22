@@ -3,24 +3,25 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/business/hotel_cubit/hotel_cubit.dart';
+import 'package:mobileapp/cubit/business/restourant_cubit/restarant_cubit.dart';
 
-class ImageSetter extends StatelessWidget {
-  const ImageSetter({Key? key}) : super(key: key);
+class ImageSetterRest extends StatelessWidget {
+  const ImageSetterRest({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => HotelCubit(),
-      child: BlocBuilder<HotelCubit, HotelState>(
+      create: (_) => RestaurantCubit(),
+      child: BlocBuilder<RestaurantCubit, RestorantState>(
         builder: (ctx, state) {
-          HotelCubit cubit = ctx.watch();
+          RestaurantCubit cubit = ctx.watch();
           return _buildContainer(cubit);
         },
       ),
     );
   }
 
-  Container _buildContainer(HotelCubit cubit) {
+  Container _buildContainer(RestaurantCubit cubit) {
     ImageChooser chooser = ImageChooser();
     return Container(
       height: 302.0.h,

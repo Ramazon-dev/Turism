@@ -44,7 +44,13 @@ class HomeBody extends StatelessWidget {
           RowTextWidgets(ontap: () {}, text: "Регионы.", bottomText: "Все"),
           const PopularObject(),
           RowTextWidgets(
-              ontap: () {}, text: "Где мы находимся :)", bottomText: "Все"),
+              ontap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HotelListPage(),
+                  )),
+              text: "Где мы поселимся :)",
+              bottomText: "Все"),
 
           SizedBox(
             height: getHeight(154.0),
@@ -96,7 +102,8 @@ class HomeBody extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(right: 15.0,left: 15.0,top: 15),
+                          padding: const EdgeInsets.only(
+                              right: 15.0, left: 15.0, top: 15),
                           child: Container(
                             height: getHeight(110.0),
                             width: getWidth(130.0),
@@ -112,7 +119,10 @@ class HomeBody extends StatelessWidget {
                             children: const [
                               Text("_______"),
                               Padding(
-                                padding: EdgeInsets.only(right: 5,left: 5,),
+                                padding: EdgeInsets.only(
+                                  right: 5,
+                                  left: 5,
+                                ),
                                 child: Text("___"),
                               ),
                               Padding(
@@ -124,9 +134,12 @@ class HomeBody extends StatelessWidget {
                           ),
                         ),
                         const Padding(
-                                padding: EdgeInsets.only(left: 15),
-                                child: Text("Национальные продукты",style: TextStyle(fontSize: 15.0),),
-                              ),
+                          padding: EdgeInsets.only(left: 15),
+                          child: Text(
+                            "Национальные продукты",
+                            style: TextStyle(fontSize: 15.0),
+                          ),
+                        ),
                       ],
                     ),
                   ),

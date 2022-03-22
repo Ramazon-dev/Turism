@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/models/category_model.dart';
 import 'package:mobileapp/services/restaurant_service.dart';
 
 part 'restaurant_state.dart';
@@ -19,7 +20,13 @@ class RestaurantCubit extends Cubit<RestorantState> {
   List<String> _imageList = [];
 
   String _city = CityList.cities[0].name;
-  String _chosenCity = CityList().getCity(CityList.cities[0].name);
+  String _chosenCity = CityList().getCity(CityList.cities[0].value);
+
+  late List<Category> categories = (GetStorage().read('restCategories') as List)
+      .map((e) => Category.fromJson(e))
+      .toList();
+
+  late Category category = categories[0];
 
   bool _isEditing = false;
   late String _restaurantId;
@@ -45,11 +52,28 @@ class RestaurantCubit extends Cubit<RestorantState> {
     emit(RestorantInitial());
   }
 
+  void categoryChanged(dynamic value) {
+    for (var ctgry in categories) {
+      if (value == ctgry.nameUz) {
+        category = ctgry;
+      }
+    }
+    emit(RestorantInitial());
+  }
+
+  void setImage() {
+    ImageChooser.chooseImage();
+    _imageList = ImageChooser.imageList;
+    print(_imageList);
+    emit(RestorantInitial());
+  }
+
   void onDropdownMenuItemPressed() {}
 
   void onSavePressed() {
     // Agar validate bo'lgan bo'lsa
     if (_formKey.currentState!.validate()) {
+      print('validate save pressed in restaurant');
       String name = _nameController.text.trim();
       String phone = _phoneController.text.trim();
       String link = _websiteController.text.trim();
@@ -57,26 +81,34 @@ class RestaurantCubit extends Cubit<RestorantState> {
       String aboutUz = _aboutUzController.text.trim();
       String aboutEn = _aboutEnController.text.trim();
       String aboutRu = _aboutRuController.text.trim();
+      String site = _websiteController.text.trim();
 
       Restaurant restaurant = Restaurant(
         name: name,
-        media: _imageList,
+        media: ImageChooser.imageList,
         informUz: aboutUz,
         informEn: aboutEn,
         informRu: aboutRu,
         karta: map,
-        city: city,
+        city: _chosenCity.toLowerCase(),
         tell: [phone],
-        categoryId: 'categoryId',
+        categoryId: category.id,
+        site: site
       );
 
       if (_isEditing) {
         // Update
         Fluttertoast.showToast(msg: 'Soon');
       } else {
+        print(restaurant.toString());
         RestaurantService.createNewRestaurant(restaurant).then((value) {
-          ImageChooser.clearImageList();
-          CustomNavigator().pushAndRemoveUntil(const HomeScreen());
+          if (value == 201) {
+            Fluttertoast.showToast(msg: 'Successful');
+            ImageChooser.clearImageList();
+            CustomNavigator().pushAndRemoveUntil(const HomeScreen());
+          } else {
+            Fluttertoast.showToast(msg: value.toString());
+          }
         });
       }
     }
@@ -99,6 +131,8 @@ class RestaurantCubit extends Cubit<RestorantState> {
   TextEditingController get nameController => _nameController;
 
   String get city => _city;
+
+  List<String> get imageList => _imageList;
 
   TextEditingController get mapLinkController => _mapLinkController;
 }

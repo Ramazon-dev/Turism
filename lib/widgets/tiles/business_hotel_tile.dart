@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/components/image_filter.dart';
 import 'package:mobileapp/screens/details/hotel_details_page_for_owner.dart';
 import 'package:mobileapp/widgets/buttons/link_with_icon_button.dart';
 import 'package:mobileapp/widgets/rating_bar_widget.dart';
@@ -13,7 +14,7 @@ class BusinessHotelTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseBusinessTile(
-      imgUrl: MockData.place.media[0],
+      imgUrl: imageFilter(hotel.media[0]),
       title: hotel.name,
       infoWidget: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

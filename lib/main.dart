@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/screens/on_boarding/initial_page.dart';
+import 'package:mobileapp/services/restaurant_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   // await dotenv.load(fileName: ".env");
   await GetStorage.init();
+  await RestaurantService.fetchCategoriesOfRestaurants();
+  print(GetStorage().read('restCategories'));
 
   runApp(
     EasyLocalization(

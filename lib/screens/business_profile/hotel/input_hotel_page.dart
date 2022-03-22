@@ -106,7 +106,7 @@ class InputHotelPage extends StatelessWidget {
             MySizedBox(height: 20.0),
 
             // City drop down button
-            DropDownWidget(onChanged: cubit.cityChanged, value: cubit.city),
+            DropDownWidget(onChanged: cubit.cityChanged, value: cubit.city, items: CityList.cities.map((e) => e.name).toList(),),
             MySizedBox(height: 20.0),
 
             // Link of geo Location
