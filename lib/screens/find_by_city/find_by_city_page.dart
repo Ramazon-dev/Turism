@@ -6,16 +6,16 @@ class SelectedCityPage extends StatelessWidget {
   CityModel city;
   SelectedCityPage({Key? key, required this.city}) : super(key: key);
   List<String> listOfStrings = [
-    'Туристик зона.',
-    'Гит.',
-    'Транспорт.',
-    'Отель.',
-    'Ресторан.',
+    '${LocaleKeys.tourist_zone.tr()}.',
+    '${LocaleKeys.git.tr()}.',
+    '${LocaleKeys.transport.tr()}.',
+    '${LocaleKeys.hotel.tr()}.',
+    '${LocaleKeys.restaurant.tr()}.',
   ];
 
   @override
   Widget build(BuildContext context) {
-    print(city.name);
+
     List<Widget> listOfPages = [
       PlacePage(
         city: city.value,

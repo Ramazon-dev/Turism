@@ -8,7 +8,7 @@ import 'package:mobileapp/services/restaurant_service.dart';
 import 'package:mobileapp/widgets/top_bar/app_bar_with_list.dart';
 
 class RestaurantsGridView extends StatefulWidget {
-  RestaurantsGridView({Key? key}) : super(key: key);
+  const RestaurantsGridView({Key? key}) : super(key: key);
 
   @override
   State<RestaurantsGridView> createState() => _RestaurantsGridViewState();

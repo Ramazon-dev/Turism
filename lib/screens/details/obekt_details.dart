@@ -77,7 +77,7 @@ class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
                   ),
                   MySizedBox(height: 10.0),
                   _buildLink(
-                      AppIcons.link, widget.place.site!, widget.place.site!),
+                      AppIcons.link,_place.site.toString(), _place.site.toString()),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: getHeight(9.5)),
                     child: Divider(
