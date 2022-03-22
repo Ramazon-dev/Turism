@@ -19,7 +19,7 @@ class Restaurant {
     List<String>? tell,
     String? date,
     String? categoryId,
-    int? reyting,
+    num? reyting,
     int? users,
   }) {
     _id = id;
@@ -67,7 +67,7 @@ class Restaurant {
   List<String>? _tell;
   String? _date;
   String? _categoryId;
-  int? _reyting;
+  num? _reyting;
   int? _users;
 
   String? get id => _id!;
@@ -94,7 +94,7 @@ class Restaurant {
 
   String? get categoryId => _categoryId!;
 
-  int? get reyting => _reyting!;
+  num? get reyting => _reyting!;
 
   int? get users => _users!;
 

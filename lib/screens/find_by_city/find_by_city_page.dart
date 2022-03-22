@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/screens/restaurant/restaurants_grid_view.dart';
 
 class SelectedCityPage extends StatelessWidget {
   CityModel city;
@@ -23,7 +24,7 @@ class SelectedCityPage extends StatelessWidget {
       const GitPage(),
       const CarPage(),
       const HotelListPage(),
-      const SettingsPage(),
+       RestaurantsGridView(),
     ];
     return Scaffold(
       extendBodyBehindAppBar: true,
