@@ -7,15 +7,15 @@ import 'package:mobileapp/screens/find_by_city/find_by_city_page.dart';
 import 'package:mobileapp/services/obekt_services.dart';
 import 'package:mobileapp/widgets/star_bar.dart';
 
-class ShowNerarby extends StatelessWidget {
-  const ShowNerarby({
+class ShowNearby extends StatelessWidget {
+  const ShowNearby({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: ObektSevices().fetchobektbyseason(),
+        future: ObjectSevices().fetchobektbyseason(),
         builder: (context, AsyncSnapshot<List<Obekt>> snap) {
           if (snap.hasData) {
             List<Obekt> data = snap.data!;

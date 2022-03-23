@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:mobileapp/models/obekt_model.dart';
 import 'package:mobileapp/services/obekt_categoriya.dart';
 
-class ObektSevices {
+class ObjectSevices {
   static String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
 
   Future addCommentToObekt(

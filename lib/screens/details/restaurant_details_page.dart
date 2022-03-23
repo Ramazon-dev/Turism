@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/screens/business_profile/restaurant/restaurant_page.dart';
-import 'package:mobileapp/screens/profile/auth_profile_page.dart';
-import 'package:mobileapp/services/restaurant_service.dart';
-import 'package:mobileapp/widgets/dialogs/comment_dialog.dart';
 import 'package:mobileapp/widgets/images_page_view.dart';
 import 'package:mobileapp/widgets/phone_list_widget.dart';
 import 'package:mobileapp/widgets/rating_bar_widget.dart';

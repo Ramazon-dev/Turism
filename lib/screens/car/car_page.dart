@@ -40,8 +40,10 @@ class _CarPageState extends State<CarPage> with TickerProviderStateMixin {
               title: LocaleKeys.transport.tr(),
               onTabChanged: _onTabChanged,
               tabController: _tabController,
+              elevation: 0.0,
               onPressed: () {
                 _scaffoldKey.currentState!.openDrawer();
+            
               },
             ),
             body: FutureBuilder(
@@ -76,7 +78,7 @@ class _CarPageState extends State<CarPage> with TickerProviderStateMixin {
                     ),
                   );
                 } else {
-                  return const Center(child:  CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
               },
             ),
