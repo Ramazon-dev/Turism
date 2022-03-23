@@ -33,7 +33,7 @@ class ContainerForPopularObject extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: ObektSevices().obektkategoriya(),
+        future: ObjectSevices().obektkategoriya(),
         builder: (context, AsyncSnapshot<List<ObektCategoriya>> snap) {
           if (snap.hasData) {
             List<ObektCategoriya> data = snap.data!;
