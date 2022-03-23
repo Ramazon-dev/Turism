@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/car_cubit/car_cubit.dart';
-import 'package:mobileapp/models/transport_model.dart';
 import 'package:mobileapp/services/car_service.dart';
 import 'package:mobileapp/widgets/cards/car_info_card.dart';
 import 'package:mobileapp/widgets/navigators/drawer_widget.dart';

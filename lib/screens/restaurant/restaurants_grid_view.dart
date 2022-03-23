@@ -31,9 +31,10 @@ class _RestaurantsGridViewState extends State<RestaurantsGridView>
   @override
   void initState() {
     super.initState();
+    categories.insert(0,Category(id: 'all', nameUz: 'Hammasi', nameEn: 'All', nameRu: 'Vse', date: ''));
     _tabController = TabController(length: CityList.cities.length, vsync: this);
     _ctgTabControlller = TabController(length: categories.length, vsync: this);
-    _currentCtg  = categories[0];
+    _currentCtg = categories[0];
   }
 
   @override
@@ -57,18 +58,22 @@ class _RestaurantsGridViewState extends State<RestaurantsGridView>
                 if (snap.hasError) {
                   return const Text('Error');
                 } else if (snap.hasData) {
-                  if (snap.data!.isEmpty) {
-                    return const EmptyPageWidget();
-                  }
                   _restList = [];
+
+                  if(_currentCtg.id == 'all') {
+                    _restList = snap.data!;
+                  } else
+
+                  // ignore: curly_braces_in_flow_control_structures
                   for (var element in snap.data!) {
                     if (element.categoryId == _currentCtg.id) {
-                     
                       _restList.add(element);
                     }
-                   }
+                  }
+                  if (_restList.isEmpty) {
+                    return const EmptyPageWidget();
+                  }
 
-    
                   return Expanded(
                     child: GridView.builder(
                         padding: MyEdgeInsets.symmetric(h: 15.0, v: 20.0),
@@ -81,10 +86,7 @@ class _RestaurantsGridViewState extends State<RestaurantsGridView>
                         }),
                   );
                 }
-                return SizedBox(
-                  height: SizeConfig.screenHeight - 200,
-                  child: const Center(child: CupertinoActivityIndicator()),
-                );
+                return const Center(child: CupertinoActivityIndicator());
               }),
         ],
       ),
@@ -139,26 +141,30 @@ class _RestaurantsGridViewState extends State<RestaurantsGridView>
   }
 
   Container _ctgTab() => Container(
-height: 64.h,
-color: AppColors.white,
-    child: TabBar(
-              controller: _ctgTabControlller,
-              onTap: (v){
-                setState(() {
-                  _currentCtg = categories[v];
-                });
-              },
-              isScrollable: true,
-              padding: MyEdgeInsets.symmetric(h: 20.0, v: 10.0),
-              indicatorColor: AppColors.greyPrice,
-              unselectedLabelColor: AppColors.greyPrice,
-              indicator: MyDecoration.circular(
-                color: AppColors.greyPrice,
-                radius: 0.w,
-              ),
-              tabs: categories.map((e) => Tab(text: e.showInfo(LocaleService.currentLocale),)).toList(),
-            ),
-  );
+        height: 64.h,
+        color: AppColors.white,
+        child: TabBar(
+          controller: _ctgTabControlller,
+          onTap: (v) {
+            setState(() {
+              _currentCtg = categories[v];
+            });
+          },
+          isScrollable: true,
+          padding: MyEdgeInsets.symmetric(h: 20.0, v: 10.0),
+          indicatorColor: AppColors.greyPrice,
+          unselectedLabelColor: AppColors.greyPrice,
+          indicator: MyDecoration.circular(
+            color: AppColors.greyPrice,
+            radius: 0.w,
+          ),
+          tabs: categories
+              .map((e) => Tab(
+                    text: e.showInfo(LocaleService.currentLocale),
+                  ))
+              .toList(),
+        ),
+      );
 
   SliverGridDelegateWithFixedCrossAxisCount _gridDelegate() {
     return SliverGridDelegateWithFixedCrossAxisCount(
