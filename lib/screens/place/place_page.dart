@@ -14,7 +14,7 @@ class PlacePage extends StatelessWidget {
     return Scaffold(
         appBar: const SimpleAppBar(title: 'Places'),
         body: FutureBuilder(
-            future: ObektSevices().fetchobektbyCity(city!, category!),
+            future: ObjectSevices().fetchobektbyCity(city!, category!),
             builder: (context, AsyncSnapshot<List<Obekt>> snap) {
               if (snap.hasData) {
                 List<Obekt> data = snap.data!;

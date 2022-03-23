@@ -31,7 +31,7 @@ class HomeBody extends StatelessWidget {
                   fontSize: getWidth(18.0), fontWeight: FontWeight.w400),
             ),
           ),
-          const ShowNerarby(),
+          const ShowNearby(),
 
           /// Популярные пакеты.
           RowTextWidgets(

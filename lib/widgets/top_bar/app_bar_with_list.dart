@@ -9,6 +9,7 @@ class AppBarWithList extends StatelessWidget with PreferredSizeWidget {
   final String title;
   final VoidCallback onPressed;
   IconData icon;
+  double elevation;
 
   AppBarWithList({
     Key? key,
@@ -17,12 +18,13 @@ class AppBarWithList extends StatelessWidget with PreferredSizeWidget {
     required this.title,
     required this.onPressed,
     this.icon = Icons.menu,
+    this.elevation = 1.0,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      elevation: 1.0,
+      elevation: elevation,
       centerTitle: true,
       leading: IconButton(
         onPressed: onPressed,
