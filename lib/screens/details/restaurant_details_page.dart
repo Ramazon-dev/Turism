@@ -83,7 +83,7 @@ class ResDetailsPage extends StatelessWidget {
                         SizedBox(
                           height: getHeight(4),
                         ),
-                        if (rest.site != null)
+                        if (rest.site.toString() != 'null')
                           Row(
                             children: [
                               SvgPicture.asset(AppIcons.link),
