@@ -11,7 +11,6 @@ class SimpleAppBar extends StatelessWidget with PreferredSizeWidget {
         title: Text(title),
         centerTitle: true,
         backgroundColor: AppColors.primary,
-        
       );
 
   @override
