@@ -20,7 +20,8 @@ class _CarPageState extends State<CarPage> with TickerProviderStateMixin {
   late TabController _tabController;
   late TabController _ctgTabController;
   late Category _currentCtg;
-  late final List<Category> _categories = (GetStorage().read('restCategories') as List)
+  List<TransportModel> _transportList = [];
+  late final List<Category> _categories = (GetStorage().read('carCategories') as List)
       .map((e) => Category.fromJson(e))
       .toList();
 
@@ -73,11 +74,17 @@ class _CarPageState extends State<CarPage> with TickerProviderStateMixin {
                       if (data!.isEmpty) {
                         return const EmptyPageWidget();
                       }
+                      _transportList = [];
+                      for (var element in data) {
+                        if(element.categoryId == _currentCtg.id) {
+                          _transportList.add(element);
+                        }
+                      }
 
                       return Expanded(
                         child: GridView.builder(
                           padding: MyEdgeInsets.symmetric(h: 16.0, v: 25.0),
-                          itemCount: data.length,
+                          itemCount: _transportList.length,
                           itemBuilder: (ctx, i) {
                             TransportModel transportModel = data[i];
                             return CarInfoCard(

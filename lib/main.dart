@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/models/locale_model.dart';
 import 'package:mobileapp/screens/on_boarding/initial_page.dart';
+import 'package:mobileapp/services/car_service.dart';
 import 'package:mobileapp/services/restaurant_service.dart';
 
 void main() async {
@@ -9,6 +10,7 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   await GetStorage.init();
   await RestaurantService.fetchCategoriesOfRestaurants();
+  await TransportService.fetchCategoriesOfCars();
 
   runApp(
     EasyLocalization(
