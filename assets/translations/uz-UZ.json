@@ -41,7 +41,7 @@
   "here_you_can_determine": "Bu erda sizga mos keladigan pul miqdorini aniqlashingiz mumkin.",
   "sum": "So`m",
   "tourist_zone": "Turistik zona.",
-  "transport": "Transport",
+  "transport": "Transport", 
   "service_area_in": "{}dagi xizmat ko`rsatish hududlari:",
   "logout": "Chiqish",
   "places": "Места",
@@ -52,5 +52,12 @@
   "sign_in_toyour_account": "O`z akkountingizga kiring",
   "i_agree_pivacy": "Men maxfiylik siyosatiga roziman",
   "password": "Parol",
-  "on_map": "Xaritada"
+  "on_map": "Xaritada",
+  "upcoming_tours": "Kelgusi sayohatlar.",
+  "popular_packages": "Ommabop paketlar.",
+  "regions": "Hududlar.",
+  "all": "Barchasi",
+  "where_will_we_stay": "Qayerda joylashamiz :)",
+  "restaurants": "Restoranlar",
+  "foods":"taomlari"
 }

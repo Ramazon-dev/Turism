@@ -9,7 +9,7 @@
   "signIn": "Sign In",
   "forgotPassword": "Forgot password?",
   "signUp": "Sign Up",
-  "profile": "Profile",
+  "profile": "Profile", 
   "lastPassword": "Last password",
   "newPassword": "New Password",
   "confirmPassword": "Confirm password",
@@ -52,5 +52,12 @@
   "sign_in_toyour_account": "Sign in to your account",
   "i_agree_pivacy": "I agree with the privacy policy",
   "password": "Password",
-  "on_map": "In Map"
+  "on_map": "In Map",
+  "upcoming_tours": "Upcoming tours.",
+  "popular_packages": "Popular packages",
+  "regions": "Регионы.",
+  "all": "All",
+  "where_will_we_stay": "Where will we stay",
+  "restaurants": "Restaurants",
+  "foods":"foods"
 }
