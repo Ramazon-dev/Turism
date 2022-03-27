@@ -58,14 +58,14 @@ class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
                   ),
                   MySizedBox(height: 4.0),
                   Text(
-                    widget.place.nameRu!,
+                    widget.place.showInfo(context.locale.languageCode),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                     style: AppTextStyle.medium(size: 18.0),
                   ),
                   MySizedBox(height: 17.0),
-                  _buildLink(AppIcons.call, widget.place.tell!,
-                      'tel:${widget.place.tell!.replaceAll('-', '')}',
+                  _buildLink(AppIcons.call, widget.place.tell ?? '',
+                      'tel:${widget.place.tell.toString().replaceAll('-', '')}',
                       labelColor: AppColors.black),
                   MySizedBox(height: 10.0),
                   _buildLink(

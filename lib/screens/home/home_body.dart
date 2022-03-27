@@ -32,6 +32,7 @@ class HomeBody extends StatelessWidget {
         onLanguageChanged: (v) {
           v = v as Locale;
           cubit.onLanguageChanged(context, v.languageCode);
+
         },
       ),
       body: SingleChildScrollView(
@@ -109,7 +110,7 @@ class HomeBody extends StatelessWidget {
               ontap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const RestaurantsGridView())),
+                      builder: (context) =>  RestaurantsGridView())),
               text: "Ресторан",
               bottomText: "Все"),
           SizedBox(
@@ -118,11 +119,12 @@ class HomeBody extends StatelessWidget {
               itemCount: images.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
+                String ctgId = restaurantCategories[index].id;
                 return InkWell(
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const RestaurantsGridView())),
+                          builder: (context) => RestaurantsGridView(ctgId: ctgId))),
                   child: Container(
                     margin: const EdgeInsets.all(8.0),
                     height: getHeight(200.0),
@@ -142,7 +144,7 @@ class HomeBody extends StatelessWidget {
                                 netImage:
                                     images[index]),
 
-                          ),
+                          )),
                           Padding(
                             padding: const EdgeInsets.only(right: 4.0),
                             child: Row(
@@ -164,14 +166,14 @@ class HomeBody extends StatelessWidget {
                               ],
                             ),
                           ),
-                        ),
+
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
                           child: Text(
                             restaurantCategories[index].nameUz + ' taomlari',
                             style: const TextStyle(fontSize: 15.0),
 
-                          ),
+                          )),
                         ],
                       ),
                     ),
