@@ -47,10 +47,9 @@ class HomeScreen extends StatelessWidget {
   List<PreferredSizeWidget?> _appBarList(HomeCubit cubit) {
     return [
       null,
-      SearchTabBar(),
+      null,
       AppBarOrigin(
         actions: SvgPicture.asset(AppIcons.language),
-        actions2: SvgPicture.asset(AppIcons.dollar),
       ),
       null,
       null,
