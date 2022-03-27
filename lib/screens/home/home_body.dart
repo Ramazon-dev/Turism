@@ -26,7 +26,7 @@ class HomeBody extends StatelessWidget {
           Padding(
             padding: MyEdgeInsets.only(left: 10, top: 20),
             child: Text(
-              "Ближайшие туры.",
+             LocaleKeys.upcoming_tours.tr(),
               style: TextStyle(
                   fontSize: getWidth(18.0), fontWeight: FontWeight.w400),
             ),
@@ -38,7 +38,7 @@ class HomeBody extends StatelessWidget {
               ontap: () {
                 debugPrint("bosildi   !!!!");
               },
-              text: "Популярные пакеты.",
+              text:LocaleKeys.popular_packages.tr(),
               bottomText: "Все"),
           ContainerForPopularObject(
             itemCount: 4,
@@ -46,7 +46,7 @@ class HomeBody extends StatelessWidget {
             objectName: "На велосипеде по городу",
             date: "10 минут. 5 сек",
           ),
-          RowTextWidgets(ontap: () {}, text: "Регионы.", bottomText: "Все"),
+          RowTextWidgets(ontap: () {}, text: LocaleKeys.regions.tr(), bottomText: LocaleKeys.all.tr()),
           const PopularObject(),
           RowTextWidgets(
               ontap: () => Navigator.push(
@@ -54,8 +54,8 @@ class HomeBody extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) => const HotelListPage(),
                   )),
-              text: "Где мы поселимся :)",
-              bottomText: "Все"),
+              text: LocaleKeys.where_will_we_stay.tr(),
+              bottomText:LocaleKeys.all.tr()),
 
           SizedBox(
             height: getHeight(154.0),
@@ -94,8 +94,8 @@ class HomeBody extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => RestaurantsGridView())),
-              text: "Ресторан",
-              bottomText: "Все"),
+              text: LocaleKeys.restaurants.tr(),
+              bottomText: LocaleKeys.all.tr()),
           SizedBox(
             height: getHeight(210.0),
             child: ListView.builder(
@@ -151,7 +151,7 @@ class HomeBody extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(left: 15),
                           child: Text(
-                            restaurantCategories[index].nameUz + ' taomlari',
+                            restaurantCategories[index].nameUz + ' ' + LocaleKeys.foods.tr(),
                             style: TextStyle(fontSize: 15.0),
                           ),
                         ),

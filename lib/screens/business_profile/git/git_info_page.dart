@@ -26,49 +26,56 @@ class GitInfoPage extends StatelessWidget {
   }
 
   // Build Scaffold
-  Scaffold _buildScaffold(GitCubit cubit, GitCubit cubitRead) {
+  WillPopScope _buildScaffold(GitCubit cubit, GitCubit cubitRead) {
     UserModel user = UserModel.fromJson(_data);
-    return Scaffold(
-      appBar: SimpleAppBar(title: LocaleKeys.git.tr()),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: MyEdgeInsets.symmetric(h: 30.0, v: 25.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  //TODO:
-                  ProfileCircleAvatar(
-                    imageUrl: imageFilter( git!.image!),
-
-                    onPressed: cubitRead.onChooseImage,
-                  ),
-                  MySizedBox(width: 26.0),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        user.name,
-                        style: AppTextStyle.medium(size: 20.0),
-                      ),
-                      MySizedBox(height: 10.0),
-                      BlueButton(
-                          onPressed: cubitRead.readImage,
-                          label: LocaleKeys.edit.tr()),
-                    ],
-                  ),
-                ],
-              ),
-              MySizedBox(height: 52.82),
-              _showForms(cubit),
-              MySizedBox(height: 20.0),
-              _showLanguages(cubit),
-              MySizedBox(height: 30.0),
-              ElevatedButtonWidget(
-                onPressed: cubit.onSavePressed,
-                label: LocaleKeys.save.tr(),
-              ),
-            ],
+    return WillPopScope(
+      onWillPop: () async {
+        ImageChooser.imageList.clear();
+        return true;
+      },
+      child: Scaffold(
+        appBar: SimpleAppBar(title: LocaleKeys.git.tr()),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: MyEdgeInsets.symmetric(h: 30.0, v: 25.0),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    //TODO:
+                    ProfileCircleAvatar(
+                      imageUrl: user.image != null
+                          ? imageFilter(git!.image!)
+                          : 'default',
+                      onPressed: cubitRead.onChooseImage,
+                    ),
+                    MySizedBox(width: 26.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          user.name,
+                          style: AppTextStyle.medium(size: 20.0),
+                        ),
+                        MySizedBox(height: 10.0),
+                        BlueButton(
+                            onPressed: cubitRead.readImage,
+                            label: LocaleKeys.edit.tr()),
+                      ],
+                    ),
+                  ],
+                ),
+                MySizedBox(height: 52.82),
+                _showForms(cubit),
+                MySizedBox(height: 20.0),
+                _showLanguages(cubit),
+                MySizedBox(height: 30.0),
+                ElevatedButtonWidget(
+                  onPressed: cubit.onSavePressed,
+                  label: LocaleKeys.save.tr(),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -88,7 +95,11 @@ class GitInfoPage extends StatelessWidget {
               prefix: const PhonePrefix(),
             ),
             MySizedBox(height: 20.0),
-            DropDownWidget(onChanged: cubit.cityChanged, value: cubit.city, items: CityList.cities.map((e) => e.name).toList(),),
+            DropDownWidget(
+              onChanged: cubit.cityChanged,
+              value: cubit.city,
+              items: CityList.cities.map((e) => e.name).toList(),
+            ),
             MySizedBox(height: 20.0),
             TextFormFieldWidget(
               inputType: TextInputType.number,

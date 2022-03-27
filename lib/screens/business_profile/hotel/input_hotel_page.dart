@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/business/hotel_cubit/hotel_cubit.dart';
-import 'package:mobileapp/screens/profile/auth_profile_page.dart';
 import 'package:mobileapp/widgets/images/show_image_network.dart';
 
 // ignore: must_be_immutable
@@ -50,29 +49,35 @@ class InputHotelPage extends StatelessWidget {
     );
   }
 
-  Scaffold _buildScaffold(HotelCubit cubit, HotelCubit cubitRead) {
-    return Scaffold(
-      appBar: SimpleAppBar(
-        title: LocaleKeys.hotel.tr(),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: MyEdgeInsets.symmetric(h: 30.0, v: 25.0),
-          child: Column(
-            children: [
-              Visibility(
-                visible: isEditing,
-                child: ShowImageNetwork(images: cubit.imageList),
-              ),
-              _showForms(cubit),
-              MySizedBox(height: 20.0),
-              Visibility(visible: !isEditing, child: const ImageSetter()),
-              MySizedBox(height: 20.0),
-              ElevatedButtonWidget(
-                onPressed: cubitRead.onSavePressed,
-                label: LocaleKeys.save.tr(),
-              ),
-            ],
+  WillPopScope _buildScaffold(HotelCubit cubit, HotelCubit cubitRead) {
+    return WillPopScope(
+      onWillPop: () async {
+        ImageChooser.imageList.clear();
+        return true;
+      },
+      child: Scaffold(
+        appBar: SimpleAppBar(
+          title: LocaleKeys.hotel.tr(),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: MyEdgeInsets.symmetric(h: 30.0, v: 25.0),
+            child: Column(
+              children: [
+                Visibility(
+                  visible: isEditing,
+                  child: ShowImageNetwork(images: cubit.imageList),
+                ),
+                _showForms(cubit),
+                MySizedBox(height: 20.0),
+                Visibility(visible: !isEditing, child: const ImageSetter()),
+                MySizedBox(height: 20.0),
+                ElevatedButtonWidget(
+                  onPressed: cubitRead.onSavePressed,
+                  label: LocaleKeys.save.tr(),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -106,7 +111,11 @@ class InputHotelPage extends StatelessWidget {
             MySizedBox(height: 20.0),
 
             // City drop down button
-            DropDownWidget(onChanged: cubit.cityChanged, value: cubit.city, items: CityList.cities.map((e) => e.name).toList(),),
+            DropDownWidget(
+              onChanged: cubit.cityChanged,
+              value: cubit.city,
+              items: CityList.cities.map((e) => e.name).toList(),
+            ),
             MySizedBox(height: 20.0),
 
             // Link of geo Location

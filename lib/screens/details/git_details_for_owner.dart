@@ -6,17 +6,16 @@ import 'package:mobileapp/widgets/phone_list_widget.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
 
-class GitDetailsPage extends StatefulWidget {
+class GitDetailsForOwnerPage extends StatefulWidget {
   final Git git;
 
-  const GitDetailsPage({Key? key, required this.git}) : super(key: key);
+  const GitDetailsForOwnerPage({Key? key, required this.git}) : super(key: key);
 
   @override
-  State<GitDetailsPage> createState() => _GitDetailsPageState();
+  State<GitDetailsForOwnerPage> createState() => _GitDetailsForOwnerPageState();
 }
 
-class _GitDetailsPageState extends State<GitDetailsPage> {
-
+class _GitDetailsForOwnerPageState extends State<GitDetailsForOwnerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,17 +67,67 @@ class _GitDetailsPageState extends State<GitDetailsPage> {
                       rating: double.parse(widget.git.reyting.toString()),
                       users: 5,
                     ),
-
                     LanguageWidget(language: widget.git.languages!),
-
                     SizedBox(height: getHeight(28)),
                     Text(
                       widget.git.showInfo(context.locale.languageCode),
                       style: AppTextStyle.regular(),
                     ),
                     SizedBox(height: getHeight(16)),
-
-                    PhoneListWidget(phoneList: widget.git.tell!.toList())
+                    PhoneListWidget(phoneList: widget.git.tell!.toList()),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        IconButton(
+                          onPressed: () => CustomNavigator.push(
+                            GitInfoPage(git: widget.git, isEditing: true
+                                //hotel: Hotel.fromJson(git.toJson(),
+                                ),
+                          ),
+                          icon: const Icon(
+                            Icons.edit,
+                          ),
+                          color: Colors.green,
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: const Text(
+                                    "Chindan o'chirishni istaysizmi"),
+                                actions: [
+                                  TextButton(
+                                    child: const Text("Yo'q"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  TextButton(
+                                    child: const Text('Ha'),
+                                    onPressed: () {
+                                      GitService().deleteGit
+                                          (gitId: widget.git.id!)
+                                          .then((value) =>
+                                              Navigator.pushAndRemoveUntil(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (_) =>
+                                                          const HomeScreen()),
+                                                  (route) => false));
+                                    },
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                          icon: const Icon(
+                            Icons.delete,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),

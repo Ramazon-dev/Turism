@@ -72,7 +72,7 @@ class ShowNearby extends StatelessWidget {
             );
           } else {
             return Container(
-              height: 240.h,
+             height: 240.h,
               alignment: Alignment.center,
               child: const CircularProgressIndicator(),
             );
