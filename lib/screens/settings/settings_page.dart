@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/cubit/settings/language_cubit.dart';
 import 'package:mobileapp/services/locale_service.dart';
 
 class SettingsPage extends StatefulWidget {

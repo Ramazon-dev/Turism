@@ -33,6 +33,7 @@ class HomeBody extends StatelessWidget {
         onLanguageChanged: (v) {
           v = v as Locale;
           cubit.onLanguageChanged(context, v.languageCode);
+
         },
       ),
       body: SingleChildScrollView(
@@ -49,13 +50,12 @@ class HomeBody extends StatelessWidget {
             ),
             const ShowNearby(),
 
-
           /// Популярные пакеты.
           RowTextWidgets(
               ontap: () {
                 debugPrint("bosildi   !!!!");
               },
-              text: "Популярные пакеты.",
+              text:LocaleKeys.popular_packages.tr(),
               bottomText: "Все"),
           ContainerForPopularObject(
             itemCount: 4,
@@ -63,7 +63,8 @@ class HomeBody extends StatelessWidget {
             objectName: "На велосипеде по городу",
             date: "10 минут. 5 сек",
           ),
-          RowTextWidgets(ontap: () {}, text: "Регионы.", bottomText: "Все"),
+
+          RowTextWidgets(ontap: () {}, text: LocaleKeys.regions.tr(), bottomText: LocaleKeys.all.tr()),
           const PopularObject(),
           RowTextWidgets(
               ontap: () => Navigator.push(
@@ -71,6 +72,7 @@ class HomeBody extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) => const HotelListPage(),
                   )),
+
               text: "Где мы поселимся :)",
               bottomText: "Все"),
 
@@ -141,6 +143,8 @@ class HomeBody extends StatelessWidget {
                     )),
                 text: "Где мы поселимся :)",
                 bottomText: "Все"),
+              text: LocaleKeys.where_will_we_stay.tr(),
+              bottomText:LocaleKeys.all.tr()),
 
             SizedBox(
               height: getHeight(154.0),
@@ -180,20 +184,23 @@ class HomeBody extends StatelessWidget {
               ontap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) =>  RestaurantsGridView())),
-              text: "Ресторан",
-              bottomText: "Все"),
+
+                      builder: (context) => RestaurantsGridView())),
+              text: LocaleKeys.restaurants.tr(),
+              bottomText: LocaleKeys.all.tr()),
           SizedBox(
             height: getHeight(210.0),
             child: ListView.builder(
               itemCount: images.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
+                String ctgId = restaurantCategories[index].id;
                 return InkWell(
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>  RestaurantsGridView())),
+
+                          builder: (context) => RestaurantsGridView(ctgId: ctgId))),
                   child: Container(
                     margin: const EdgeInsets.all(8.0),
                     height: getHeight(200.0),
@@ -245,14 +252,24 @@ class HomeBody extends StatelessWidget {
                           ),)
                         ],
                       ),
+                          ),
+
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Text(
+                            restaurantCategories[index].nameUz + ' ' + LocaleKeys.foods.tr(),
+                            style: TextStyle(fontSize: 15.0),
+                          ),
+                        ),
+                      ],
                     ),
-                  );
-                },
-              ),
-            )
-          ],
-        ),
+                  ),
+                );
+              },
+            ),
+          )
+        ],
       ),
-    );
+    ));
   }
 }

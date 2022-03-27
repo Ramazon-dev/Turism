@@ -4,6 +4,8 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:mobileapp/models/locale_model.dart';
 
+import '../../services/locale_service.dart';
+
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -22,17 +24,20 @@ class HomeCubit extends Cubit<HomeState> {
     _scaffoldKey.currentState!.openDrawer();
   }
 
-  void onLanguageChanged(BuildContext context, String code) {
+  void onLanguageChanged(BuildContext context, String code) async {
     List<LocaleModel> _list = LocaleData.localeList;
     switch (code) {
       case 'uz':
-        context.setLocale(_list[0].locale);
+        await context.setLocale(_list[0].locale);
+        await LocaleService.setLocale(context.locale.languageCode);
         break;
       case 'en':
-        context.setLocale(_list[1].locale);
+        await context.setLocale(_list[1].locale);
+        await LocaleService.setLocale(context.locale.languageCode);
         break;
       case 'ru':
-        context.setLocale(_list[2].locale);
+        await context.setLocale(_list[2].locale);
+        await LocaleService.setLocale(context.locale.languageCode);
         break;
     }
     emit(HomeInitial());

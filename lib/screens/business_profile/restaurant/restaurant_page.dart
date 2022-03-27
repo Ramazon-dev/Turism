@@ -12,7 +12,6 @@ class RestaurantPage extends StatelessWidget {
   RestaurantPage({Key? key, this.isEditing = false, this.restaurant})
       : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -28,30 +27,37 @@ class RestaurantPage extends StatelessWidget {
     );
   }
 
-  Scaffold _buildScaffold(RestaurantCubit cubit, RestaurantCubit cubitRead) {
-    return Scaffold(
-      appBar: SimpleAppBar(title: LocaleKeys.restaurant.tr()),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: MyEdgeInsets.symmetric(h: 30.0, v: 25.0),
-          child: Column(
-            children: [
-              if (isEditing)
-                Visibility(
-                  visible: isEditing,
-                  child: ShowImageNetwork(images: restaurant!.media!),
+  WillPopScope _buildScaffold(
+      RestaurantCubit cubit, RestaurantCubit cubitRead) {
+    return WillPopScope(
+      onWillPop: () async {
+        ImageChooser.imageList.clear();
+        return true;
+      },
+      child: Scaffold(
+        appBar: SimpleAppBar(title: LocaleKeys.restaurant.tr()),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: MyEdgeInsets.symmetric(h: 30.0, v: 25.0),
+            child: Column(
+              children: [
+                if (isEditing)
+                  Visibility(
+                    visible: isEditing,
+                    child: ShowImageNetwork(images: restaurant!.media!),
+                  ),
+                _showForms(cubit),
+                MySizedBox(height: 20.0),
+                Visibility(visible: !isEditing, child: const ImageSetter()),
+                MySizedBox(height: 20.0),
+                ElevatedButtonWidget(
+                  onPressed: () {
+                    cubitRead.onSavePressed();
+                  },
+                  label: LocaleKeys.save.tr(),
                 ),
-              _showForms(cubit),
-              MySizedBox(height: 20.0),
-              Visibility(visible: !isEditing, child: const ImageSetter()),
-              MySizedBox(height: 20.0),
-              ElevatedButtonWidget(
-                onPressed: () {
-                  cubitRead.onSavePressed();
-                },
-                label: LocaleKeys.save.tr(),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -88,7 +94,9 @@ class RestaurantPage extends StatelessWidget {
             DropDownWidget(
               onChanged: cubit.categoryChanged,
               value: cubit.category.showInfo(LocaleService.currentLocale),
-              items: cubit.categories.map((e) => e.showInfo(LocaleService.currentLocale)).toList(),
+              items: cubit.categories
+                  .map((e) => e.showInfo(LocaleService.currentLocale))
+                  .toList(),
             ),
 
             MySizedBox(height: 20.0),

@@ -42,8 +42,6 @@ class ImageSetter extends StatelessWidget {
                     color: AppColors.grey,
                     height: 61.0.h,
                     fit: BoxFit.contain,
-
-  // TODO:
                   ).onClick(cubit.setImage),
           ),
           SizedBox(height: 12.0.h),
@@ -54,6 +52,7 @@ class ImageSetter extends StatelessWidget {
   }
 
   Row _showImages(var cubit) {
+    
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

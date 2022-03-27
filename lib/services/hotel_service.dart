@@ -98,6 +98,7 @@ class HotelService {
       if (response.statusCode == 200) {
         List ctgList = jsonDecode(response.body)['data'];
         return ctgList.map((e) => Category.fromJson(e)).toList();
+
         return jsonDecode(response.body)['message'];
       } else {
         return jsonDecode(response.body)['message'];

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/screens/profile/auth_profile_page.dart';
 
 part 'hotel_state.dart';
 
@@ -46,10 +45,9 @@ class HotelCubit extends Cubit<HotelState> {
 
 //TODO:
 
-  void setImage() {
-    ImageChooser.chooseImage();
+  void setImage() async {
+     await ImageChooser.chooseImage();
     _imageList = ImageChooser.imageList;
-    print(_imageList);
     emit(HotelInitial());
   }
 
