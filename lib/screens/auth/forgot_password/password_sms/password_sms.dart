@@ -19,7 +19,6 @@ class PasswordSms extends StatelessWidget {
       appBar: AppBarOrigin(
         text: 'Подтвердите Ваш элек. адрес',
         actions: const SizedBox(),
-        actions2: const SizedBox(),
       ),
       body: SingleChildScrollView(
         child: Form(

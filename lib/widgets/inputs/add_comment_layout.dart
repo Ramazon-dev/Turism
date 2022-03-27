@@ -20,62 +20,79 @@ class AddCommentLayout extends StatefulWidget {
 class _AddCommentLayoutState extends State<AddCommentLayout> {
   final TextEditingController _commentController = TextEditingController();
 
-  bool isSended = true;
+  bool hasSent = true;
+
+  final String _token = GetStorage().read('token') ?? '';
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: MyEdgeInsets.symmetric(v: 20.0, h: 15.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CircleAvatar(
-            radius: 22.w,
-            backgroundColor: AppColors.primary,
-            backgroundImage: const CachedNetworkImageProvider(
-              ImageList.profileBlank,
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: MyEdgeInsets.symmetric(h: 20.0),
-              child: TextFormField(
-                maxLines: null,
-                keyboardType: TextInputType.multiline,
-                controller: _commentController,
-                decoration: InputDecoration(
-                  constraints: BoxConstraints(maxHeight: 120.h),
-                  contentPadding: MyEdgeInsets.symmetric(h: 12.0, v: 12.0),
-                  hintText: 'Добавьте комментари...',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(32.0),
+      child: _token.isEmpty
+          ? _goToRegister()
+          : Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  radius: 22.w,
+                  backgroundColor: AppColors.primary,
+                  backgroundImage: const CachedNetworkImageProvider(
+                    ImageList.profileBlank,
                   ),
                 ),
-              ),
+                Expanded(
+                  child: Padding(
+                    padding: MyEdgeInsets.symmetric(h: 20.0),
+                    child: TextFormField(
+                      maxLines: null,
+                      keyboardType: TextInputType.multiline,
+                      controller: _commentController,
+                      decoration: InputDecoration(
+                        constraints: BoxConstraints(maxHeight: 120.h),
+                        contentPadding:
+                            MyEdgeInsets.symmetric(h: 12.0, v: 12.0),
+                        hintText: 'Добавьте комментари...',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(32.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                IconButton(
+                  onPressed: _onSendButtonPressed,
+                  icon: hasSent
+                      ? const Icon(Icons.send, color: AppColors.blue)
+                      : const CircularProgressIndicator(),
+                  constraints: const BoxConstraints(),
+                )
+              ],
             ),
-          ),
-          IconButton(
-            onPressed: _onSendButtonPressed,
-            icon: isSended
-                ? const Icon(Icons.send, color: AppColors.blue)
-                : const CircularProgressIndicator(),
-            constraints: const BoxConstraints(),
-          )
-        ],
-      ),
     );
   }
 
   void _onSendButtonPressed() async {
     String comment = _commentController.text.trim();
-    setState(() => isSended = false);
+    setState(
+      () => hasSent = false,
+    );
     if (comment.isNotEmpty) {
       CommentService.addObjectComment(
               commentText: comment, type: widget.type, typeId: widget.id)
-          .then((value) => setState(() => isSended = value));
+          .then((value) => setState(() => hasSent = value));
       _commentController.clear();
     } else {
       return;
     }
   }
+
+  Widget _goToRegister() => SizedBox(
+        height: 48.h,
+        child: Text(
+          'To comment you must register',
+          style: AppTextStyle.semiBold(),
+        ),
+      ).onClick(() {
+        CustomNavigator.push(const SignInPage());
+  });
 }

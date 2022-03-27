@@ -25,7 +25,7 @@ class SignInCubit extends Cubit<SignInState> {
       String password = _passwordController.text.trim();
       AuthServices.signIn(email, password).then((value) {
         if(value) {
-          CustomNavigator().pushReplacement(const HomeScreen());
+          CustomNavigator().pushAndRemoveUntil(const HomeScreen());
         } else {
           print(value);
         }
