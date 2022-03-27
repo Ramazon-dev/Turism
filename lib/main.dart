@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/models/locale_model.dart';
 import 'package:mobileapp/screens/on_boarding/initial_page.dart';
 import 'package:mobileapp/services/restaurant_service.dart';
 
@@ -11,13 +12,9 @@ void main() async {
 
   runApp(
     EasyLocalization(
-      supportedLocales: const [
-        Locale('en', 'GB'),
-        Locale('uz', 'UZ'),
-        Locale('ru', 'RU'),
-      ],
-      path: 'assets/translations',
-      fallbackLocale: const Locale('uz', 'UZ'),
+      supportedLocales: LocaleData.localeList.map((e) => e.locale).toList(),
+      path: LocaleData.path,
+      fallbackLocale: LocaleData.localeList[0].locale,
       child: const MyApp(),
     ),
   );

@@ -1,6 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:mobileapp/models/locale_model.dart';
+
+import '../../services/locale_service.dart';
 
 part 'home_state.dart';
 
@@ -18,6 +22,25 @@ class HomeCubit extends Cubit<HomeState> {
 
   void openDrawer() {
     _scaffoldKey.currentState!.openDrawer();
+  }
+
+  void onLanguageChanged(BuildContext context, String code) async {
+    List<LocaleModel> _list = LocaleData.localeList;
+    switch (code) {
+      case 'uz':
+        await context.setLocale(_list[0].locale);
+        await LocaleService.setLocale(context.locale.languageCode);
+        break;
+      case 'en':
+        await context.setLocale(_list[1].locale);
+        await LocaleService.setLocale(context.locale.languageCode);
+        break;
+      case 'ru':
+        await context.setLocale(_list[2].locale);
+        await LocaleService.setLocale(context.locale.languageCode);
+        break;
+    }
+    emit(HomeInitial());
   }
 
   GlobalKey<ScaffoldState> get scaffoldKey => _scaffoldKey;

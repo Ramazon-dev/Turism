@@ -74,7 +74,7 @@ class RestaurantCubit extends Cubit<RestorantState> {
   void onSavePressed() {
     // Agar validate bo'lgan bo'lsa
     if (_formKey.currentState!.validate()) {
-      print('validate save pressed in restaurant');
+      debugPrint('validate save pressed in restaurant');
       String name = _nameController.text.trim();
       String phone = _phoneController.text.trim();
       String link = _websiteController.text.trim();

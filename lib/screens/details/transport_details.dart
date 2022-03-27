@@ -20,7 +20,6 @@ class TransportDetailPage extends StatelessWidget {
         floatingActionButton: _actionButton(context),
         appBar: AppBarOrigin(
           actions: SvgPicture.asset(AppIcons.language),
-          actions2: SvgPicture.asset(AppIcons.dollar),
         ),
         body: Column(
           children: [
