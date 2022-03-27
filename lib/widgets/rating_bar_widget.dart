@@ -30,7 +30,7 @@ class RatingBarWidget extends StatelessWidget {
           itemBuilder: _itemRating,
         ),
         Text(' $rating', style: AppTextStyle.medium(size: 12.0, color: color)),
-        Text(rating == 0.0 ?'($users)': '',
+       if(rating != 0.0) Text( ' ($users)',
           style: AppTextStyle.medium(size: 12.0, color: color.withOpacity(0.8)),
         )
       ],

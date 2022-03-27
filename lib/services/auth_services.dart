@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:mobileapp/core/components/exporting_packages.dart';
 
 class AuthServices {
-  static Future<bool> signIn(String email, String password) async {
+  static Future? signIn(String email, String password) async {
     String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1';
     try {
       Uri url = Uri.parse('$baseUrl/auth/login');
@@ -15,10 +15,13 @@ class AuthServices {
       });
       request.headers.addAll(headers);
       http.StreamedResponse response = await request.send();
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        var data = jsonDecode(await response.stream.bytesToString());
-        String token = data['data']['token'];
-        UserModel user = UserModel.fromJson(data['data']['user']);
+      var res =  await http.Response.fromStream(response);
+
+      
+      if (res.statusCode == 200 || res.statusCode == 201) {
+        var body = jsonDecode( res.body);
+        String token = body['data']['token'];
+        UserModel user = UserModel.fromJson(body['data']['user']);
         await GetStorage().write('token', token);
         await GetStorage().write('user', user.toMap());
 
@@ -27,15 +30,16 @@ class AuthServices {
         BusinessAccountService.setIntoStorage();
 
         UserData.setCurrentUser = user;
-        return true;
+        return res.statusCode;
       } else {
-        print(await response.stream.bytesToString());
-        return false;
+        var result = jsonDecode(res.body);
+        print( result);
+        return result['message'].toString();
       }
     } catch (e) {
       print("SERVICE AUTH SIGN IN ERROR: $e");
+      return e.toString();
     }
-    return false;
   }
 
   static Future<bool> register({
