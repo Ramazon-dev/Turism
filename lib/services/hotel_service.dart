@@ -95,6 +95,7 @@ class HotelService {
         Uri.parse("$baseUrl/hotels/categories"),
       );
       if (response.statusCode == 200) {
+
         return jsonDecode(response.body)['message'];
       } else {
         return jsonDecode(response.body)['message'];
