@@ -5,9 +5,9 @@ class ImageChooser {
   static List<String> imageList = [];
   static PickedFile image = PickedFile('path');
 
-  static void chooseImage() async {
-   try {
-      XFile file;
+  static Future chooseImage() async {
+    XFile file;
+
     file = (await imagePicker.pickImage(
       source: ImageSource.gallery,
     ))!;

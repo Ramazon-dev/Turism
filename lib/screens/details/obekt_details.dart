@@ -64,6 +64,8 @@ class _ObjectDetailsPageState extends State<ObjectDetailsPage> {
                     style: AppTextStyle.medium(size: 18.0),
                   ),
                   MySizedBox(height: 17.0),
+
+                  if(widget.place.tell != null)
                   _buildLink(AppIcons.call, widget.place.tell ?? '',
                       'tel:${widget.place.tell.toString().replaceAll('-', '')}',
                       labelColor: AppColors.black),
