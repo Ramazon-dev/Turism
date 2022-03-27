@@ -60,12 +60,18 @@ class _RestaurantsGridViewState extends State<RestaurantsGridView>
                   return const Text('Error');
                 } else if (snap.hasData) {
                   _restList = [];
+
+                  if (widget.ctgId == 'all') {
+                    _restList = snap.data as List<Restaurant>;
+                  } else{
                     // ignore: curly_braces_in_flow_control_structures
                     for (var element in snap.data!) {
                       if (element.categoryId == '${widget.ctgId}') {
                         _restList.add(element);
                       }
                     }
+                  }
+
                   if (_restList.isEmpty) {
                     return const EmptyPageWidget();
                   }

@@ -4,6 +4,7 @@ import 'package:mobileapp/screens/restaurant/restaurants_grid_view.dart';
 
 class SelectedCityPage extends StatelessWidget {
   CityModel city;
+
   SelectedCityPage({Key? key, required this.city}) : super(key: key);
   List<String> listOfStrings = [
     '${LocaleKeys.tourist_zone.tr()}.',
@@ -15,7 +16,6 @@ class SelectedCityPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     List<Widget> listOfPages = [
       PlacePage(
         city: city.value,
@@ -23,8 +23,8 @@ class SelectedCityPage extends StatelessWidget {
       ),
       const GitPage(),
       const CarPage(),
-      const HotelListPage(),
-       RestaurantsGridView(),
+      HotelListPage(),
+      RestaurantsGridView(),
     ];
     return Scaffold(
       extendBodyBehindAppBar: true,

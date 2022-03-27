@@ -7,7 +7,8 @@ import 'package:mobileapp/widgets/top_bar/app_bar_with_list.dart';
 
 // TODO: This page must be written with state management
 class HotelListPage extends StatefulWidget {
-  const HotelListPage({Key? key}) : super(key: key);
+
+  HotelListPage({Key? key}) : super(key: key);
 
   @override
   State<HotelListPage> createState() => _HotelListPageState();

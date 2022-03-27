@@ -12,6 +12,7 @@ import 'package:mobileapp/widgets/top_bar/home_app_bar.dart';
 
 import '../../core/data/image_list.dart';
 
+// ignore: must_be_immutable
 class HomeBody extends StatelessWidget {
   final HomeCubit cubit;
 
@@ -57,7 +58,7 @@ class HomeBody extends StatelessWidget {
                   ontap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const HotelListPage(),
+                        builder: (context) =>  HotelListPage(),
                       )),
                   text: LocaleKeys.where_will_we_stay.tr(),
                   bottomText: LocaleKeys.all.tr()),
@@ -68,7 +69,7 @@ class HomeBody extends StatelessWidget {
                   ontap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => RestaurantsGridView())),
+                          builder: (context) => RestaurantsGridView(ctgId: 'all',))),
                   text: LocaleKeys.restaurants.tr(),
                   bottomText: LocaleKeys.all.tr()),
               _showRestList()
@@ -112,7 +113,9 @@ class HomeBody extends StatelessWidget {
                   return Padding(
                     padding: MyEdgeInsets.all(8.0),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        CustomNavigator.push(HotelListPage());
+                      },
                       child: Container(
                           alignment: Alignment.bottomLeft,
                           height: getHeight(150.0),
