@@ -24,29 +24,38 @@ class ProfileAuthPage extends StatelessWidget {
 
   SingleChildScrollView _buildBody(HomeCubit cubit) {
     return SingleChildScrollView(
-      child: FutureBuilder(
-        future: BusinessAccountService.getServiceList(),
-        builder: (ctx, AsyncSnapshot<BusinessAccountModel?> snap) {
-          if (snap.hasData) {
-            BusinessAccountModel model = snap.data!;
-            return Column(
-              children: [
-                SizedBox(height: 140.h),
-                // if git is not null, Git will be shown
-                model.git != null ? _myGitListWidget(model) : const SizedBox(),
+      child: Column(
+        children: [
+          ProfileAppBar(),
+          FutureBuilder(
+            future: BusinessAccountService.getServiceList(),
+            builder: (ctx, AsyncSnapshot<BusinessAccountModel?> snap) {
+              if (snap.hasData) {
+                BusinessAccountModel model = snap.data!;
+                return Column(
+                  children: [
 
-                // if hotel list is not null, hotel list will be shown
-                if (model.hotels != null) _showHotelList(model),
 
-                // if restaurant list is not null, restaurant list will be shown
-                if (model.restaurants != null) _showRestaurants(model)
-              ],
-            );
-          } else if (snap.hasError) {
-            Center(child: Text(LocaleKeys.personalInfo.tr()));
-          }
-          return const Center(child: CupertinoActivityIndicator());
-        },
+                    SizedBox(height:140.h),
+                    // if git is not null, Git will be shown
+                    model.git != null ? _myGitListWidget(model) : const SizedBox(),
+
+                    // if hotel list is not null, hotel list will be shown
+                    model.hotels != null ? _showHotelList(model) : const SizedBox(),
+
+                    // if restaurant list is not null, restaurant list will be shown
+                    model.restaurants != null
+                        ? _showRestaurants(model)
+                        : const SizedBox()
+                  ],
+                );
+              } else if (snap.hasError) {
+                Center(child: Text(LocaleKeys.personalInfo.tr()));
+              }
+              return const Center(child: CupertinoActivityIndicator());
+            },
+          ),
+        ],
       ),
     );
   }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+
 import 'package:mobileapp/core/components/image_filter.dart';
 
 
-import 'package:mobileapp/models/transport_model.dart';
 import 'package:mobileapp/screens/details/transport_details.dart';
 
 class CarInfoCard extends StatelessWidget {
