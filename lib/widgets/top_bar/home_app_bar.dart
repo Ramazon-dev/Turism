@@ -4,14 +4,15 @@ import 'package:mobileapp/models/locale_model.dart';
 
 class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
   final ValueChanged<dynamic> onLanguageChanged;
-  const HomeAppBar({Key? key, required this.onLanguageChanged}) : super(key: key);
+  final VoidCallback onDrawerPressed;
+  const HomeAppBar({Key? key, required this.onLanguageChanged, required this.onDrawerPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: AppColors.primary,
       leading: IconButton(
-        onPressed: () {},
+        onPressed:onDrawerPressed,
         icon: const Icon(Icons.menu),
       ),
       actions: [

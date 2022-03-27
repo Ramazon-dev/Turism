@@ -14,7 +14,7 @@ class LocaleData {
   static const String path = 'assets/translations';
   static final List<LocaleModel> localeList = [
     LocaleModel(const Locale('uz', 'UZ'), 'Uzbek', "O'zbekcha", AppIcons.flagUZ),
-    LocaleModel(const Locale('en', 'US'), 'English', "English", AppIcons.flagGB),
+    LocaleModel(const Locale('en', 'GB'), 'English', "English", AppIcons.flagGB),
     LocaleModel(const Locale('ru', 'RU'), 'Russian', "Русский", AppIcons.flagRU),
   ];
 }

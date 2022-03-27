@@ -5,6 +5,7 @@ import 'package:mobileapp/models/category_model.dart';
 import 'package:mobileapp/screens/home/widgets/container.dart';
 import 'package:mobileapp/screens/home/widgets/popolar_object.dart';
 import 'package:mobileapp/screens/restaurant/restaurants_grid_view.dart';
+import 'package:mobileapp/widgets/navigators/drawer_widget.dart';
 import 'package:mobileapp/widgets/row_text.dart';
 import 'package:mobileapp/widgets/top_bar/home_app_bar.dart';
 
@@ -14,6 +15,8 @@ class HomeBody extends StatelessWidget {
   HomeBody({Key? key, required this.cubit}) : super(key: key);
   late List<Category> restaurantCategories;
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     restaurantCategories = (GetStorage().read('restCategories') as List)
@@ -21,13 +24,16 @@ class HomeBody extends StatelessWidget {
         .toList();
     SizeConfig().init(context);
     return Scaffold(
-      appBar: HomeAppBar(onLanguageChanged: (v){
-        Locale locale = v as Locale;
-        cubit.onLanguageChanged(context, v.languageCode);
-      },),
+      drawer: const DrawerWidget(),
+      key: _scaffoldKey,
+      appBar: HomeAppBar(
+        onDrawerPressed: () => _scaffoldKey.currentState!.openDrawer(),
+        onLanguageChanged: (v) {
+          v = v as Locale;
+          cubit.onLanguageChanged(context, v.languageCode);
+        },
+      ),
       body: SingleChildScrollView(
-
-        // physics: const BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -88,7 +94,8 @@ class HomeBody extends StatelessWidget {
                             child: Text(
                               "Hilton",
                               style: TextStyle(
-                                  fontSize: getWidth(10.0), color: Colors.white),
+                                  fontSize: getWidth(10.0),
+                                  color: Colors.white),
                             ),
                           )),
                     ),
@@ -104,17 +111,19 @@ class HomeBody extends StatelessWidget {
                         builder: (context) => RestaurantsGridView())),
                 text: "Ресторан",
                 bottomText: "Все"),
+
             SizedBox(
               height: getHeight(210.0),
               child: ListView.builder(
                 itemCount: restaurantCategories.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
+                  var ctg = restaurantCategories[index];
                   return InkWell(
                     onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => RestaurantsGridView())),
+                            builder: (context) => RestaurantsGridView(ctgId:ctg.id))),
                     child: Container(
                       margin: const EdgeInsets.all(8.0),
                       height: getHeight(200.0),
