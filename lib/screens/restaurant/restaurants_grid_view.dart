@@ -120,7 +120,7 @@ class _RestaurantsGridViewState extends State<RestaurantsGridView>
                   style: AppTextStyle.medium(color: AppColors.white),
                 ),
                 Text(
-                  rest.site.toString(),
+                  rest.tell![0].toString(),
                   maxLines: 1,
                   style: AppTextStyle.medium(color: AppColors.grey),
                 ),

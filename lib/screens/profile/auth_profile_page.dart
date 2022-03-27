@@ -3,6 +3,7 @@ import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 
 import 'package:mobileapp/models/business_account_model.dart';
+import 'package:mobileapp/screens/details/git_details_for_owner.dart';
 import 'package:mobileapp/widgets/tiles/business_hotel_tile.dart';
 import 'package:mobileapp/widgets/tiles/business_restaurant_tile.dart';
 
@@ -34,14 +35,16 @@ class ProfileAuthPage extends StatelessWidget {
                 BusinessAccountModel model = snap.data!;
                 return Column(
                   children: [
-
-
-                    SizedBox(height:140.h),
+                    SizedBox(height: 140.h),
                     // if git is not null, Git will be shown
-                    model.git != null ? _myGitListWidget(model) : const SizedBox(),
+                    model.git != null
+                        ? _myGitListWidget(model)
+                        : const SizedBox(),
 
                     // if hotel list is not null, hotel list will be shown
-                    model.hotels != null ? _showHotelList(model) : const SizedBox(),
+                    model.hotels != null
+                        ? _showHotelList(model)
+                        : const SizedBox(),
 
                     // if restaurant list is not null, restaurant list will be shown
                     model.restaurants != null
@@ -86,7 +89,9 @@ class ProfileAuthPage extends StatelessWidget {
 
   Widget _myGitListWidget(BusinessAccountModel model) {
     return MyGitListWidget(git: model.git!).onClick(() {
-      CustomNavigator.push(GitInfoPage(git: model.git, isEditing: true));
+      CustomNavigator.push(GitDetailsForOwnerPage(git: model.git!)
+        //GitInfoPage(git: model.git, isEditing: true),
+      );
     });
   }
 }

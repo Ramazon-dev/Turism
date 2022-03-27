@@ -59,16 +59,19 @@ class AuthServices {
       request.headers.addAll(headers);
 
       http.StreamedResponse response = await request.send();
+      var res = await http.Response.fromStream(response);
 
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        var data = jsonDecode(await response.stream.bytesToString());
-        String token = data['data']['token'];
-        UserModel user = UserModel.fromJson(data['data']['user']);
+      if (res.statusCode == 200 || res.statusCode == 201) {
+        var body = jsonDecode(res.body);
+        print(body);
+        String token = body['data']['token'];
+
+        UserModel user = UserModel.fromJson(body['data']['user']);
         await GetStorage().write('token', token);
         await GetStorage().write('user', user.toMap());
         return true;
       } else {
-        print(await response.stream.bytesToString());
+        print( res.body);
         return false;
       }
     } catch (e) {

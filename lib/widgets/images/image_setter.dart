@@ -52,6 +52,7 @@ class ImageSetter extends StatelessWidget {
   }
 
   Row _showImages(var cubit) {
+    
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

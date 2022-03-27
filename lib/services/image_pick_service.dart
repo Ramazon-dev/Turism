@@ -7,6 +7,7 @@ class ImageChooser {
 
   static Future chooseImage() async {
     XFile file;
+
     file = (await imagePicker.pickImage(
       source: ImageSource.gallery,
     ))!;
@@ -15,6 +16,10 @@ class ImageChooser {
     image = PickedFile(file.path);
     print('image: ' + image.path);
     imageList.forEach((element) => print(element));
+   } catch (e) {
+     print(e);
+
+   }
   }
 
   static  chooseOneImage() async {
