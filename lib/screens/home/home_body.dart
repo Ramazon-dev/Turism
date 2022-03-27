@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/constants/image_list.dart';
+import 'package:mobileapp/core/data/image_list.dart';
 import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/models/category_model.dart';
 import 'package:mobileapp/screens/home/widgets/container.dart';
@@ -10,9 +10,9 @@ import 'package:mobileapp/widgets/row_text.dart';
 
 class HomeBody extends StatelessWidget {
   final HomeCubit cubit;
-
   HomeBody({Key? key, required this.cubit}) : super(key: key);
   late List<Category> restaurantCategories;
+
   @override
   Widget build(BuildContext context) {
     restaurantCategories = (GetStorage().read('restCategories') as List)
@@ -59,36 +59,48 @@ class HomeBody extends StatelessWidget {
               bottomText: "Все"),
 
           SizedBox(
-            height: getHeight(154.0),
-            width: MediaQuery.of(context).size.width,
-            child: ListView.builder(
-              itemCount: 6,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: MyEdgeInsets.all(8.0),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Container(
-                        alignment: Alignment.bottomLeft,
-                        height: getHeight(150.0),
-                        width: getWidth(111.0),
-                        decoration: MyDecoration.netImage(
-                            netImage:
-                                "https://source.unsplash.com/random/$index"),
-                        child: Padding(
-                          padding: MyEdgeInsets.only(left: 10, bottom: 5.0),
-                          child: Text(
-                            "Hilton",
-                            style: TextStyle(
-                                fontSize: getWidth(10.0), color: Colors.white),
-                          ),
-                        )),
-                  ),
-                );
-              },
-            ),
-          ),
+              height: getHeight(154.0),
+              width: MediaQuery.of(context).size.width,
+              child: FutureBuilder(
+                  future: HotelService().fetchCategoriesOfHotel(),
+                  builder: (context, AsyncSnapshot snap) {
+                    if (snap.hasData) {
+                      List<Category> data = snap.data;
+                      return ListView.builder(
+                        itemCount: hotel.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: MyEdgeInsets.all(8.0),
+                            child: InkWell(
+                              onTap: () {},
+                              child: Container(
+                                  alignment: Alignment.bottomLeft,
+                                  height: getHeight(150.0),
+                                  width: getWidth(111.0),
+                                  decoration: MyDecoration.netImage(
+                                      netImage:
+                                          hotel[index]),
+                                  child: Padding(
+                                    padding: MyEdgeInsets.only(
+                                        left: 10, bottom: 5.0),
+                                    child: Text(
+                                      data[index].nameUz,
+                                      style: TextStyle(
+                                          fontSize: getWidth(15.0),
+                                          color: Colors.white),
+                                    ),
+                                  )),
+                            ),
+                          );
+                        },
+                      );
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  })),
 
           RowTextWidgets(
               ontap: () => Navigator.push(
@@ -123,31 +135,30 @@ class HomeBody extends StatelessWidget {
                           child: Container(
                             height: getHeight(110.0),
                             width: getWidth(130.0),
-                            decoration: MyDecoration.netImage(
-                                netImage:
-                                    images[index]),
+                            decoration:
+                                MyDecoration.netImage(netImage: images[index]),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 4.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Text("_______"),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  right: 5,
-                                  left: 5,
-                                ),
-                                child: Text("___"),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: getWidth(15)),
+                              child: const Text("_______"),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(
+                                right: 5,
+                                left: 5,
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(right: 5),
-                                child: Text("__"),
-                              ),
-                              Text("_"),
-                            ],
-                          ),
+                              child: Text("___"),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(right: 5),
+                              child: Text("__"),
+                            ),
+                            const Text("_"),
+                          ],
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
