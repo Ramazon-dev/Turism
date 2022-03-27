@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/constants/image_list.dart';
 import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/models/category_model.dart';
 import 'package:mobileapp/screens/home/widgets/container.dart';
@@ -104,45 +105,43 @@ class HomeBody extends StatelessWidget {
               ),
             ),
 
-            RowTextWidgets(
-                ontap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => RestaurantsGridView())),
-                text: "Ресторан",
-                bottomText: "Все"),
+          RowTextWidgets(
+              ontap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const RestaurantsGridView())),
+              text: "Ресторан",
+              bottomText: "Все"),
+          SizedBox(
+            height: getHeight(210.0),
+            child: ListView.builder(
+              itemCount: images.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const RestaurantsGridView())),
+                  child: Container(
+                    margin: const EdgeInsets.all(8.0),
+                    height: getHeight(200.0),
+                    width: getWidth(150.0),
+                    decoration: MyDecoration.circular(
+                        color: Colors.grey.shade200, radius: 5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              right: 15.0, left: 15.0, top: 15),
+                          child: Container(
+                            height: getHeight(110.0),
+                            width: getWidth(130.0),
+                            decoration: MyDecoration.netImage(
+                                netImage:
+                                    images[index]),
 
-            SizedBox(
-              height: getHeight(210.0),
-              child: ListView.builder(
-                itemCount: restaurantCategories.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  var ctg = restaurantCategories[index];
-                  return InkWell(
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => RestaurantsGridView(ctgId:ctg.id))),
-                    child: Container(
-                      margin: const EdgeInsets.all(8.0),
-                      height: getHeight(200.0),
-                      width: getWidth(150.0),
-                      decoration: MyDecoration.circular(
-                          color: Colors.grey.shade200, radius: 5),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                right: 15.0, left: 15.0, top: 15),
-                            child: Container(
-                              height: getHeight(110.0),
-                              width: getWidth(130.0),
-                              decoration: MyDecoration.netImage(
-                                  netImage:
-                                      "https://source.unsplash.com/random/$index"),
-                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(right: 4.0),
@@ -165,12 +164,13 @@ class HomeBody extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 15),
-                            child: Text(
-                              restaurantCategories[index].nameUz + ' taomlari',
-                              style: TextStyle(fontSize: 15.0),
-                            ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Text(
+                            restaurantCategories[index].nameUz + ' taomlari',
+                            style: const TextStyle(fontSize: 15.0),
+
                           ),
                         ],
                       ),

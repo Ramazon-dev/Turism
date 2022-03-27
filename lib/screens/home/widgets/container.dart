@@ -19,6 +19,7 @@ class ShowNearby extends StatelessWidget {
         builder: (context, AsyncSnapshot<List<Obekt>> snap) {
           if (snap.hasData) {
             List<Obekt> data = snap.data!;
+            print(snap.hasData.toString());
             return SizedBox(
               height: 240.h,
               child: ListView.builder(
