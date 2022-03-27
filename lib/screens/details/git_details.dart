@@ -31,7 +31,6 @@ class _GitDetailsPageState extends State<GitDetailsPage> {
       ),
       appBar: AppBarOrigin(
         actions: SvgPicture.asset(AppIcons.language),
-        actions2: SvgPicture.asset(AppIcons.dollar),
       ),
       body: Center(
         child: Container(

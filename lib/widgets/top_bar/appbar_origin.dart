@@ -9,7 +9,6 @@ class AppBarOrigin extends StatelessWidget with PreferredSizeWidget {
   AppBarOrigin({
     Key? key,
     required this.actions,
-    required this.actions2,
     this.color = AppColors.primary,
     this.text = '',
   }) : super(key: key);

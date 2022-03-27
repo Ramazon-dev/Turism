@@ -18,7 +18,6 @@ class CreateNewPassword extends StatelessWidget {
       appBar: AppBarOrigin(
         text: 'Забыл пароль? ',
         actions: const SizedBox(),
-        actions2: const SizedBox(),
       ),
       body: SingleChildScrollView(
         child: Form(

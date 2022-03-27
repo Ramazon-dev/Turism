@@ -6,89 +6,104 @@ import 'package:mobileapp/models/category_model.dart';
 import 'package:mobileapp/screens/home/widgets/container.dart';
 import 'package:mobileapp/screens/home/widgets/popolar_object.dart';
 import 'package:mobileapp/screens/restaurant/restaurants_grid_view.dart';
+import 'package:mobileapp/widgets/navigators/drawer_widget.dart';
 import 'package:mobileapp/widgets/row_text.dart';
+import 'package:mobileapp/widgets/top_bar/home_app_bar.dart';
 
 class HomeBody extends StatelessWidget {
   final HomeCubit cubit;
 
   HomeBody({Key? key, required this.cubit}) : super(key: key);
   late List<Category> restaurantCategories;
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     restaurantCategories = (GetStorage().read('restCategories') as List)
         .map((e) => Category.fromJson(e))
         .toList();
     SizeConfig().init(context);
-    return SingleChildScrollView(
-      // physics: const BouncingScrollPhysics(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: MyEdgeInsets.only(left: 10, top: 20),
-            child: Text(
-              "Ближайшие туры.",
-              style: TextStyle(
-                  fontSize: getWidth(18.0), fontWeight: FontWeight.w400),
+    return Scaffold(
+      drawer: const DrawerWidget(),
+      key: _scaffoldKey,
+      appBar: HomeAppBar(
+        onDrawerPressed: () => _scaffoldKey.currentState!.openDrawer(),
+        onLanguageChanged: (v) {
+          v = v as Locale;
+          cubit.onLanguageChanged(context, v.languageCode);
+        },
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: MyEdgeInsets.only(left: 10, top: 20),
+              child: Text(
+                "Ближайшие туры.",
+                style: TextStyle(
+                    fontSize: getWidth(18.0), fontWeight: FontWeight.w400),
+              ),
             ),
-          ),
-          const ShowNearby(),
+            const ShowNearby(),
 
-          /// Популярные пакеты.
-          RowTextWidgets(
-              ontap: () {
-                debugPrint("bosildi   !!!!");
-              },
-              text: "Популярные пакеты.",
-              bottomText: "Все"),
-          ContainerForPopularObject(
-            itemCount: 4,
-            image: "https://source.unsplash.com/random/1",
-            objectName: "На велосипеде по городу",
-            date: "10 минут. 5 сек",
-          ),
-          RowTextWidgets(ontap: () {}, text: "Регионы.", bottomText: "Все"),
-          const PopularObject(),
-          RowTextWidgets(
-              ontap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const HotelListPage(),
-                  )),
-              text: "Где мы поселимся :)",
-              bottomText: "Все"),
-
-          SizedBox(
-            height: getHeight(154.0),
-            width: MediaQuery.of(context).size.width,
-            child: ListView.builder(
-              itemCount: 6,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: MyEdgeInsets.all(8.0),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Container(
-                        alignment: Alignment.bottomLeft,
-                        height: getHeight(150.0),
-                        width: getWidth(111.0),
-                        decoration: MyDecoration.netImage(
-                            netImage:
-                                "https://source.unsplash.com/random/$index"),
-                        child: Padding(
-                          padding: MyEdgeInsets.only(left: 10, bottom: 5.0),
-                          child: Text(
-                            "Hilton",
-                            style: TextStyle(
-                                fontSize: getWidth(10.0), color: Colors.white),
-                          ),
-                        )),
-                  ),
-                );
-              },
+            /// Популярные пакеты.
+            RowTextWidgets(
+                ontap: () {
+                  debugPrint("bosildi   !!!!");
+                },
+                text: "Популярные пакеты.",
+                bottomText: "Все"),
+            ContainerForPopularObject(
+              itemCount: 4,
+              image: "https://source.unsplash.com/random/1",
+              objectName: "На велосипеде по городу",
+              date: "10 минут. 5 сек",
             ),
-          ),
+            RowTextWidgets(ontap: () {}, text: "Регионы.", bottomText: "Все"),
+            const PopularObject(),
+            RowTextWidgets(
+                ontap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HotelListPage(),
+                    )),
+                text: "Где мы поселимся :)",
+                bottomText: "Все"),
+
+            SizedBox(
+              height: getHeight(154.0),
+              width: MediaQuery.of(context).size.width,
+              child: ListView.builder(
+                itemCount: 6,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: MyEdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Container(
+                          alignment: Alignment.bottomLeft,
+                          height: getHeight(150.0),
+                          width: getWidth(111.0),
+                          decoration: MyDecoration.netImage(
+                              netImage:
+                                  "https://source.unsplash.com/random/$index"),
+                          child: Padding(
+                            padding: MyEdgeInsets.only(left: 10, bottom: 5.0),
+                            child: Text(
+                              "Hilton",
+                              style: TextStyle(
+                                  fontSize: getWidth(10.0),
+                                  color: Colors.white),
+                            ),
+                          )),
+                    ),
+                  );
+                },
+              ),
+            ),
 
           RowTextWidgets(
               ontap: () => Navigator.push(
@@ -126,27 +141,28 @@ class HomeBody extends StatelessWidget {
                             decoration: MyDecoration.netImage(
                                 netImage:
                                     images[index]),
+
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 4.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Text("_______"),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  right: 5,
-                                  left: 5,
+                          Padding(
+                            padding: const EdgeInsets.only(right: 4.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Text("_______"),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                    right: 5,
+                                    left: 5,
+                                  ),
+                                  child: Text("___"),
                                 ),
-                                child: Text("___"),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(right: 5),
-                                child: Text("__"),
-                              ),
-                              Text("_"),
-                            ],
+                                Padding(
+                                  padding: EdgeInsets.only(right: 5),
+                                  child: Text("__"),
+                                ),
+                                Text("_"),
+                              ],
+                            ),
                           ),
                         ),
                         Padding(
@@ -154,16 +170,17 @@ class HomeBody extends StatelessWidget {
                           child: Text(
                             restaurantCategories[index].nameUz + ' taomlari',
                             style: const TextStyle(fontSize: 15.0),
+
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              },
-            ),
-          )
-        ],
+                  );
+                },
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

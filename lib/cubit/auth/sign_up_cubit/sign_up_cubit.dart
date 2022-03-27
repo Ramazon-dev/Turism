@@ -25,7 +25,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         password: password,
       ).then((value) {
         if (value) {
-          CustomNavigator().pushReplacement(const HomeScreen());
+          CustomNavigator().pushAndRemoveUntil(const HomeScreen());
         } else {
           Fluttertoast.showToast(msg: 'Error');
         }

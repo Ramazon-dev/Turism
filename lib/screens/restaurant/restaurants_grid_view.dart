@@ -9,7 +9,9 @@ import 'package:mobileapp/services/restaurant_service.dart';
 import 'package:mobileapp/widgets/top_bar/app_bar_with_list.dart';
 
 class RestaurantsGridView extends StatefulWidget {
-  const RestaurantsGridView({Key? key}) : super(key: key);
+  String? ctgId;
+
+  RestaurantsGridView({Key? key, this.ctgId}) : super(key: key);
 
   @override
   State<RestaurantsGridView> createState() => _RestaurantsGridViewState();
@@ -31,7 +33,6 @@ class _RestaurantsGridViewState extends State<RestaurantsGridView>
   @override
   void initState() {
     super.initState();
-    categories.insert(0,Category(id: 'all', nameUz: 'Hammasi', nameEn: 'All', nameRu: 'Vse', date: ''));
     _tabController = TabController(length: CityList.cities.length, vsync: this);
     _ctgTabControlller = TabController(length: categories.length, vsync: this);
     _currentCtg = categories[0];
@@ -39,6 +40,7 @@ class _RestaurantsGridViewState extends State<RestaurantsGridView>
 
   @override
   Widget build(BuildContext context) {
+    print('_RestaurantsGridViewState.build: ${widget.ctgId}');
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBarWithList(
@@ -51,7 +53,6 @@ class _RestaurantsGridViewState extends State<RestaurantsGridView>
       ),
       body: Column(
         children: [
-          _ctgTab(),
           FutureBuilder(
               future: RestaurantService().fetchRestaurantsByCity(_city.value),
               builder: (context, AsyncSnapshot<List<Restaurant>?> snap) {
@@ -59,17 +60,12 @@ class _RestaurantsGridViewState extends State<RestaurantsGridView>
                   return const Text('Error');
                 } else if (snap.hasData) {
                   _restList = [];
-
-                  if(_currentCtg.id == 'all') {
-                    _restList = snap.data!;
-                  } else
-
-                  // ignore: curly_braces_in_flow_control_structures
-                  for (var element in snap.data!) {
-                    if (element.categoryId == _currentCtg.id) {
-                      _restList.add(element);
+                    // ignore: curly_braces_in_flow_control_structures
+                    for (var element in snap.data!) {
+                      if (element.categoryId == '${widget.ctgId}') {
+                        _restList.add(element);
+                      }
                     }
-                  }
                   if (_restList.isEmpty) {
                     return const EmptyPageWidget();
                   }
@@ -91,10 +87,6 @@ class _RestaurantsGridViewState extends State<RestaurantsGridView>
         ],
       ),
     );
-  }
-
-  void _openDrawer() {
-    _scaffoldKey.currentState!.openDrawer();
   }
 
   void _onTabChanged(i) {

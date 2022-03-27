@@ -23,4 +23,9 @@ class AppIcons {
   static const String menu = 'assets/icons/menu.svg';
   static const String send = 'assets/icons/send.svg';
   static const String commentperson = 'assets/icons/commentperson.svg';
+
+  static const String flagUZ = 'assets/icons/flags/UZ.svg';
+  static const String flagGB = 'assets/icons/flags/GB.svg';
+  static const String flagUS = 'assets/icons/flags/US.svg';
+  static const String flagRU = 'assets/icons/flags/RU.svg';
 }
