@@ -12,11 +12,9 @@ class RestaurantPage extends StatelessWidget {
   RestaurantPage({Key? key, this.isEditing = false, this.restaurant})
       : super(key: key);
 
-  late BuildContext _context;
 
   @override
   Widget build(BuildContext context) {
-    _context = context;
     return BlocProvider(
       create: (_) =>
           isEditing ? RestaurantCubit.editing(restaurant!) : RestaurantCubit(),

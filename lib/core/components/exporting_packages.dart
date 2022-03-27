@@ -81,7 +81,7 @@ export 'package:http_parser/http_parser.dart';
 export 'package:mime/mime.dart';
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:fluttertoast/fluttertoast.dart';
-export 'package:shimmer/shimmer.dart';
+// export 'package:shimmer/shimmer.dart';
 
 // Models
 export 'package:mobileapp/models/hotel_model.dart';
