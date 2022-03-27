@@ -4,6 +4,7 @@ import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/screens/profile/auth_profile_page.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:mobileapp/widgets/navigators/drawer_widget.dart';
+import 'package:mobileapp/widgets/top_bar/home_app_bar.dart';
 import 'package:mobileapp/widgets/top_bar/searchtapbar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -20,7 +21,6 @@ class HomeScreen extends StatelessWidget {
           HomeCubit cubit = context.watch();
           return Scaffold(
             key: cubit.scaffoldKey,
-            appBar: _appBarList(cubit)[cubit.currentIndex],
             drawer: const DrawerWidget(),
             body: _pages(cubit)[cubit.currentIndex],
             bottomNavigationBar: BottomNavBarWidget(
@@ -44,15 +44,4 @@ class HomeScreen extends StatelessWidget {
     ];
   }
 
-  List<PreferredSizeWidget?> _appBarList(HomeCubit cubit) {
-    return [
-      null,
-      null,
-      AppBarOrigin(
-        actions: SvgPicture.asset(AppIcons.language),
-      ),
-      null,
-      null,
-    ];
-  }
 }

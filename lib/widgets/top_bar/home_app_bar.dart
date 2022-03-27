@@ -1,24 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/models/locale_model.dart';
 
 class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
-  const HomeAppBar({Key? key}) : super(key: key);
+  final ValueChanged<dynamic> onLanguageChanged;
+  const HomeAppBar({Key? key, required this.onLanguageChanged}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: AppColors.primary,
       leading: IconButton(
         onPressed: () {},
         icon: const Icon(Icons.menu),
       ),
       actions: [
         PopupMenuButton(
-
+          onSelected: onLanguageChanged,
+            icon: SvgPicture.asset(AppIcons.language),
             itemBuilder: (_) {
-          return [];
+          return LocaleData.localeList.map((e) => _showLocale(e, context)).toList();
         })
       ],
     );
+  }
+
+  PopupMenuItem _showLocale(LocaleModel model, BuildContext context) => PopupMenuItem(
+      value: model.locale,
+      child: Row(
+        children: [
+          SvgPicture.asset(model.flag),
+          SizedBox(width: 12.w),
+          Text(model.name),
+          const Spacer(),
+          Visibility(
+              visible: context.locale.languageCode == model.locale.languageCode,
+              child:const Icon(Icons.check, color: AppColors.primary))
+        ],
+      ));
+
+  void _onSelected(v) {
+
   }
 
   @override

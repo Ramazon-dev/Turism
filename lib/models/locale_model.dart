@@ -11,11 +11,10 @@ class LocaleModel {
 }
 
 class LocaleData {
-  static final List<LocaleModel> _localeLis = [
+  static const String path = 'assets/translations';
+  static final List<LocaleModel> localeList = [
     LocaleModel(const Locale('uz', 'UZ'), 'Uzbek', "O'zbekcha", AppIcons.flagUZ),
     LocaleModel(const Locale('en', 'US'), 'English', "English", AppIcons.flagGB),
     LocaleModel(const Locale('ru', 'RU'), 'Russian', "Русский", AppIcons.flagRU),
   ];
-
-  static List<LocaleModel> get localeList => _localeLis;
 }
