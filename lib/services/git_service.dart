@@ -211,8 +211,8 @@ class GitService {
       );
 
       if (response.statusCode == 201) {
-        await BusinessAccountService.setIntoStorage();
         GetStorage().remove('git');
+        await BusinessAccountService.setIntoStorage();
         print(jsonDecode(response.body));
         return jsonDecode(response.body);
       } else {

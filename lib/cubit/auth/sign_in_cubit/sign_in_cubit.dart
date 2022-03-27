@@ -23,10 +23,11 @@ class SignInCubit extends Cubit<SignInState> {
       // Button bosilganida shu funksiya ishga tushadi
       String email = _loginController.text.trim();
       String password = _passwordController.text.trim();
-      AuthServices.signIn(email, password).then((value) {
-        if(value) {
+      AuthServices.signIn(email, password)?.then((value) {
+        if(value == 200 || value == 201) {
           CustomNavigator().pushAndRemoveUntil(const HomeScreen());
         } else {
+          Fluttertoast.showToast(msg: '$value');
           print(value);
         }
       });

@@ -29,7 +29,7 @@ class _GitDetailsForOwnerPageState extends State<GitDetailsForOwnerPage> {
       ),
       appBar: AppBarOrigin(
         actions: SvgPicture.asset(AppIcons.language),
-       // actions2: SvgPicture.asset(AppIcons.dollar),
+        // actions2: SvgPicture.asset(AppIcons.dollar),
       ),
       body: Center(
         child: Container(
@@ -106,8 +106,8 @@ class _GitDetailsForOwnerPageState extends State<GitDetailsForOwnerPage> {
                                   TextButton(
                                     child: const Text('Ha'),
                                     onPressed: () {
-                                      GitService().deleteGit
-                                          (gitId: widget.git.id!)
+                                      GitService()
+                                          .deleteGit(gitId: widget.git.id!)
                                           .then((value) =>
                                               Navigator.pushAndRemoveUntil(
                                                   context,
