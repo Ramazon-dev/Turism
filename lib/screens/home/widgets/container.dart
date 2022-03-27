@@ -46,11 +46,17 @@ class ShowNearby extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: MyEdgeInsets.only(left: 260, top: 10),
-                            child: StartBar(
-                              son: data[index].reyting!.toDouble(),
-                            ),
+                          Row(
+                            children: [
+                              Spacer(),
+                              Padding(
+                                padding: MyEdgeInsets.only(right: 10, top: 10),
+                                child: StartBar(
+                                  son: data[index].reyting!.toDouble(),
+                                  kishi: data[index].users,
+                                ),
+                              ),
+                            ],
                           ),
                           Padding(
                             padding: MyEdgeInsets.only(

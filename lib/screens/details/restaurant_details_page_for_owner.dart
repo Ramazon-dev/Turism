@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/screens/business_profile/restaurant/restaurant_page.dart';
-import 'package:mobileapp/screens/profile/auth_profile_page.dart';
 import 'package:mobileapp/services/restaurant_service.dart';
-import 'package:mobileapp/widgets/dialogs/comment_dialog.dart';
 import 'package:mobileapp/widgets/images_page_view.dart';
 import 'package:mobileapp/widgets/phone_list_widget.dart';
 
@@ -104,7 +102,7 @@ class ResDetailsPageForOwner extends StatelessWidget {
                           height: getHeight(28),
                         ),
                         Text(
-                          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at ",
+                          rest.informEn!,
                           style: AppTextStyle.regular(),
                         ),
                         SizedBox(height: 21.h),
