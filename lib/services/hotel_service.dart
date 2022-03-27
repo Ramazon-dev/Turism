@@ -90,7 +90,7 @@ class HotelService {
     }
   }
 
-  Future fetchCategoriesOfHotel() async {
+  Future<List<Category>?> fetchCategoriesOfHotel() async {
     try {
       var response = await http.get(
         Uri.parse("$baseUrl/hotels/categories"),
@@ -101,10 +101,9 @@ class HotelService {
 
         return jsonDecode(response.body)['message'];
       } else {
-        return jsonDecode(response.body)['message'];
+        // return jsonDecode(response.body)['message'];
       }
     } catch (e) {
-      return e;
     }
   }
 

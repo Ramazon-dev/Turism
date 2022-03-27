@@ -10,6 +10,19 @@ class ImageList {
     _andijan,
   ];
 
+  static List foodImages = [
+    "https://i.mycdn.me/i?r=AyH4iRPQ2q0otWIFepML2LxRVaYNexu4O6CAmzB69AGBMw&fn=w_612",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd_PLyQy2r7uFR6c9cqC3WpchaHza8bGUOZg&usqp=CAU",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRssJo7Uga8rkR0IWLv0ZterzQLQedITyAnhQ&usqp=CAU",
+    "https://images.unsplash.com/photo-1426869981800-95ebf51ce900?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8ZmFzdCUyMGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+  ];
+
+ static List hotel = [
+    "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8aG90ZWx8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+    "https://images.unsplash.com/photo-1509592149237-bc44977d96d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZmllbGQlMjB5YXJkfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+    "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dmlsbGF8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+  ];
+
   static const String _tashkent =
       'https://images.unsplash.com/photo-1622030797403-fa221ce5d208?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80';
   static const String _jizzakh =
@@ -23,15 +36,4 @@ class ImageList {
       "https://samarkanda-travel.com/wp-content/uploads/2017/02/Andijon-viloyati.jpg";
 }
 
-List images = [
-  "https://i.mycdn.me/i?r=AyH4iRPQ2q0otWIFepML2LxRVaYNexu4O6CAmzB69AGBMw&fn=w_612",
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd_PLyQy2r7uFR6c9cqC3WpchaHza8bGUOZg&usqp=CAU",
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRssJo7Uga8rkR0IWLv0ZterzQLQedITyAnhQ&usqp=CAU",
-  "https://images.unsplash.com/photo-1426869981800-95ebf51ce900?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8ZmFzdCUyMGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-];
 
-List hotel = [
-  "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8aG90ZWx8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-  "https://images.unsplash.com/photo-1509592149237-bc44977d96d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZmllbGQlMjB5YXJkfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-  "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dmlsbGF8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-];
