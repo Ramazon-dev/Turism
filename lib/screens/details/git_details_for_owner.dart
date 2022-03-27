@@ -29,7 +29,7 @@ class _GitDetailsForOwnerPageState extends State<GitDetailsForOwnerPage> {
       ),
       appBar: AppBarOrigin(
         actions: SvgPicture.asset(AppIcons.language),
-        actions2: SvgPicture.asset(AppIcons.dollar),
+       // actions2: SvgPicture.asset(AppIcons.dollar),
       ),
       body: Center(
         child: Container(
