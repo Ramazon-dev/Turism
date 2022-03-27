@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/models/category_model.dart';
 
 class HotelService {
   static String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
@@ -95,6 +96,8 @@ class HotelService {
         Uri.parse("$baseUrl/hotels/categories"),
       );
       if (response.statusCode == 200) {
+        List ctgList = jsonDecode(response.body)['data'];
+        return ctgList.map((e) => Category.fromJson(e)).toList();
 
         return jsonDecode(response.body)['message'];
       } else {
