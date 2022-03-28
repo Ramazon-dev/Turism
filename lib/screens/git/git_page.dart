@@ -27,7 +27,6 @@ class _GitPageState extends State<GitPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return BlocProvider(
       create: (_) => GitCubit(),
       child: BlocBuilder<GitCubit, GitState>(

@@ -20,7 +20,6 @@ class AppBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Container(
       alignment: Alignment.bottomCenter,
       width: MediaQuery.of(context).size.width,

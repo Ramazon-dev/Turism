@@ -80,7 +80,7 @@ class _HotelListPageState extends State<HotelListPage>
                     });
               }
               return SizedBox(
-                height: SizeConfig.screenHeight - 200,
+                height: 812.h - 200.h,
                 child: const Center(child: CupertinoActivityIndicator()),
               );
             }),
