@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mobileapp/services/obekt_categoriya.dart';
 import 'package:mobileapp/services/obekt_services.dart';
 
 import '../../../core/components/exporting_packages.dart';
@@ -19,7 +18,7 @@ class ContainerForPopularObject extends StatelessWidget {
     required this.image,
     Key? key,
   }) : super(key: key);
-  List<String> kategoriya = [
+  final List<String> _categoryImages = [
     "https://codergp.files.wordpress.com/2015/05/images-4.jpg",
     "https://i1.wp.com/basetop.ru/wp-content/uploads/2018/01/fu4agirm.jpg",
     "https://yoshlikjurnali.uz/wp-content/uploads/zomin_haqida_uylar-640x400.jpg",
@@ -33,10 +32,10 @@ class ContainerForPopularObject extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: ObjectSevices().obektkategoriya(),
-        builder: (context, AsyncSnapshot<List<ObektCategoriya>> snap) {
+        future: ObjectSevices().getCategories(),
+        builder: (context, AsyncSnapshot<List<Category>?> snap) {
           if (snap.hasData) {
-            List<ObektCategoriya> data = snap.data!;
+            List<Category> data = snap.data!;
             return SizedBox(
               height: getHeight(182.0),
               child: ListView.builder(
@@ -62,7 +61,7 @@ class ContainerForPopularObject extends StatelessWidget {
                                   height: getHeight(115.0),
                                   width: getWidth(205.0),
                                   decoration: MyDecoration.netImage(
-                                      netImage: kategoriya[index]),
+                                      netImage: _categoryImages[index]),
                                   alignment: Alignment.topRight,
                                 ),
                               ),
@@ -74,30 +73,13 @@ class ContainerForPopularObject extends StatelessWidget {
                                       padding: MyEdgeInsets.only(
                                           right: 50.0.w, top: 5.0),
                                       child: Text(
-                                        "${data[index].nameRu}",
+                                        data[index].showInfo(context.locale.languageCode),
                                         style: TextStyle(
                                             fontWeight: FontWeight.w400,
                                             fontSize: getWidth(12.0)),
                                       ),
                                     ),
-                                    // Padding(
-                                    //   padding:
-                                    //       MyEdgeInsets.only(right: 90, top: 5),
-                                    //   child: Row(
-                                    //     children: [
-                                    //       SvgPicture.asset(AppIcons.location,
-                                    //           color: AppColors.grey),
-                                    //       SizedBox(
-                                    //         width: getWidth(5.0),
-                                    //       ),
-                                    //       Text(
-                                    //         data[index].date.,
-                                    //         style: TextStyle(
-                                    //             fontSize: getWidth(12.0)),
-                                    //       )
-                                    //     ],
-                                    //   ),
-                                    // ),
+
                                   ],
                                 ),
                               )

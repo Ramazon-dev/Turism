@@ -7,8 +7,9 @@ import 'package:mobileapp/widgets/top_bar/app_bar_with_list.dart';
 
 // TODO: This page must be written with state management
 class HotelListPage extends StatefulWidget {
+  final String ctgId;
 
-  HotelListPage({Key? key}) : super(key: key);
+  const HotelListPage({Key? key, required this.ctgId}) : super(key: key);
 
   @override
   State<HotelListPage> createState() => _HotelListPageState();
@@ -19,11 +20,15 @@ class _HotelListPageState extends State<HotelListPage>
   late TabController _tabController;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   CityModel _city = CityList.cities[0];
+  List<Hotel> _hotelList = [];
+
+  late String _ctgId;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: CityList.cities.length, vsync: this);
+    _ctgId = widget.ctgId;
   }
 
   @override
@@ -44,7 +49,20 @@ class _HotelListPageState extends State<HotelListPage>
               if (snap.hasError) {
                 return const Text('Error');
               } else if (snap.hasData) {
-                if (snap.data!.isEmpty) {
+                _hotelList = [];
+
+                if (widget.ctgId == 'all') {
+                  _hotelList = snap.data as List<Hotel>;
+                } else {
+                  // ignore: curly_braces_in_flow_control_structures
+                  for (var element in snap.data!) {
+                    if (element.categoryId == _ctgId) {
+                      _hotelList.add(element);
+                    }
+                  }
+                }
+
+                if (_hotelList.isEmpty) {
                   return const EmptyPageWidget();
                 }
 
@@ -53,9 +71,9 @@ class _HotelListPageState extends State<HotelListPage>
                     physics: const NeverScrollableScrollPhysics(),
                     padding: MyEdgeInsets.symmetric(h: 15.0, v: 20.0),
                     gridDelegate: _gridDelegate(),
-                    itemCount: snap.data!.length,
+                    itemCount: _hotelList.length,
                     itemBuilder: (ctx, i) {
-                      Hotel hotel = snap.data![i];
+                      Hotel hotel = _hotelList[i];
                       String img = hotel.media[0];
                       img = imageFilter(img);
                       return _buildHotelLayout(img, hotel);

@@ -61,5 +61,8 @@ abstract class  LocaleKeys {
   static const where_will_we_stay = 'where_will_we_stay';
   static const restaurants = 'restaurants';
   static const foods = 'foods';
+  static const choose_your_city = 'choose_your_city';
+  static const tashkent_city = 'tashkent_city';
+  static const nearby_tours = 'nearby_tours';
 
 }

@@ -59,5 +59,8 @@
   "all": "Все",
   "where_will_we_stay": "Где мы поселимся :)",
   "restaurants": "Ресторан",
-  "foods":"еда"
+  "foods": "еда",
+  "choose_your_city": "Выберите свой город",
+  "tashkent_city": "Ташкент Сити",
+  "nearby_tours": "Ближайшие туры."
 }

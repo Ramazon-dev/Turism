@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:mobileapp/models/obekt_model.dart';
-import 'package:mobileapp/services/obekt_categoriya.dart';
+
+import '../models/category_model.dart';
 
 class ObjectSevices {
   static String baseUrl = 'https://ucharteam-tourism.herokuapp.com/v1/api';
@@ -55,25 +56,22 @@ class ObjectSevices {
     }
   }
 
-  Future<List<ObektCategoriya>> obektkategoriya() async {
+  Future<List<Category>?> getCategories() async {
     try {
       var response = await http.get(Uri.parse("$baseUrl/objects/categories"));
       if (response.statusCode == 200) {
-        // print("${jsonDecode(response.body)['data']}");
-        List<ObektCategoriya> ObektList =
+        List<Category> categoryList =
             (jsonDecode(response.body)['data'] as List)
-                .map((e) => ObektCategoriya.fromJson(e))
+                .map((e) => Category.fromJson(e))
                 .toList();
-        // print(ObektList);
-        return ObektList;
+        return categoryList;
       } else {
         return jsonDecode(response.body)['message'];
       }
     } catch (e) {
-      List<ObektCategoriya> h = [];
-      print('fetch Obekt exception: $e');
-      return h;
+      return null;
     }
+    return null;
   }
 
   Future<List<Obekt>> fetchobektbyseason() async {

@@ -14,12 +14,7 @@ class DrawerWidget extends StatelessWidget {
         children: [
           _buildContainer(),
           _setCategory(
-              LocaleKeys.hotel.tr(), AppIcons.dollar,  HotelListPage()),
-          _setCategory(
               LocaleKeys.currency.tr(), AppIcons.dollar, const CurrencyPage()),
-          // _setCategory(LocaleKeys.places.tr(), AppIcons.location, PlacePage()),
-          // _setCategory(
-          //     LocaleKeys.hotel.tr(), AppIcons.arrowBack, const OtherPage()),
           _setCategory(LocaleKeys.settings.tr(), AppIcons.arrowBack,
               const SettingsPage()),
           const Spacer(),

@@ -30,7 +30,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         ),
         child: Column(
           children: [
-            const LetsGo(text: 'Выберите свой город', color: AppColors.white),
+            LetsGo(
+                text: LocaleKeys.select_your_city.tr(), color: AppColors.white),
             MySizedBox(height: 30.0),
             Stack(
               children: [
@@ -120,8 +121,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   }
 
   final List _onBoardingInfo = [
-    {"image": AppImages.first, "city": "Ташкент Сити"},
-    {"image": AppImages.second, "city": "Ташкент Сити"},
-    {"image": AppImages.third, "city": "бУХАРА".toUpperCase()},
+    {"image": AppImages.first, "city": LocaleKeys.tashkent.tr()},
+    {"image": AppImages.second, "city": LocaleKeys.tashkent.tr()},
+    {"image": AppImages.third, "city": LocaleKeys.bukhara.tr().toUpperCase()},
   ];
 }

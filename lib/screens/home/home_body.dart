@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
-import 'package:mobileapp/models/category_model.dart';
 import 'package:mobileapp/screens/home/widgets/container.dart';
 import 'package:mobileapp/screens/home/widgets/popolar_object.dart';
 import 'package:mobileapp/screens/restaurant/restaurants_grid_view.dart';
@@ -40,9 +39,18 @@ class HomeBody extends StatelessWidget {
 
               /// Популярные пакеты.
               RowTextWidgets(
-                  ontap: () {},
-                  text: LocaleKeys.popular_packages.tr(),
-                  bottomText: "Все"),
+                ontap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) =>  PlacePage(
+                          category: 'all',
+                        )),
+                  );
+                },
+                text: LocaleKeys.popular_packages.tr(),
+                bottomText: LocaleKeys.all.tr(),
+              ),
               ContainerForPopularObject(
                 itemCount: 4,
                 image: "https://source.unsplash.com/random/1",
@@ -58,7 +66,7 @@ class HomeBody extends StatelessWidget {
                   ontap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>  HotelListPage(),
+                        builder: (context) => const HotelListPage(ctgId: 'all'),
                       )),
                   text: LocaleKeys.where_will_we_stay.tr(),
                   bottomText: LocaleKeys.all.tr()),
@@ -69,7 +77,9 @@ class HomeBody extends StatelessWidget {
                   ontap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => RestaurantsGridView(ctgId: 'all',))),
+                          builder: (context) => RestaurantsGridView(
+                                ctgId: 'all',
+                              ))),
                   text: LocaleKeys.restaurants.tr(),
                   bottomText: LocaleKeys.all.tr()),
               _showRestList()
@@ -82,7 +92,7 @@ class HomeBody extends StatelessWidget {
     return Padding(
       padding: MyEdgeInsets.only(left: 10, top: 20),
       child: Text(
-        "Ближайшие туры.",
+        LocaleKeys.nearby_tours.tr(),
         style: TextStyle(fontSize: getWidth(18.0), fontWeight: FontWeight.w400),
       ),
     );
@@ -110,11 +120,12 @@ class HomeBody extends StatelessWidget {
                 itemCount: ImageList.hotel.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
+                  Category category = snap.data![index];
                   return Padding(
                     padding: MyEdgeInsets.all(8.0),
                     child: InkWell(
                       onTap: () {
-                        CustomNavigator.push(HotelListPage());
+                        CustomNavigator.push(HotelListPage(ctgId: category.id));
                       },
                       child: Container(
                           alignment: Alignment.bottomLeft,
@@ -198,10 +209,11 @@ class HomeBody extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 15),
                     child: Text(
-                      restaurantCategories[index].nameUz +
+                      restaurantCategories[index]
+                              .showInfo(context.locale.languageCode) +
                           ' ' +
                           LocaleKeys.foods.tr(),
-                      style: TextStyle(fontSize: 15.0),
+                      style: TextStyle(fontSize: 15.w),
                     ),
                   ),
                 ],
