@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:mobileapp/core/components/image_filter.dart';
 import 'package:mobileapp/widgets/buttons/language_button.dart';
 import 'package:mobileapp/widgets/phone_list_widget.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
@@ -16,7 +15,6 @@ class GitDetailsPage extends StatefulWidget {
 }
 
 class _GitDetailsPageState extends State<GitDetailsPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,56 +30,63 @@ class _GitDetailsPageState extends State<GitDetailsPage> {
         actions: SvgPicture.asset(AppIcons.language),
       ),
       body: Center(
-        child: Container(
-          margin: EdgeInsets.only(top: getHeight(10)),
-          height: getHeight(592),
-          width: getWidth(345),
-          decoration: BoxDecoration(
-            border: Border.all(color: AppColors.darkBorder, width: getWidth(1)),
-            borderRadius: BorderRadius.all(
-              Radius.circular(
-                getWidth(7),
-              ),
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                margin: EdgeInsets.all(getWidth(11)),
-                width: getWidth(323),
-                height: getHeight(255),
-                decoration: MyDecoration.netImage(
-                    netImage: imageFilter(widget.git.image.toString())),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    DescriptionWidget(
-                      name: widget.git.username.toString(),
-                      price: widget.git.price.toString(),
-                      rating: double.parse(widget.git.reyting.toString()),
-                      users: 5,
-                    ),
-
-                    LanguageWidget(language: widget.git.languages!),
-
-                    SizedBox(height: getHeight(28)),
-                    Text(
-                      widget.git.showInfo(context.locale.languageCode),
-                      style: AppTextStyle.regular(),
-                    ),
-                    SizedBox(height: getHeight(16)),
-
-                    PhoneListWidget(phoneList: widget.git.tell!.toList())
-                  ],
+        child: SingleChildScrollView(
+          child: Container(
+            margin: EdgeInsets.only(top: getHeight(10)),
+            height: getHeight(592),
+            width: getWidth(345),
+            decoration: BoxDecoration(
+              border:
+                  Border.all(color: AppColors.darkBorder, width: getWidth(1)),
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  getWidth(7),
                 ),
               ),
-            ],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+
+                Padding(
+                  padding: MyEdgeInsets.all(11.0),
+                  child: CachedNetworkImage(
+                    height: 255.h,
+                    width: 323.w,
+                    imageUrl: widget.git.image.toString(),
+                    errorWidget: (ctx, name, d) => Image.asset(
+                      AppImages.image,
+                      fit: BoxFit.cover,
+
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      DescriptionWidget(
+                        name: widget.git.username.toString(),
+                        price: widget.git.price.toString(),
+                        rating: double.parse(widget.git.reyting.toString()),
+                        users: 5,
+                      ),
+                      LanguageWidget(language: widget.git.languages!),
+                      SizedBox(height: getHeight(28)),
+                      Text(
+                        widget.git.showInfo(context.locale.languageCode),
+                        style: AppTextStyle.regular(),
+                      ),
+                      SizedBox(height: getHeight(16)),
+                      PhoneListWidget(phoneList: widget.git.tell!.toList())
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
