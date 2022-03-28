@@ -21,7 +21,7 @@ void main() async {
     ),
   );
 
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarIconBrightness: Brightness.light,
     statusBarColor: Colors.transparent,
@@ -33,15 +33,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Tourism App.',
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      theme: ThemeData(fontFamily: "Roboto", primarySwatch: Colors.blue),
-      home: _hasCome() ? const HomeScreen() : const InitialPage(),
-    );
+    return ScreenUtilInit(
+        minTextAdapt: true,
+        splitScreenMode: true,
+        designSize: const Size(375.0, 812.0),
+        builder: () => MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Tourism App.',
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
+              theme:
+                  ThemeData(fontFamily: "Roboto", primarySwatch: Colors.blue),
+              home: _hasCome() ? const HomeScreen() : const InitialPage(),
+            ));
   }
 
   bool _hasCome() => GetStorage().read('hasComeIn') ?? false;
