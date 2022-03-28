@@ -25,7 +25,6 @@ class HomeBody extends StatelessWidget {
     restaurantCategories = (GetStorage().read('restCategories') as List)
         .map((e) => Category.fromJson(e))
         .toList();
-    SizeConfig().init(context);
     return Scaffold(
         drawer: const DrawerWidget(),
         key: _scaffoldKey,

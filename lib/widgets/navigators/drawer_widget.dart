@@ -7,7 +7,6 @@ class DrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Drawer(
       backgroundColor: AppColors.primary,
       child: Column(
@@ -17,7 +16,6 @@ class DrawerWidget extends StatelessWidget {
               LocaleKeys.currency.tr(), AppIcons.dollar, const CurrencyPage()),
           _setCategory(LocaleKeys.settings.tr(), AppIcons.arrowBack,
               const SettingsPage()),
-          const Spacer(),
           _setCategory(
               LocaleKeys.aboutUs.tr(), AppIcons.location, const AboutUsPage()),
           _setCategory(
@@ -35,14 +33,17 @@ class DrawerWidget extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       decoration: MyDecoration.netImage(
           netImage: CityList.cities[0].imgUrl, radius: 0.0),
-      child: Container(
-        height: 16.h,
-        decoration: BoxDecoration(
-            color: AppColors.primary,
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(12.w),
-              topLeft: Radius.circular(12.w),
-            )),
+      child: Transform.translate(
+        offset: Offset(0.0, 4.h),
+        child: Container(
+          height: 20.h,
+          decoration: BoxDecoration(
+              color: AppColors.primary,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(12.w),
+                topLeft: Radius.circular(12.w),
+              )),
+        ),
       ),
     );
   }
@@ -58,7 +59,6 @@ class DrawerWidget extends StatelessWidget {
             CustomNavigator.push(page);
           }
         },
-        // leading: SvgPicture.asset(icon, height: getHeight(32.0)),
         title: Text(
           title,
           style: AppTextStyle.regular(color: AppColors.white, size: 24.0),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 
+// ignore: must_be_immutable
 class TextFormFieldWidget extends StatelessWidget {
   TextEditingController? controller;
   bool autofocus;
@@ -31,7 +32,6 @@ class TextFormFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return TextFormField(
       autofocus: autofocus,
       controller: controller,
@@ -61,11 +61,11 @@ class TextFormFieldWidget extends StatelessWidget {
   }
 
   TextStyle _textStyle(Color color) {
-    return TextStyle(fontSize: getWidth(16.0), color: color);
+    return TextStyle(fontSize: 16.sp, color: color);
   }
 
   OutlineInputBorder _outlineInputBorder() => OutlineInputBorder(
         borderSide: const BorderSide(color: AppColors.grey),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(10.r),
       );
 }

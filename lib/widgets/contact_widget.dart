@@ -24,8 +24,8 @@ class ContactWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: getHeight(20)),
-      width: getHeight(115),
+      margin: EdgeInsets.only(top: 20.h),
+      width: 20.w,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

@@ -27,10 +27,12 @@ class _ImagesPageViewState extends State<ImagesPageView> {
               itemBuilder: (ctx, i) {
                 return CachedNetworkImage(
                   imageUrl: imageFilter(widget.imageList[i]),
-
                   fit: BoxFit.cover,
                   width: double.infinity,
-                errorWidget: (context, url, error ) => Image.asset(AppImages.notFound, fit: BoxFit.cover,),
+                  errorWidget: (context, url, error) => Image.asset(
+                    AppImages.image,
+                    fit: BoxFit.cover,
+                  ),
                 );
               }),
         ),
@@ -38,7 +40,9 @@ class _ImagesPageViewState extends State<ImagesPageView> {
           right: 0.0,
           left: 0.0,
           bottom: 10.h,
-          child: _showIndicator(),
+          child: Visibility(
+              visible: widget.imageList.length != 1,
+              child: _showIndicator()),
         ),
       ],
     );

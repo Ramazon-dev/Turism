@@ -38,7 +38,6 @@ class _CarPageState extends State<CarPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return BlocProvider(
       create: (_) => CarCubit(),
       child: BlocBuilder<CarCubit, CarState>(

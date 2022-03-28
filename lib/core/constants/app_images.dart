@@ -6,4 +6,5 @@ class AppImages {
   static const String third = 'assets/images/third.png';
   static const String empty = 'assets/images/empty.svg';
   static const String notFound = 'assets/images/not_found.svg';
+  static const String image = 'assets/images/image.png';
 }

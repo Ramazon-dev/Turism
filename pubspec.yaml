@@ -1,7 +1,7 @@
 name: mobileapp
 description: This app is designed to help tourists find attractions.
 
-version: 1.4.0+6
+version: 1.4.1+7
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
@@ -40,6 +40,7 @@ dependencies:
   share_plus: ^4.0.1
   shimmer: ^2.0.0
   easy_padding: ^0.1.7
+  flutter_screenutil: ^5.3.1
 
 
 

@@ -10,7 +10,6 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return BlocProvider(
       create: (_) => SignInCubit(),
       child: BlocBuilder<SignInCubit, SignInState>(builder: (ctx, state) {

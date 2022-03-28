@@ -7,8 +7,8 @@ class EmptyPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: SizeConfig.screenHeight * 0.45,
-      width:  SizeConfig.screenWidth,
+      height: 365.h,
+      width:  375.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,

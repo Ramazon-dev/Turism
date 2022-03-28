@@ -10,7 +10,6 @@ class InitialPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
       body: Container(
         decoration: MyDecoration.assetImage(assetImage: AppImages.initial),

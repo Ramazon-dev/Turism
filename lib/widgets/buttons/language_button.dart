@@ -34,7 +34,6 @@ class LanguageWidget extends StatelessWidget {
       },
     );
 
-    SizeConfig().init(context);
     return Container(
       padding: EdgeInsets.all(getWidth(6)),
       decoration: const BoxDecoration(

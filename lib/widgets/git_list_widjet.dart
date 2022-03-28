@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/core/components/image_filter.dart';
-import 'package:mobileapp/core/data/image_list.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
 import 'package:mobileapp/widgets/buttons/language_button.dart';
 
@@ -12,7 +11,6 @@ class MyGitListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Container(
       margin: EdgeInsets.only(
         top: getHeight(20),

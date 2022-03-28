@@ -9,7 +9,6 @@ class SearchTabBar extends StatelessWidget with PreferredSizeWidget {
  
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return SizedBox(
       height: 0.1,
     );
