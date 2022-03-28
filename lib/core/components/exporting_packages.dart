@@ -92,6 +92,7 @@ export 'package:mobileapp/models/git_model.dart';
 export 'package:mobileapp/models/city_model.dart';
 export 'package:mobileapp/models/restaurant_model.dart';
 export 'package:mobileapp/models/transport_model.dart';
+export 'package:mobileapp/models/category_model.dart';
 
 // translations
 export 'package:mobileapp/translations/locale_keys.g.dart';

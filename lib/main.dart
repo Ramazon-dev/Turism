@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       theme: ThemeData(fontFamily: "Roboto", primarySwatch: Colors.blue),
-      home: _hasCome() ? const InitialPage() : const InitialPage(),
+      home: _hasCome() ? const HomeScreen() : const InitialPage(),
     );
   }
 

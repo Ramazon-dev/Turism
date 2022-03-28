@@ -42,7 +42,7 @@ class HomeBody extends StatelessWidget {
               RowTextWidgets(
                   ontap: () {},
                   text: LocaleKeys.popular_packages.tr(),
-                  bottomText: "Все"),
+                  bottomText: LocaleKeys.all.tr()),
               ContainerForPopularObject(
                 itemCount: 4,
                 image: "https://source.unsplash.com/random/1",
@@ -58,7 +58,7 @@ class HomeBody extends StatelessWidget {
                   ontap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>  HotelListPage(),
+                        builder: (context) => HotelListPage(),
                       )),
                   text: LocaleKeys.where_will_we_stay.tr(),
                   bottomText: LocaleKeys.all.tr()),
@@ -69,7 +69,9 @@ class HomeBody extends StatelessWidget {
                   ontap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => RestaurantsGridView(ctgId: 'all',))),
+                          builder: (context) => RestaurantsGridView(
+                                ctgId: 'all',
+                              ))),
                   text: LocaleKeys.restaurants.tr(),
                   bottomText: LocaleKeys.all.tr()),
               _showRestList()
@@ -82,7 +84,7 @@ class HomeBody extends StatelessWidget {
     return Padding(
       padding: MyEdgeInsets.only(left: 10, top: 20),
       child: Text(
-        "Ближайшие туры.",
+        LocaleKeys.nearby_tours.tr(),
         style: TextStyle(fontSize: getWidth(18.0), fontWeight: FontWeight.w400),
       ),
     );
@@ -198,10 +200,11 @@ class HomeBody extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 15),
                     child: Text(
-                      restaurantCategories[index].nameUz +
+                      restaurantCategories[index]
+                              .showInfo(context.locale.languageCode) +
                           ' ' +
                           LocaleKeys.foods.tr(),
-                      style: TextStyle(fontSize: 15.0),
+                      style: TextStyle(fontSize: 15.w),
                     ),
                   ),
                 ],

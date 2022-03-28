@@ -77,7 +77,8 @@ class CodegenLoader extends AssetLoader{
   "restaurants": "Restoranlar",
   "foods": "taomlari",
   "choose_your_city": "O'z shahrngizni tanlang",
-  "tashkent_city": "Tashkent City"
+  "tashkent_city": "Tashkent City",
+  "nearby_tours": "Yaqin turlar"
 };
 static const Map<String,dynamic> ru_RU = {
   "start": "Начать",
@@ -142,7 +143,8 @@ static const Map<String,dynamic> ru_RU = {
   "restaurants": "Ресторан",
   "foods": "еда",
   "choose_your_city": "Выберите свой город",
-  "tashkent_city": "Ташкент Сити"
+  "tashkent_city": "Ташкент Сити",
+  "nearby_tours": "Ближайшие туры."
 };
 static const Map<String,dynamic> en_GB = {
   "start": "Start",
@@ -207,7 +209,8 @@ static const Map<String,dynamic> en_GB = {
   "restaurants": "Restaurants",
   "foods": "foods",
   "choose_your_city": "Choose your city",
-  "tashkent_city": "Tashkent City"
+  "tashkent_city": "Tashkent City",
+  "nearby_tours": "Nearby Tours"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"uz_UZ": uz_UZ, "ru_RU": ru_RU, "en_GB": en_GB};
 }

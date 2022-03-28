@@ -26,6 +26,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   void onLanguageChanged(BuildContext context, String code) async {
     List<LocaleModel> _list = LocaleData.localeList;
+
     switch (code) {
       case 'uz':
         await context.setLocale(_list[0].locale);
