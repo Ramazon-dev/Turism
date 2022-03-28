@@ -23,7 +23,7 @@ class SelectedCityPage extends StatelessWidget {
       ),
       const GitPage(),
       const CarPage(),
-      HotelListPage(),
+      const HotelListPage(ctgId: 'all'),
       RestaurantsGridView(),
     ];
     return Scaffold(

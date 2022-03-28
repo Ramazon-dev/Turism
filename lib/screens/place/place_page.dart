@@ -7,14 +7,16 @@ import 'package:mobileapp/services/obekt_services.dart';
 class PlacePage extends StatelessWidget {
   String? city;
   String? category;
+
   PlacePage({Key? key, this.city, this.category}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const SimpleAppBar(title: 'Places'),
+        appBar: SimpleAppBar(title: LocaleKeys.places.tr()),
         body: FutureBuilder(
-            future: ObjectSevices().fetchobektbyCity(city ?? 'toshkent', category ?? ''),
+            future: ObjectSevices()
+                .fetchobektbyCity(city ?? 'toshkent', category ?? ''),
             builder: (context, AsyncSnapshot<List<Obekt>> snap) {
               if (snap.hasData) {
                 List<Obekt> data = snap.data!;
