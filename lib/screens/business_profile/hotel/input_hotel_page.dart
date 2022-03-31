@@ -121,7 +121,7 @@ class InputHotelPage extends StatelessWidget {
             // Link of geo Location
             TextFormFieldWidget(
               inputType: TextInputType.url,
-              controller: cubit.websiteController,
+              controller: cubit.mapLinkController,
               hint: LocaleKeys.mapLink.tr(),
               validator: FormValidator.general,
             ),
@@ -130,7 +130,7 @@ class InputHotelPage extends StatelessWidget {
             // link of site
             TextFormFieldWidget(
               inputType: TextInputType.url,
-              controller: cubit.mapLinkController,
+              controller: cubit.websiteController,
               hint: LocaleKeys.linkOfSite.tr(),
             ),
             MySizedBox(height: 20.0),

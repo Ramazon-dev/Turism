@@ -57,9 +57,9 @@ class CityList {
   static const String _sirdarya =
       "https://xs.uz/upload/post/2019/9/25/b7978e1a1fb3a73fddc4251b12a0e8f90925.jpg";
   static const String _kashkadarya =
-      "https://www.agro.uz/wp-content/uploads/2021/09/qashqadaryo-e1633417925175.jpg";
+      "https://darakchi.uz/storage/4a/b8/a6/148535/conversions/899-xl.jpg";
   static const String _khorezm =
-      "https://www.agro.uz/wp-content/uploads/2021/09/xorazm-e1633419885482.jpg";
+      "https://www.azernews.az/media/2017/10/15/xorezm.jpg";
   static const String _navai =
       "https://uzbekistan.travel/storage/app/media/nargiza/cropped-images/cropped-images/Nurata_town-0-0-0-0-1583233278-0-0-0-0-1583233325.jpg";
   static const String _karakalpak =

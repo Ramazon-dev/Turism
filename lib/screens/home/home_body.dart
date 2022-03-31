@@ -42,9 +42,10 @@ class HomeBody extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (_) =>  PlacePage(
-                          category: 'all',
-                        )),
+                      builder: (_) => PlacePage(
+                        category: 'all',
+                      ),
+                    ),
                   );
                 },
                 text: LocaleKeys.popular_packages.tr(),
@@ -57,9 +58,10 @@ class HomeBody extends StatelessWidget {
                 date: "10 минут. 5 сек",
               ),
               RowTextWidgets(
-                  ontap: () {},
-                  text: LocaleKeys.regions.tr(),
-                  bottomText: LocaleKeys.all.tr()),
+                ontap: () {},
+                text: LocaleKeys.regions.tr(),
+                bottomText: LocaleKeys.all.tr(),
+              ),
               const PopularObject(),
               RowTextWidgets(
                   ontap: () => Navigator.push(

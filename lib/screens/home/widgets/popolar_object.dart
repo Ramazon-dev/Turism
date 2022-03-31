@@ -20,13 +20,12 @@ class ContainerForPopularObject extends StatelessWidget {
   }) : super(key: key);
   final List<String> _categoryImages = [
     "https://codergp.files.wordpress.com/2015/05/images-4.jpg",
-    "https://i1.wp.com/basetop.ru/wp-content/uploads/2018/01/fu4agirm.jpg",
-    "https://yoshlikjurnali.uz/wp-content/uploads/zomin_haqida_uylar-640x400.jpg",
+    "https://uzbekistan.travel/storage/app/media/nargiza/cropped-images/beldersay1-0-0-0-0-1590649308.jpg",
+    "https://www.game-keeper.com/images/news/0701/1.jpeg",
     "https://ichef.bbci.co.uk/news/640/amz/worldservice/live/assets/images/2015/08/07/150807140426_tajikistan_lakes2_976x549_b.babayev.jpg",
     "https://codergp.files.wordpress.com/2015/05/images-4.jpg",
-    "https://i1.wp.com/basetop.ru/wp-content/uploads/2018/01/fu4agirm.jpg",
-    "https://yoshlikjurnali.uz/wp-content/uploads/zomin_haqida_uylar-640x400.jpg",
-    "https://ichef.bbci.co.uk/news/640/amz/worldservice/live/assets/images/2015/08/07/150807140426_tajikistan_lakes2_976x549_b.babayev.jpg"
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtlgG0aLFuhIRThXhgddwhU2Z0dOGlyVxBxmTeEmTlsQP6Qlu6gXpUAzqR7XYxFHd5Hjo&usqp=CAU",
+    "https://www.gazeta.uz/media/img/2021/11/YyBh0E16360144574678_b.jpg"
   ];
 
   @override
