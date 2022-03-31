@@ -1,6 +1,7 @@
 import 'package:easy_padding/easy_padding.dart';
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
+import 'package:mobileapp/core/components/image_filter.dart';
 import 'package:mobileapp/widgets/phone_list_widget.dart';
 import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:mobileapp/widgets/description_widjet.dart';
@@ -52,9 +53,9 @@ class TransportDetailPage extends StatelessWidget {
                             getWidth(5),
                           ),
                         ),
-                        image: const DecorationImage(
+                        image:  DecorationImage(
                           image: NetworkImage(
-                            'https://source.unsplash.com/random/4',
+                            imageFilter(transport.media!.first),
                           ),
                           fit: BoxFit.cover,
                         ),

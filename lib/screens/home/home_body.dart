@@ -67,7 +67,8 @@ class HomeBody extends StatelessWidget {
                   ontap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const HotelListPage(ctgId: 'all'),
+                        builder: (context) => HotelListPage(
+                            ctgId: 'all', changedCity: CityList.cities.first),
                       )),
                   text: LocaleKeys.where_will_we_stay.tr(),
                   bottomText: LocaleKeys.all.tr()),
@@ -80,6 +81,7 @@ class HomeBody extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => RestaurantsGridView(
                                 ctgId: 'all',
+                                changedCity: CityList.cities.first,
                               ))),
                   text: LocaleKeys.restaurants.tr(),
                   bottomText: LocaleKeys.all.tr()),
@@ -126,7 +128,9 @@ class HomeBody extends StatelessWidget {
                     padding: MyEdgeInsets.all(8.0),
                     child: InkWell(
                       onTap: () {
-                        CustomNavigator.push(HotelListPage(ctgId: category.id));
+                        CustomNavigator.push(HotelListPage(
+                            ctgId: category.id,
+                            changedCity: CityList.cities.first));
                       },
                       child: Container(
                           alignment: Alignment.bottomLeft,
@@ -167,7 +171,8 @@ class HomeBody extends StatelessWidget {
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => RestaurantsGridView(ctgId: ctgId))),
+                    builder: (context) => RestaurantsGridView(
+                        ctgId: ctgId, changedCity: CityList.cities.first))),
             child: Container(
               margin: const EdgeInsets.all(8.0),
               height: getHeight(200.0),

@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
 import 'package:mobileapp/cubit/home_cubit/home_cubit.dart';
 import 'package:mobileapp/screens/profile/auth_profile_page.dart';
-import 'package:mobileapp/widgets/top_bar/appbar_origin.dart';
 import 'package:mobileapp/widgets/navigators/drawer_widget.dart';
-import 'package:mobileapp/widgets/top_bar/home_app_bar.dart';
-import 'package:mobileapp/widgets/top_bar/searchtapbar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -35,12 +32,11 @@ class HomeScreen extends StatelessWidget {
   List<Widget> _pages(HomeCubit cubit) {
     String token = GetStorage().read('token') ?? '';
     return [
-      const GitPage(),
+      GitPage(changedCity: CityList.cities.first),
       SearchPage(),
       HomeBody(cubit: cubit),
-      const CarPage(),
+      CarPage(changedCity: CityList.cities.first),
       token.isNotEmpty ? const ProfileAuthPage() : const SignInPage(),
     ];
   }
-
 }

@@ -8,8 +8,9 @@ import 'package:mobileapp/widgets/top_bar/app_bar_with_list.dart';
 // TODO: This page must be written with state management
 class HotelListPage extends StatefulWidget {
   final String ctgId;
+  CityModel changedCity;
 
-  const HotelListPage({Key? key, required this.ctgId}) : super(key: key);
+   HotelListPage({Key? key, required this.ctgId, required this.changedCity}) : super(key: key);
 
   @override
   State<HotelListPage> createState() => _HotelListPageState();
@@ -18,6 +19,7 @@ class HotelListPage extends StatefulWidget {
 class _HotelListPageState extends State<HotelListPage>
     with TickerProviderStateMixin {
   late TabController _tabController;
+  late int _currentIndex;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   CityModel _city = CityList.cities[0];
   List<Hotel> _hotelList = [];
@@ -26,8 +28,9 @@ class _HotelListPageState extends State<HotelListPage>
 
   @override
   void initState() {
+    _currentIndex = CityList.cities.indexOf((widget.changedCity));
     super.initState();
-    _tabController = TabController(length: CityList.cities.length, vsync: this);
+    _tabController = TabController(length: CityList.cities.length, vsync: this, initialIndex: _currentIndex);
     _ctgId = widget.ctgId;
   }
 
