@@ -19,8 +19,7 @@ class HotelService {
         'informRu': hotel.informRu,
         'informEn': hotel.informEn,
         'karta': hotel.karta,
-        // "tell": hotel.tell[0],
-
+        'site' : hotel.site,
         'categoryId': '1991edea-7d4a-49fb-b627-79b777cf54ae'
       });
 

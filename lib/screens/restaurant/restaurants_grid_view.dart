@@ -8,6 +8,7 @@ import 'package:mobileapp/services/locale_service.dart';
 import 'package:mobileapp/services/restaurant_service.dart';
 import 'package:mobileapp/widgets/top_bar/app_bar_with_list.dart';
 
+// ignore: must_be_immutable
 class RestaurantsGridView extends StatefulWidget {
   String? ctgId;
 
@@ -40,7 +41,6 @@ class _RestaurantsGridViewState extends State<RestaurantsGridView>
 
   @override
   Widget build(BuildContext context) {
-    print('_RestaurantsGridViewState.build: ${widget.ctgId}');
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBarWithList(

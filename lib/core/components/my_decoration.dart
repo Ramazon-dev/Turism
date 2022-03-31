@@ -12,7 +12,6 @@ class MyDecoration {
           color: color,
           borderRadius: MyBorderRadius.circular(radius: radius),
           border: border,
-          
           image: DecorationImage(
             fit: BoxFit.cover,
             image: AssetImage(assetImage),
@@ -28,6 +27,7 @@ class MyDecoration {
           color: color,
           border: border,
           image: DecorationImage(
+            onError: (o, trace) => Image.asset(AppImages.image),
             fit: BoxFit.cover,
             image: CachedNetworkImageProvider(netImage),
           ),
