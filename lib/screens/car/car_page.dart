@@ -10,7 +10,9 @@ import '../../models/category_model.dart';
 import '../../services/locale_service.dart';
 
 class CarPage extends StatefulWidget {
-  const CarPage({Key? key}) : super(key: key);
+  CityModel changedCity;
+
+  CarPage({Key? key, required this.changedCity}) : super(key: key);
 
   @override
   State<CarPage> createState() => _CarPageState();
@@ -21,17 +23,22 @@ class _CarPageState extends State<CarPage> with TickerProviderStateMixin {
   late TabController _ctgTabController;
   late Category _currentCtg;
   List<TransportModel> _transportList = [];
-  late final List<Category> _categories = (GetStorage().read('carCategories') as List)
-      .map((e) => Category.fromJson(e))
-      .toList();
+  late final List<Category> _categories =
+      (GetStorage().read('carCategories') as List)
+          .map((e) => Category.fromJson(e))
+          .toList();
 
-  int _currentIndex = 0;
+  late int _currentIndex;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
+    _currentIndex = CityList.cities.indexOf((widget.changedCity));
     super.initState();
-    _tabController = TabController(length: CityList.cities.length, vsync: this);
+    _tabController = TabController(
+        length: CityList.cities.length,
+        vsync: this,
+        initialIndex: _currentIndex);
     _ctgTabController = TabController(length: _categories.length, vsync: this);
     _currentCtg = _categories[0];
   }
@@ -53,7 +60,6 @@ class _CarPageState extends State<CarPage> with TickerProviderStateMixin {
               elevation: 0.0,
               onPressed: () {
                 _scaffoldKey.currentState!.openDrawer();
-            
               },
             ),
             body: Column(
@@ -62,7 +68,8 @@ class _CarPageState extends State<CarPage> with TickerProviderStateMixin {
                 FutureBuilder(
                   future: TransportService.getDataFromApi(
                       CityList.cities[_currentIndex].value),
-                  builder: (context, AsyncSnapshot<List<TransportModel>?> snap) {
+                  builder:
+                      (context, AsyncSnapshot<List<TransportModel>?> snap) {
                     if (snap.hasError) {
                       return const Center(
                         child: Text("Internet conntection has error"),
@@ -75,7 +82,7 @@ class _CarPageState extends State<CarPage> with TickerProviderStateMixin {
                       }
                       _transportList = [];
                       for (var element in data) {
-                        if(element.categoryId == _currentCtg.id) {
+                        if (element.categoryId == _currentCtg.id) {
                           _transportList.add(element);
                         }
                       }
@@ -90,7 +97,8 @@ class _CarPageState extends State<CarPage> with TickerProviderStateMixin {
                               transport: transportModel,
                             );
                           },
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             mainAxisExtent: 230.h,
                             crossAxisSpacing: getWidth(8.0),
@@ -112,31 +120,30 @@ class _CarPageState extends State<CarPage> with TickerProviderStateMixin {
   }
 
   Container _ctgTab() => Container(
-    height: 64.h,
-    color: AppColors.white,
-    child: TabBar(
-      controller: _ctgTabController,
-      onTap: (v) {
-        setState(() {
-          _currentCtg = _categories[v];
-        });
-      },
-      isScrollable: true,
-      padding: MyEdgeInsets.symmetric(h: 20.0, v: 10.0),
-      indicatorColor: AppColors.greyPrice,
-      unselectedLabelColor: AppColors.greyPrice,
-      indicator: MyDecoration.circular(
-        color: AppColors.greyPrice,
-        radius: 0.w,
-      ),
-      tabs: _categories
-          .map((e) => Tab(
-        text: e.showInfo(LocaleService.currentLocale),
-      ))
-          .toList(),
-    ),
-  );
-
+        height: 64.h,
+        color: AppColors.white,
+        child: TabBar(
+          controller: _ctgTabController,
+          onTap: (v) {
+            setState(() {
+              _currentCtg = _categories[v];
+            });
+          },
+          isScrollable: true,
+          padding: MyEdgeInsets.symmetric(h: 20.0, v: 10.0),
+          indicatorColor: AppColors.greyPrice,
+          unselectedLabelColor: AppColors.greyPrice,
+          indicator: MyDecoration.circular(
+            color: AppColors.greyPrice,
+            radius: 0.w,
+          ),
+          tabs: _categories
+              .map((e) => Tab(
+                    text: e.showInfo(LocaleService.currentLocale),
+                  ))
+              .toList(),
+        ),
+      );
 
   void _onTabChanged(i) {
     setState(() {

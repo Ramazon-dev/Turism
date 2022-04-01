@@ -11,8 +11,10 @@ import 'package:mobileapp/widgets/top_bar/app_bar_with_list.dart';
 // ignore: must_be_immutable
 class RestaurantsGridView extends StatefulWidget {
   String? ctgId;
+  CityModel changedCity;
 
-  RestaurantsGridView({Key? key, this.ctgId}) : super(key: key);
+  RestaurantsGridView({Key? key, this.ctgId, required this.changedCity})
+      : super(key: key);
 
   @override
   State<RestaurantsGridView> createState() => _RestaurantsGridViewState();
@@ -21,6 +23,7 @@ class RestaurantsGridView extends StatefulWidget {
 class _RestaurantsGridViewState extends State<RestaurantsGridView>
     with TickerProviderStateMixin {
   late TabController _tabController;
+  late int _currentIndex;
   late TabController _ctgTabControlller;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   CityModel _city = CityList.cities[0];
@@ -33,8 +36,9 @@ class _RestaurantsGridViewState extends State<RestaurantsGridView>
 
   @override
   void initState() {
+    _currentIndex = CityList.cities.indexOf((widget.changedCity));
     super.initState();
-    _tabController = TabController(length: CityList.cities.length, vsync: this);
+    _tabController = TabController(length: CityList.cities.length, vsync: this, initialIndex: _currentIndex);
     _ctgTabControlller = TabController(length: categories.length, vsync: this);
     _currentCtg = categories[0];
   }
@@ -63,7 +67,7 @@ class _RestaurantsGridViewState extends State<RestaurantsGridView>
 
                   if (widget.ctgId == 'all') {
                     _restList = snap.data as List<Restaurant>;
-                  } else{
+                  } else {
                     // ignore: curly_braces_in_flow_control_structures
                     for (var element in snap.data!) {
                       if (element.categoryId == '${widget.ctgId}') {

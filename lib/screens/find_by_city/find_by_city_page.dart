@@ -21,10 +21,10 @@ class SelectedCityPage extends StatelessWidget {
         city: city.value,
         category: "",
       ),
-      const GitPage(),
-      const CarPage(),
-      const HotelListPage(ctgId: 'all'),
-      RestaurantsGridView(),
+      GitPage(changedCity: city),
+      CarPage(changedCity: city),
+      HotelListPage(ctgId: 'all', changedCity: city),
+      RestaurantsGridView( changedCity: city),
     ];
     return Scaffold(
       extendBodyBehindAppBar: true,
