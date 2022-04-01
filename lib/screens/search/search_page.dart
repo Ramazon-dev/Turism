@@ -11,6 +11,6 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
-    return PlacePage();
+    return PlacePage(city: CityList.cities.first);
   }
 }

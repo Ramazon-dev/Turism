@@ -7,8 +7,8 @@ import 'package:mobileapp/widgets/navigators/drawer_widget.dart';
 import 'package:mobileapp/widgets/top_bar/app_bar_with_list.dart';
 
 class GitPage extends StatefulWidget {
-  GitPage({Key? key, required this.changedCity}) : super(key: key);
-  CityModel changedCity;
+  const GitPage({Key? key, required this.changedCity}) : super(key: key);
+  final CityModel changedCity;
 
   @override
   State<GitPage> createState() => _GitPageState();
@@ -16,16 +16,18 @@ class GitPage extends StatefulWidget {
 
 class _GitPageState extends State<GitPage> with TickerProviderStateMixin {
   late TabController _tabController;
- late  int _currentIndex;
+  late int _currentIndex;
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
-    _currentIndex =
-        CityList.cities.indexOf((widget.changedCity));
+    _currentIndex = CityList.cities.indexOf((widget.changedCity));
     super.initState();
-    _tabController = TabController(length: CityList.cities.length, vsync: this, initialIndex: _currentIndex);
+    _tabController = TabController(
+        length: CityList.cities.length,
+        vsync: this,
+        initialIndex: _currentIndex);
   }
 
   @override

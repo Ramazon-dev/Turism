@@ -53,7 +53,7 @@ class ContainerForPopularObject extends StatelessWidget {
                                       MaterialPageRoute(
                                           builder: (context) => PlacePage(
                                                 category: data[index].id,
-                                                city: "",
+                                                city: CityList.cities.first,
                                               )));
                                 },
                                 child: Container(

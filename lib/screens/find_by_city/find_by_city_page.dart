@@ -18,7 +18,7 @@ class SelectedCityPage extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> listOfPages = [
       PlacePage(
-        city: city.value,
+        city: city,
         category: "",
       ),
       GitPage(changedCity: city),
