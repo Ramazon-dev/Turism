@@ -19,7 +19,6 @@ class ShowNearby extends StatelessWidget {
         builder: (context, AsyncSnapshot<List<Obekt>> snap) {
           if (snap.hasData) {
             List<Obekt> data = snap.data!;
-            print(snap.hasData.toString());
             return SizedBox(
               height: 240.h,
               child: ListView.builder(
@@ -39,36 +38,29 @@ class ShowNearby extends StatelessWidget {
                     child: Container(
                       height: 200.h,
                       width: 330.w,
+                      padding: MyEdgeInsets.all(10.0),
                       margin: EdgeInsets.symmetric(horizontal: 5.w),
                       decoration: MyDecoration.netImage(
                           netImage: imageFilter(data[index].media!.first),
                           radius: 5.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Row(
                             children: [
-                              Spacer(),
-                              Padding(
-                                padding: MyEdgeInsets.only(right: 10, top: 10),
-                                child: StartBar(
-                                  son: data[index].reyting!.toDouble(),
-                                  kishi: data[index].users,
-                                ),
+                              const Spacer(),
+                              StartBar(
+                                son: data[index].reyting!.toDouble(),
+                                kishi: data[index].users,
                               ),
                             ],
                           ),
-                          Padding(
-                            padding: MyEdgeInsets.only(
-                              top: 90.h,
-                              left: 20.w,
-                            ),
-                            child: Text(
-                              data[index].nameRu!,
-                              style: TextStyle(
-                                  fontSize: getWidth(20.0),
-                                  color: AppColors.white),
-                            ),
+                          Text(
+                            data[index].showInfo(context.locale.languageCode),
+                            style: TextStyle(
+                                fontSize: getWidth(20.0),
+                                color: AppColors.white),
                           ),
                         ],
                       ),
@@ -79,7 +71,7 @@ class ShowNearby extends StatelessWidget {
             );
           } else {
             return Container(
-             height: 240.h,
+              height: 240.h,
               alignment: Alignment.center,
               child: const CircularProgressIndicator(),
             );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileapp/core/components/exporting_packages.dart';
-import 'package:url_launcher/url_launcher.dart';
 
+// ignore: must_be_immutable
 class UrlTextWidget extends StatelessWidget {
   final String? url;
   final String text;
